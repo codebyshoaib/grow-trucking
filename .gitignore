@@ -15,8 +15,8 @@ build/
 # Django
 *.log
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
+*.sqlite3
+*.sqlite3-journal
 /media
 /staticfiles
 
@@ -24,6 +24,10 @@ db.sqlite3-journal
 .env
 .env.local
 .env.*.local
+backend/.env.local
+frontend/.env.local
+frontend/.env   
+backend/.env
 
 # IDE
 .vscode/
