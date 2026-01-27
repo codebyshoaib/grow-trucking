@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { Button } from '../ui/button'
+import { Button } from '../../ui/button'
 import { UserIcon, Menu, X } from "lucide-react";
 import HeaderNav from './HeaderNav';
 import MobileMenu from './MobileMenu';

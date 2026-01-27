@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { X } from 'lucide-react'
-import { Button } from '../ui/button'
+import { Button } from '../../ui/button'
 import { UserIcon } from 'lucide-react'
 
 interface MobileMenuProps {
