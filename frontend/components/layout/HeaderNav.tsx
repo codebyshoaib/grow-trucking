@@ -3,8 +3,6 @@ import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuContent,
     NavigationMenuLink,
 } from '@/components/ui/navigation-menu'
 
@@ -34,7 +32,7 @@ export default function HeaderNav() {
 
     return (
         <NavigationMenu>
-            <NavigationMenuList>
+            <NavigationMenuList className="flex gap-6">
                 {navItems.map((item) => (
                     <NavigationMenuItem key={item.href}>
                         <NavigationMenuLink asChild>
