@@ -1,6 +1,10 @@
-export default async function Home() {
+import Hero from "@/components/layout/Hero";
 
-  return (<main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8"></main>
+export default async function Home() {
+  return (
+    <main className="min-h-screen bg-white">
+      <Hero />
+    </main>
   );
 }
 
