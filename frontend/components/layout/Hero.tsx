@@ -11,6 +11,8 @@ export default function Hero() {
                     muted
                     loop
                     playsInline
+                    preload="none"
+                    poster="/banner-poster.png"
                     className="absolute inset-0 w-full h-full object-cover opacity-60"
                     src="/video.mp4"
                 >
