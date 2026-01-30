@@ -5,6 +5,7 @@ import SpecialitiesSection from "@/components/layout/SpecialitiesSection";
 import WhyChooseUs from "@/components/layout/WhyChooseUs";
 import TestimonialsSection from "@/components/layout/TestimonialsSection";
 import FAQSection from "@/components/layout/FAQSection";
+import Footer from "@/components/layout/Footer/Footer";
 
 export default async function Home() {
   return (
@@ -16,6 +17,7 @@ export default async function Home() {
       <WhyChooseUs />
       <TestimonialsSection />
       <FAQSection />
+      <Footer />
     </main>
   );
 }
