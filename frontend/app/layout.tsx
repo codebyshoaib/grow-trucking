@@ -5,10 +5,11 @@ import Header from "@/components/layout/Header/Header";
 import Preloader from "@/components/layout/Preloader";
 
 const ibmPlexSans = IBM_Plex_Sans({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
   variable: "--font-primary",
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {

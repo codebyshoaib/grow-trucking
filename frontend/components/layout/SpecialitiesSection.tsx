@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { motion, AnimatePresence } from 'framer-motion'
 
 const specialities = [
     {
@@ -54,22 +54,16 @@ export default function SpecialitiesSection() {
     return (
         <section className="relative min-h-[700px] overflow-hidden bg-white">
             {/* Dynamic Background Image */}
-            <AnimatePresence mode="wait">
-                <motion.div
+            <div className="absolute inset-0 z-0">
+                <Image
                     key={activeData.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.15 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0 z-0"
-                >
-                    <img
-                        src={activeData.image}
-                        alt="Truck Background"
-                        className="w-full h-full object-cover grayscale"
-                    />
-                </motion.div>
-            </AnimatePresence>
+                    src={activeData.image}
+                    alt="Truck Background"
+                    fill
+                    className="object-cover grayscale opacity-15 transition-opacity duration-500"
+                    loading="lazy"
+                />
+            </div>
 
             <div className="flex flex-col lg:flex-row h-full relative z-10">
 
@@ -104,44 +98,36 @@ export default function SpecialitiesSection() {
                             Specialities
                         </h2>
 
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeData.id}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                transition={{ duration: 0.4 }}
-                            >
-                                <div className="mb-8">
-                                    <h3 className="text-5xl lg:text-6xl font-black text-black mb-8 leading-none">
-                                        {activeData.contentTitle}
-                                    </h3>
+                        <div
+                            key={activeData.id}
+                            className="mb-8 animate-fade-in"
+                        >
+                            <h3 className="text-5xl lg:text-6xl font-black text-black mb-8 leading-none">
+                                {activeData.contentTitle}
+                            </h3>
 
-                                    <p className="text-lg text-gray-700 leading-relaxed mb-12 border-l-4 border-primary pl-8">
-                                        {activeData.description}
-                                    </p>
+                            <p className="text-lg text-gray-700 leading-relaxed mb-12 border-l-4 border-primary pl-8">
+                                {activeData.description}
+                            </p>
 
-                                    <div className="flex flex-col sm:flex-row gap-4">
-                                        <Button
-                                            size="lg"
-                                            className="bg-black text-white hover:bg-primary hover:text-black font-black rounded-full px-10 py-7 uppercase tracking-tighter transition-all"
-                                        >
-                                            Start Trucking Dispatch
-                                        </Button>
-                                        <Button
-                                            variant="outline"
-                                            size="lg"
-                                            className="border-2 border-primary bg-primary/10 hover:bg-primary text-black font-black rounded-full px-10 py-7 uppercase tracking-tighter transition-all"
-                                        >
-                                            Learn more
-                                        </Button>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <Button
+                                    size="lg"
+                                    className="bg-black text-white hover:bg-primary hover:text-black font-black rounded-full px-10 py-7 uppercase tracking-tighter transition-all"
+                                >
+                                    Start Trucking Dispatch
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    size="lg"
+                                    className="border-2 border-primary bg-primary/10 hover:bg-primary text-black font-black rounded-full px-10 py-7 uppercase tracking-tighter transition-all"
+                                >
+                                    Learn more
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </section>
     )

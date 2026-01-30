@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 
 const steps = [
@@ -39,10 +40,13 @@ export default function ProcessSection() {
         <section className="relative py-32 bg-black overflow-hidden">
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
-                <img
+                <Image
                     src="https://images.unsplash.com/photo-1501700493717-9c998ece7a02?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                    className="w-full h-full object-cover opacity-30 grayscale"
+                    fill
+                    className="object-cover opacity-30 grayscale"
                     alt="Trucking background"
+                    priority={false}
+                    loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black" />
             </div>
@@ -87,11 +91,14 @@ export default function ProcessSection() {
                 <div className="mt-32 flex flex-col items-center justify-center gap-10">
                     <div className="relative group">
                         {/* Big Truck SVG from public */}
-                        <div className="">
-                            <img
+                        <div className="relative w-64 md:w-96 h-auto">
+                            <Image
                                 src="/truck-big.svg"
                                 alt="Truck Graphic"
-                                className="w-64 md:w-96 h-auto"
+                                width={384}
+                                height={85}
+                                className="w-full h-auto"
+                                loading="lazy"
                             />
                         </div>
                         {/* Cinematic Glow */}
