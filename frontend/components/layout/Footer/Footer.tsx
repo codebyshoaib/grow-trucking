@@ -18,12 +18,11 @@ const socialLinks = [
     { label: 'Twitter', href: '#', icon: Twitter },
     { label: 'Youtube', href: '#', icon: Youtube },
 ]
-
-const legalLinks = [
-    { label: 'Terms of service', href: '#terms' },
-    { label: 'Privacy policy', href: '#privacy' },
-    { label: 'Cookie policy', href: '#cookies' },
-]
+const COMPANY_EMAIL_ADDRESS = process.env.VITE_COMPANY_EMAIL_ADDRESS;
+const COMPANY_PHONE_NUMBER = process.env.VITE_COMPANY_PHONE_NUMBER;
+const COMPANY_STREET_ADDRESS = process.env.VITE_COMPANY_STREET_ADDRESS;
+const COMPANY_SUITE_NUMBER = process.env.VITE_COMPANY_SUITE_NUMBER;
+const COMPANY_ZIP_CODE = process.env.VITE_COMPANY_ZIP_CODE;
 
 export default function Footer() {
     return (
@@ -33,10 +32,9 @@ export default function Footer() {
                     <div className="space-y-4 flex flex-col">
                         <Image src="/logo.webp" alt="Logo" width={100} height={100} className="object-contain filter brightness-0 invert w-32 h-32" />
                         <div className="space-y-2 text-sm text-white/80">
-                            <p>20619 Torrence Chapel Rd, ABC </p>
-                            <p>Suite 116 #1040</p>
-                            <p>Cornelius, NC 28031</p>
-                            <p>United States</p>
+                            <p>{COMPANY_STREET_ADDRESS}</p>
+                            <p>{COMPANY_SUITE_NUMBER}</p>
+                            <p>{COMPANY_ZIP_CODE}</p>
                         </div>
                     </div>
 
@@ -84,13 +82,13 @@ export default function Footer() {
                         <div className="flex items-center gap-2">
                             <PhoneCall className="w-4 h-4" />
                             <p className="text-sm text-white/80 hover:text-white transition-colors">
-                                1-800-201-1019
+                                {COMPANY_PHONE_NUMBER}
                             </p>
                         </div>
                         <div className="flex items-center gap-2">
                             <MailCheck className="w-4 h-4" />
                             <p className="text-sm text-white/80 hover:text-white transition-colors">
-                                support@growtrucking.com
+                                {COMPANY_EMAIL_ADDRESS}
                             </p>
                         </div>
 
