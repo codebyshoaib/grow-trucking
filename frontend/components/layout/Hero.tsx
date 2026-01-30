@@ -4,7 +4,7 @@ import { Youtube, Linkedin, Facebook } from 'lucide-react'
 
 export default function Hero() {
     return (
-        <section className="relative h-[90vh] w-full overflow-hidden flex items-center bg-black">
+        <section className="relative h-[95vh] w-full overflow-hidden flex items-center bg-black">
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <video
                     autoPlay
@@ -26,7 +26,7 @@ export default function Hero() {
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight drop-shadow-2xl">
                         Truck Dispatch Services
                     </h1>
-                    <p className="text-lg md:text-xl text-white font-medium mb-10 max-w-xl leading-relaxed drop-shadow-lg">
+                    <p className="text-base md:text-xl text-white font-medium mb-10 max-w-xl leading-relaxed drop-shadow-lg">
                         We provide high-quality freight dispatch service for interstate carriers and fleet owners in the USA and Canada
                     </p>
                     <Button

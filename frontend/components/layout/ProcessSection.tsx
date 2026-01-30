@@ -37,7 +37,7 @@ const steps = [
 
 export default function ProcessSection() {
     return (
-        <section className="relative py-32 bg-black overflow-hidden">
+        <section className="relative py-24  bg-black overflow-hidden">
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -54,18 +54,18 @@ export default function ProcessSection() {
             <div className="container mx-auto px-6 relative z-10">
                 <div className="max-w-4xl mx-auto text-center mb-24">
                     <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
-                        Resolute Logistics Company as the <br />
+                        Grow Trucking as the <br />
                         <span className="text-primary">Leading Freight Dispatching Service</span>
                     </h2>
                 </div>
 
                 {/* Process Path Grid */}
                 <div className="relative max-w-6xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-32">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-x-16 gap-y-32">
                         {steps.map((step, index) => (
                             <div key={index} className="relative group">
                                 {/* Step Indicator */}
-                                <div className="flex items-center gap-4 mb-6">
+                                <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
                                     <div className="relative flex items-center justify-center z-10">
                                         <div className="w-12 h-12 rounded-full border-2 border-primary/30 bg-black flex items-center justify-center text-primary font-black text-xl group-hover:bg-primary group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(249,240,98,0.1)]">
                                             {index + 1}
@@ -76,7 +76,7 @@ export default function ProcessSection() {
                                 </div>
 
                                 {/* Content */}
-                                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">
+                                <h3 className="text-xl md:text-2xl text-center lg:text-left font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">
                                     {step.title}
                                 </h3>
                                 <p className="text-gray-400 text-sm leading-relaxed border-l-2 border-primary/10 pl-4 group-hover:border-primary/50 transition-colors">
@@ -105,10 +105,10 @@ export default function ProcessSection() {
                         <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full -z-10" />
                     </div>
 
-                    <div className="flex flex-col items-center gap-6">
+                    <div className=" flex flex-col items-center gap-6">
                         <Button
                             size="lg"
-                            className="bg-primary hover:bg-white text-black font-black rounded-full px-16 py-8 text-xl uppercase tracking-tighter transition-all hover:scale-105 shadow-[0_0_50px_rgba(249,240,98,0.2)]"
+                            className="w-2/3 mx-auto font-lg md:font-xl bg-primary hover:bg-primary/90 text-primary-foreground font-black rounded-full px-16 py-7 uppercase tracking-tighter transition-all hover:scale-105 shadow-[0_0_50px_rgba(249,240,98,0.2)]"
                         >
                             Start Trucking Dispatch
                         </Button>

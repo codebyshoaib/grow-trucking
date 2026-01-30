@@ -84,13 +84,13 @@ export default function WhyChooseUs() {
                                 key={index}
                                 className="group relative bg-white/[0.6] hover:bg-white/[0.06] border border-primary/50 p-10 rounded-[2.5rem] transition-all duration-500 hover:border-primary/50 text-gray-800"
                             >
-                                <div className="flex flex-col md:flex-row md:items-center gap-8">
+                                <div className="flex flex-col items-center md:flex-row md:items-center gap-8">
                                     <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
                                         {reason.icon}
                                     </div>
 
-                                    <div className="flex-grow">
-                                        <div className="flex items-center justify-between mb-3">
+                                    <div className="flex-grow ">
+                                        <div className="flex flex-col items-center justify-between mb-3 lg:flex-row">
                                             <h3 className="text-2xl font-bold">{reason.title}</h3>
                                             <span className="text-xs font-bold text-primary px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
                                                 {reason.stats}

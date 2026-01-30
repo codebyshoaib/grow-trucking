@@ -54,24 +54,24 @@ export default function TestimonialsSection() {
     <section className="py-24 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-xs font-black tracking-[0.3em] uppercase text-gray-400 mb-4">
+          <h2 className="text-xs font-black tracking-[0.3em] uppercase text-primary mb-4">
             Testimonials
           </h2>
-          <h3 className="text-4xl md:text-5xl font-black text-black tracking-tight">
+          <h3 className="text-3xl md:text-5xl font-black text-black tracking-tight">
             What Our Client Say!
           </h3>
         </div>
 
         <div className="relative flex items-center justify-center gap-4 lg:gap-8">
           {/* Navigation Buttons */}
-          <button 
+          <button
             onClick={prev}
             className="hidden md:flex absolute left-0 lg:left-10 z-20 w-12 h-12 items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 hover:bg-primary hover:text-black transition-all"
           >
             <ChevronLeft size={24} />
           </button>
-          
-          <button 
+
+          <button
             onClick={next}
             className="hidden md:flex absolute right-0 lg:right-10 z-20 w-12 h-12 items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 hover:bg-primary hover:text-black transition-all"
           >
@@ -79,7 +79,7 @@ export default function TestimonialsSection() {
           </button>
 
           {/* Cards Slider */}
-          <div className="flex items-center justify-center gap-6 py-10 w-full overflow-visible">
+          <div className="flex items-center justify-center gap-6 py-10 overflow-visible">
             <AnimatePresence mode="popLayout" initial={false}>
               {[-1, 0, 1].map((offset) => {
                 const itemIndex = (index + offset + testimonials.length) % testimonials.length
@@ -90,28 +90,28 @@ export default function TestimonialsSection() {
                   <motion.div
                     key={`${item.id}-${offset}`}
                     initial={{ opacity: 0, scale: 0.8, x: offset * 100 }}
-                    animate={{ 
-                      opacity: isActive ? 1 : 0.4, 
+                    animate={{
+                      opacity: isActive ? 1 : 0.4,
                       scale: isActive ? 1.1 : 0.9,
                       x: 0,
                       zIndex: isActive ? 10 : 0
                     }}
                     exit={{ opacity: 0, scale: 0.8, x: -offset * 100 }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    className={`bg-white p-8 lg:p-10 rounded-[2rem] shadow-xl border border-gray-50 flex flex-col max-w-[400px] flex-shrink-0 ${!isActive ? 'hidden lg:flex blur-[1px]' : 'flex'}`}
+                    className={`bg-white p-8 lg:p-10 rounded-[2rem] shadow-xl border border-gray-50 flex flex-col max-w-[90%] lg:max-w-[400px] flex-shrink-0 ${!isActive ? 'hidden lg:flex blur-[1px]' : 'flex'}`}
                   >
                     <div className="mb-6">
                       <Quote className="w-10 h-10 text-primary opacity-50" />
                     </div>
-                    
+
                     <p className="text-gray-600 mb-8 leading-relaxed italic">
                       "{item.text}"
                     </p>
 
                     <div className="mt-auto pt-6 border-t border-gray-100 flex items-center gap-4">
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
+                      <img
+                        src={item.image}
+                        alt={item.name}
                         className="w-12 h-12 rounded-full object-cover grayscale"
                       />
                       <div>
@@ -134,9 +134,8 @@ export default function TestimonialsSection() {
             <button
               key={i}
               onClick={() => setIndex(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                index === i ? 'bg-primary w-8' : 'bg-gray-300'
-              }`}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === i ? 'bg-primary w-8' : 'bg-gray-300'
+                }`}
             />
           ))}
         </div>

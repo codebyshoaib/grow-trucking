@@ -100,7 +100,7 @@ export default function Footer() {
                 {/* Copyright */}
                 <div className="border-t border-white/10 pt-8">
                     <p className="text-sm text-white/60 text-center">
-                        © 2024 Resolute Logistics. All rights reserved.
+                        © 2026 Grow Trucking. All rights reserved.
                     </p>
                 </div>
             </div>
