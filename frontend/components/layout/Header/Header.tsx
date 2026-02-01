@@ -51,7 +51,7 @@ export default function Header() {
                         <Button
                             type="button"
                             variant="ghost"
-                            className={`md:hidden p-2 transition-colors ${isScrolled
+                            className={`size-9 md:hidden p-2 transition-colors ${isScrolled
                                 ? 'text-gray-900 hover:bg-gray-100'
                                 : 'text-white hover:text-white hover:bg-white/10'
                                 }`}
@@ -65,6 +65,7 @@ export default function Header() {
                             size="lg"
                             icon={<UserIcon className="w-5 h-5" />}
                             iconPosition="left"
+                            className="uppercase tracking-tighter hidden md:flex"
                         >
                             Sign Up
                         </Button>
