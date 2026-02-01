@@ -4,7 +4,7 @@ import { Youtube, Linkedin, Facebook } from 'lucide-react'
 
 export default function Hero() {
     return (
-        <section className="relative h-[95vh] w-full overflow-hidden flex items-center bg-black">
+        <section className="relative min-h-[calc(100vh+6.25rem)] w-full overflow-hidden flex items-center">
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <video
                     autoPlay
@@ -13,33 +13,44 @@ export default function Hero() {
                     playsInline
                     preload="none"
                     poster="/banner-poster.png"
-                    className="absolute inset-0 w-full h-full object-cover opacity-60"
+                    className="absolute inset-0 w-full h-full object-cover"
                     src="/video.mp4"
                 >
                     Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent z-10" />
+                <div className="absolute inset-0 left-0 w-1/3 h-full bg-gradient-to-r from-black/40 to-transparent z-10" />
             </div>
 
             <div className="container mx-auto px-6 relative z-20">
-                <div className="max-w-3xl">
-                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight drop-shadow-2xl">
-                        Truck Dispatch Services
+                <div className="max-w-4xl">
+                    <h1 className="text-6xl uppercase md:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
+                        A reliable trucking partner
                     </h1>
                     <p className="text-base md:text-xl text-white font-medium mb-10 max-w-xl leading-relaxed drop-shadow-lg">
                         We provide high-quality freight dispatch service for interstate carriers and fleet owners in the USA and Canada
                     </p>
                     <Button
                         size="lg"
-                        className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold rounded-full px-8 py-6 text-lg transition-all hover:scale-105 shadow-xl"
+                        className="
+    relative overflow-hidden
+    bg-primary text-primary-foreground font-semibold
+    rounded-md px-8 py-6 text-lg
+    transition-all duration-300 ease-out
+    shadow-lg
+    hover:-translate-y-[2px]
+    hover:cursor-pointer
+    hover:shadow-[0_12px_30px_rgba(0,0,0,0.18)]
+    active:translate-y-0
+  "
                     >
-                        Start Trucking Dispatch
+                        Book Free Consultation
                     </Button>
+
                 </div>
             </div>
 
             {/* Bottom Elements */}
-            <div className="absolute bottom-10 left-0 w-full px-6 md:px-12 flex justify-between items-center z-20">
+            <div className="absolute bottom-10 left-5 w-full px-6 md:px-12 flex justify-between items-center z-20">
                 <div className="flex items-center gap-6">
                     <div className="flex gap-4">
                         <a href="#" className="text-primary hover:text-white transition-colors">
@@ -63,8 +74,6 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Top Yellow Border Line */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-[#F9F062] z-30" />
         </section>
     )
 }
