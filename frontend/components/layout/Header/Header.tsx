@@ -54,7 +54,15 @@ export default function Header() {
                         >
                             {isMobileMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
                         </Button>
-                        <Button variant="default" className='bg-primary text-primary-foreground hover:bg-primary/90 hidden sm:flex'>
+                        <Button variant="default" className='relative overflow-hidden
+    bg-primary text-primary-foreground font-semibold
+    rounded-md px-8 py-4 text-base
+    transition-all duration-300 ease-out
+    shadow-lg
+    hover:-translate-y-[2px]
+    hover:cursor-pointer
+    hover:shadow-[0_12px_30px_rgba(0,0,0,0.18)]
+    active:translate-y-0'>
                             <UserIcon />
                             Sign Up
                         </Button>

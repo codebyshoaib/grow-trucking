@@ -42,7 +42,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                         <NavigationMenuLink asChild>
                             <Link
                                 href={item.href}
-                                className={`text-lg font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full bg-transparent hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent p-0 rounded-none transition-colors ${isScrolled
+                                className={`text-[.95rem] font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full bg-transparent hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent p-0 rounded-none transition-colors ${isScrolled
                                     ? 'text-gray-900 hover:text-gray-700'
                                     : 'text-white hover:text-white'
                                     }`}
