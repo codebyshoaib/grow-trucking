@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 
 const testimonials = [
   {
@@ -54,10 +55,8 @@ export default function TestimonialsSection() {
     <section className="py-24 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-xs font-black tracking-[0.3em] uppercase text-primary mb-4">
-            Testimonials
-          </h2>
-          <h3 className="text-3xl md:text-5xl font-black text-black tracking-tight">
+          <Badge>TESTIMONIALS</Badge>
+          <h3 className="text-3xl md:text-5xl font-black text-black tracking-tight mt-4">
             What Our Client Say!
           </h3>
         </div>

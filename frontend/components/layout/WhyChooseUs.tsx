@@ -1,5 +1,9 @@
+'use client'
+
 import React from 'react'
-import { TrendingUp, Users, Headphones, ShieldCheck, DollarSign, Zap, ArrowRight } from 'lucide-react'
+import { TrendingUp, Users, Headphones, Clock, ArrowRight, Truck } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 const reasons = [
     {
@@ -15,110 +19,112 @@ const reasons = [
         stats: "1-on-1 Dedicated Support"
     },
     {
-        icon: <Headphones className="w-6 h-6" />,
-        title: "Elite Operations",
-        description: "From complex paperwork to roadside emergencies, our command center is active 24/7/365. We handle the chaos so you can focus on the road.",
-        stats: "24/7 Command Center"
+        icon: <Clock className="w-6 h-6" />,
+        title: "Flexible Operations",
+        description: "At our dispatch service, we understand the importance of balancing work with your lifestyle. That's why our operations are available around the clock, allowing you to work at your own pace, anytime and anywhere. Whether you're an owner-operator or part of a fleet, you can customize your schedule to fit your needs.",
+        stats: "Flexible Scheduling"
+    },
+    {
+        icon: <Truck className="w-6 h-6" />,
+        title: "Scalable Solutions",
+        description: "Whether you're a single truck owner or part of a large fleet, our scalable dispatch solutions grow with you. We provide the tools and resources to handle small operations as well as large fleets, ensuring you always have the support you need.",
+        stats: "Scalable Solutions"
     }
 ]
 
 export default function WhyChooseUs() {
+    const [firstTwo, thirdReason, fourthReason] = [reasons.slice(0, 2), reasons[2], reasons[3]]
+
     return (
-        <section className="py-32 bg-[#f5f5f5] text-white overflow-hidden relative border-t border-white/5">
-            {/* Subtle Grid Texture for differentiation */}
-            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
-                style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <section className="relative bg-white py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                {/* Header Section */}
+                <div className="mb-12 lg:mb-16">
+                    <Badge>WHY CHOOSE US</Badge>
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black leading-tight mt-4">
+                        Why{' '}
+                        <span className="text-primary">Truck Dispatch</span>{' '}
+                        is The Right Choice for You
+                    </h2>
+                </div>
 
-            {/* Decorative Background Elements */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
-                <div className="absolute -top-[10%] -right-[5%] w-[40%] h-[60%] bg-primary/20 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[10%] -left-[5%] w-[30%] h-[50%] bg-blue-500/10 rounded-full blur-[100px]" />
-            </div>
-
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="flex flex-col lg:flex-row gap-20 items-start">
-
-                    {/* Left Side: Bold Typography & Image */}
-                    <div className="lg:w-5/12">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8">
-                            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                            <span className="text-xs font-bold tracking-widest uppercase text-gray-800">The Competitive Edge</span>
-                        </div>
-
-                        <h2 className="text-5xl md:text-6xl font-extrabold mb-8 leading-[1.1] tracking-tight text-gray-800">
-                            We Don't Just Dispatch. <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-yellow-200">
-                                We Scale Fleets.
-                            </span>
-                        </h2>
-
-                        <p className="text-xl text-gray-800 mb-12 leading-relaxed max-w-xl">
-                            In an industry where every cent and every minute counts, we provide the precision logistics and aggressive negotiation needed to stay ahead of the curve.
-                        </p>
-
-                        <div className="relative group rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl border border-white/10">
-                            <img
-                                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                                alt="Modern Logistics Hub"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-                            <div className="absolute bottom-8 left-8">
-                                <div className="flex items-center gap-4">
-                                    <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center text-black">
-                                        <Zap className="w-6 h-6 fill-current" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-bold uppercase tracking-tighter text-primary">Live Market Data</p>
-                                        <p className="text-white font-medium">Real-time lane analysis active</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Side: Feature Cards */}
-                    <div className="lg:w-7/12 grid gap-6">
-                        {reasons.map((reason, index) => (
-                            <div
-                                key={index}
-                                className="group relative bg-white/[0.6] hover:bg-white/[0.06] border border-primary/50 p-10 rounded-[2.5rem] transition-all duration-500 hover:border-primary/50 text-gray-800"
-                            >
-                                <div className="flex flex-col items-center md:flex-row md:items-center gap-8">
-                                    <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+                {/* Grid Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    {/* Left Side - 3 Blocks */}
+                    <div className="md:col-span-2 flex flex-col gap-6 lg:gap-8">
+                        {/* First Two Cards in 2-column grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+                            {firstTwo.map((reason, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-gray-50 rounded-2xl p-6 lg:p-8 flex flex-col"
+                                >
+                                    {/* Icon */}
+                                    <div className="w-14 h-14 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mb-6 text-gray-700">
                                         {reason.icon}
                                     </div>
 
-                                    <div className="flex-grow ">
-                                        <div className="flex flex-col items-center justify-between mb-3 lg:flex-row">
-                                            <h3 className="text-2xl font-bold">{reason.title}</h3>
-                                            <span className="text-xs font-bold text-primary px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
-                                                {reason.stats}
-                                            </span>
-                                        </div>
-                                        <p className="text-gray-400 leading-relaxed text-lg">
-                                            {reason.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                                    {/* Title */}
+                                    <h3 className="text-xl lg:text-2xl font-black text-black mb-4">
+                                        {reason.title}
+                                    </h3>
 
-                        {/* Final CTA Card */}
-                        <div className="mt-4 p-1 bg-gradient-to-r from-primary/50 via-yellow-200/50 to-primary/50 rounded-[2.5rem]">
-                            <div className="bg-[#0A0A0A] p-10 rounded-[2.3rem] flex flex-col md:flex-row items-center justify-between gap-8">
-                                <div>
-                                    <h4 className="text-2xl font-bold mb-2">Ready for a better bottom line?</h4>
-                                    <p className="text-gray-400">Join the elite network of carriers today.</p>
+                                    {/* Description */}
+                                    <p className="text-gray-700 leading-relaxed text-sm lg:text-base flex-grow">
+                                        {reason.description}
+                                    </p>
                                 </div>
-                                <button className="group flex items-center gap-3 bg-primary hover:bg-white text-black font-bold py-5 px-10 rounded-full transition-all duration-300 hover:scale-105">
-                                    Get Started
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </button>
+                            ))}
+                        </div>
+
+                        {/* Third Card - Full Width */}
+                        <div className="bg-gray-50 rounded-2xl p-6 lg:p-8 flex flex-col">
+                            {/* Icon */}
+                            <div className="w-14 h-14 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mb-6 text-gray-700">
+                                {thirdReason.icon}
                             </div>
+
+                            {/* Title */}
+                            <h3 className="text-xl lg:text-2xl font-black text-black mb-4">
+                                {thirdReason.title}
+                            </h3>
+
+                            {/* Description */}
+                            <p className="text-gray-700 leading-relaxed text-sm lg:text-base flex-grow">
+                                {thirdReason.description}
+                            </p>
                         </div>
                     </div>
 
+                    {/* Right Side - 1 Tall Block */}
+                    <div className="md:col-span-1">
+                        <div className="bg-secondary rounded-2xl p-6 lg:p-8 h-full flex flex-col">
+                            {/* Icon */}
+                            <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-6 text-white">
+                                {fourthReason.icon}
+                            </div>
+
+                            {/* Title */}
+                            <h3 className="text-xl lg:text-2xl font-black text-white mb-4">
+                                {fourthReason.title}
+                            </h3>
+
+                            {/* Description */}
+                            <p className="text-white/90 leading-relaxed text-sm lg:text-base mb-8 flex-grow">
+                                {fourthReason.description}
+                            </p>
+
+                            {/* CTA Button */}
+                            <Button
+                                className="w-full uppercase tracking-tight"
+                                size="lg"
+                                icon={<ArrowRight className="w-5 h-5" />}
+                                iconPosition="right"
+                            >
+                                Start Free Consultation
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

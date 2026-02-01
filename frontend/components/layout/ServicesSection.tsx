@@ -98,7 +98,9 @@ export default function ServicesSection() {
                 <div className="flex justify-center mt-6 items-center">
                     <Button
                         size="lg"
-                        className="bg-primary hover:bg-white text-black font-black rounded-full px-16 py-8 text-xl uppercase tracking-tighter transition-all hover:scale-105 shadow-[0_0_50px_rgba(249,240,98,0.2)]"
+                        className="text-xl uppercase tracking-tighter"
+                        icon={<ChevronRight className="w-5 h-5" />}
+                        iconPosition="right"
                     >
                         View All Services
                     </Button>

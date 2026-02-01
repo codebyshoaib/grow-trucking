@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 
 const specialities = [
     {
@@ -93,7 +94,7 @@ export default function SpecialitiesSection() {
 
             <div className="relative z-10 flex flex-col lg:flex-row">
                 {/* Tabs */}
-                <div className="lg:w-[400px] bg-primary order-2 lg:order-1 ">
+                <div className="lg:w-[400px] bg-primary">
                     {/* Mobile: horizontal swipe */}
                     <div
                         className="
@@ -122,7 +123,7 @@ export default function SpecialitiesSection() {
                     text-left
                     transition-all duration-200
                     border-2
-                    ${isActive ? "bg-black border-black" : "bg-white/10 border-black/20"}
+                    ${isActive ? "bg-secondary border-secondary" : "bg-white/10 border-black/20"}
                   `}
                                 >
                                     <div className={`text-lg font-black uppercase tracking-tight ${isActive ? "text-primary" : "text-black"}`}>
@@ -148,10 +149,10 @@ export default function SpecialitiesSection() {
                     w-full text-right px-10 py-8
                     transition-all duration-300
                     flex flex-col items-end gap-1
-                    ${isActive ? "bg-black text-white" : "text-black hover:bg-black/5"}
+                    ${isActive ? "bg-secondary text-white" : "text-black hover:bg-black/5"}
                   `}
                                 >
-                                    <span className={`text-2xl font-black uppercase tracking-tighter ${isActive ? "text-primary" : ""}`}>
+                                    <span className={`text-2xl font-black uppercase tracking-tighter ${isActive ? "text-white" : ""}`}>
                                         {spec.title}
                                     </span>
                                     <span className={`text-[10px] max-w-[200px] leading-tight font-bold uppercase tracking-widest ${isActive ? "text-gray-400" : "text-black/60"}`}>
@@ -166,11 +167,8 @@ export default function SpecialitiesSection() {
                 {/* Content */}
                 <div className="flex-grow bg-white/80 lg:bg-transparent px-5 py-10 sm:px-8 lg:p-24">
                     <div className="max-w-3xl">
-                        <h2 className="text-sm font-black tracking-[0.3em] uppercase text-black mb-8 lg:mb-12">
-                            Specialities
-                        </h2>
-
-                        <div key={activeData.id} className="mb-8 animate-fade-in">
+                        <Badge>SPECIALITIES</Badge>
+                        <div key={activeData.id} className="mb-8 mt-8 animate-fade-in">
                             <h3 className="text-4xl sm:text-5xl lg:text-6xl font-black text-black mb-6 lg:mb-8 leading-none">
                                 {activeData.contentTitle}
                             </h3>
@@ -182,14 +180,15 @@ export default function SpecialitiesSection() {
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Button
                                     size="lg"
-                                    className="bg-black text-white hover:bg-primary hover:text-black font-black rounded-full px-10 py-7 uppercase tracking-tighter transition-all"
+                                    variant="default"
+                                    className="uppercase tracking-tighter"
                                 >
                                     Start Trucking Dispatch
                                 </Button>
                                 <Button
-                                    variant="outline"
+                                    variant="secondary"
                                     size="lg"
-                                    className="border-2 border-primary bg-primary/10 hover:bg-primary text-black font-black rounded-full px-10 py-7 uppercase tracking-tighter transition-all"
+                                    className="border-2 text-black border-primary bg-transparent uppercase tracking-tighter hover:text-white hover:bg-primary hover:border-primary"
                                 >
                                     Learn more
                                 </Button>

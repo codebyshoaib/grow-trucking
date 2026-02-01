@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 import { Plus, Minus, ArrowRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 const faqs = [
     {
@@ -50,9 +52,7 @@ export default function FAQSection() {
                     {/* Left Side - Content */}
                     <div className="space-y-8">
                         <div>
-                            <span className="text-[#F9D71C] text-sm font-bold tracking-widest uppercase mb-4 block">
-                                FAQs
-                            </span>
+                            <Badge className="mb-4">FREQUENTLY ASKED QUESTIONS</Badge>
                             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 leading-tight">
                                 Frequently ask <br /> questions
                             </h2>
@@ -61,12 +61,14 @@ export default function FAQSection() {
                             </p>
                         </div>
 
-                        <button className="group flex items-center gap-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-8 py-4 transition-all hover:scale-105 shadow-lg">
-                            <span>Contact us</span>
-                            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                                <ArrowRight className="w-4 h-4" />
-                            </div>
-                        </button>
+                        <Button
+                            size="lg"
+                            icon={<ArrowRight className="w-5 h-5" />}
+                            iconPosition="right"
+                            className="uppercase tracking-tighter"
+                        >
+                            Contact us
+                        </Button>
                     </div>
 
                     {/* Right Side - FAQ Accordion */}

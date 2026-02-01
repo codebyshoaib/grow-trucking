@@ -1,6 +1,10 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { ArrowRight, Play } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 
 const steps = [
     {
@@ -37,81 +41,90 @@ const steps = [
 
 export default function ProcessSection() {
     return (
-        <section className="relative py-24  bg-black overflow-hidden">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="https://images.unsplash.com/photo-1501700493717-9c998ece7a02?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                    fill
-                    className="object-cover opacity-30 grayscale"
-                    alt="Trucking background"
-                    priority={false}
-                    loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black" />
-            </div>
-
+        <section className="relative py-24 bg-secondary overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-4xl mx-auto text-center mb-24">
-                    <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
-                        Grow Trucking as the <br />
-                        <span className="text-primary">Leading Freight Dispatching Service</span>
-                    </h2>
-                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+                    {/* Left Column - Content & Video */}
+                    <div className="space-y-8">
+                        <Badge>HOW IT WORKS</Badge>
 
-                {/* Process Path Grid */}
-                <div className="relative max-w-6xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-x-16 gap-y-32">
-                        {steps.map((step, index) => (
-                            <div key={index} className="relative group">
-                                {/* Step Indicator */}
-                                <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
-                                    <div className="relative flex items-center justify-center z-10">
-                                        <div className="w-12 h-12 rounded-full border-2 border-primary/30 bg-black flex items-center justify-center text-primary font-black text-xl group-hover:bg-primary group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(249,240,98,0.1)]">
-                                            {index + 1}
-                                        </div>
-                                        {/* Glowing Dot */}
-                                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full shadow-[0_0_10px_rgba(249,240,98,0.8)]" />
-                                    </div>
-                                </div>
+                        {/* Title */}
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
+                            Our Simple Processes
+                        </h2>
 
-                                {/* Content */}
-                                <h3 className="text-xl md:text-2xl text-center lg:text-left font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight">
-                                    {step.title}
-                                </h3>
-                                <p className="text-gray-400 text-sm leading-relaxed border-l-2 border-primary/10 pl-4 group-hover:border-primary/50 transition-colors">
-                                    {step.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                        {/* Description */}
+                        <p className="text-lg text-white/90 leading-relaxed max-w-xl">
+                            Our mission is to drive progress and enhance the lives of our customers by delivering superior products and services that exceed expectations.
+                        </p>
 
-                {/* Bottom CTA Area */}
-                <div className="mt-32 flex flex-col items-center justify-center gap-10">
-                    <div className="relative group">
-                        {/* Big Truck SVG from public */}
-                        <div className="relative w-64 md:w-96 h-auto">
-                            <Image
-                                src="/truck-big.svg"
-                                alt="Truck Graphic"
-                                width={384}
-                                height={85}
-                                className="w-full h-auto"
-                                loading="lazy"
-                            />
-                        </div>
-                        {/* Cinematic Glow */}
-                        <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full -z-10" />
-                    </div>
-
-                    <div className=" flex flex-col items-center gap-6">
+                        {/* CTA Button */}
                         <Button
                             size="lg"
-                            className="w-2/3 mx-auto font-lg md:font-xl bg-primary hover:bg-primary/90 text-primary-foreground font-black rounded-full px-16 py-7 uppercase tracking-tighter transition-all hover:scale-105 shadow-[0_0_50px_rgba(249,240,98,0.2)]"
+                            icon={<ArrowRight className="w-5 h-5" />}
+                            iconPosition="right"
                         >
-                            Start Trucking Dispatch
+                            Get Started
                         </Button>
+
+                        {/* Video Player Placeholder */}
+                        <div className="relative aspect-video rounded-2xl overflow-hidden bg-secondary/50 border border-white/10 mt-8">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-20 h-20 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center border-2 border-primary/50 cursor-pointer hover:bg-primary/30 transition-all group">
+                                    <Play className="w-8 h-8 text-primary ml-1 group-hover:scale-110 transition-transform" fill="currentColor" />
+                                </div>
+                            </div>
+                            <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white/80 text-sm">
+                                <Play className="w-4 h-4" />
+                                <span>Play Information</span>
+                                <span className="ml-2">4 min 30 sec</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right Column - Vertical Timeline */}
+                    <div className="relative">
+                        {/* Timeline Line - Dashed */}
+                        <div
+                            className="absolute left-6 top-0 bottom-0 w-0.5"
+                            style={{
+                                background: 'repeating-linear-gradient(to bottom, transparent, transparent 12px, rgba(255, 255, 255, 0.2) 12px, rgba(255, 255, 255, 0.2) 16px)',
+                            }}
+                        />
+
+                        {/* Steps */}
+                        <div className="space-y-16">
+                            {steps.slice(0, 3).map((step, index) => (
+                                <div key={index} className="relative pl-24">
+                                    {/* Timeline Circle with Step Number */}
+                                    <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-primary border-2 border-primary flex items-center justify-center z-10 shadow-[0_0_20px_rgba(244,129,32,0.3)]">
+                                        <span className="text-sm font-black text-white">
+                                            {step.number}
+                                        </span>
+                                    </div>
+
+                                    {/* Step Content Box */}
+                                    <div className="bg-white border-2 border-primary/30 rounded-2xl p-6 hover:border-primary hover:shadow-[0_0_30px_rgba(244,129,32,0.2)] transition-all duration-300 group">
+                                        {/* Step Label */}
+                                        <div className="inline-flex items-center gap-2 mb-4">
+                                            <span className="text-xs font-black tracking-widest uppercase text-primary">
+                                                STEP-{step.number}
+                                            </span>
+                                        </div>
+
+                                        {/* Step Title */}
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">
+                                            {step.title}
+                                        </h3>
+
+                                        {/* Step Description */}
+                                        <p className="text-gray-700 leading-relaxed">
+                                            {step.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -105,10 +105,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <div className="p-4 border-t border-gray-200">
                     <Button
                         variant="default"
-                        className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                        size="lg"
+                        className="w-full"
+                        icon={<UserIcon className="w-5 h-5" />}
+                        iconPosition="left"
                         onClick={onClose}
                     >
-                        <UserIcon className="mr-2" />
                         Sign Up
                     </Button>
                 </div>

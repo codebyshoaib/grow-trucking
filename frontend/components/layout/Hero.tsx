@@ -31,17 +31,7 @@ export default function Hero() {
                     </p>
                     <Button
                         size="lg"
-                        className="
-    relative overflow-hidden
-    bg-primary text-primary-foreground font-semibold
-    rounded-md px-8 py-6 text-lg
-    transition-all duration-300 ease-out
-    shadow-lg
-    hover:-translate-y-[2px]
-    hover:cursor-pointer
-    hover:shadow-[0_12px_30px_rgba(0,0,0,0.18)]
-    active:translate-y-0
-  "
+                        className="text-lg"
                     >
                         Book Free Consultation
                     </Button>

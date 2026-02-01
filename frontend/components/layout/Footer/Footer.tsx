@@ -1,105 +1,163 @@
 import React from 'react'
 import Link from 'next/link'
-import { Facebook, Instagram, Linkedin, MailCheck, PhoneCall, Twitter, Youtube } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Twitter, Github } from 'lucide-react'
 import Image from 'next/image'
 
-const quickLinks = [
+const productLinks = [
+    { label: 'Features', href: '#features' },
     { label: 'Pricing', href: '#pricing' },
-    { label: 'Resources', href: '#resources' },
-    { label: 'About us', href: '#about' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Contact us', href: '#contact' },
+    { label: 'Integrations', href: '#integrations' },
+    { label: 'Changelog', href: '#changelog' },
+]
+
+const resourcesLinks = [
+    { label: 'Documentation', href: '#documentation' },
+    { label: 'Tutorials', href: '#tutorials' },
+    { label: 'Blog', href: '#blog' },
+    { label: 'Support', href: '#support' },
+]
+
+const companyLinks = [
+    { label: 'About', href: '#about' },
+    { label: 'Careers', href: '#careers' },
+    { label: 'Contact', href: '#contact' },
+    { label: 'Partners', href: '#partners' },
 ]
 
 const socialLinks = [
-    { label: 'Facebook', href: '#', icon: Facebook },
+    { label: 'Twitter', href: '#', icon: Twitter },
     { label: 'Instagram', href: '#', icon: Instagram },
     { label: 'LinkedIn', href: '#', icon: Linkedin },
-    { label: 'Twitter', href: '#', icon: Twitter },
-    { label: 'Youtube', href: '#', icon: Youtube },
+    { label: 'GitHub', href: '#', icon: Github },
 ]
-const COMPANY_EMAIL_ADDRESS = process.env.VITE_COMPANY_EMAIL_ADDRESS;
-const COMPANY_PHONE_NUMBER = process.env.VITE_COMPANY_PHONE_NUMBER;
-const COMPANY_STREET_ADDRESS = process.env.VITE_COMPANY_STREET_ADDRESS;
-const COMPANY_SUITE_NUMBER = process.env.VITE_COMPANY_SUITE_NUMBER;
-const COMPANY_ZIP_CODE = process.env.VITE_COMPANY_ZIP_CODE;
+
+const legalLinks = [
+    { label: 'Privacy Policy', href: '#privacy' },
+    { label: 'Terms of Service', href: '#terms' },
+    { label: 'Cookies Settings', href: '#cookies' },
+]
 
 export default function Footer() {
     return (
-        <footer className="bg-black text-white">
-            <div className="container mx-auto px-6 py-12 md:py-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 items-start">
-                    <div className="space-y-4 flex flex-col">
-                        <Image src="/logo.webp" alt="Logo" width={100} height={100} className="object-contain filter brightness-0 invert w-32 h-32" />
-                        <div className="space-y-2 text-sm text-white/80">
-                            <p>{COMPANY_STREET_ADDRESS}</p>
-                            <p>{COMPANY_SUITE_NUMBER}</p>
-                            <p>{COMPANY_ZIP_CODE}</p>
+        <footer className="bg-secondary text-white rounded-t-3xl">
+            <div className="container mx-auto px-6 py-16 lg:py-20">
+                {/* Main Footer Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-12">
+                    {/* Left Column - Branding and Social */}
+                    <div className="space-y-6">
+                        {/* Logo and Company Name */}
+                        <div className="flex items-center gap-3">
+                            <Image
+                                src="/logo.webp"
+                                alt="Logo"
+                                width={150}
+                                height={150}
+                                className="object-contain filter brightness-0 invert"
+                            />
                         </div>
-                    </div>
 
-                    {/* Quick Links Column */}
-                    <div>
-                        <h3 className="text-lg font-semibold mb-4 uppercase tracking-wider">Quick Links</h3>
-                        <ul className="space-y-3">
-                            {quickLinks.map((link) => (
-                                <li key={link.label}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm text-white/80 hover:text-white transition-colors"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        {/* Description */}
+                        <p className="text-white/80 text-sm leading-relaxed max-w-md mt-4">
+                            Truck Dispatch empowers teams to transform raw data into clear, compelling visuals — making insights easier to share, understand, and act on.
+                        </p>
 
-                    {/* Social Column */}
-                    <div>
-                        <h3 className="text-lg font-semibold mb-4 uppercase tracking-wider">Social</h3>
-                        <ul className="space-y-3">
+                        {/* Social Media Icons */}
+                        <div className="flex items-center gap-4">
                             {socialLinks.map((link) => {
                                 const Icon = link.icon
                                 return (
+                                    <Link
+                                        key={link.label}
+                                        href={link.href}
+                                        className="text-white hover:text-primary transition-colors"
+                                        aria-label={link.label}
+                                    >
+                                        <Icon className="w-5 h-5" />
+                                    </Link>
+                                )
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Right Column - Navigation Links */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12">
+                        {/* Product Column */}
+                        <div>
+                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">Product</h3>
+
+                            <ul className="space-y-3">
+                                {productLinks.map((link) => (
                                     <li key={link.label}>
                                         <Link
                                             href={link.href}
-                                            className="text-sm text-white/80 hover:text-white transition-colors flex items-center gap-2"
+                                            className="text-sm text-white/70 hover:text-white transition-colors"
                                         >
-                                            <Icon className="w-4 h-4" />
                                             {link.label}
                                         </Link>
                                     </li>
-                                )
-                            })}
-                        </ul>
-                    </div>
-
-                    {/* Legal Column */}
-                    <div className="space-y-2">
-                        <h3 className="text-lg font-semibold mb-4 uppercase tracking-wider">Contact Us</h3>
-                        <div className="flex items-center gap-2">
-                            <PhoneCall className="w-4 h-4" />
-                            <p className="text-sm text-white/80 hover:text-white transition-colors">
-                                {COMPANY_PHONE_NUMBER}
-                            </p>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <MailCheck className="w-4 h-4" />
-                            <p className="text-sm text-white/80 hover:text-white transition-colors">
-                                {COMPANY_EMAIL_ADDRESS}
-                            </p>
+                                ))}
+                            </ul>
                         </div>
 
+                        {/* Resources Column */}
+                        <div>
+                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">Resources</h3>
+                            <ul className="space-y-3">
+                                {resourcesLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-white/70 hover:text-white transition-colors"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Company Column */}
+                        <div>
+                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">Company</h3>
+                            <ul className="space-y-3">
+                                {companyLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-white/70 hover:text-white transition-colors"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                {/* Copyright */}
-                <div className="border-t border-white/10 pt-8">
-                    <p className="text-sm text-white/60 text-center">
+                {/* Bottom Section - Copyright and Legal Links */}
+                <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    {/* Copyright */}
+                    <p className="text-sm text-white/60">
                         © 2026 Grow Trucking. All rights reserved.
                     </p>
+
+                    {/* Legal Links */}
+                    <div className="flex items-center gap-6">
+                        {legalLinks.map((link, index) => (
+                            <React.Fragment key={link.label}>
+                                <Link
+                                    href={link.href}
+                                    className="text-sm text-white/70 hover:text-white underline underline-offset-4 transition-colors"
+                                >
+                                    {link.label}
+                                </Link>
+                                {index < legalLinks.length - 1 && (
+                                    <span className="text-white/30">|</span>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </div>
                 </div>
             </div>
         </footer>

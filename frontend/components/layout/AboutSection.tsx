@@ -1,5 +1,6 @@
 import React from 'react'
 import { CheckCircle2, Truck, Shield, Clock, ArrowUpRight } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 
 const features = [
     {
@@ -43,14 +44,14 @@ export default function AboutSection() {
                         </div>
 
                         {/* Floating Stats Card */}
-                        <div className="absolute -bottom-10 -right-6 bg-black text-white p-8 rounded-3xl shadow-2xl z-20 border border-white/10 max-w-[240px]">
-                            <div className="flex items-start justify-between mb-4">
+                        <div className="absolute -bottom-10 -right-6 bg-secondary text-white p-8 rounded-3xl shadow-2xl z-20 border border-white/10 max-w-[240px]">
+                            <div className="flex items-start gap-6 mb-4">
                                 <div className="h-10 w-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary">
                                     <ArrowUpRight className="w-6 h-6" />
                                 </div>
                                 <span className="text-3xl font-black tracking-tighter">10+</span>
                             </div>
-                            <p className="text-sm font-bold uppercase tracking-widest text-gray-400 leading-tight">
+                            <p className="text-sm font-bold uppercase tracking-widest text-white leading-tight">
                                 Years of Market Leadership
                             </p>
                         </div>
@@ -61,19 +62,14 @@ export default function AboutSection() {
 
                     {/* Content Side */}
                     <div className="lg:w-1/2">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="h-[1px] w-12 bg-primary" />
-                            <span className="text-xs font-black tracking-[0.2em] text-primary uppercase">
-                                Company Overview
-                            </span>
-                        </div>
+                        <Badge>COMPANY OVERVIEW</Badge>
 
-                        <h2 className="text-4xl md:text-5xl font-extrabold text-black mb-8 leading-[1.15] tracking-tight">
+                        <h2 className="text-4xl md:text-5xl font-extrabold text-secondary mb-8 leading-[1.15] tracking-tight mt-4">
                             A Strategic Partner <br />
                             <span className="text-primary">For The Modern Road.</span>
                         </h2>
 
-                        <p className="text-lg text-gray-600 mb-12 leading-relaxed max-w-xl">
+                        <p className="text-lg text-gray-900 mb-12 leading-relaxed max-w-xl">
                             We empower independent owner-operators and small fleets by providing premium dispatching solutions that maximize earnings and minimize administrative stress.
                         </p>
 
@@ -86,7 +82,7 @@ export default function AboutSection() {
                                         </div>
                                         <h3 className="text-base font-bold text-black">{feature.title}</h3>
                                     </div>
-                                    <p className="text-gray-500 text-sm leading-relaxed">
+                                    <p className="text-gray-900 text-sm leading-relaxed">
                                         {feature.description}
                                     </p>
                                 </div>
