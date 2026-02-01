@@ -79,7 +79,7 @@ export default function SpecialitiesSection() {
     }, [activeTab])
 
     return (
-        <section className="relative overflow-hidden bg-white">
+        <section className="relative overflow-hidden bg-white py-12 lg:py-20">
             {/* Background */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -87,115 +87,153 @@ export default function SpecialitiesSection() {
                     src={activeData.image}
                     alt="Truck Background"
                     fill
-                    className="object-cover grayscale opacity-15 transition-opacity duration-500"
+                    className="object-cover grayscale opacity-10 transition-opacity duration-500"
                     loading="lazy"
                 />
             </div>
 
-            <div className="relative z-10 flex flex-col lg:flex-row">
-                {/* Tabs */}
-                <div className="lg:w-[400px] bg-primary">
-                    {/* Mobile: horizontal swipe */}
-                    <div
-                        className="
-              flex lg:hidden
-              overflow-x-auto
-              snap-x snap-mandatory
-              gap-3
-              px-4 py-5
-              [-ms-overflow-style:none] [scrollbar-width:none]
-              [&::-webkit-scrollbar]:hidden
-            "
-                    >
-                        {specialities.map((spec) => {
-                            const isActive = activeTab === spec.id
-                            return (
-                                <button
-                                    key={spec.id}
-                                    ref={(el) => {
-                                        tabRefs.current[spec.id] = el
-                                    }}
-                                    onClick={() => setActiveTab(spec.id)}
-                                    className={`
-                    snap-start shrink-0
-                    rounded-2xl
-                    px-5 py-4
-                    text-left
-                    transition-all duration-200
-                    border-2
-                    ${isActive ? "bg-secondary border-secondary" : "bg-white/10 border-black/20"}
-                  `}
-                                >
-                                    <div className={`text-lg font-black uppercase tracking-tight ${isActive ? "text-primary" : "text-black"}`}>
-                                        {spec.title}
-                                    </div>
-                                    <div className={`${isActive ? "text-gray-300" : "text-black/70"} mt-1 text-[10px] font-bold uppercase tracking-widest leading-tight max-w-[220px]`}>
-                                        {spec.subtitle}
-                                    </div>
-                                </button>
-                            )
-                        })}
-                    </div>
-
-                    {/* Desktop: vertical sidebar */}
-                    <div className="hidden lg:flex lg:flex-col py-12 lg:py-20">
-                        {specialities.map((spec) => {
-                            const isActive = activeTab === spec.id
-                            return (
-                                <button
-                                    key={spec.id}
-                                    onClick={() => setActiveTab(spec.id)}
-                                    className={`
-                    w-full text-right px-10 py-8
-                    transition-all duration-300
-                    flex flex-col items-end gap-1
-                    ${isActive ? "bg-secondary text-white" : "text-black hover:bg-black/5"}
-                  `}
-                                >
-                                    <span className={`text-2xl font-black uppercase tracking-tighter ${isActive ? "text-white" : ""}`}>
-                                        {spec.title}
-                                    </span>
-                                    <span className={`text-[10px] max-w-[200px] leading-tight font-bold uppercase tracking-widest ${isActive ? "text-gray-400" : "text-black/60"}`}>
-                                        {spec.subtitle}
-                                    </span>
-                                </button>
-                            )
-                        })}
-                    </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex-grow bg-white/80 lg:bg-transparent px-5 py-10 sm:px-8 lg:p-24">
-                    <div className="max-w-3xl">
+            <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+                {/* Section Header */}
+                <div className="mb-12 lg:mb-16">
+                    {/* Badge */}
+                    <div className="mb-6">
                         <Badge>SPECIALITIES</Badge>
-                        <div key={activeData.id} className="mb-8 mt-8 animate-fade-in">
-                            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-black text-black mb-6 lg:mb-8 leading-none">
-                                {activeData.contentTitle}
-                            </h3>
+                    </div>
 
-                            <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-10 lg:mb-12 border-l-4 border-primary pl-6 sm:pl-8">
-                                {activeData.description}
-                            </p>
+                    {/* Heading and Tabs Row */}
+                    <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-8">
+                        {/* Section Heading */}
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-black leading-tight tracking-tight">
+                            Our Specialities
+                        </h2>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <Button
-                                    size="lg"
-                                    variant="default"
-                                    className="uppercase tracking-tighter"
-                                >
-                                    Start Trucking Dispatch
-                                </Button>
-                                <Button
-                                    variant="secondary"
-                                    size="lg"
-                                    className="border-2 text-black border-primary bg-transparent uppercase tracking-tighter hover:text-white hover:bg-primary hover:border-primary"
-                                >
-                                    Learn more
-                                </Button>
+                        {/* Controller Tabs - Next to Heading */}
+                        <div className="flex-shrink-0">
+                            {/* Mobile: horizontal swipe */}
+                            <div
+                                className="
+                  flex lg:hidden
+                  overflow-x-auto
+                  snap-x snap-mandatory
+                  gap-4
+                  pb-2
+                  [-ms-overflow-style:none] [scrollbar-width:none]
+                  [&::-webkit-scrollbar]:hidden
+                "
+                            >
+                                {specialities.map((spec) => {
+                                    const isActive = activeTab === spec.id
+                                    return (
+                                        <button
+                                            key={spec.id}
+                                            ref={(el) => {
+                                                tabRefs.current[spec.id] = el
+                                            }}
+                                            onClick={() => setActiveTab(spec.id)}
+                                            className="snap-start shrink-0 relative pb-3 px-2"
+                                        >
+                                            <span className={`text-sm font-medium transition-colors ${isActive ? "text-primary" : "text-gray-400"}`}>
+                                                {spec.title}
+                                            </span>
+                                            {/* Underline - Only show for active tab on mobile */}
+                                            {isActive && (
+                                                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary transition-colors" />
+                                            )}
+                                        </button>
+                                    )
+                                })}
+                            </div>
+
+                            {/* Desktop: horizontal tabs with continuous underline */}
+                            <div className="hidden lg:flex items-center gap-6 xl:gap-8 relative pb-2">
+                                {specialities.map((spec, index) => {
+                                    const isActive = activeTab === spec.id
+
+                                    return (
+                                        <button
+                                            key={spec.id}
+                                            onClick={() => setActiveTab(spec.id)}
+                                            className="relative pb-3 px-2 py-2"
+                                        >
+                                            <span className={`text-base font-medium transition-colors ${isActive ? "text-primary" : "text-gray-400"}`}>
+                                                {spec.title}
+                                            </span>
+                                            {/* Active tab underline - extends to next tab */}
+                                            {isActive && (
+                                                <div
+                                                    className="absolute top-0 left-0 h-0.5 bg-primary z-10"
+                                                    style={{
+                                                        width: index === specialities.length - 1
+                                                            ? '100%'
+                                                            : 'calc(100% + 1rem)'
+                                                    }}
+                                                />
+                                            )}
+                                        </button>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {/* Content - Two Column Layout */}
+                <div className="mb-12 lg:mb-16">
+                    <div key={activeData.id} className="animate-fade-in">
+                        {/* Two Column Grid */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
+                            {/* Left Column - Image */}
+                            <div className="relative group">
+                                <div className="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white">
+                                    <Image
+                                        src={activeData.image}
+                                        alt={activeData.title}
+                                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                                        width={800}
+                                        height={600}
+                                        priority
+                                    />
+                                    {/* Subtle overlay on hover */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                </div>
+                            </div>
+
+                            {/* Right Column - Text and Buttons */}
+                            <div className="">
+                                {/* Title */}
+                                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-black mb-6 lg:mb-8 leading-tight tracking-tight">
+                                    {activeData.contentTitle}
+                                </h3>
+
+                                {/* Description with Accent Border */}
+                                <div className="mb-8 lg:mb-10">
+                                    <p className="text-sm sm:text-base lg:text-base text-gray-700 leading-relaxed">
+                                        {activeData.description}
+                                    </p>
+                                </div>
+
+                                {/* CTA Buttons */}
+                                <div className="flex flex-col sm:flex-row gap-4 lg:gap-6">
+                                    <Button
+                                        size="lg"
+                                        variant="default"
+                                        className="uppercase tracking-tighter text-base sm:text-lg px-8 sm:px-10"
+                                    >
+                                        Start Trucking Dispatch
+                                    </Button>
+                                    <Button
+                                        variant="outline"
+                                        size="lg"
+                                        className="border-2 border-primary bg-transparent text-black font-black uppercase tracking-tighter hover:bg-primary hover:text-white hover:border-primary text-base sm:text-lg px-8 sm:px-10"
+                                    >
+                                        Learn more
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     )
