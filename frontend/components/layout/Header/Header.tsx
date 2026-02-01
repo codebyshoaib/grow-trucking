@@ -15,7 +15,7 @@ export default function Header() {
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY
-            setIsScrolled(scrollPosition > 50)
+            setIsScrolled(scrollPosition > 200)
         }
 
         window.addEventListener('scroll', handleScroll)
