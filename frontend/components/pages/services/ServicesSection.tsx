@@ -130,7 +130,7 @@ export default function ServicesSection() {
                                         ].join(' ')}
                                     >
                                         <div className="px-6 md:px-10 lg:px-12 py-7 md:py-9">
-                                            <div className="flex flex-row justify-between gap-4 md:gap-8 items-start">
+                                            <div className="flex lg:flex-row flex-col justify-between gap-4 md:gap-8 items-start">
                                                 {/* number (left rail like reference) */}
                                                 <div className="pt-2">
                                                     <span className="block text-4xl font-bold tracking-[0.38em] text-gray-400">
@@ -140,10 +140,10 @@ export default function ServicesSection() {
 
                                                 {/* title + subitems */}
                                                 <div>
-                                                    <h3 className="text-2xl md:text-3xl lg:text-[34px] leading-tight font-semibold text-gray-900 tracking-tight flex items-center justify-between">
+                                                    <h3 className="mt-4 lg:mt-0 text-2xl md:text-3xl lg:text-[34px] leading-tight font-semibold text-gray-900 tracking-tight flex flex-col-reverse gap-4 lg:flex-row items-start lg:items-center justify-between">
                                                         {service.title}
                                                         {service.value && (
-                                                            <Badge className="ml-2">
+                                                            <Badge className="lg:ml-2 ml-0">
                                                                 {service.value} Value
                                                             </Badge>
                                                         )}
