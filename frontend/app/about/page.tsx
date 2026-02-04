@@ -1,8 +1,8 @@
-import dynamic from 'next/dynamic';
 import AboutBanner from "@/components/pages/about/AboutBanner";
 import AboutInfo from "@/components/pages/about/AboutInfo";
 import TestimonialsSection from '@/components/pages/homepage/TestimonialsSection';
 import WhyChooseUs from '@/components/pages/about/WhyChooseUs';
+import CTASection from '@/components/pages/about/CTASection';
 
 export default async function AboutPage() {
     return (
@@ -11,6 +11,7 @@ export default async function AboutPage() {
             <AboutInfo />
             <WhyChooseUs />
             <TestimonialsSection />
+            <CTASection />
         </main>
     );
 }
