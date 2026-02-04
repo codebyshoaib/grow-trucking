@@ -3,6 +3,7 @@ import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header/Header";
 import Preloader from "@/components/layout/Preloader";
+import Footer from "@/components/layout/Footer/Footer";
 
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ["400", "500", "700"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <Preloader />
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
