@@ -107,6 +107,16 @@ function Button({
 
   const iconElement = renderIcon()
 
+  const content = asChild ? (
+    children
+  ) : (
+    <>
+      {iconPosition === "left" && iconElement}
+      {children}
+      {iconPosition === "right" && iconElement}
+    </>
+  )
+
   return (
     <Comp
       data-slot="button"
@@ -115,9 +125,7 @@ function Button({
       className={cn(buttonVariants({ variant, size }), "group", className)}
       {...props}
     >
-      {iconPosition === "left" && iconElement}
-      {children}
-      {iconPosition === "right" && iconElement}
+      {content}
     </Comp>
   )
 }
