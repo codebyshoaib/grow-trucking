@@ -1,7 +1,6 @@
 import React from 'react'
 import { ArrowUpRight, ChevronRight } from 'lucide-react'
-import { Button } from '../ui/button'
-
+import { Button } from '@/components/ui/button'
 const services = [
     {
         title: "Dry Van Dispatch",
