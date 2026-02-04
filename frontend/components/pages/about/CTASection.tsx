@@ -29,7 +29,7 @@ export default function CTASection({
                     priority
                 />
                 <div className="absolute inset-0 bg-black/80 z-10" />
-                <div className="relative z-20 px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 text-center">
+                <div className="relative z-20 px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 text-left sm:text-center">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-4 sm:mb-6 max-w-4xl mx-auto">
                         {headline}
                     </h2>
@@ -40,10 +40,10 @@ export default function CTASection({
                     </p>
 
                     {/* CTA Button */}
-                    <div className="flex justify-center">
+                    <div className="flex justify-start sm:justify-center">
                         <Button
                             size="lg"
-                            className="text-lg py-8"
+                            className="text-base md:text-lg py-6 md:py-8"
                             icon={<ArrowRight className="w-6 h-6 sm:w-7 sm:h-7" />}
                             iconPosition="right"
                         >

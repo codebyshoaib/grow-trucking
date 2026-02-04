@@ -22,9 +22,9 @@ const features = [
 
 export default function WhyChooseUs() {
     return (
-        <section className="flex flex-col items-center bg-gray-100 justify-center py-24 px-6 md:px-24">
+        <section className="flex flex-col items-start sm:items-center bg-gray-100 justify-center py-16 sm:py-20 md:py-24 px-6 md:px-24">
             <div><Badge className="mb-4">WHY CHOOSE US</Badge></div>
-            <div className="text-center max-w-4xl mb-12">
+            <div className="text-left sm:text-center max-w-4xl mb-12">
                 <h2 className="uppercase text-4xl md:text-5xl font-extrabold text-secondary mb-6 leading-tight">
                     Your Success is Our Success
                 </h2>
