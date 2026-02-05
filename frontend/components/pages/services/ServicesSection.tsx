@@ -118,12 +118,11 @@ export default function ServicesSection() {
                                     onMouseLeave={() => setIsHovering(false)}
                                 >
                                     {/* row */}
-                                    <button
-                                        type="button"
+                                    <div
                                         onClick={() => handlers.toggle(index)}
                                         aria-expanded={isActive}
                                         className={[
-                                            'w-full text-left',
+                                            'w-full text-left cursor-pointer',
                                             'border-b border-primary/20 last:border-b-0',
                                             'transition-colors duration-300',
                                             isActive ? 'bg-primary/5' : 'bg-white hover:bg-primary/5',
@@ -133,7 +132,7 @@ export default function ServicesSection() {
                                             <div className="flex lg:flex-row flex-col justify-between gap-4 md:gap-8 items-start">
                                                 {/* number (left rail like reference) */}
                                                 <div className="pt-2">
-                                                    <span className="block text-4xl font-bold tracking-[0.38em] text-gray-400">
+                                                    <span className={`block text-4xl font-bold tracking-[0.38em] transition-colors duration-300 ${isActive ? 'text-primary' : 'text-gray-400'}`}>
                                                         {service.number}
                                                     </span>
                                                 </div>
@@ -175,15 +174,18 @@ export default function ServicesSection() {
                                                                 )}
 
                                                                 {service.buttonText && (
-                                                                    <div className="mt-5 md:mt-6">
+                                                                    <div className="mt-5 md:mt-6 w-56" onClick={(e) => e.stopPropagation()}>
                                                                         <Button
                                                                             variant="default"
                                                                             size="lg"
                                                                             icon={<ArrowRight className="w-5 h-5" />}
                                                                             iconPosition="right"
                                                                             className="uppercase tracking-tighter hidden md:flex shadow-none hover:shadow-none"
+                                                                            asChild
                                                                         >
-                                                                            {service.buttonText}
+                                                                            <Link href={service.buttonLink || '#'}>
+                                                                                {service.buttonText}
+                                                                            </Link>
                                                                         </Button>
                                                                     </div>
                                                                 )}
@@ -193,7 +195,7 @@ export default function ServicesSection() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </button>
+                                    </div>
                                 </div>
                             )
                         })}
