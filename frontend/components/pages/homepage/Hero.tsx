@@ -3,8 +3,12 @@ import { Button } from '@/components/ui/button'
 import { Youtube, Linkedin, Facebook } from 'lucide-react'
 
 export default function Hero() {
+    const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
+    if (!videoUrl) {
+        return null;
+    }
     return (
-        <section className="relative min-h-[calc(100vh+6.25rem)] w-full overflow-hidden flex items-center">
+        <section className="relative min-h-[calc(100vh+10.25rem)] md:min-h-[calc(100vh+6.25rem)] w-full overflow-hidden flex items-center">
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <video
                     autoPlay
@@ -14,11 +18,11 @@ export default function Hero() {
                     preload="none"
                     poster="/banner-poster.png"
                     className="absolute inset-0 w-full h-full object-cover"
-                    src="/video.mp4"
+                    src={videoUrl}
                 >
                     Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 left-0 w-1/3 h-full bg-gradient-to-r from-black/40 to-transparent z-10" />
+                <div className="absolute inset-0 top left-0 w-full h-full bg-gradient-to-r from-black/50 to-transparent z-10" />
             </div>
 
             <div className="container mx-auto px-6 relative z-20">
