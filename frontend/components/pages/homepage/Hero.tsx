@@ -3,6 +3,10 @@ import { Button } from '@/components/ui/button'
 import { Youtube, Linkedin, Facebook } from 'lucide-react'
 
 export default function Hero() {
+    const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
+    if (!videoUrl) {
+        return null;
+    }
 
     return (
         <section className="relative min-h-[calc(100vh+10.25rem)] md:min-h-[calc(100vh+6.25rem)] w-full overflow-hidden flex items-center">
@@ -15,7 +19,7 @@ export default function Hero() {
                     preload="none"
                     poster="/banner-poster.png"
                     className="absolute inset-0 w-full h-full object-cover"
-                    src="https://res.cloudinary.com/dj9r2zjpm/video/upload/v1770308019/WhatsApp_Video_2026-02-05_at_4.38.23_PM_h8fvv3.mp4"
+                    src={videoUrl}
                 >
                     Your browser does not support the video tag.
                 </video>
