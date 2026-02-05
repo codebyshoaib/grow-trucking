@@ -9,7 +9,7 @@ export default function Hero() {
     }
 
     return (
-        <section className="relative min-h-[calc(100vh+10.25rem)] md:min-h-[calc(100vh+6.25rem)] w-full overflow-hidden flex items-center">
+        <section className="relative min-h-[calc(100vh+6.25rem)] w-full overflow-hidden flex items-center">
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <video
                     autoPlay
