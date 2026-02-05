@@ -3,25 +3,14 @@ import { Button } from '@/components/ui/button'
 import { Youtube, Linkedin, Facebook } from 'lucide-react'
 
 export default function Hero() {
-    const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
-    if (!videoUrl) {
-        return null;
-    }
     return (
         <section className="relative min-h-[calc(100vh+10.25rem)] md:min-h-[calc(100vh+6.25rem)] w-full overflow-hidden flex items-center">
             <div className="absolute inset-0 z-0 overflow-hidden">
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="none"
-                    poster="/banner-poster.png"
+                <img
+                    src="/ezgif.com-speed.gif"
+                    alt="Background"
                     className="absolute inset-0 w-full h-full object-cover"
-                    src={videoUrl}
-                >
-                    Your browser does not support the video tag.
-                </video>
+                />
                 <div className="absolute inset-0 top left-0 w-full h-full bg-gradient-to-r from-black/50 to-transparent z-10" />
             </div>
 
