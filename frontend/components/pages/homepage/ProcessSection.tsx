@@ -40,6 +40,11 @@ const steps = [
 ]
 
 export default function ProcessSection() {
+    const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
+    if (!videoUrl) {
+        return null;
+    }
+
     return (
         <section className="relative py-24 bg-secondary overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
@@ -70,14 +75,23 @@ export default function ProcessSection() {
                         {/* Video Player Placeholder */}
                         <div className="relative aspect-video rounded-2xl overflow-hidden bg-secondary/50 border border-white/10 mt-8">
                             <div className="absolute inset-0 flex items-center justify-center">
+                                <video
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                    preload="none"
+                                    src={videoUrl}
+                                    className="w-full h-full object-cover"
+                                >
+                                    Your browser does not support the video tag.
+                                </video>
                                 <div className="w-20 h-20 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center border-2 border-primary/50 cursor-pointer hover:bg-primary/30 transition-all group">
-                                    <Play className="w-8 h-8 text-primary ml-1 group-hover:scale-110 transition-transform" fill="currentColor" />
                                 </div>
                             </div>
                             <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white/80 text-sm">
                                 <Play className="w-4 h-4" />
-                                <span>Play Information</span>
-                                <span className="ml-2">4 min 30 sec</span>
+                                <span> Watch Video</span>
                             </div>
                         </div>
                     </div>
