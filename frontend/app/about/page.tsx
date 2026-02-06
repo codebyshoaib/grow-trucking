@@ -4,6 +4,7 @@ import OurVision from "@/components/pages/about/OurVision";
 import TestimonialsSection from '@/components/pages/homepage/TestimonialsSection';
 import WhyChooseUs from '@/components/pages/about/WhyChooseUs';
 import CTASection from '@/components/pages/about/CTASection';
+import AboutExperience from '@/components/pages/about/AboutExperience';
 
 export default async function AboutPage() {
     return (
@@ -12,6 +13,7 @@ export default async function AboutPage() {
             <AboutInfo />
             <OurVision />
             <WhyChooseUs />
+            <AboutExperience />
             <TestimonialsSection />
             <CTASection />
         </main>

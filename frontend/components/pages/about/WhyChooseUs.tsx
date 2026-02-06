@@ -5,18 +5,18 @@ import { Handshake, MapPin, Lightbulb } from 'lucide-react'
 const features = [
     {
         icon: <Handshake className="w-6 h-6 text-primary" />,
-        title: "Reliable Partnerships",
-        description: "Long-lasting relationships based on trust, transparency, and mutual respect."
+        title: "Create The Best Strategy",
+        description: "We Provide Strategic Business Consultation: We offer 5+ years of real-world expertise and a comprehensive Business Audit"
     },
     {
         icon: <MapPin className="w-6 h-6 text-primary" />,
-        title: "Customer Satisfaction",
-        description: "We are dedicated to meeting and exceeding your expectations."
+        title: "Give The Best Solution",
+        description: "We Deliver Guaranteed Profit Strategy: We eliminate Revenue Leaks and build a custom 90Day Growth Plan with a clear profit target,backed by our Growth or Your Money Back Guarantee"
     },
     {
         icon: <Lightbulb className="w-6 h-6 text-primary" />,
-        title: "Innovative Solutions",
-        description: "Continuously adapting and improving to meet the evolving demands of the freight industry."
+        title: "Growing Up the Ideas",
+        description: "We Handle Compliance and Administration: We manage complex tasks like paperwork, Shipper Credit Checks, and rate negotiation, freeing you to focus on the road and sustainable GROWTH"
     }
 ]
 
@@ -29,7 +29,13 @@ export default function WhyChooseUs() {
                     Your Success is Our Success
                 </h2>
                 <p className="text-lg text-gray-800 leading-relaxed">
-                    Backed by experience, teamwork, and a drive for excellence. Elovana was founded to support ambitious businesses through strategy, design, and innovation. Today, we work with brands across industries to turn challenges into measurable results.
+                    We provide the Strategic Infrastructure to
+                    transform your authority into a high
+                    performance business, allowing you to
+                    effectively compete against much larger
+                    fleets and brokers. Our goal is to help you
+                    GROW your profitability and operational
+                    capability to a competitive leve
                 </p>
             </div>
 

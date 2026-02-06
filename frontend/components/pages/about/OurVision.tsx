@@ -12,18 +12,8 @@ export default function OurVision() {
                     {/* Right Column - Image Grid */}
                     <div className="lg:w-1/2">
                         <div className="grid grid-cols-2 gap-4">
-                            {/* Top Large Image - Spans 2 columns */}
-                            <div className="col-span-2 relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-lg">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                                    alt="Modern Workspace"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-
                             {/* Bottom Left Image */}
-                            <div className="relative h-[250px] md:h-[300px] rounded-2xl overflow-hidden shadow-lg">
+                            <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg">
                                 <Image
                                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                     alt="Business Growth"
@@ -33,7 +23,7 @@ export default function OurVision() {
                             </div>
 
                             {/* Bottom Right Image */}
-                            <div className="relative h-[250px] md:h-[300px] rounded-2xl overflow-hidden shadow-lg">
+                            <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg">
                                 <Image
                                     src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                     alt="Strategic Planning"
