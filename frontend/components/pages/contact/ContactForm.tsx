@@ -6,8 +6,10 @@ import { Send, Loader2 } from 'lucide-react'
 
 export default function ContactForm() {
     const [formData, setFormData] = useState({
-        name: '',
+        firstName: '',
+        lastName: '',
         email: '',
+        phone: '',
         message: ''
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -24,7 +26,7 @@ export default function ContactForm() {
 
         setIsSubmitting(false)
         // Reset form after successful submission
-        setFormData({ name: '', email: '', message: '' })
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' })
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -48,25 +50,49 @@ export default function ContactForm() {
 
             <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
                 {/* Name Field */}
-                <div>
-                    <label
-                        htmlFor="name"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Name
-                    </label>
-                    <div className="relative">
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                            placeholder="John Doe"
-                            required
-                        />
+                <div className="flex gap-4 flex-col lg:flex-row">
+                    <div className="flex-1">
+                        <label
+                            htmlFor="name"
+                            className="block text-sm font-semibold text-gray-700 mb-2"
+                        >
+                            First Name
+                        </label>
+                        <div className="relative">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                placeholder="John Doe"
+                                required
+                            />
+                        </div>
                     </div>
+
+                    <div className="flex-1">
+                        <label
+                            htmlFor="name"
+                            className="block text-sm font-semibold text-gray-700 mb-2"
+                        >
+                            Last Name
+                        </label>
+                        <div className="relative">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                placeholder="Doe"
+                                required
+                            />
+                        </div>
+                    </div>
+
                 </div>
 
                 {/* Email Field */}
@@ -90,7 +116,26 @@ export default function ContactForm() {
                         />
                     </div>
                 </div>
-
+                <div>
+                    <label
+                        htmlFor="phone"
+                        className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
+                        Phone
+                    </label>
+                    <div className="relative">
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                            placeholder="123-456-7890"
+                            required
+                        />
+                    </div>
+                </div>
                 {/* Message Field */}
                 <div className="flex-1 flex flex-col">
                     <label
