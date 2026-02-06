@@ -5,6 +5,7 @@ import TestimonialsSection from '@/components/pages/homepage/TestimonialsSection
 import WhyChooseUs from '@/components/pages/about/WhyChooseUs';
 import CTASection from '@/components/pages/about/CTASection';
 import AboutExperience from '@/components/pages/about/AboutExperience';
+import NextMoving from '@/components/pages/about/NextMoving';
 
 export default async function AboutPage() {
     return (
@@ -15,7 +16,7 @@ export default async function AboutPage() {
             <WhyChooseUs />
             <AboutExperience />
             <TestimonialsSection />
-            <CTASection />
+            <NextMoving />
         </main>
     );
 }
