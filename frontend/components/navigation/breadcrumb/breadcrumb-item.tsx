@@ -14,18 +14,18 @@ export function BreadcrumbItem({
     isCurrent = false,
 }: BreadcrumbItemProps) {
     return (
-        <li className="flex items-center gap-2 text-sm">
+        <li className="flex items-center gap-2 text-lg md:text-xl">
             {href && !isCurrent ? (
                 <Link
                     href={href}
-                    className="text-gray-300 hover:text-primary transition-colors duration-200 text-[.95rem] font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full bg-transparent hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent p-0 rounded-none transition-colors "
+                    className="text-gray-300 hover:text-primary transition-colors duration-200 font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full bg-transparent hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent p-0 rounded-none transition-colors "
                 >
                     {label}
                 </Link>
             ) : (
                 <span
                     aria-current="page"
-                    className="text-primary text-[.95rem] font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full bg-transparent hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent p-0 rounded-none transition-colors"
+                    className="text-primary font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full bg-transparent hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent p-0 rounded-none transition-colors"
                 >
                     {label}
                 </span>

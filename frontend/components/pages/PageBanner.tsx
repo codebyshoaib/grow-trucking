@@ -20,7 +20,7 @@ export default function PageBanner({
     imageAlt = "Page Banner"
 }: PageBannerProps) {
     return (
-        <section className="relative bg-secondary min-h-[60vh]  md:min-h-[70vh] w-full overflow-hidden flex items-end px-4 sm:px-6 md:px-12 lg:px-24 pb-8 sm:pb-12 md:pb-16 lg:pb-24">
+        <section className="relative bg-secondary min-h-[100vh] w-full overflow-hidden flex items-end px-4 sm:px-6 md:px-12 lg:px-24 pb-8 sm:pb-12 md:pb-16 lg:pb-24">
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image
                     src={imageUrl}
@@ -37,7 +37,7 @@ export default function PageBanner({
                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl uppercase font-bold text-white mb-4 sm:mb-5 md:mb-6 drop-shadow-2xl leading-tight">
                         {title}
                     </h1>
-                    <p className="text-sm sm:text-base md:text-lg text-white font-primary--400 tracking-wide leading-relaxed">
+                    <p className="text-xl md:text-2xl text-white font-primary--400 tracking-wide leading-relaxed">
                         {description}
                     </p>
                 </div>
