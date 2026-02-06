@@ -14,7 +14,7 @@ export function BreadcrumbItem({
     isCurrent = false,
 }: BreadcrumbItemProps) {
     return (
-        <li className="flex items-center gap-2 text-lg md:text-xl">
+        <li className="flex items-center gap-2 text-md md:text-xl">
             {href && !isCurrent ? (
                 <Link
                     href={href}
