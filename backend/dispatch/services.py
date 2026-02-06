@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from .models import Contact
 from .serializers import ContactCreateSerializer, ContactResponseSerializer
+from .email_service import ContactEmailService
 
 
 class ContactSubmissionService:
@@ -41,11 +42,22 @@ class ContactSubmissionService:
         
         # Return response using response serializer
         response_serializer = ContactResponseSerializer(contact)
+        contact_data = response_serializer.data
+        
+        # Send email notification to admin (infrastructure layer)
+        # This is done asynchronously to not block the response
+        try:
+            ContactEmailService.send_contact_notification(contact_data)
+        except Exception as e:
+            # Log error but don't fail the submission
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Failed to send email notification: {str(e)}", exc_info=True)
         
         return {
             'success': True,
             'message': 'Contact submission received successfully.',
-            'data': response_serializer.data
+            'data': contact_data
         }
 
     @staticmethod
