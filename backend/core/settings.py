@@ -12,11 +12,21 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / '.env')
+
+# Load .env file if dotenv is available (optional)
+try:
+    from dotenv import load_dotenv
+    # Try .env.local first, then .env
+    env_file = BASE_DIR / '.env.local'
+    if not env_file.exists():
+        env_file = BASE_DIR / '.env'
+    load_dotenv(env_file)
+except ImportError:
+    # dotenv not installed, continue without it
+    pass
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY','dev-secret-key')
 DEBUG = os.getenv('DEBUG','False') == 'True'
@@ -30,7 +40,7 @@ SECRET_KEY = 'django-insecure-q06p+g^fbfag!ro)d#q=ldb5jspr=n4@#v6alu8h429e$&99o%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -84,14 +94,26 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 # Super user: Shoaib@123!!Trucking
+db_engine = os.getenv('DB_ENGINE', 'django.db.backends.postgresql')
+db_name = os.getenv('DB_NAME', 'grow-trucking')
+db_user = os.getenv('DB_USER', 'postgres')
+db_password = os.getenv('DB_PASSWORD', 'postgres')
+db_host = os.getenv('DB_HOST', 'localhost')
+db_port = os.getenv('DB_PORT', '5432')
+
+# Debug: Print database config (remove password in production)
+if DEBUG:
+    print(f"Database Config - Engine: {db_engine}, Name: {db_name}, User: {db_user}, Host: {db_host}, Port: {db_port}")
+    print(f"Password loaded: {'Yes' if db_password else 'No'}")
+
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DB_ENGINE','django.db.backends.sqlite3'),
-        'NAME': os.getenv('DB_NAME','db.sqlite3'),
-        'USER': os.getenv('DB_USER',''),
-        'PASSWORD': os.getenv('DB_PASSWORD',''),
-        'HOST': os.getenv('DB_HOST',''),
-        'PORT': os.getenv('DB_PORT',''),
+        'ENGINE': db_engine,
+        'NAME': db_name,
+        'USER': db_user,
+        'PASSWORD': db_password,
+        'HOST': db_host,
+        'PORT': db_port,
     }
 }
 

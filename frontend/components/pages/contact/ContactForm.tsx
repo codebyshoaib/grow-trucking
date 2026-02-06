@@ -2,10 +2,16 @@
 
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Send, Loader2 } from 'lucide-react'
+import { Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
+import { contactService } from '@/services/contact.service'
+import type { ContactFormData } from '@/types/contact.types'
+
+interface FormErrors {
+    [key: string]: string
+}
 
 export default function ContactForm() {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<ContactFormData>({
         firstName: '',
         lastName: '',
         email: '',
@@ -13,27 +19,82 @@ export default function ContactForm() {
         message: ''
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [submitStatus, setSubmitStatus] = useState<{
+        type: 'success' | 'error' | null
+        message: string
+    }>({ type: null, message: '' })
+    const [fieldErrors, setFieldErrors] = useState<FormErrors>({})
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
+        setSubmitStatus({ type: null, message: '' })
+        setFieldErrors({})
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        try {
+            // Use contact service (application layer)
+            const result = await contactService.submitContactForm(formData)
 
-        console.log('Form submitted:', formData)
-        // You can add API call here
+            if (result.success) {
+                setSubmitStatus({
+                    type: 'success',
+                    message: result.message || 'Your message has been sent successfully!'
+                })
+                // Reset form after successful submission
+                setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' })
 
-        setIsSubmitting(false)
-        // Reset form after successful submission
-        setFormData({ firstName: '', lastName: '', email: '', phone: '', message: '' })
+                // Clear success message after 5 seconds
+                setTimeout(() => {
+                    setSubmitStatus({ type: null, message: '' })
+                }, 5000)
+            } else {
+                setSubmitStatus({
+                    type: 'error',
+                    message: result.message || 'Failed to send message. Please try again.'
+                })
+
+                // Map API errors to form fields
+                if (result.errors) {
+                    const errors: FormErrors = {}
+                    Object.keys(result.errors).forEach(key => {
+                        // Map backend field names to frontend field names
+                        const fieldMap: Record<string, string> = {
+                            'first_name': 'firstName',
+                            'last_name': 'lastName',
+                            'email': 'email',
+                            'phone': 'phone',
+                            'message': 'message'
+                        }
+                        const frontendField = fieldMap[key] || key
+                        errors[frontendField] = result.errors![key][0] || 'Invalid value'
+                    })
+                    setFieldErrors(errors)
+                }
+            }
+        } catch (error) {
+            setSubmitStatus({
+                type: 'error',
+                message: 'An unexpected error occurred. Please try again later.'
+            })
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target
         setFormData(prev => ({
             ...prev,
-            [e.target.name]: e.target.value
+            [name]: value
         }))
+        // Clear field error when user starts typing
+        if (fieldErrors[name]) {
+            setFieldErrors(prev => {
+                const newErrors = { ...prev }
+                delete newErrors[name]
+                return newErrors
+            })
+        }
     }
 
     return (
@@ -53,7 +114,7 @@ export default function ContactForm() {
                 <div className="flex gap-4 flex-col lg:flex-row">
                     <div className="flex-1">
                         <label
-                            htmlFor="name"
+                            htmlFor="firstName"
                             className="block text-sm font-semibold text-gray-700 mb-2"
                         >
                             First Name
@@ -61,20 +122,24 @@ export default function ContactForm() {
                         <div className="relative">
                             <input
                                 type="text"
-                                id="name"
-                                name="name"
+                                id="firstName"
+                                name="firstName"
                                 value={formData.firstName}
                                 onChange={handleChange}
-                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                                placeholder="John Doe"
+                                className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.firstName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                                    }`}
+                                placeholder="John"
                                 required
                             />
                         </div>
+                        {fieldErrors.firstName && (
+                            <p className="text-xs text-red-600 mt-1">{fieldErrors.firstName}</p>
+                        )}
                     </div>
 
                     <div className="flex-1">
                         <label
-                            htmlFor="name"
+                            htmlFor="lastName"
                             className="block text-sm font-semibold text-gray-700 mb-2"
                         >
                             Last Name
@@ -82,17 +147,20 @@ export default function ContactForm() {
                         <div className="relative">
                             <input
                                 type="text"
-                                id="name"
-                                name="name"
+                                id="lastName"
+                                name="lastName"
                                 value={formData.lastName}
                                 onChange={handleChange}
-                                className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.lastName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                                    }`}
                                 placeholder="Doe"
                                 required
                             />
                         </div>
+                        {fieldErrors.lastName && (
+                            <p className="text-xs text-red-600 mt-1">{fieldErrors.lastName}</p>
+                        )}
                     </div>
-
                 </div>
 
                 {/* Email Field */}
@@ -110,18 +178,24 @@ export default function ContactForm() {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                            className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                                }`}
                             placeholder="your.email@example.com"
                             required
                         />
                     </div>
+                    {fieldErrors.email && (
+                        <p className="text-xs text-red-600 mt-1">{fieldErrors.email}</p>
+                    )}
                 </div>
+
+                {/* Phone Field */}
                 <div>
                     <label
                         htmlFor="phone"
                         className="block text-sm font-semibold text-gray-700 mb-2"
                     >
-                        Phone
+                        Phone <span className="text-gray-500 font-normal">(Optional)</span>
                     </label>
                     <div className="relative">
                         <input
@@ -130,11 +204,14 @@ export default function ContactForm() {
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                            className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.phone ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                                }`}
                             placeholder="123-456-7890"
-                            required
                         />
                     </div>
+                    {fieldErrors.phone && (
+                        <p className="text-xs text-red-600 mt-1">{fieldErrors.phone}</p>
+                    )}
                 </div>
                 {/* Message Field */}
                 <div className="flex-1 flex flex-col">
@@ -151,15 +228,42 @@ export default function ContactForm() {
                             value={formData.message}
                             onChange={handleChange}
                             rows={6}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none h-full"
+                            className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none h-full ${fieldErrors.message ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                                }`}
                             placeholder="Your message here..."
                             required
                         />
                     </div>
-                    <p className="text-xs text-gray-500 mt-2">
-                        Tell us about your fleet, lanes, or goals...
-                    </p>
+                    {fieldErrors.message ? (
+                        <p className="text-xs text-red-600 mt-1">{fieldErrors.message}</p>
+                    ) : (
+                        <p className="text-xs text-gray-500 mt-2">
+                            Tell us about your fleet, lanes, or goals... (minimum 10 characters)
+                        </p>
+                    )}
                 </div>
+
+                {/* Status Messages */}
+                {submitStatus.type && (
+                    <div
+                        className={`p-4 rounded-lg flex items-start gap-3 ${submitStatus.type === 'success'
+                            ? 'bg-green-50 border border-green-200'
+                            : 'bg-red-50 border border-red-200'
+                            }`}
+                    >
+                        {submitStatus.type === 'success' ? (
+                            <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        ) : (
+                            <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                        )}
+                        <p
+                            className={`text-sm ${submitStatus.type === 'success' ? 'text-green-800' : 'text-red-800'
+                                }`}
+                        >
+                            {submitStatus.message}
+                        </p>
+                    </div>
+                )}
 
                 {/* Submit Button */}
                 <div className="pt-4 space-y-3">
