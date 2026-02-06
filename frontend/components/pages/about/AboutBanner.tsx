@@ -6,8 +6,8 @@ export default function AboutBanner() {
             title="Grow Trucking"
             description={
                 <>
-                    Reliable Dispatch & Freight Solutions
-                    Powering Independent Truckers Nationwide
+                    Grow Your Gross |
+                    We Handle The Rest
                 </>
             }
             breadcrumbItems={[

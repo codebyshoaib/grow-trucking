@@ -1,5 +1,6 @@
 import AboutBanner from "@/components/pages/about/AboutBanner";
 import AboutInfo from "@/components/pages/about/AboutInfo";
+import OurVision from "@/components/pages/about/OurVision";
 import TestimonialsSection from '@/components/pages/homepage/TestimonialsSection';
 import WhyChooseUs from '@/components/pages/about/WhyChooseUs';
 import CTASection from '@/components/pages/about/CTASection';
@@ -9,6 +10,7 @@ export default async function AboutPage() {
         <main className="min-h-screen bg-white">
             <AboutBanner />
             <AboutInfo />
+            <OurVision />
             <WhyChooseUs />
             <TestimonialsSection />
             <CTASection />

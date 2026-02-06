@@ -11,14 +11,21 @@ export default function AboutInfo() {
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
                     {/* Left Section - Text Content */}
                     <div className="lg:w-1/2">
-                        <Badge className="mb-4">OUR JOURNEY</Badge>
+                        <Badge className="mb-4">WELCOME MESSAGE</Badge>
 
                         <h2 className="uppercase text-4xl md:text-5xl font-extrabold text-secondary mb-6 leading-tight">
                             Grow Trucking - Your partner on road
                         </h2>
 
                         <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-                            Backed by experience, teamwork, and a drive for excellence. Elovana was founded to support ambitious businesses through strategy, design, and innovation. Today, we work with brands across industries to turn challenges into measurable results.
+                            Welcome to GROW Trucking, your Strategic
+                            Business Partner. We have 5+ years of real-world
+                            expertise in the trucking industry, offering the
+                            Strategic Infrastructure designed to maximize your
+                            revenue and build wealth. We deliver compliant,
+                            operational strategy so you can sustainably GROW
+                            your authority, focusing on your profit—not just
+                            moving freight
                         </p>
                         <Button className="mt-4" size="lg" icon={<PhoneCall className="w-5 h-5" />} iconPosition="left">Call Now</Button>
                     </div>
