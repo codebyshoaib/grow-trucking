@@ -30,7 +30,6 @@ export default async function Home() {
       <WhyChooseUs />
       <TestimonialsSection />
       <FAQSection />
-      <Footer />
     </main>
   );
 }
