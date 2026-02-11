@@ -79,8 +79,12 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
     ]
 
     const textColorClass = isScrolled
-        ? 'text-gray-900 hover:text-gray-700'
-        : 'text-white hover:text-white focus:text-white'
+        ? '!text-gray-900 hover:!text-gray-700'
+        : '!text-white hover:!text-white focus:!text-white'
+
+    const openStateTextColor = isScrolled
+        ? 'data-[state=open]:!text-gray-900 data-[state=open]:hover:!text-gray-700'
+        : 'data-[state=open]:!text-white data-[state=open]:hover:!text-white'
 
     return (
         <NavigationMenu>
@@ -90,7 +94,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                         return (
                             <NavigationMenuItem key={item.href}>
                                 <NavigationMenuTrigger
-                                    className={`text-[.95rem] font-primary--500 tracking-widest bg-transparent hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent p-0 rounded-none transition-colors ${textColorClass}`}
+                                    className={`text-[.95rem] font-primary--500 tracking-widest !bg-transparent hover:!bg-transparent focus:!bg-transparent data-[active=true]:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:hover:!bg-transparent data-[state=open]:focus:!bg-transparent p-0 rounded-none transition-colors ${textColorClass} ${openStateTextColor}`}
                                 >
                                     {item.label}
                                 </NavigationMenuTrigger>
