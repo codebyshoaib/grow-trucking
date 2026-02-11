@@ -12,6 +12,7 @@ type PageBannerProps = {
     breadcrumbItems: BreadcrumbType[]
     imageUrl?: string
     imageAlt?: string
+    downloadButton?: boolean
 }
 
 export default function PageBanner({
@@ -19,7 +20,8 @@ export default function PageBanner({
     description,
     breadcrumbItems,
     imageUrl = "https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770178795/joseph-paul-jOi8CLM2aaI-unsplash_hytc3b.jpg",
-    imageAlt = "Page Banner"
+    imageAlt = "Page Banner",
+    downloadButton = false
 }: PageBannerProps) {
     return (
         <section className="relative bg-secondary min-h-[100vh] w-full overflow-hidden flex items-end px-4 sm:px-6 md:px-12 lg:px-24 pb-8 sm:pb-12 md:pb-16 lg:pb-24">
@@ -42,7 +44,7 @@ export default function PageBanner({
                     <p className="text-lg md:text-2xl text-white font-primary--400 tracking-wide leading-relaxed">
                         {description}
                     </p>
-                    <div className="mt-6 sm:mt-8">
+                    {downloadButton && <div className="mt-6 sm:mt-8">
                         <Button
                             size="lg"
                             onClick={() => (window.location.href = "/api/download-brochure")}
@@ -53,6 +55,7 @@ export default function PageBanner({
                             Download Brochure
                         </Button>
                     </div>
+                    }
                 </div>
             </div>
         </section>

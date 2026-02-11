@@ -15,6 +15,8 @@ export default function AboutBanner() {
                 { label: 'About Us', href: '/about' }
             ]}
             imageAlt="About Banner"
+            downloadButton={true}
+
         />
     )
 }
