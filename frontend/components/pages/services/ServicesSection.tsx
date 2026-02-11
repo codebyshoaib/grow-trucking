@@ -89,6 +89,16 @@ function BulletsInline({ items }: { items: string[] }) {
     )
 }
 
+// Helper function to convert service title to slug for hash links
+function titleToSlug(title: string): string {
+    return title
+        .trim()
+        .toLowerCase()
+        .replace(/&/g, 'and')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+}
+
 export default function ServicesSection() {
     const [activeIndex, setActiveIndex] = useState<number>(2) // default open like your reference
     const [isHovering, setIsHovering] = useState(false)
@@ -107,10 +117,13 @@ export default function ServicesSection() {
                         {services.map((service, index) => {
                             const isActive = activeIndex === index
 
+                            const serviceSlug = titleToSlug(service.title)
+
                             return (
                                 <div
                                     key={service.number}
-                                    className="relative"
+                                    id={serviceSlug}
+                                    className="relative scroll-mt-20"
                                     onMouseEnter={() => {
                                         setIsHovering(true)
                                         handlers.open(index)
