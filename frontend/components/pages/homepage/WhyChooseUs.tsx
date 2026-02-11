@@ -61,7 +61,7 @@ export default function WhyChooseUs() {
                                     className="bg-gray-50 rounded-2xl p-6 lg:p-8 flex flex-col"
                                 >
                                     {/* Icon */}
-                                    <div className="w-14 h-14 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mb-6 text-gray-700">
+                                    <div className="w-14 h-14 rounded-full bg-primary border border-secondary/80 flex items-center justify-center mb-6 text-white">
                                         {reason.icon}
                                     </div>
 
@@ -81,7 +81,7 @@ export default function WhyChooseUs() {
                         {/* Third Card - Full Width */}
                         <div className="bg-gray-50 rounded-2xl p-6 lg:p-8 flex flex-col">
                             {/* Icon */}
-                            <div className="w-14 h-14 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mb-6 text-gray-700">
+                            <div className="w-14 h-14 rounded-full bg-primary border border-secondary/80 flex items-center justify-center mb-6 text-white">
                                 {thirdReason.icon}
                             </div>
 
