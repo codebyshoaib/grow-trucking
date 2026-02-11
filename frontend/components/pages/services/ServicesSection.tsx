@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useMemo, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 
 type ServiceItem = {
@@ -19,50 +19,50 @@ type ServiceItem = {
 const services: ServiceItem[] = [
     {
         number: '01',
-        title: 'Free Business Audit Report ',
+        title: 'Free Business Audit Report',
         value: '$500',
         subItems: ['Trucking Business Analysis', 'Market Research', 'Competitive Analysis'],
         description:
-            'Our expert dispatchers bring your trucking operations to life with strategic load selection, route optimization, and 24/7 support. Using industry-leading loadboards and market intelligence, we ensure that your fleet operates at maximum efficiency and profitability, providing a seamless experience for both owner-operators and fleet managers.',
-        buttonText: 'GET STARTED',
+            'Get a comprehensive analysis of your trucking business operations. Our expert team evaluates your current processes, identifies growth opportunities, and provides actionable insights to maximize your profitability.',
+        buttonText: 'Get Free Audit',
         buttonLink: '/contact',
     },
     {
         number: '02',
         title: 'Free Growth Checklist',
         value: '$200',
-        subItems: ['Trucking Business Analysis', 'Market Research', 'Competitive Analysis'],
+        subItems: ['Business Analysis', 'Growth Opportunities', 'Action Items'],
         description:
-            'Our expert dispatchers bring your trucking operations to life with strategic load selection, route optimization, and 24/7 support. Using industry-leading loadboards and market intelligence, we ensure that your fleet operates at maximum efficiency and profitability, providing a seamless experience for both owner-operators and fleet managers.',
-        buttonText: 'GET STARTED',
+            'A strategic checklist designed to help you identify and capitalize on growth opportunities in your trucking business. Perfect for owner-operators and small fleets looking to scale.',
+        buttonText: 'Download Checklist',
         buttonLink: '/contact',
     },
     {
         number: '03',
         title: 'Free Custom 90 Day Growth Plan',
         value: '$800',
-        subItems: ['Trucking Business Analysis', 'Market Research', 'Competitive Analysis'],
+        subItems: ['Custom Strategy', '90-Day Roadmap', 'Performance Metrics'],
         description:
-            'Our expert dispatchers bring your trucking operations to life with strategic load selection, route optimization, and 24/7 support. Using industry-leading loadboards and market intelligence, we ensure that your fleet operates at maximum efficiency and profitability, providing a seamless experience for both owner-operators and fleet managers.',
-        buttonText: 'GET STARTED',
+            'Receive a personalized 90-day growth plan tailored to your specific business needs. Our team creates a detailed roadmap with milestones, strategies, and metrics to track your progress.',
+        buttonText: 'Get Your Plan',
         buttonLink: '/contact',
     },
     {
         number: '04',
         title: 'Rate Maximization & Negotiation',
-        subItems: ['Trucking Business Analysis', 'Market Research', 'Competitive Analysis'],
+        subItems: ['Rate Analysis', 'Negotiation Strategy', 'Market Intelligence'],
         description:
-            'Our expert dispatchers bring your trucking operations to life with strategic load selection, route optimization, and 24/7 support. Using industry-leading loadboards and market intelligence, we ensure that your fleet operates at maximum efficiency and profitability, providing a seamless experience for both owner-operators and fleet managers.',
-        buttonText: 'GET STARTED',
+            'Maximize your revenue with our expert rate negotiation services. We analyze market rates, negotiate better deals with brokers, and ensure you get the best rates for every load.',
+        buttonText: 'Boost Your Rates',
         buttonLink: '/contact',
     },
     {
         number: '05',
         title: 'Operational Growth Strategy',
-        subItems: ['Trucking Business Analysis', 'Market Research', 'Competitive Analysis'],
+        subItems: ['Route Optimization', 'Load Selection', 'Fleet Management'],
         description:
-            'We provide a comprehensive operational growth strategy that includes route optimization, load selection, and 24/7 support. Using industry-leading loadboards and market intelligence, we ensure that your fleet operates at maximum efficiency and profitability, providing a seamless experience for both owner-operators and fleet managers.',
-        buttonText: 'GET STARTED',
+            'Comprehensive operational strategies to grow your fleet efficiently. We help you optimize routes, select profitable loads, and manage your operations for maximum profitability.',
+        buttonText: 'Scale Operations',
         buttonLink: '/contact',
     },
     {
@@ -70,24 +70,11 @@ const services: ServiceItem[] = [
         title: 'Comprehensive Trip Planning',
         subItems: ['Trip Planning', 'Load Selection', 'Route Optimization'],
         description:
-            'We provide a comprehensive operational growth strategy that includes route optimization, load selection, and 24/7 support. Using industry-leading loadboards and market intelligence, we ensure that your fleet operates at maximum efficiency and profitability, providing a seamless experience for both owner-operators and fleet managers.',
-        buttonText: 'GET STARTED',
+            'End-to-end trip planning services that ensure every journey is profitable and efficient. From load selection to route optimization, we handle all the details so you can focus on driving.',
+        buttonText: 'Plan Your Trip',
         buttonLink: '/contact',
     }
 ]
-
-function BulletsInline({ items }: { items: string[] }) {
-    return (
-        <div className="text-[12px] sm:text-sm text-gray-600 tracking-wide">
-            {items.map((item, i) => (
-                <span key={item}>
-                    {item}
-                    {i < items.length - 1 && <span className="mx-2 text-gray-300">•</span>}
-                </span>
-            ))}
-        </div>
-    )
-}
 
 // Helper function to convert service title to slug for hash links
 function titleToSlug(title: string): string {
@@ -100,119 +87,87 @@ function titleToSlug(title: string): string {
 }
 
 export default function ServicesSection() {
-    const [activeIndex, setActiveIndex] = useState<number>(2) // default open like your reference
-    const [isHovering, setIsHovering] = useState(false)
-
-    const handlers = useMemo(() => {
-        const open = (i: number) => setActiveIndex(i)
-        const toggle = (i: number) => setActiveIndex((prev) => (prev === i ? -1 : i))
-        return { open, toggle }
-    }, [])
-
     return (
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
             <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24">
-                <div className="w-full mx-auto">
-                    <div className="rounded-4xl border border-primary/20 bg-white shadow-[0_18px_60px_rgba(0,0,0,0.06)] overflow-hidden">
-                        {services.map((service, index) => {
-                            const isActive = activeIndex === index
+                {/* Header */}
+                <div className="text-center mb-12 md:mb-16">
+                    <Badge className="mb-4">Our Services</Badge>
+                    <h2 className="uppercase text-4xl md:text-5xl font-extrabold text-secondary mb-6 leading-tight">
+                        Your Success is Our Success
+                    </h2>
+                    <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        From free audits to comprehensive growth strategies, we offer everything you need to scale your trucking operations and maximize profitability.
+                    </p>
+                </div>
 
-                            const serviceSlug = titleToSlug(service.title)
+                {/* Services Grid */}
+                <div className="grid grid-cols-1  lg:grid-cols-2 gap-6 lg:gap-8">
+                    {services.map((service) => {
+                        const serviceSlug = titleToSlug(service.title)
+                        const serviceHref = `/services#${serviceSlug}`
 
-                            return (
-                                <div
-                                    key={service.number}
-                                    id={serviceSlug}
-                                    className="relative scroll-mt-20"
-                                    onMouseEnter={() => {
-                                        setIsHovering(true)
-                                        handlers.open(index)
-                                    }}
-                                    onMouseLeave={() => setIsHovering(false)}
-                                >
-                                    {/* row */}
-                                    <div
-                                        onClick={() => handlers.toggle(index)}
-                                        aria-expanded={isActive}
-                                        className={[
-                                            'w-full text-left cursor-pointer',
-                                            'border-b border-primary/20 last:border-b-0',
-                                            'transition-colors duration-300',
-                                            isActive ? 'bg-primary/5' : 'bg-white hover:bg-primary/5',
-                                        ].join(' ')}
-                                    >
-                                        <div className="px-6 md:px-10 lg:px-12 py-7 md:py-9">
-                                            <div className="flex lg:flex-row flex-col justify-between gap-4 md:gap-8 items-start">
-                                                {/* number (left rail like reference) */}
-                                                <div className="pt-2">
-                                                    <span className={`block text-4xl font-bold tracking-[0.38em] transition-colors duration-300 ${isActive ? 'text-primary' : 'text-gray-400'}`}>
-                                                        {service.number}
-                                                    </span>
-                                                </div>
-
-                                                {/* title + subitems */}
-                                                <div>
-                                                    <h3 className="mt-4 lg:mt-0 text-2xl md:text-3xl lg:text-[34px] leading-tight font-semibold text-gray-900 tracking-tight flex flex-col-reverse gap-4 lg:flex-row items-start lg:items-center justify-between">
-                                                        {service.title}
-                                                        {service.value && (
-                                                            <Badge className="lg:ml-2 ml-0">
-                                                                {service.value} Value
-                                                            </Badge>
-                                                        )}
-                                                    </h3>
-
-                                                    <div className="mt-2.5">
-                                                        <BulletsInline items={service.subItems} />
-                                                    </div>
-
-                                                    {/* expandable area (sleek + smooth, like reference) */}
-                                                    <div
-                                                        className={[
-                                                            'grid transition-[grid-template-rows] duration-500 ease-out',
-                                                            isActive ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
-                                                        ].join(' ')}
-                                                    >
-                                                        <div className="overflow-hidden">
-                                                            <div
-                                                                className={[
-                                                                    'pt-5 md:pt-7',
-                                                                    'transition-all duration-500',
-                                                                    isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1',
-                                                                ].join(' ')}
-                                                            >
-                                                                {service.description && (
-                                                                    <p className="max-w-3xl text-sm md:text-[15px] text-gray-700 leading-relaxed">
-                                                                        {service.description}
-                                                                    </p>
-                                                                )}
-
-                                                                {service.buttonText && (
-                                                                    <div className="mt-5 md:mt-6 w-56" onClick={(e) => e.stopPropagation()}>
-                                                                        <Button
-                                                                            variant="default"
-                                                                            size="lg"
-                                                                            icon={<ArrowRight className="w-5 h-5" />}
-                                                                            iconPosition="right"
-                                                                            className="uppercase tracking-tighter hidden md:flex shadow-none hover:shadow-none"
-                                                                            asChild
-                                                                        >
-                                                                            <Link href={service.buttonLink || '#'}>
-                                                                                {service.buttonText}
-                                                                            </Link>
-                                                                        </Button>
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                        return (
+                            <div
+                                key={service.number}
+                                id={serviceSlug}
+                                className="group relative scroll-mt-24"
+                            >
+                                {/* Service Card */}
+                                <div className="h-full bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 transition-all duration-300 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 flex flex-col">
+                                    {/* Number Badge */}
+                                    <div className="flex items-start justify-between mb-4">
+                                        <div className="flex justify-between  gap-3 w-full">
+                                            <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-lg">
+                                                {service.number}
                                             </div>
+                                            {/* {service.value && (
+                                                <div className=" rounded-xl bg-secondary/90 text-white border-secondary/20 text-right text-xs p-2 flex items-center justify-center">
+                                                    {service.value}  Value
+                                                </div>
+                                            )} */}
                                         </div>
                                     </div>
+
+                                    {/* Title */}
+                                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-primary transition-colors">
+                                        {service.title}
+                                    </h3>
+                                    {/* Description */}
+                                    <p className="text-sm lg:text-base text-gray-600 leading-relaxed mb-6 flex-grow">
+                                        {service.description}
+                                    </p>
+                                    {/* Sub Items */}
+                                    <div className="mb-4 flex flex-wrap gap-2">
+                                        {service.subItems.slice(0, 3).map((item, index) => (
+                                            <span
+                                                key={index}
+                                                className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 px-2.5 py-1 rounded-full"
+                                            >
+                                                <CheckCircle2 className="w-3 h-3 text-primary" />
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    {/* CTA Button */}
+                                    <div className="mt-auto">
+                                        <Button
+                                            variant="default"
+                                            size="lg"
+                                            className="w-fit uppercase tracking-tighter group-hover:shadow-lg transition-all"
+                                            icon={<ArrowRight className="w-5 h-5" />}
+                                            iconPosition="right"
+                                            asChild
+                                        >
+                                            <Link href={service.buttonLink || serviceHref}>
+                                                {service.buttonText || 'Learn More'}
+                                            </Link>
+                                        </Button>
+                                    </div>
                                 </div>
-                            )
-                        })}
-                    </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </section>

@@ -4,10 +4,10 @@ export default function ServicesBanner() {
     return (
         <PageBanner
             title="Our Services"
-            description="We offer a wide range of services to meet your needs."
+            description="Comprehensive trucking solutions designed to scale your business, maximize profitability, and streamline operations. From free audits to growth strategies, we've got you covered."
             breadcrumbItems={[
                 { label: 'Home', href: '/' },
-                { label: 'Our Services', href: '/our-services' }
+                { label: 'Our Services', href: '/services' }
             ]}
             imageAlt="Services Banner"
         />
