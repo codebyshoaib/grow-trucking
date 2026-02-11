@@ -7,7 +7,7 @@ export default function PrivacyBanner() {
             description="Your privacy is important to us. Learn how we collect, use, and protect your personal information."
             breadcrumbItems={[
                 { label: 'Home', href: '/' },
-                { label: 'Privacy Policy', href: '/privacy' }
+                { label: 'Privacy Policy', href: '/privacy-policy' }
             ]}
             imageAlt="Privacy Policy Banner"
         />
