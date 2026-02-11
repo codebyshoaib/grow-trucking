@@ -3,6 +3,8 @@
 import { Breadcrumb, type Breadcrumb as BreadcrumbType } from '@/components/navigation/breadcrumb'
 import Image from 'next/image'
 import React from 'react'
+import { Button } from '@/components/ui/button'
+import { Download } from 'lucide-react'
 
 type PageBannerProps = {
     title: string
@@ -40,6 +42,17 @@ export default function PageBanner({
                     <p className="text-lg md:text-2xl text-white font-primary--400 tracking-wide leading-relaxed">
                         {description}
                     </p>
+                    <div className="mt-6 sm:mt-8">
+                        <Button
+                            size="lg"
+                            onClick={() => (window.location.href = "/api/download-brochure")}
+                            icon={<Download className="w-5 h-5" />}
+                            iconPosition="left"
+                            className="bg-white text-black hover:bg-white/90"
+                        >
+                            Download Brochure
+                        </Button>
+                    </div>
                 </div>
             </div>
         </section>
