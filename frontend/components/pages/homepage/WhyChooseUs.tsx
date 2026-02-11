@@ -4,6 +4,7 @@ import React from 'react'
 import { TrendingUp, Users, Headphones, Clock, ArrowRight, Truck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import Link from 'next/link'
 
 const reasons = [
     {
@@ -121,7 +122,7 @@ export default function WhyChooseUs() {
                                 icon={<ArrowRight className="w-5 h-5" />}
                                 iconPosition="right"
                             >
-                                Start Free Consultation
+                                <Link href="/contact">Book Free Consultation</Link>
                             </Button>
                         </div>
                     </div>

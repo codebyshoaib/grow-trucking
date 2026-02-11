@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Youtube, Linkedin, Facebook } from 'lucide-react'
+import Link from 'next/link';
 
 export default function Hero() {
     const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
@@ -37,8 +38,9 @@ export default function Hero() {
                     <Button
                         size="lg"
                         className="text-lg"
+
                     >
-                        Book Free Consultation
+                        <Link href="/contact">Book Free Consultation</Link>
                     </Button>
 
                 </div>

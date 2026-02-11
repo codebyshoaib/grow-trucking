@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 const specialities = [
     {
@@ -219,14 +220,14 @@ export default function SpecialitiesSection() {
                                         variant="default"
                                         className="uppercase tracking-tighter text-base sm:text-lg px-8 sm:px-10"
                                     >
-                                        Start Trucking Dispatch
+                                        <Link href="/contact">Start Trucking Dispatch</Link>
                                     </Button>
                                     <Button
                                         variant="outline"
                                         size="lg"
                                         className="border-2 border-primary bg-transparent text-black font-black uppercase tracking-tighter hover:bg-primary hover:text-white hover:border-primary text-base sm:text-lg px-8 sm:px-10"
                                     >
-                                        Learn more
+                                        <Link href="/about">Learn more</Link>
                                     </Button>
                                 </div>
                             </div>

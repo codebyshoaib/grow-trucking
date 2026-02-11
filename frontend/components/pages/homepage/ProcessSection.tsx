@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, Play } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import Link from 'next/link'
 
 const steps = [
     {
@@ -69,7 +70,7 @@ export default function ProcessSection() {
                             icon={<ArrowRight className="w-5 h-5" />}
                             iconPosition="right"
                         >
-                            Get Started
+                            <Link href="/contact">Get Started</Link>
                         </Button>
 
                         {/* Video Player Placeholder */}

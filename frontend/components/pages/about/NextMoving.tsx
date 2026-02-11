@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import Link from 'next/link'
 
 export default function NextMoving() {
     return (
@@ -53,7 +54,7 @@ export default function NextMoving() {
                                     size="lg"
                                     className="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto"
                                 >
-                                    Get Started Today
+                                    <Link href="/contact">Get Started Today</Link>
                                 </Button>
                             </div>
                         </div>

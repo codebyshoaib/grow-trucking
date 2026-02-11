@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function AboutExperience() {
     return (
@@ -35,7 +36,9 @@ export default function AboutExperience() {
                             </div>
                         </div>
 
-                        <Button className="mt-12" size="lg" icon={<ArrowUpRight className="w-5 h-5" />} iconPosition="left">Book Free Consultation</Button>
+                        <Button className="mt-12" size="lg" icon={<ArrowUpRight className="w-5 h-5" />} iconPosition="left">
+                            <Link href="/contact">Book Free Consultation</Link>
+                        </Button>
                     </div>
 
                     {/* Right */}

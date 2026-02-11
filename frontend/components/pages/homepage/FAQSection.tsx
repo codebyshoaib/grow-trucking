@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Plus, Minus, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import Link from 'next/link'
 
 const faqs = [
     {
@@ -67,7 +68,7 @@ export default function FAQSection() {
                             iconPosition="right"
                             className="uppercase tracking-tighter"
                         >
-                            Contact us
+                            <Link href="/contact">Contact us</Link>
                         </Button>
                     </div>
 

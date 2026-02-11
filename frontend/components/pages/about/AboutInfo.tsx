@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { PhoneCall } from 'lucide-react'
+import Link from 'next/link'
 
 export default function AboutInfo() {
     return (
@@ -27,7 +28,9 @@ export default function AboutInfo() {
                             your authority, focusing on your profit—not just
                             moving freight
                         </p>
-                        <Button className="mt-4" size="lg" icon={<PhoneCall className="w-5 h-5" />} iconPosition="left">Call Now</Button>
+                        <Button className="mt-4" size="lg" icon={<PhoneCall className="w-5 h-5" />} iconPosition="left">
+                            <Link href="/contact">Contact Us Now</Link>
+                        </Button>
                     </div>
 
                     {/* Right Section - Image Grid */}

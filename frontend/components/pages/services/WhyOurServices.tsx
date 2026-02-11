@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, ArrowUpRight, PhoneCall } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const reasons = [
     {
@@ -56,7 +57,9 @@ export default function WhyOurServices() {
                             to keep your fleet profitable and stress-free.
                         </p>
 
-                        <Button className="mt-4" size="lg" icon={<PhoneCall className="w-5 h-5" />} iconPosition="left">Call Now</Button>
+                        <Button className="mt-4" size="lg" icon={<PhoneCall className="w-5 h-5" />} iconPosition="left">
+                            <Link href="/contact">Contact Us Now</Link>
+                        </Button>
                     </div>
 
                     {/* Right: Features (2 columns) */}
