@@ -42,7 +42,7 @@ const faqs = [
         number: '006',
         question: 'Do I need a minimum number of trucks or experience?',
         answer: 'No. We work with single-owner operators and small fleets. You don’t need prior dispatch experience—our team guides you step by step.'
-    }
+    },
     {
         id: 7,
         number: '007',
