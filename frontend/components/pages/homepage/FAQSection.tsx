@@ -36,7 +36,7 @@ const faqs = [
         number: '005',
         question: 'How quickly can I start?',
         answer: 'Once you provide your truck and operational details, we can start dispatching within 24–48 hours after reviewing your audit and confirming your plan.'
-    }
+    },
     {
         id: 6,
         number: '006',
