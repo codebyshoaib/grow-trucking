@@ -165,10 +165,15 @@ export function generateServiceSchema(data: ServiceSchema) {
 /**
  * Generate AggregateRating schema (for reviews)
  */
-export function generateReviewSchema(reviews: ReviewSchema[], aggregateRating?: { ratingValue: number; reviewCount: number }) {
+export function generateReviewSchema(
+  reviews: ReviewSchema[], 
+  aggregateRating?: { ratingValue: number; reviewCount: number },
+  organizationName?: string
+) {
   const schema: any = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    name: organizationName || "Grow Trucking",
   }
 
   if (aggregateRating) {

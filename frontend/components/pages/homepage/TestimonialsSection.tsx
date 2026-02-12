@@ -69,7 +69,8 @@ export default function TestimonialsSection() {
     {
       ratingValue: 5, // Aggregate rating
       reviewCount: testimonials.length,
-    }
+    },
+    "Grow Trucking"
   )
 
   return (
