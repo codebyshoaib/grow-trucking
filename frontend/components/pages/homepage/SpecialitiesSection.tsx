@@ -5,6 +5,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import SchemaScript from "@/components/seo/SchemaScript"
+import { generateServicesSchema } from "@/lib/schema"
 
 const specialities = [
     {
@@ -79,8 +81,24 @@ export default function SpecialitiesSection() {
         })
     }, [activeTab])
 
+    // Generate Services Schema for truck dispatch specialities
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.growtrucking.com"
+    const servicesSchema = generateServicesSchema(
+        specialities.map((speciality) => ({
+            name: `${speciality.contentTitle} Service`,
+            description: speciality.description,
+            provider: {
+                name: "Grow Trucking",
+                url: siteUrl,
+            },
+            areaServed: "US",
+            serviceType: "Truck Dispatch Service",
+        }))
+    )
+
     return (
         <section className="relative overflow-hidden bg-white py-12 lg:py-20">
+            <SchemaScript schema={servicesSchema} />
             {/* Background */}
             <div className="absolute inset-0 z-0">
                 <Image

@@ -62,7 +62,7 @@ export default function TestimonialsSection() {
       },
       reviewBody: testimonial.text,
       reviewRating: {
-        ratingValue: 5, // Assuming 5-star reviews based on positive testimonials
+        ratingValue: 5,
         bestRating: 5,
       },
     })),
