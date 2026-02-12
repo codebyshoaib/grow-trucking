@@ -1,36 +1,27 @@
 'use client'
 
 import React from 'react'
-import { TrendingUp, Users, Headphones, Clock, ArrowRight, Truck } from 'lucide-react'
+import { TrendingUp, Users, Headphones, Clock, ArrowRight, Truck, Book, BookOpen, BriefcaseBusinessIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 
 const reasons = [
     {
-        icon: <TrendingUp className="w-6 h-6" />,
-        title: "Profit Maximization",
-        description: "We don't just find loads; we engineer routes. Our dispatchers analyze market trends in real-time to secure top-tier rates that others miss.",
-        stats: "15% Avg. Revenue Increase"
-    },
-    {
-        icon: <Users className="w-6 h-6" />,
-        title: "True Partnership",
-        description: "You're not a truck number to us. You get a dedicated strategist who knows your preferred lanes, home-time needs, and equipment specs.",
-        stats: "1-on-1 Dedicated Support"
-    },
-    {
-        icon: <Clock className="w-6 h-6" />,
-        title: "Flexible Operations",
-        description: "At our dispatch service, we understand the importance of balancing work with your lifestyle. That's why our operations are available around the clock, allowing you to work at your own pace, anytime and anywhere. Whether you're an owner-operator or part of a fleet, you can customize your schedule to fit your needs.",
-        stats: "Flexible Scheduling"
+        icon: <BriefcaseBusinessIcon className="w-6 h-6" />,
+        title: "10+ Years of Experience",
+        description: "We have 10+ years of experience in US freight market. Managed thousands of loads for owner-operators and small fleets, Deep understanding of high-paying lanes, brokers, and rate trends.",
     },
     {
         icon: <Truck className="w-6 h-6" />,
-        title: "Scalable Solutions",
-        description: "Whether you're a single truck owner or part of a large fleet, our scalable dispatch solutions grow with you. We provide the tools and resources to handle small operations as well as large fleets, ensuring you always have the support you need.",
-        stats: "Scalable Solutions"
-    }
+        title: "Revenue-Focused Dispatch",
+        description: "Our primary goal is increasing your weekly revenue. We optimize deadhead, lane selection, and broker negotiations. Many clients see $500–$2,000 extra per week. ",
+    },
+    {
+        icon: < BookOpen className="w-6 h-6" />,
+        title: "Free Tools & Resources",
+        description: "Complimentary Carrier Profitability Audit, Free Growth Checklist for owner-operators, Insights and tips to maximize your profit per mile.",
+    },
 ]
 
 export default function WhyChooseUs() {
@@ -44,7 +35,7 @@ export default function WhyChooseUs() {
                     <Badge>WHY CHOOSE US</Badge>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black leading-tight mt-4">
                         Why{' '}
-                        <span className="text-primary">Truck Dispatch</span>{' '}
+                        <span className="text-primary">Grow Trucking</span>{' '}
                         is The Right Choice for You
                     </h2>
                 </div>

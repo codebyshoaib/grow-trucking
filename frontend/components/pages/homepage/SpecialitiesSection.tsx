@@ -105,7 +105,7 @@ export default function SpecialitiesSection() {
                     <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-8">
                         {/* Section Heading */}
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black text-black leading-tight tracking-tight">
-                            Vast Variety of Trucks
+                            Trucks We Dispatch
                         </h2>
 
                         {/* Controller Tabs - Next to Heading */}

@@ -33,7 +33,7 @@ export default function Hero() {
                         A reliable trucking partner
                     </h1>
                     <p className="text-base md:text-xl text-white font-medium mb-10 max-w-xl leading-relaxed drop-shadow-lg">
-                        We provide high-quality freight dispatch service for interstate carriers and fleet owners in the USA and Canada
+                        We provide high quality freight solutions for carriers and fleet owners in USA and Canada.
                     </p>
                     <Button
                         size="lg"

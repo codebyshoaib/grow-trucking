@@ -10,34 +10,19 @@ import Link from 'next/link'
 const steps = [
     {
         number: "01",
-        title: "Customized Dispatch For Trucks",
-        description: "When you become a Resolute Logistics family member, our team takes special care of your paperwork, preferences, goals and capacity choosing the best way to boost your business."
+        title: "Share your trucking details",
+        description: "Submit Your Trucking Info for Free Audit. This allows us to create your Free Carrier Profitability Audit and identify growth opportunities."
     },
     {
         number: "02",
-        title: "Dedicated Assistance",
-        description: "Once you're set up with our company, you'll get your personal dispatcher who's going to plan your routes from A to Z. Our specialist will come to your assistance at any time of the day or night until the job is done."
+        title: "Receive Your Free Growth Report",
+        description: "We analyze your lanes, rates, and broker relationships. You’ll see exactly how much money you’re leaving on the table and the steps to fix it."
     },
     {
         number: "03",
-        title: "Best Possible Rates",
-        description: "Our freight dispatchers grab a load based only on your preferences. Negotiating with brokers, our team will get you the best rates and schedule your trips as far ahead as possible."
+        title: "Implement Our Dispatch Strategy",
+        description: "We provide a step-by-step plan to increase revenue per mile, optimize deadhead, reloads, and high-paying lanes. Our goal is simple, more money, less stress, zero downtime."
     },
-    {
-        number: "04",
-        title: "Set-Up Paperwork",
-        description: "When you confirm that you are happy with our dispatching services, your dispatcher takes care of all the necessary paperwork for you to be focused only on the road."
-    },
-    {
-        number: "05",
-        title: "Streamlined Payments",
-        description: "When the load is delivered to the final destination, your personal truck dispatcher collects and submits all the paperwork to brokers and factoring companies portals for you to get your money asap and enjoy your time off."
-    },
-    {
-        number: "06",
-        title: "End-To-End Support",
-        description: "In case of any disputes or conflicts with brokers/shippers/receivers/factoring and insurance companies, our truck dispatch company is always ready to help you out with making a well-weighted decision."
-    }
 ]
 
 export default function ProcessSection() {
@@ -61,7 +46,7 @@ export default function ProcessSection() {
 
                         {/* Description */}
                         <p className="text-lg text-white/90 leading-relaxed max-w-xl">
-                            Our mission is to drive progress and enhance the lives of our customers by delivering superior products and services that exceed expectations.
+                            Our mission is to enhance your revenue and lower your operational cost in order to maximize your profit.
                         </p>
 
                         {/* CTA Button */}

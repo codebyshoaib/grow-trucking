@@ -10,32 +10,62 @@ const faqs = [
     {
         id: 1,
         number: '001',
-        question: 'What features does this software offer?',
-        answer: 'Our software provides comprehensive dispatching solutions including load booking, rate negotiation, paperwork management, and 24/7 support to streamline your fleet operations.'
+        question: 'What exactly does Grow Trucking Dispatch do?',
+        answer: 'We handle all aspects of dispatching, including finding high-paying loads, negotiating rates, planning lanes to reduce deadhead, and managing broker relationships—so you can focus on driving and increasing revenue'
     },
     {
         id: 2,
         number: '002',
-        question: 'How does this solution improve efficiency?',
-        answer: 'This solution boosts efficiency by automating tasks, streamlining workflows, and providing data insights that support faster, smarter decision-making.'
+        question: 'Who can use your dispatch services?',
+        answer: 'We work with owner-operators, small fleets, and independent truck drivers across the USA, for trucks like Dry Van, Reefer, Flatbed, Box Truck, and more.'
     },
     {
         id: 3,
         number: '003',
-        question: 'What kind of support is provided?',
-        answer: 'We offer 24/7 support with experienced dispatchers who handle all aspects of load management, broker communications, and administrative tasks so you can focus on driving.'
+        question: 'How do I know I’ll get good rates?',
+        answer: 'We analyze market trends, compare broker rates, and negotiate for the best possible price for your loads. Our goal is to maximize your revenue per mile.'
     },
     {
         id: 4,
         number: '004',
-        question: 'How secure is the data managed by this software?',
-        answer: 'We implement industry-standard security measures including encrypted data transmission, secure cloud storage, and regular security audits to protect your sensitive information.'
+        question: 'Are there any hidden fees?',
+        answer: 'No. We operate with full transparency. All fees and percentages are disclosed upfront, so you always know exactly what you’re paying. ',
     },
     {
         id: 5,
         number: '005',
-        question: 'Can the software integrate with our existing systems?',
-        answer: 'Yes, our software is designed to integrate seamlessly with most existing fleet management systems, ELD devices, and accounting software through our comprehensive API.'
+        question: 'How quickly can I start?',
+        answer: 'Once you provide your truck and operational details, we can start dispatching within 24–48 hours after reviewing your audit and confirming your plan.'
+    }
+    {
+        id: 6,
+        number: '006',
+        question: 'Do I need a minimum number of trucks or experience?',
+        answer: 'No. We work with single-owner operators and small fleets. You don’t need prior dispatch experience—our team guides you step by step.'
+    }
+    {
+        id: 7,
+        number: '007',
+        question: 'What makes Grow Trucking different from other dispatch services?',
+        answer: 'Proven experience in the US freight market, Revenue-focused approach: we aim to increase your weekly earnings, Personalized service for your truck or fleet, Free tools and audits to identify revenue growth opportunities'
+    }
+    {
+        id: 8,
+        number: '008',
+        question: 'Do you provide real-time support?',
+        answer: 'Yes. We offer ongoing support via call, email, or chat to ensure your dispatch operations run smoothly.'
+    }
+    {
+        id: 9,
+        number: '009',
+        question: 'Can you help with multiple truck types?',
+        answer: 'Absolutely. We dispatch for a variety of equipment including Dry Van, Reefer, Flatbed, Box Truck, and more.'
+    }
+    {
+        id: 10,
+        number: '010',
+        question: 'What if I want to try your service first?',
+        answer: 'We offer a free Carrier Profitability Audit and Growth Checklist to show exactly how we can improve your revenue before committing.'
     }
 ]
 
