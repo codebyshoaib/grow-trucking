@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
 
                 {/* Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                    {/* Left Side - 3 Blocks */}
+                    {/* Left Side - 2 Blocks */}
                     <div className="md:col-span-2 flex flex-col gap-6 lg:gap-8">
                         {/* First Two Cards in 2-column grid */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
@@ -67,24 +67,7 @@ export default function WhyChooseUs() {
                                     </p>
                                 </div>
                             ))}
-                        </div>
 
-                        {/* Third Card - Full Width */}
-                        <div className="bg-gray-50 rounded-2xl p-6 lg:p-8 flex flex-col">
-                            {/* Icon */}
-                            <div className="w-14 h-14 rounded-full bg-primary border border-secondary/80 flex items-center justify-center mb-6 text-white">
-                                {thirdReason.icon}
-                            </div>
-
-                            {/* Title */}
-                            <h3 className="text-xl lg:text-2xl font-black text-black mb-4">
-                                {thirdReason.title}
-                            </h3>
-
-                            {/* Description */}
-                            <p className="text-gray-700 leading-relaxed text-sm lg:text-base flex-grow">
-                                {thirdReason.description}
-                            </p>
                         </div>
                     </div>
 
@@ -93,17 +76,17 @@ export default function WhyChooseUs() {
                         <div className="bg-secondary rounded-2xl p-6 lg:p-8 h-full flex flex-col">
                             {/* Icon */}
                             <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-6 text-white">
-                                {fourthReason.icon}
+                                {thirdReason.icon}
                             </div>
 
                             {/* Title */}
                             <h3 className="text-xl lg:text-2xl font-black text-white mb-4">
-                                {fourthReason.title}
+                                {thirdReason.title}
                             </h3>
 
                             {/* Description */}
                             <p className="text-white/90 leading-relaxed text-sm lg:text-base mb-8 flex-grow">
-                                {fourthReason.description}
+                                {thirdReason.description}
                             </p>
 
                             {/* CTA Button */}
