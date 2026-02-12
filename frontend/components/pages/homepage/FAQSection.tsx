@@ -48,19 +48,19 @@ const faqs = [
         number: '007',
         question: 'What makes Grow Trucking different from other dispatch services?',
         answer: 'Proven experience in the US freight market, Revenue-focused approach: we aim to increase your weekly earnings, Personalized service for your truck or fleet, Free tools and audits to identify revenue growth opportunities'
-    }
+    },
     {
         id: 8,
         number: '008',
         question: 'Do you provide real-time support?',
         answer: 'Yes. We offer ongoing support via call, email, or chat to ensure your dispatch operations run smoothly.'
-    }
+    },
     {
         id: 9,
         number: '009',
         question: 'Can you help with multiple truck types?',
         answer: 'Absolutely. We dispatch for a variety of equipment including Dry Van, Reefer, Flatbed, Box Truck, and more.'
-    }
+    },
     {
         id: 10,
         number: '010',
