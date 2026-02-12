@@ -5,6 +5,8 @@ import { Plus, Minus, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
+import SchemaScript from '@/components/seo/SchemaScript'
+import { generateFAQSchema } from '@/lib/schema'
 
 const faqs = [
     {
@@ -76,8 +78,17 @@ export default function FAQSection() {
         setOpenId(openId === id ? -1 : id)
     }
 
+    // Generate FAQ Schema
+    const faqSchema = generateFAQSchema(
+        faqs.map((faq) => ({
+            question: faq.question,
+            answer: faq.answer,
+        }))
+    )
+
     return (
         <section className="py-24 bg-white">
+            <SchemaScript schema={faqSchema} />
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
                     {/* Left Side - Content */}

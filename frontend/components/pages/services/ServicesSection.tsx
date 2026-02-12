@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import SchemaScript from '@/components/seo/SchemaScript'
+import { generateServicesSchema } from '@/lib/schema'
 
 type ServiceItem = {
     number: string
@@ -87,8 +89,24 @@ function titleToSlug(title: string): string {
 }
 
 export default function ServicesSection() {
+    // Generate Services Schema
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.growtrucking.com"
+    const servicesSchema = generateServicesSchema(
+        services.map((service) => ({
+            name: service.title,
+            description: service.description || `${service.title} - ${service.subItems.join(', ')}`,
+            provider: {
+                name: "Grow Trucking",
+                url: siteUrl,
+            },
+            areaServed: "US",
+            serviceType: "Truck Dispatch Service",
+        }))
+    )
+
     return (
         <section className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
+            <SchemaScript schema={servicesSchema} />
             <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24">
                 {/* Header */}
                 <div className="text-center mb-12 md:mb-16">

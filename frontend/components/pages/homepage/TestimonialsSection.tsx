@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import SchemaScript from '@/components/seo/SchemaScript'
+import { generateReviewSchema } from '@/lib/schema'
 
 const testimonials = [
   {
@@ -51,8 +53,28 @@ export default function TestimonialsSection() {
     setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }
 
+  // Generate Review Schema
+  const reviewSchema = generateReviewSchema(
+    testimonials.map((testimonial) => ({
+      author: {
+        name: testimonial.name,
+        jobTitle: testimonial.role,
+      },
+      reviewBody: testimonial.text,
+      reviewRating: {
+        ratingValue: 5, // Assuming 5-star reviews based on positive testimonials
+        bestRating: 5,
+      },
+    })),
+    {
+      ratingValue: 5, // Aggregate rating
+      reviewCount: testimonials.length,
+    }
+  )
+
   return (
     <section className="py-24 bg-gray-50 overflow-hidden">
+      <SchemaScript schema={reviewSchema} />
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <Badge>TESTIMONIALS</Badge>
