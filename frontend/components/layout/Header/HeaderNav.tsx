@@ -87,7 +87,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
         : 'data-[state=open]:!text-white data-[state=open]:hover:!text-white'
 
     return (
-        <NavigationMenu>
+        <NavigationMenu viewport={false}>
             <NavigationMenuList className="flex gap-6">
                 {navItems.map((item) => {
                     if (item.hasSubmenu) {
@@ -98,16 +98,19 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                 >
                                     {item.label}
                                 </NavigationMenuTrigger>
-                                <NavigationMenuContent className="!bg-white !z-[60]">
-                                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white">
+                                <NavigationMenuContent className={`!z-[60] transition-colors ${isScrolled ? '!bg-white !border !shadow-md' : '!bg-transparent !border-0 !shadow-none'} rounded-md overflow-hidden`}>
+                                    <ul className={`grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] transition-colors ${isScrolled ? 'bg-white' : 'bg-transparent'}`}>
                                         {services.map((service) => (
                                             <li key={service.href}>
                                                 <NavigationMenuLink asChild>
                                                     <Link
                                                         href={service.href}
-                                                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100 text-gray-900"
+                                                        className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors ${isScrolled
+                                                            ? 'hover:bg-gray-100 focus:bg-gray-100'
+                                                            : 'hover:bg-white/10 focus:bg-white/10'
+                                                            }`}
                                                     >
-                                                        <div className="text-sm font-medium leading-none">
+                                                        <div className={`text-sm font-medium leading-none ${isScrolled ? '!text-gray-900' : '!text-white'}`}>
                                                             {service.title}
                                                         </div>
                                                     </Link>
