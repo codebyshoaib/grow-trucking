@@ -19,7 +19,7 @@ export default function PageBanner({
     title,
     description,
     breadcrumbItems,
-    imageUrl = "https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770178795/joseph-paul-jOi8CLM2aaI-unsplash_hytc3b.jpg",
+    imageUrl = "https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770962704/page-banner_cb6nff.jpg",
     imageAlt = "Page Banner",
     downloadButton = false
 }: PageBannerProps) {
@@ -33,7 +33,7 @@ export default function PageBanner({
                     className="absolute inset-0 w-full h-full object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/70 z-10" />
+                <div className="absolute inset-0 bg-black/50 z-10" />
             </div>
             <div className="container relative z-20 flex flex-col gap-3 sm:gap-4">
                 <div className="max-w-4xl">
