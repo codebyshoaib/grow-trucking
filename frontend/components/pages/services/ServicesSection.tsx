@@ -27,7 +27,7 @@ const services: ServiceItem[] = [
         description:
             'Get a comprehensive analysis of your trucking business operations. Our expert team evaluates your current processes, identifies growth opportunities, and provides actionable insights to maximize your profitability.',
         buttonText: 'Get Free Audit',
-        buttonLink: '/contact',
+        buttonLink: '/api/download-pdf?type=business_audit_report',
     },
     {
         number: '02',
@@ -37,7 +37,7 @@ const services: ServiceItem[] = [
         description:
             'A strategic checklist designed to help you identify and capitalize on growth opportunities in your trucking business. Perfect for owner-operators and small fleets looking to scale.',
         buttonText: 'Download Checklist',
-        buttonLink: '/contact',
+        buttonLink: '/api/download-pdf?type=growth_checklist',
     },
     {
         number: '03',
@@ -56,7 +56,7 @@ const services: ServiceItem[] = [
         description:
             'Maximize your revenue with our expert rate negotiation services. We analyze market rates, negotiate better deals with brokers, and ensure you get the best rates for every load.',
         buttonText: 'Boost Your Rates',
-        buttonLink: '/contact',
+        buttonLink: '/api/download-pdf?type=rate_maximization_checklist',
     },
     {
         number: '05',
@@ -169,18 +169,33 @@ export default function ServicesSection() {
                                     </div>
                                     {/* CTA Button */}
                                     <div className="mt-auto">
-                                        <Button
-                                            variant="default"
-                                            size="lg"
-                                            className="w-fit uppercase tracking-tighter group-hover:shadow-lg transition-all"
-                                            icon={<ArrowRight className="w-5 h-5" />}
-                                            iconPosition="right"
-                                            asChild
-                                        >
-                                            <Link href={service.buttonLink || serviceHref}>
+                                        {service.buttonLink?.startsWith('/api/download-pdf') || service.buttonLink?.startsWith('/api/download-audit') ? (
+                                            <Button
+                                                variant="default"
+                                                size="lg"
+                                                className="w-fit uppercase tracking-tighter group-hover:shadow-lg transition-all"
+                                                icon={<ArrowRight className="w-5 h-5" />}
+                                                iconPosition="right"
+                                                onClick={() => {
+                                                    window.location.href = service.buttonLink || serviceHref;
+                                                }}
+                                            >
                                                 {service.buttonText || 'Learn More'}
-                                            </Link>
-                                        </Button>
+                                            </Button>
+                                        ) : (
+                                            <Button
+                                                variant="default"
+                                                size="lg"
+                                                className="w-fit uppercase tracking-tighter group-hover:shadow-lg transition-all"
+                                                icon={<ArrowRight className="w-5 h-5" />}
+                                                iconPosition="right"
+                                                asChild
+                                            >
+                                                <Link href={service.buttonLink || serviceHref}>
+                                                    {service.buttonText || 'Learn More'}
+                                                </Link>
+                                            </Button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
