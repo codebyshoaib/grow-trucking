@@ -36,7 +36,6 @@ export default function PageBanner({
                 <div className="absolute inset-0 bg-black/70 z-10" />
             </div>
             <div className="container relative z-20 flex flex-col gap-3 sm:gap-4">
-                <Breadcrumb className="mb-1 sm:mb-2" items={breadcrumbItems} />
                 <div className="max-w-4xl">
                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase font-bold text-white mb-4 sm:mb-5 md:mb-6 drop-shadow-2xl leading-tight">
                         {title}
