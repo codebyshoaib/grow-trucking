@@ -30,10 +30,10 @@ export default function Hero() {
             <div className="container mx-auto px-6 relative z-20">
                 <div className="max-w-4xl">
                     <h1 className="text-6xl uppercase md:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
-                        A reliable trucking partner
+                        Grow Trucking - Your reliable partner
                     </h1>
                     <p className="text-base md:text-xl text-white font-medium mb-10 max-w-xl leading-relaxed drop-shadow-lg">
-                        We provide high quality freight solutions for carriers and fleet owners in USA and Canada.
+                        Grow Trucking provides high quality truck dispatch services for owner-operators, small fleets, and independent truck drivers across the USA.
                     </p>
                     <Button
                         size="lg"

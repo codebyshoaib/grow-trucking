@@ -13,8 +13,8 @@ interface CTASectionProps {
 }
 
 export default function CTASection({
-    headline = "Ready to Supercharge Your Business with Truck Dispatch",
-    description = "Unlock AI-powered insights, improve operational efficiency, and drive revenue growth effortlessly. Start your free consultation today!",
+    headline = "Ready to Supercharge Your Business with Grow Trucking",
+    description = "Partner with Grow Trucking to maximize your revenue, reduce deadhead miles, and grow your trucking business. Get your free Carrier Profitability Audit today!",
     buttonText = "Get Started Now",
     buttonLink = "#"
 }: CTASectionProps) {

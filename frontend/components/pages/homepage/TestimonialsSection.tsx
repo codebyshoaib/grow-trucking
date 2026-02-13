@@ -13,7 +13,7 @@ const testimonials = [
     name: "Jenny Wilson",
     role: "Fleet Owner",
     location: "New York, America",
-    text: "I absolutely love this dispatch service! From the warm welcome to the final load, everything was perfect. The team really listened to what I wanted and made me feel so comfortable.",
+    text: "I absolutely love Grow Trucking's dispatch service! From the warm welcome to the final load, everything was perfect. The Grow Trucking team really listened to what I wanted and made me feel so comfortable.",
     image: "https://i.pravatar.cc/150?u=jenny"
   },
   {
@@ -21,7 +21,7 @@ const testimonials = [
     name: "Esther Howard",
     role: "Owner Operator",
     location: "New York, America",
-    text: "I absolutely love this dispatch service! From the warm welcome to the final load, everything was perfect. The team really listened to what I wanted and made me feel so comfortable.",
+    text: "Grow Trucking has transformed my business. Their dispatch service is exceptional - they find the best loads, negotiate great rates, and handle all the paperwork. My revenue has increased significantly since partnering with them.",
     image: "https://i.pravatar.cc/150?u=esther"
   },
   {
@@ -29,7 +29,7 @@ const testimonials = [
     name: "Wade Warren",
     role: "Truck Driver",
     location: "New York, America",
-    text: "I absolutely love this dispatch service! From the warm welcome to the final load, everything was perfect. The team really listened to what I wanted and made me feel so comfortable.",
+    text: "Working with Grow Trucking has been a game-changer. They understand the trucking business and always find me profitable loads. The team is responsive, professional, and truly cares about my success.",
     image: "https://i.pravatar.cc/150?u=wade"
   },
   {
@@ -37,7 +37,7 @@ const testimonials = [
     name: "Guy Hawkins",
     role: "Logistics Manager",
     location: "Chicago, USA",
-    text: "Working with Resolute has been a game-changer for our fleet. Their attention to detail and proactive communication set them apart from any other dispatchers we've used.",
+    text: "Grow Trucking has been a game-changer for our fleet. Their attention to detail and proactive communication set them apart from any other dispatchers we've used. The free audit they provided showed us exactly where we were losing money.",
     image: "https://i.pravatar.cc/150?u=guy"
   }
 ]

@@ -99,7 +99,7 @@ export default function FAQSection() {
                                 Frequently ask <br /> questions
                             </h2>
                             <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
-                                Experience intelligent, efficient, and sustainable software designed to drive progress.
+                                Get answers to common questions about Grow Trucking's dispatch services, pricing, and how we help owner-operators and small fleets maximize their revenue.
                             </p>
                         </div>
 

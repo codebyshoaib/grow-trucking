@@ -9,32 +9,32 @@ const reasons = [
     {
         id: 1,
         title: "Expert Dispatching",
-        description: "Our dispatchers are experts in finding the most profitable loads for your fleet."
+        description: "Grow Trucking's dispatchers are experts in finding the most profitable loads for your fleet, with 10+ years of experience in the US freight market."
     },
     {
         id: 2,
         title: "Reliable Support",
-        description: "Our dispatchers are experts in finding the most profitable loads for your fleet."
+        description: "Grow Trucking provides 24/7 support to ensure your dispatch operations run smoothly. We handle paperwork and broker communications so you can focus on driving."
     },
     {
         id: 3,
         title: "Flexible Operations",
-        description: "Our dispatchers are experts in finding the most profitable loads for your fleet."
+        description: "Grow Trucking works with owner-operators and small fleets of any size. We adapt our services to your specific needs and operational requirements."
     },
     {
         id: 4,
         title: "Scalable Solutions",
-        description: "Our dispatchers are experts in finding the most profitable loads for your fleet."
+        description: "As your business grows, Grow Trucking scales with you. From single trucks to expanding fleets, we provide solutions that grow with your operation."
     },
     {
         id: 5,
         title: "Compliance First",
-        description: "Our dispatchers are experts in finding the most profitable loads for your fleet."
+        description: "Grow Trucking ensures all loads and carriers meet safety and regulatory standards. We handle compliance so you don't have to worry about violations."
     },
     {
         id: 6,
         title: "Data-Driven Insights",
-        description: "Our dispatchers are experts in finding the most profitable loads for your fleet."
+        description: "Grow Trucking provides free Carrier Profitability Audits and Growth Checklists to identify revenue opportunities and maximize your profit per mile."
     },
 
 ]
@@ -53,8 +53,8 @@ export default function WhyOurServices() {
                         </h2>
 
                         <p className="mt-5 text-gray-600 leading-relaxed">
-                            We combine experienced dispatching, real-time support, and compliance-first processes
-                            to keep your fleet profitable and stress-free.
+                            Grow Trucking combines experienced dispatching, real-time support, and compliance-first processes
+                            to keep your fleet profitable and stress-free. With 10+ years of market experience, we help you compete with larger fleets.
                         </p>
 
                         <Button className="mt-4" size="lg" icon={<PhoneCall className="w-5 h-5" />} iconPosition="left">

@@ -15,7 +15,7 @@ const specialities = [
         subtitle: "Any type of 26'L + * 96\"W * 96\"H (10K lbs+) trucks with LG",
         contentTitle: "Box Truck Dispatch",
         description:
-            "Box trucks are essential for final-mile delivery and localized freight movements. We specialize in finding high-paying expedited loads and dedicated routes that keep your box trucks moving profitably without long-haul fatigue.",
+            "Box trucks are essential for final-mile delivery and localized freight movements. Grow Trucking specializes in finding high-paying expedited loads and dedicated routes that keep your box trucks moving profitably without long-haul fatigue.",
         image:
             "https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770805462/box-truck_fgn0t6.jpg",
     },
@@ -25,7 +25,7 @@ const specialities = [
         subtitle: "Any type of 48'-53' trucks",
         contentTitle: "Dry Van",
         description:
-            "Dry vans are the most required truck types in the market. For a growing carrier company, the essential part is considered to have a guide in this rough market that allows you to grab the most profitable offer. Our dispatch service simplifies your work by keeping track of options across multiple loadboards to the max without you even leaving either the office or driver's seat.",
+            "Dry vans are the most required truck types in the market. For a growing carrier company, the essential part is considered to have a guide in this rough market that allows you to grab the most profitable offer. Grow Trucking's dispatch service simplifies your work by keeping track of options across multiple loadboards to the max without you even leaving either the office or driver's seat.",
         image:
             "https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770805461/dry-van_ptfjzs.jpg",
     },
@@ -35,7 +35,7 @@ const specialities = [
         subtitle: "Any type of trailer",
         contentTitle: "Reefer Dispatch",
         description:
-            "Temperature-sensitive freight requires extra attention and care. Our dispatchers understand the complexity of reefer logistics, from pre-cooling requirements to strictly timed appointments, ensuring your refrigerated units always have premium cargo.",
+            "Temperature-sensitive freight requires extra attention and care. Grow Trucking's dispatchers understand the complexity of reefer logistics, from pre-cooling requirements to strictly timed appointments, ensuring your refrigerated units always have premium cargo.",
         image:
             "https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770805461/reefer_spd2ee.jpg",
     },
@@ -45,7 +45,7 @@ const specialities = [
         subtitle: "Both Day Cabs and OTR units",
         contentTitle: "Power Only Dispatch",
         description:
-            "Maximize your versatility with our Power Only dispatching. We coordinate with shippers who have pre-loaded trailers, allowing you to focus on the drive and turnaround times rather than loading and unloading delays.",
+            "Maximize your versatility with Grow Trucking's Power Only dispatching. We coordinate with shippers who have pre-loaded trailers, allowing you to focus on the drive and turnaround times rather than loading and unloading delays.",
         image:
             "https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770805461/power-only_xcezse.jpg",
     },
@@ -55,7 +55,7 @@ const specialities = [
         subtitle: "Any type of 40'L+ (15K lbs+) trucks",
         contentTitle: "Hotshot Dispatch",
         description:
-            "Hotshot trucking demands agility and quick response times. We excel at finding high-priority, time-critical loads that pay a premium, keeping your smaller rig as profitable as the big fleets.",
+            "Hotshot trucking demands agility and quick response times. Grow Trucking excels at finding high-priority, time-critical loads that pay a premium, keeping your smaller rig as profitable as the big fleets.",
         image:
             "https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770805461/hotshot_jwfc9x.jpg",
     },

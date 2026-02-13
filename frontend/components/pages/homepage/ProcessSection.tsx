@@ -20,8 +20,8 @@ const steps = [
     },
     {
         number: "03",
-        title: "Implement Our Dispatch Strategy",
-        description: "We provide a step-by-step plan to increase revenue per mile, optimize deadhead, reloads, and high-paying lanes. Our goal is simple, more money, less stress, zero downtime."
+        title: "Implement Grow Trucking's Dispatch Strategy",
+        description: "Grow Trucking provides a step-by-step plan to increase revenue per mile, optimize deadhead, reloads, and high-paying lanes. Our goal is simple, more money, less stress, zero downtime."
     },
 ]
 
@@ -46,7 +46,7 @@ export default function ProcessSection() {
 
                         {/* Description */}
                         <p className="text-lg text-white/90 leading-relaxed max-w-xl">
-                            Our mission is to enhance your revenue and lower your operational cost in order to maximize your profit.
+                            Grow Trucking's mission is to enhance your revenue and lower your operational costs to maximize your profit. We provide strategic dispatch services tailored to your business needs.
                         </p>
 
                         {/* CTA Button */}

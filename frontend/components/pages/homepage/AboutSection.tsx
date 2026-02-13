@@ -70,7 +70,7 @@ export default function AboutSection() {
                         </h2>
 
                         <p className="text-lg text-gray-900 mb-12 leading-relaxed max-w-xl">
-                            We empower independent owner-operators and small fleets by providing premium dispatching solutions that maximize earnings and minimize administrative stress.
+                            Grow Trucking empowers independent owner-operators and small fleets by providing premium dispatching solutions that maximize earnings and minimize administrative stress. With 10+ years of experience, we help you compete with larger fleets.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
