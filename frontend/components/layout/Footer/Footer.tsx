@@ -1,27 +1,39 @@
 import React from 'react'
 import Link from 'next/link'
-import { Facebook, Instagram, Linkedin, Twitter, Github } from 'lucide-react'
+import { Instagram, Linkedin, Twitter, Github, Phone, Building2, MailCheck } from 'lucide-react'
 import Image from 'next/image'
 
-const productLinks = [
-    { label: 'Features', href: '#features' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'Integrations', href: '#integrations' },
-    { label: 'Changelog', href: '#changelog' },
+const contactLinks = [
+    {
+        icon: MailCheck,
+        label: 'Email',
+        value: process.env.NEXT_PUBLIC_COMPANY_EMAIL_ADDRESS ?? '',
+        href: `mailto:${process.env.NEXT_PUBLIC_COMPANY_EMAIL_ADDRESS ?? 'info@growtrucking.com'}`
+    },
+    {
+        icon: Phone,
+        label: 'Phone',
+        value: process.env.NEXT_PUBLIC_COMPANY_PHONE_NUMBER ?? '',
+        href: `tel:${process.env.NEXT_PUBLIC_COMPANY_PHONE_NUMBER ?? ''}`
+    },
+    {
+        icon: Building2,
+        label: 'Address',
+        value: [
+            process.env.NEXT_PUBLIC_COMPANY_STREET_ADDRESS,
+            process.env.NEXT_PUBLIC_COMPANY_CITY,
+            (process.env.NEXT_PUBLIC_COMPANY_STATE ?? '').toUpperCase(),
+            process.env.NEXT_PUBLIC_COMPANY_ZIP_CODE
+        ].filter(Boolean).join(' '),
+        href: 'https://share.google/OVWJofU12AadwPRG7'
+    },
 ]
 
-const resourcesLinks = [
-    { label: 'Documentation', href: '#documentation' },
-    { label: 'Tutorials', href: '#tutorials' },
-    { label: 'Blog', href: '#blog' },
-    { label: 'Support', href: '#support' },
-]
-
-const companyLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Careers', href: '#careers' },
-    { label: 'Contact', href: '#contact' },
-    { label: 'Partners', href: '#partners' },
+const quickLinks = [
+    { label: 'Tutorials', href: '/about' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
 ]
 
 const socialLinks = [
@@ -33,8 +45,7 @@ const socialLinks = [
 
 const legalLinks = [
     { label: 'Privacy Policy', href: '/privacy-policy' },
-    { label: 'Terms of Service', href: '#terms' },
-    { label: 'Cookies Settings', href: '#cookies' },
+    { label: 'Terms of Service', href: '/privacy-policy' },
 ]
 
 export default function Footer() {
@@ -58,7 +69,7 @@ export default function Footer() {
 
                         {/* Description */}
                         <p className="text-white/80 text-sm leading-relaxed max-w-md mt-4">
-                            Truck Dispatch empowers teams to transform raw data into clear, compelling visuals — making insights easier to share, understand, and act on.
+                            Grow Trucking is a truck dispatch company that provides truck dispatch services to owner-operators, small fleets, and independent truck drivers across the USA.
                         </p>
 
                         {/* Social Media Icons */}
@@ -69,7 +80,7 @@ export default function Footer() {
                                     <Link
                                         key={link.label}
                                         href={link.href}
-                                        className="text-white hover:text-primary transition-colors"
+                                        className="text-white/70 hover:text-primary transition-colors"
                                         aria-label={link.label}
                                     >
                                         <Icon className="w-5 h-5" />
@@ -80,30 +91,14 @@ export default function Footer() {
                     </div>
 
                     {/* Right Column - Navigation Links */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12">
-                        {/* Product Column */}
-                        <div>
-                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">Product</h3>
-
-                            <ul className="space-y-3">
-                                {productLinks.map((link) => (
-                                    <li key={link.label}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-sm text-white/70 hover:text-white transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
+                    <div className="grid grid-cols-2 gap-8 lg:gap-12">
                         {/* Resources Column */}
                         <div>
-                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">Resources</h3>
+                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">
+                                Quick Links
+                            </h3>
                             <ul className="space-y-3">
-                                {resourcesLinks.map((link) => (
+                                {quickLinks.map((link) => (
                                     <li key={link.label}>
                                         <Link
                                             href={link.href}
@@ -116,20 +111,26 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        {/* Company Column */}
+                        {/* Contact Column */}
                         <div>
-                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">Company</h3>
+                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">
+                                Contact Us
+                            </h3>
                             <ul className="space-y-3">
-                                {companyLinks.map((link) => (
-                                    <li key={link.label}>
-                                        <Link
-                                            href={link.href}
-                                            className="text-sm text-white/70 hover:text-white transition-colors"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    </li>
-                                ))}
+                                {contactLinks.map((link) => {
+                                    const Icon = link.icon
+                                    return (
+                                        <li key={link.label} className="flex items-center gap-2">
+                                            <Icon className="w-5 h-5 text-white/70 flex-shrink-0" />
+                                            <Link
+                                                href={link.href}
+                                                className="text-sm text-white/70 hover:text-white transition-colors"
+                                            >
+                                                {link.value}
+                                            </Link>
+                                        </li>
+                                    )
+                                })}
                             </ul>
                         </div>
                     </div>
