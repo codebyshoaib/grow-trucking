@@ -63,12 +63,15 @@ export default function Hero() {
                     <div className="hidden md:block h-[1px] w-32 bg-primary" />
                 </div>
 
-                <div className="flex flex-col items-center gap-2 text-white/70">
+                <a
+                    href="#about"
+                    className="flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors cursor-pointer scroll-smooth"
+                >
                     <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center p-1">
                         <div className="w-1 h-2 bg-white rounded-full animate-bounce" />
                     </div>
                     <span className="text-[10px] uppercase tracking-widest">Scroll</span>
-                </div>
+                </a>
             </div>
 
         </section>

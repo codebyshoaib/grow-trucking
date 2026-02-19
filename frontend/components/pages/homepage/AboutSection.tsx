@@ -27,7 +27,7 @@ const features = [
 
 export default function AboutSection() {
     return (
-        <section className="py-24 bg-[#F8F9FA] overflow-hidden border-y border-gray-100">
+        <section id="about" className="py-24 bg-[#F8F9FA] overflow-hidden border-y border-gray-100">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-20">
 
