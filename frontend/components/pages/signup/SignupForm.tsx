@@ -4,7 +4,9 @@ import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Send, Loader2, CheckCircle2, AlertCircle, Eye, EyeOff } from 'lucide-react'
 import { signupService } from '@/services/signup.service'
-import type { SignupFormData } from '@/types/signup.types'
+import type { SignupFormData, CompanySignupFormData, OwnerOperatorSignupFormData, SignupType } from '@/types/signup.types'
+import { cn } from '@/lib/utils'
+import { TRUCK_TYPES, OPERATION_AREAS, COMMUNICATION_METHODS, getNumberOfTrucksOptions } from '@/constants/signup.config'
 
 interface FormErrors {
     [key: string]: string
@@ -13,17 +15,46 @@ interface FormErrors {
 /**
  * SignupForm Component
  * Domain layer - represents the user registration domain concept
- * Handles user signup form submission
+ * Handles both Company and Owner Operator signup form submission
  */
 export default function SignupForm() {
-    const [formData, setFormData] = useState<SignupFormData>({
+    const [signupType, setSignupType] = useState<SignupType>('company')
+    const [companyFormData, setCompanyFormData] = useState<CompanySignupFormData>({
+        signupType: 'company',
+        companyName: '',
+        companyEmail: '',
+        companyContactNumber: '',
+        motorCarrierNo: '',
+        authorityAge: 0,
+        numberOfTrucks: '',
+        truckType: '',
+        operationArea: '',
         firstName: '',
         lastName: '',
+        contactNumber: '',
+        communicationMethod: '',
         email: '',
-        phone: '',
         password: '',
         confirmPassword: '',
-        companyName: '',
+        agreeToTerms: false
+    })
+    const [ownerFormData, setOwnerFormData] = useState<OwnerOperatorSignupFormData>({
+        signupType: 'owner-operator',
+        ownerName: '',
+        ownerEmail: '',
+        ownerContactNumber: '',
+        motorCarrierNo: '',
+        authorityAge: 0,
+        numberOfTrucks: '',
+        truckType: '',
+        operationArea: '',
+        firstName: '',
+        lastName: '',
+        contactNumber: '',
+        communicationMethod: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
         agreeToTerms: false
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -35,6 +66,10 @@ export default function SignupForm() {
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
+    const getFormData = (): SignupFormData => {
+        return signupType === 'company' ? companyFormData : ownerFormData
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
@@ -42,6 +77,7 @@ export default function SignupForm() {
         setFieldErrors({})
 
         try {
+            const formData = getFormData()
             const result = await signupService.submitSignupForm(formData)
 
             if (result.success) {
@@ -50,18 +86,48 @@ export default function SignupForm() {
                     message: result.message || 'Your account has been created successfully!'
                 })
                 // Reset form after successful submission
-                setFormData({
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    phone: '',
-                    password: '',
-                    confirmPassword: '',
-                    companyName: '',
-                    agreeToTerms: false
-                })
+                if (signupType === 'company') {
+                    setCompanyFormData({
+                        signupType: 'company',
+                        companyName: '',
+                        companyEmail: '',
+                        companyContactNumber: '',
+                        motorCarrierNo: '',
+                        authorityAge: 0,
+                        numberOfTrucks: '',
+                        truckType: '',
+                        operationArea: '',
+                        firstName: '',
+                        lastName: '',
+                        contactNumber: '',
+                        communicationMethod: '',
+                        email: '',
+                        password: '',
+                        confirmPassword: '',
+                        agreeToTerms: false
+                    })
+                } else {
+                    setOwnerFormData({
+                        signupType: 'owner-operator',
+                        ownerName: '',
+                        ownerEmail: '',
+                        ownerContactNumber: '',
+                        motorCarrierNo: '',
+                        authorityAge: 0,
+                        numberOfTrucks: '',
+                        truckType: '',
+                        operationArea: '',
+                        firstName: '',
+                        lastName: '',
+                        contactNumber: '',
+                        communicationMethod: '',
+                        email: '',
+                        password: '',
+                        confirmPassword: '',
+                        agreeToTerms: false
+                    })
+                }
 
-                // Clear success message after 5 seconds
                 setTimeout(() => {
                     setSubmitStatus({ type: null, message: '' })
                 }, 5000)
@@ -71,7 +137,6 @@ export default function SignupForm() {
                     message: result.message || 'Failed to create account. Please try again.'
                 })
 
-                // Map API errors to form fields
                 if (result.errors) {
                     const errors: FormErrors = {}
                     Object.keys(result.errors).forEach(key => {
@@ -81,7 +146,16 @@ export default function SignupForm() {
                             'email': 'email',
                             'phone': 'phone',
                             'password': 'password',
-                            'company_name': 'companyName'
+                            'company_name': 'companyName',
+                            'company_email': 'companyEmail',
+                            'company_contact_number': 'companyContactNumber',
+                            'motor_carrier_no': 'motorCarrierNo',
+                            'authority_age': 'authorityAge',
+                            'number_of_trucks': 'numberOfTrucks',
+                            'truck_type': 'truckType',
+                            'operation_area': 'operationArea',
+                            'contact_number': 'contactNumber',
+                            'communication_method': 'communicationMethod'
                         }
                         const frontendField = fieldMap[key] || key
                         errors[frontendField] = result.errors![key][0] || 'Invalid value'
@@ -99,13 +173,15 @@ export default function SignupForm() {
         }
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, type, checked } = e.target
-        setFormData(prev => ({
+    const handleCompanyChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value, type } = e.target
+        const checked = (e.target as HTMLInputElement).checked
+
+        setCompanyFormData(prev => ({
             ...prev,
-            [name]: type === 'checkbox' ? checked : value
+            [name]: type === 'checkbox' ? checked : (name === 'authorityAge' ? parseInt(value) || 0 : value)
         }))
-        // Clear field error when user starts typing
+
         if (fieldErrors[name]) {
             setFieldErrors(prev => {
                 const newErrors = { ...prev }
@@ -115,130 +191,665 @@ export default function SignupForm() {
         }
     }
 
-    return (
-        <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-200 h-full flex flex-col">
-            {/* Header Section */}
-            <div className="mb-8">
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-3">
-                    Create Your Account
-                </h2>
-                <p className="text-gray-700 text-base leading-relaxed">
-                    Join Grow Trucking today and start managing your dispatch operations efficiently.
-                </p>
+    const handleOwnerChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value, type } = e.target
+        const checked = (e.target as HTMLInputElement).checked
+
+        setOwnerFormData(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : (name === 'authorityAge' ? parseInt(value) || 0 : value)
+        }))
+
+        if (fieldErrors[name]) {
+            setFieldErrors(prev => {
+                const newErrors = { ...prev }
+                delete newErrors[name]
+                return newErrors
+            })
+        }
+    }
+
+    const renderCompanyForm = () => (
+        <div className="space-y-6">
+            {/* Company Details Section */}
+            <div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Company Name
+                        </label>
+                        <input
+                            type="text"
+                            id="companyName"
+                            name="companyName"
+                            value={companyFormData.companyName}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.companyName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Company Name"
+                            required
+                        />
+                        {fieldErrors.companyName && <p className="text-xs text-red-600 mt-1">{fieldErrors.companyName}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="companyEmail" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Email Address
+                        </label>
+                        <input
+                            type="email"
+                            id="companyEmail"
+                            name="companyEmail"
+                            value={companyFormData.companyEmail}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.companyEmail ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Email"
+                            required
+                        />
+                        {fieldErrors.companyEmail && <p className="text-xs text-red-600 mt-1">{fieldErrors.companyEmail}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="companyContactNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Contact Number
+                        </label>
+                        <input
+                            type="tel"
+                            id="companyContactNumber"
+                            name="companyContactNumber"
+                            value={companyFormData.companyContactNumber}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.companyContactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Phone Number"
+                            required
+                        />
+                        {fieldErrors.companyContactNumber && <p className="text-xs text-red-600 mt-1">{fieldErrors.companyContactNumber}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="motorCarrierNo" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Motor Carrier No
+                        </label>
+                        <input
+                            type="text"
+                            id="motorCarrierNo"
+                            name="motorCarrierNo"
+                            value={companyFormData.motorCarrierNo}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.motorCarrierNo ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="MC Number"
+                            required
+                        />
+                        {fieldErrors.motorCarrierNo && <p className="text-xs text-red-600 mt-1">{fieldErrors.motorCarrierNo}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="authorityAge" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Authority Age
+                        </label>
+                        <input
+                            type="number"
+                            id="authorityAge"
+                            name="authorityAge"
+                            value={companyFormData.authorityAge || ''}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.authorityAge ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Enter Age Of MC Authority"
+                            required
+                            min="0"
+                        />
+                        {fieldErrors.authorityAge && <p className="text-xs text-red-600 mt-1">{fieldErrors.authorityAge}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="numberOfTrucks" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Number of Trucks
+                        </label>
+                        <select
+                            id="numberOfTrucks"
+                            name="numberOfTrucks"
+                            value={companyFormData.numberOfTrucks}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.numberOfTrucks ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            required
+                        >
+                            <option value="">Select</option>
+                            {getNumberOfTrucksOptions().map(option => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                        {fieldErrors.numberOfTrucks && <p className="text-xs text-red-600 mt-1">{fieldErrors.numberOfTrucks}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="truckType" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Truck Type
+                        </label>
+                        <select
+                            id="truckType"
+                            name="truckType"
+                            value={companyFormData.truckType}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.truckType ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            required
+                        >
+                            <option value="">Select Truck Type</option>
+                            {TRUCK_TYPES.map(truckType => (
+                                <option key={truckType} value={truckType}>
+                                    {truckType}
+                                </option>
+                            ))}
+                        </select>
+                        {fieldErrors.truckType && <p className="text-xs text-red-600 mt-1">{fieldErrors.truckType}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="operationArea" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Operation Area
+                        </label>
+                        <select
+                            id="operationArea"
+                            name="operationArea"
+                            value={companyFormData.operationArea}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.operationArea ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            required
+                        >
+                            <option value="">Select Operation Area</option>
+                            {OPERATION_AREAS.map(area => (
+                                <option key={area} value={area}>
+                                    {area}
+                                </option>
+                            ))}
+                        </select>
+                        {fieldErrors.operationArea && <p className="text-xs text-red-600 mt-1">{fieldErrors.operationArea}</p>}
+                    </div>
+                </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
-                {/* Name Fields */}
-                <div className="flex gap-4 flex-col lg:flex-row">
-                    <div className="flex-1">
-                        <label
-                            htmlFor="firstName"
-                            className="block text-sm font-semibold text-gray-700 mb-2"
-                        >
+            {/* Contact Person Details Section */}
+            <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-2">
                             First Name
                         </label>
                         <input
                             type="text"
                             id="firstName"
                             name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.firstName
-                                ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                : 'border-gray-200'
-                                }`}
-                            placeholder="John"
+                            value={companyFormData.firstName}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.firstName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="First Name"
                             required
                         />
-                        {fieldErrors.firstName && (
-                            <p className="text-xs text-red-600 mt-1">{fieldErrors.firstName}</p>
-                        )}
+                        {fieldErrors.firstName && <p className="text-xs text-red-600 mt-1">{fieldErrors.firstName}</p>}
                     </div>
 
-                    <div className="flex-1">
-                        <label
-                            htmlFor="lastName"
-                            className="block text-sm font-semibold text-gray-700 mb-2"
-                        >
+                    <div>
+                        <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-2">
                             Last Name
                         </label>
                         <input
                             type="text"
                             id="lastName"
                             name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.lastName
-                                ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                : 'border-gray-200'
-                                }`}
-                            placeholder="Doe"
+                            value={companyFormData.lastName}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.lastName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Last Name"
                             required
                         />
-                        {fieldErrors.lastName && (
-                            <p className="text-xs text-red-600 mt-1">{fieldErrors.lastName}</p>
-                        )}
+                        {fieldErrors.lastName && <p className="text-xs text-red-600 mt-1">{fieldErrors.lastName}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="contactNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Contact Number
+                        </label>
+                        <input
+                            type="tel"
+                            id="contactNumber"
+                            name="contactNumber"
+                            value={companyFormData.contactNumber}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.contactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Contact Number"
+                            required
+                        />
+                        {fieldErrors.contactNumber && <p className="text-xs text-red-600 mt-1">{fieldErrors.contactNumber}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="communicationMethod" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Communication Method
+                        </label>
+                        <select
+                            id="communicationMethod"
+                            name="communicationMethod"
+                            value={companyFormData.communicationMethod}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.communicationMethod ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            required
+                        >
+                            <option value="">Choose Method</option>
+                            {COMMUNICATION_METHODS.map(method => (
+                                <option key={method} value={method}>
+                                    {method}
+                                </option>
+                            ))}
+                        </select>
+                        {fieldErrors.communicationMethod && <p className="text-xs text-red-600 mt-1">{fieldErrors.communicationMethod}</p>}
+                    </div>
+
+                    <div className="md:col-span-2">
+                        <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Email Address
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={companyFormData.email}
+                            onChange={handleCompanyChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Email"
+                            required
+                        />
+                        {fieldErrors.email && <p className="text-xs text-red-600 mt-1">{fieldErrors.email}</p>}
                     </div>
                 </div>
+            </div>
+        </div>
+    )
 
-                {/* Email Field */}
-                <div>
-                    <label
-                        htmlFor="email"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.email
-                            ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                            : 'border-gray-200'
-                            }`}
-                        placeholder="your.email@example.com"
-                        required
-                    />
-                    {fieldErrors.email && (
-                        <p className="text-xs text-red-600 mt-1">{fieldErrors.email}</p>
-                    )}
+    const renderOwnerOperatorForm = () => (
+        <div className="space-y-6">
+            {/* Owner Details Section */}
+            <div>
+                <h3 className="text-lg font-bold text-gray-800 mb-4">Owner Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label htmlFor="ownerName" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Owner Name
+                        </label>
+                        <input
+                            type="text"
+                            id="ownerName"
+                            name="ownerName"
+                            value={ownerFormData.ownerName}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.ownerName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Owner Name"
+                            required
+                        />
+                        {fieldErrors.ownerName && <p className="text-xs text-red-600 mt-1">{fieldErrors.ownerName}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerEmail" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Email Address
+                        </label>
+                        <input
+                            type="email"
+                            id="ownerEmail"
+                            name="ownerEmail"
+                            value={ownerFormData.ownerEmail}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.ownerEmail ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Email"
+                            required
+                        />
+                        {fieldErrors.ownerEmail && <p className="text-xs text-red-600 mt-1">{fieldErrors.ownerEmail}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerContactNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Contact Number
+                        </label>
+                        <input
+                            type="tel"
+                            id="ownerContactNumber"
+                            name="ownerContactNumber"
+                            value={ownerFormData.ownerContactNumber}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.ownerContactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Phone Number"
+                            required
+                        />
+                        {fieldErrors.ownerContactNumber && <p className="text-xs text-red-600 mt-1">{fieldErrors.ownerContactNumber}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerMotorCarrierNo" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Motor Carrier No
+                        </label>
+                        <input
+                            type="text"
+                            id="ownerMotorCarrierNo"
+                            name="motorCarrierNo"
+                            value={ownerFormData.motorCarrierNo}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.motorCarrierNo ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="MC Number"
+                            required
+                        />
+                        {fieldErrors.motorCarrierNo && <p className="text-xs text-red-600 mt-1">{fieldErrors.motorCarrierNo}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerAuthorityAge" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Authority Age
+                        </label>
+                        <input
+                            type="number"
+                            id="ownerAuthorityAge"
+                            name="authorityAge"
+                            value={ownerFormData.authorityAge || ''}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.authorityAge ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Enter Age Of MC Authority"
+                            required
+                            min="0"
+                        />
+                        {fieldErrors.authorityAge && <p className="text-xs text-red-600 mt-1">{fieldErrors.authorityAge}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerNumberOfTrucks" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Number of Trucks
+                        </label>
+                        <select
+                            id="ownerNumberOfTrucks"
+                            name="numberOfTrucks"
+                            value={ownerFormData.numberOfTrucks}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.numberOfTrucks ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            required
+                        >
+                            <option value="">Select</option>
+                            {getNumberOfTrucksOptions().map(option => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                        {fieldErrors.numberOfTrucks && <p className="text-xs text-red-600 mt-1">{fieldErrors.numberOfTrucks}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerTruckType" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Truck Type
+                        </label>
+                        <select
+                            id="ownerTruckType"
+                            name="truckType"
+                            value={ownerFormData.truckType}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.truckType ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            required
+                        >
+                            <option value="">Select Truck Type</option>
+                            {TRUCK_TYPES.map(truckType => (
+                                <option key={truckType} value={truckType}>
+                                    {truckType}
+                                </option>
+                            ))}
+                        </select>
+                        {fieldErrors.truckType && <p className="text-xs text-red-600 mt-1">{fieldErrors.truckType}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerOperationArea" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Operation Area
+                        </label>
+                        <select
+                            id="ownerOperationArea"
+                            name="operationArea"
+                            value={ownerFormData.operationArea}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.operationArea ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            required
+                        >
+                            <option value="">Select Operation Area</option>
+                            {OPERATION_AREAS.map(area => (
+                                <option key={area} value={area}>
+                                    {area}
+                                </option>
+                            ))}
+                        </select>
+                        {fieldErrors.operationArea && <p className="text-xs text-red-600 mt-1">{fieldErrors.operationArea}</p>}
+                    </div>
                 </div>
+            </div>
 
-                {/* Phone Field */}
-                <div>
-                    <label
-                        htmlFor="phone"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Phone <span className="text-gray-500 font-normal">(Optional)</span>
-                    </label>
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.phone
-                            ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                            : 'border-gray-200'
-                            }`}
-                        placeholder="123-456-7890"
-                    />
-                    {fieldErrors.phone && (
-                        <p className="text-xs text-red-600 mt-1">{fieldErrors.phone}</p>
-                    )}
+            {/* Contact Person Details Section */}
+            <div>
+                <h3 className="text-lg font-bold text-gray-800 mb-4">Contact Person Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label htmlFor="ownerFirstName" className="block text-sm font-semibold text-gray-700 mb-2">
+                            First Name
+                        </label>
+                        <input
+                            type="text"
+                            id="ownerFirstName"
+                            name="firstName"
+                            value={ownerFormData.firstName}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.firstName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="First Name"
+                            required
+                        />
+                        {fieldErrors.firstName && <p className="text-xs text-red-600 mt-1">{fieldErrors.firstName}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerLastName" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Last Name
+                        </label>
+                        <input
+                            type="text"
+                            id="ownerLastName"
+                            name="lastName"
+                            value={ownerFormData.lastName}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.lastName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Last Name"
+                            required
+                        />
+                        {fieldErrors.lastName && <p className="text-xs text-red-600 mt-1">{fieldErrors.lastName}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerContactNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Contact Number
+                        </label>
+                        <input
+                            type="tel"
+                            id="ownerContactNumber"
+                            name="contactNumber"
+                            value={ownerFormData.contactNumber}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.contactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Contact Number"
+                            required
+                        />
+                        {fieldErrors.contactNumber && <p className="text-xs text-red-600 mt-1">{fieldErrors.contactNumber}</p>}
+                    </div>
+
+                    <div>
+                        <label htmlFor="ownerCommunicationMethod" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Communication Method
+                        </label>
+                        <select
+                            id="ownerCommunicationMethod"
+                            name="communicationMethod"
+                            value={ownerFormData.communicationMethod}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.communicationMethod ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            required
+                        >
+                            <option value="">Choose Method</option>
+                            {COMMUNICATION_METHODS.map(method => (
+                                <option key={method} value={method}>
+                                    {method}
+                                </option>
+                            ))}
+                        </select>
+                        {fieldErrors.communicationMethod && <p className="text-xs text-red-600 mt-1">{fieldErrors.communicationMethod}</p>}
+                    </div>
+
+                    <div className="md:col-span-2">
+                        <label htmlFor="ownerContactEmail" className="block text-sm font-semibold text-gray-700 mb-2">
+                            Email Address
+                        </label>
+                        <input
+                            type="email"
+                            id="ownerContactEmail"
+                            name="email"
+                            value={ownerFormData.email}
+                            onChange={handleOwnerChange}
+                            className={cn(
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                fieldErrors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                            )}
+                            placeholder="Email"
+                            required
+                        />
+                        {fieldErrors.email && <p className="text-xs text-red-600 mt-1">{fieldErrors.email}</p>}
+                    </div>
                 </div>
+            </div>
+        </div>
+    )
 
-                {/* Password Fields */}
+    const currentFormData = getFormData()
+    const password = signupType === 'company' ? companyFormData.password : ownerFormData.password
+    const confirmPassword = signupType === 'company' ? companyFormData.confirmPassword : ownerFormData.confirmPassword
+    const agreeToTerms = signupType === 'company' ? companyFormData.agreeToTerms : ownerFormData.agreeToTerms
+
+    return (
+        <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-200 h-full flex flex-col">
+            {/* Signup Type Tabs */}
+            <div className="flex gap-4 mb-6">
+                <Button
+                    type="button"
+                    variant={signupType === 'company' ? 'default' : 'outline'}
+                    className={cn(
+                        "rounded-full"
+                    )}
+                    onClick={() => {
+                        setSignupType('company')
+                        setFieldErrors({})
+                        setSubmitStatus({ type: null, message: '' })
+                    }}
+
+                >
+                    Signup as Company
+                </Button>
+                <Button
+                    type="button"
+                    variant={signupType === 'owner-operator' ? 'default' : 'outline'}
+                    className={cn(
+                        "rounded-full"
+                    )}
+                    onClick={() => {
+                        setSignupType('owner-operator')
+                        setFieldErrors({})
+                        setSubmitStatus({ type: null, message: '' })
+                    }}
+                >
+                    Signup as Owner Operator
+                </Button>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
+                {/* Render appropriate form based on type */}
+                {signupType === 'company' ? renderCompanyForm() : renderOwnerOperatorForm()}
+
+                {/* Password Fields - Common for both */}
                 <div className="flex gap-4 flex-col lg:flex-row">
                     <div className="flex-1">
-                        <label
-                            htmlFor="password"
-                            className="block text-sm font-semibold text-gray-700 mb-2"
-                        >
+                        <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
                             Password
                         </label>
                         <div className="relative">
@@ -246,12 +857,12 @@ export default function SignupForm() {
                                 type={showPassword ? 'text' : 'password'}
                                 id="password"
                                 name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                className={`w-full bg-gray-50 border rounded-lg px-4 py-3 pr-10 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.password
-                                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                    : 'border-gray-200'
-                                    }`}
+                                value={password}
+                                onChange={signupType === 'company' ? handleCompanyChange : handleOwnerChange}
+                                className={cn(
+                                    "w-full bg-gray-50 border rounded-lg px-4 py-3 pr-10 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                    fieldErrors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                                )}
                                 placeholder="Minimum 8 characters"
                                 required
                             />
@@ -263,16 +874,11 @@ export default function SignupForm() {
                                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                             </button>
                         </div>
-                        {fieldErrors.password && (
-                            <p className="text-xs text-red-600 mt-1">{fieldErrors.password}</p>
-                        )}
+                        {fieldErrors.password && <p className="text-xs text-red-600 mt-1">{fieldErrors.password}</p>}
                     </div>
 
                     <div className="flex-1">
-                        <label
-                            htmlFor="confirmPassword"
-                            className="block text-sm font-semibold text-gray-700 mb-2"
-                        >
+                        <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
                             Confirm Password
                         </label>
                         <div className="relative">
@@ -280,12 +886,12 @@ export default function SignupForm() {
                                 type={showConfirmPassword ? 'text' : 'password'}
                                 id="confirmPassword"
                                 name="confirmPassword"
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
-                                className={`w-full bg-gray-50 border rounded-lg px-4 py-3 pr-10 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.confirmPassword
-                                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                    : 'border-gray-200'
-                                    }`}
+                                value={confirmPassword}
+                                onChange={signupType === 'company' ? handleCompanyChange : handleOwnerChange}
+                                className={cn(
+                                    "w-full bg-gray-50 border rounded-lg px-4 py-3 pr-10 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                    fieldErrors.confirmPassword ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
+                                )}
                                 placeholder="Re-enter password"
                                 required
                             />
@@ -297,35 +903,8 @@ export default function SignupForm() {
                                 {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                             </button>
                         </div>
-                        {fieldErrors.confirmPassword && (
-                            <p className="text-xs text-red-600 mt-1">{fieldErrors.confirmPassword}</p>
-                        )}
+                        {fieldErrors.confirmPassword && <p className="text-xs text-red-600 mt-1">{fieldErrors.confirmPassword}</p>}
                     </div>
-                </div>
-
-                {/* Company Name Field */}
-                <div>
-                    <label
-                        htmlFor="companyName"
-                        className="block text-sm font-semibold text-gray-700 mb-2"
-                    >
-                        Company Name <span className="text-gray-500 font-normal">(Optional)</span>
-                    </label>
-                    <input
-                        type="text"
-                        id="companyName"
-                        name="companyName"
-                        value={formData.companyName}
-                        onChange={handleChange}
-                        className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.companyName
-                            ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                            : 'border-gray-200'
-                            }`}
-                        placeholder="Your company name"
-                    />
-                    {fieldErrors.companyName && (
-                        <p className="text-xs text-red-600 mt-1">{fieldErrors.companyName}</p>
-                    )}
                 </div>
 
                 {/* Terms and Conditions */}
@@ -334,15 +913,12 @@ export default function SignupForm() {
                         type="checkbox"
                         id="agreeToTerms"
                         name="agreeToTerms"
-                        checked={formData.agreeToTerms}
-                        onChange={handleChange}
+                        checked={agreeToTerms}
+                        onChange={signupType === 'company' ? handleCompanyChange : handleOwnerChange}
                         className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary/20"
                         required
                     />
-                    <label
-                        htmlFor="agreeToTerms"
-                        className="text-sm text-gray-700 cursor-pointer"
-                    >
+                    <label htmlFor="agreeToTerms" className="text-sm text-gray-700 cursor-pointer">
                         I agree to the{' '}
                         <a href="/privacy-policy" className="text-primary hover:underline">
                             Terms and Conditions
@@ -353,27 +929,20 @@ export default function SignupForm() {
                         </a>
                     </label>
                 </div>
-                {fieldErrors.agreeToTerms && (
-                    <p className="text-xs text-red-600 -mt-4">{fieldErrors.agreeToTerms}</p>
-                )}
+                {fieldErrors.agreeToTerms && <p className="text-xs text-red-600 -mt-4">{fieldErrors.agreeToTerms}</p>}
 
                 {/* Status Messages */}
                 {submitStatus.type && (
-                    <div
-                        className={`p-4 rounded-lg flex items-start gap-3 ${submitStatus.type === 'success'
-                            ? 'bg-green-50 border border-green-200'
-                            : 'bg-red-50 border border-red-200'
-                            }`}
-                    >
+                    <div className={cn(
+                        "p-4 rounded-lg flex items-start gap-3",
+                        submitStatus.type === 'success' ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
+                    )}>
                         {submitStatus.type === 'success' ? (
                             <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                         ) : (
                             <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                         )}
-                        <p
-                            className={`text-sm ${submitStatus.type === 'success' ? 'text-green-800' : 'text-red-800'
-                                }`}
-                        >
+                        <p className={cn("text-sm", submitStatus.type === 'success' ? 'text-green-800' : 'text-red-800')}>
                             {submitStatus.message}
                         </p>
                     </div>
@@ -385,7 +954,7 @@ export default function SignupForm() {
                         type="submit"
                         size="lg"
                         disabled={isSubmitting}
-                        className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-5 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                        className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-5 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 uppercase"
                     >
                         {isSubmitting ? (
                             <>
@@ -395,12 +964,11 @@ export default function SignupForm() {
                         ) : (
                             <>
                                 <Send className="w-4 h-4 mr-2" />
-                                Create Account
+                                Submit
                             </>
                         )}
                     </Button>
 
-                    {/* Trust Elements */}
                     <p className="text-xs text-center text-gray-500">
                         Already have an account?{' '}
                         <a href="/contact" className="text-primary hover:underline">
