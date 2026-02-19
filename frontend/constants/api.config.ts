@@ -31,6 +31,7 @@ export const API_CONFIG = {
   BASE_URL: normalizeApiBaseUrl(process.env.NEXT_PUBLIC_API_BASE_URL),
   ENDPOINTS: {
     CONTACT: '/api/v1/dispatch/contact/',
+    CLAIM: '/api/v1/dispatch/claim/',
     TEST: '/api/v1/dispatch/',
   },
   TIMEOUT: 30000, // 30 seconds
