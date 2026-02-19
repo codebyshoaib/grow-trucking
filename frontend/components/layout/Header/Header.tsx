@@ -63,15 +63,17 @@ export default function Header() {
                         >
                             {isMobileMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
                         </Button>
-                        <Button
-                            variant="default"
-                            size="lg"
-                            icon={<UserIcon className="w-5 h-5" />}
-                            iconPosition="left"
-                            className="uppercase tracking-tighter hidden md:flex"
-                        >
-                            Sign Up
-                        </Button>
+                        <Link href="/signup">
+                            <Button
+                                variant="default"
+                                size="lg"
+                                icon={<UserIcon className="w-5 h-5" />}
+                                iconPosition="left"
+                                className="uppercase tracking-tighter hidden md:flex"
+                            >
+                                Sign Up
+                            </Button>
+                        </Link>
                     </div>
                 </div>
                 {/* Yellow Border Line */}

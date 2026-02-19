@@ -32,6 +32,7 @@ export const API_CONFIG = {
   ENDPOINTS: {
     CONTACT: '/api/v1/dispatch/contact/',
     CLAIM: '/api/v1/dispatch/claim/',
+    SIGNUP: '/api/v1/dispatch/signup/',
     TEST: '/api/v1/dispatch/',
   },
   TIMEOUT: 30000, // 30 seconds

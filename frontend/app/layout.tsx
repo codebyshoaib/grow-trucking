@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header/Header";
 import Preloader from "@/components/layout/Preloader";
-import Footer from "@/components/layout/Footer/Footer";
 import SchemaScript from "@/components/seo/SchemaScript";
 import { generateOrganizationSchema } from "@/lib/schema";
+import LayoutWrapper from "@/components/layout/LayoutWrapper";
 
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ["400", "500", "700"],
@@ -61,9 +60,9 @@ export default function RootLayout({
       >
         <SchemaScript schema={organizationSchema} />
         <Preloader />
-        <Header />
-        {children}
-        <Footer />
+        <LayoutWrapper>
+          {children}
+        </LayoutWrapper>
       </body>
     </html>
   );
