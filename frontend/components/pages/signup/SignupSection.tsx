@@ -43,7 +43,7 @@ export default function SignupSection() {
                         <ContactInfoCards />
                     </div>
                 </div>
-                <div className="col-span-2 max-w-5xl mx-auto">
+                <div className="col-span-2 max-w-5xl md:mx-auto mt-10 md:mt-0">
                     <SignupForm />
                 </div>
             </div>

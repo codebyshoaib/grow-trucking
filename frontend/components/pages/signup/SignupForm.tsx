@@ -210,13 +210,13 @@ export default function SignupForm() {
     }
 
     const renderCompanyForm = () => (
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
             {/* Company Details Section */}
             <div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="text-base md:text-lg font-bold text-gray-800 mb-3 md:mb-4">Company Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div>
-                        <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Company Name
                         </label>
                         <input
@@ -226,17 +226,17 @@ export default function SignupForm() {
                             value={companyFormData.companyName}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.companyName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Company Name"
                             required
                         />
-                        {fieldErrors.companyName && <p className="text-xs text-red-600 mt-1">{fieldErrors.companyName}</p>}
+                        {fieldErrors.companyName && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.companyName}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="companyEmail" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="companyEmail" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Email Address
                         </label>
                         <input
@@ -246,17 +246,17 @@ export default function SignupForm() {
                             value={companyFormData.companyEmail}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.companyEmail ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Email"
                             required
                         />
-                        {fieldErrors.companyEmail && <p className="text-xs text-red-600 mt-1">{fieldErrors.companyEmail}</p>}
+                        {fieldErrors.companyEmail && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.companyEmail}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="companyContactNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="companyContactNumber" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Contact Number
                         </label>
                         <input
@@ -266,17 +266,17 @@ export default function SignupForm() {
                             value={companyFormData.companyContactNumber}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.companyContactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Phone Number"
                             required
                         />
-                        {fieldErrors.companyContactNumber && <p className="text-xs text-red-600 mt-1">{fieldErrors.companyContactNumber}</p>}
+                        {fieldErrors.companyContactNumber && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.companyContactNumber}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="motorCarrierNo" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="motorCarrierNo" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Motor Carrier No
                         </label>
                         <input
@@ -286,17 +286,17 @@ export default function SignupForm() {
                             value={companyFormData.motorCarrierNo}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.motorCarrierNo ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="MC Number"
                             required
                         />
-                        {fieldErrors.motorCarrierNo && <p className="text-xs text-red-600 mt-1">{fieldErrors.motorCarrierNo}</p>}
+                        {fieldErrors.motorCarrierNo && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.motorCarrierNo}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="authorityAge" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="authorityAge" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Authority Age
                         </label>
                         <input
@@ -306,18 +306,18 @@ export default function SignupForm() {
                             value={companyFormData.authorityAge || ''}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.authorityAge ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Enter Age Of MC Authority"
                             required
                             min="0"
                         />
-                        {fieldErrors.authorityAge && <p className="text-xs text-red-600 mt-1">{fieldErrors.authorityAge}</p>}
+                        {fieldErrors.authorityAge && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.authorityAge}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="numberOfTrucks" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="numberOfTrucks" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Number of Trucks
                         </label>
                         <select
@@ -326,7 +326,7 @@ export default function SignupForm() {
                             value={companyFormData.numberOfTrucks}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none",
                                 fieldErrors.numberOfTrucks ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             required
@@ -338,11 +338,11 @@ export default function SignupForm() {
                                 </option>
                             ))}
                         </select>
-                        {fieldErrors.numberOfTrucks && <p className="text-xs text-red-600 mt-1">{fieldErrors.numberOfTrucks}</p>}
+                        {fieldErrors.numberOfTrucks && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.numberOfTrucks}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="truckType" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="truckType" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Truck Type
                         </label>
                         <select
@@ -351,7 +351,7 @@ export default function SignupForm() {
                             value={companyFormData.truckType}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none",
                                 fieldErrors.truckType ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             required
@@ -363,11 +363,11 @@ export default function SignupForm() {
                                 </option>
                             ))}
                         </select>
-                        {fieldErrors.truckType && <p className="text-xs text-red-600 mt-1">{fieldErrors.truckType}</p>}
+                        {fieldErrors.truckType && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.truckType}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="operationArea" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="operationArea" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Operation Area
                         </label>
                         <select
@@ -376,7 +376,7 @@ export default function SignupForm() {
                             value={companyFormData.operationArea}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none",
                                 fieldErrors.operationArea ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             required
@@ -388,16 +388,17 @@ export default function SignupForm() {
                                 </option>
                             ))}
                         </select>
-                        {fieldErrors.operationArea && <p className="text-xs text-red-600 mt-1">{fieldErrors.operationArea}</p>}
+                        {fieldErrors.operationArea && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.operationArea}</p>}
                     </div>
                 </div>
             </div>
 
             {/* Contact Person Details Section */}
             <div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="text-base md:text-lg font-bold text-gray-800 mb-3 md:mb-4">Contact Person Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div>
-                        <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             First Name
                         </label>
                         <input
@@ -407,17 +408,17 @@ export default function SignupForm() {
                             value={companyFormData.firstName}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.firstName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="First Name"
                             required
                         />
-                        {fieldErrors.firstName && <p className="text-xs text-red-600 mt-1">{fieldErrors.firstName}</p>}
+                        {fieldErrors.firstName && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.firstName}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Last Name
                         </label>
                         <input
@@ -427,17 +428,17 @@ export default function SignupForm() {
                             value={companyFormData.lastName}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.lastName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Last Name"
                             required
                         />
-                        {fieldErrors.lastName && <p className="text-xs text-red-600 mt-1">{fieldErrors.lastName}</p>}
+                        {fieldErrors.lastName && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.lastName}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="contactNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="contactNumber" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Contact Number
                         </label>
                         <input
@@ -447,17 +448,17 @@ export default function SignupForm() {
                             value={companyFormData.contactNumber}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.contactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Contact Number"
                             required
                         />
-                        {fieldErrors.contactNumber && <p className="text-xs text-red-600 mt-1">{fieldErrors.contactNumber}</p>}
+                        {fieldErrors.contactNumber && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.contactNumber}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="communicationMethod" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="communicationMethod" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Communication Method
                         </label>
                         <select
@@ -466,7 +467,7 @@ export default function SignupForm() {
                             value={companyFormData.communicationMethod}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none",
                                 fieldErrors.communicationMethod ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             required
@@ -478,11 +479,11 @@ export default function SignupForm() {
                                 </option>
                             ))}
                         </select>
-                        {fieldErrors.communicationMethod && <p className="text-xs text-red-600 mt-1">{fieldErrors.communicationMethod}</p>}
+                        {fieldErrors.communicationMethod && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.communicationMethod}</p>}
                     </div>
 
                     <div className="md:col-span-2">
-                        <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Email Address
                         </label>
                         <input
@@ -492,13 +493,13 @@ export default function SignupForm() {
                             value={companyFormData.email}
                             onChange={handleCompanyChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Email"
                             required
                         />
-                        {fieldErrors.email && <p className="text-xs text-red-600 mt-1">{fieldErrors.email}</p>}
+                        {fieldErrors.email && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.email}</p>}
                     </div>
                 </div>
             </div>
@@ -506,13 +507,13 @@ export default function SignupForm() {
     )
 
     const renderOwnerOperatorForm = () => (
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
             {/* Owner Details Section */}
             <div>
-                <h3 className="text-lg font-bold text-gray-800 mb-4">Owner Details</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="text-base md:text-lg font-bold text-gray-800 mb-3 md:mb-4">Owner Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div>
-                        <label htmlFor="ownerName" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerName" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Owner Name
                         </label>
                         <input
@@ -522,17 +523,17 @@ export default function SignupForm() {
                             value={ownerFormData.ownerName}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.ownerName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Owner Name"
                             required
                         />
-                        {fieldErrors.ownerName && <p className="text-xs text-red-600 mt-1">{fieldErrors.ownerName}</p>}
+                        {fieldErrors.ownerName && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.ownerName}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerEmail" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerEmail" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Email Address
                         </label>
                         <input
@@ -542,17 +543,17 @@ export default function SignupForm() {
                             value={ownerFormData.ownerEmail}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.ownerEmail ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Email"
                             required
                         />
-                        {fieldErrors.ownerEmail && <p className="text-xs text-red-600 mt-1">{fieldErrors.ownerEmail}</p>}
+                        {fieldErrors.ownerEmail && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.ownerEmail}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerContactNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerContactNumber" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Contact Number
                         </label>
                         <input
@@ -562,17 +563,17 @@ export default function SignupForm() {
                             value={ownerFormData.ownerContactNumber}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.ownerContactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Phone Number"
                             required
                         />
-                        {fieldErrors.ownerContactNumber && <p className="text-xs text-red-600 mt-1">{fieldErrors.ownerContactNumber}</p>}
+                        {fieldErrors.ownerContactNumber && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.ownerContactNumber}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerMotorCarrierNo" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerMotorCarrierNo" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Motor Carrier No
                         </label>
                         <input
@@ -582,17 +583,17 @@ export default function SignupForm() {
                             value={ownerFormData.motorCarrierNo}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.motorCarrierNo ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="MC Number"
                             required
                         />
-                        {fieldErrors.motorCarrierNo && <p className="text-xs text-red-600 mt-1">{fieldErrors.motorCarrierNo}</p>}
+                        {fieldErrors.motorCarrierNo && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.motorCarrierNo}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerAuthorityAge" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerAuthorityAge" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Authority Age
                         </label>
                         <input
@@ -602,18 +603,18 @@ export default function SignupForm() {
                             value={ownerFormData.authorityAge || ''}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.authorityAge ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Enter Age Of MC Authority"
                             required
                             min="0"
                         />
-                        {fieldErrors.authorityAge && <p className="text-xs text-red-600 mt-1">{fieldErrors.authorityAge}</p>}
+                        {fieldErrors.authorityAge && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.authorityAge}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerNumberOfTrucks" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerNumberOfTrucks" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Number of Trucks
                         </label>
                         <select
@@ -622,7 +623,7 @@ export default function SignupForm() {
                             value={ownerFormData.numberOfTrucks}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none",
                                 fieldErrors.numberOfTrucks ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             required
@@ -634,11 +635,11 @@ export default function SignupForm() {
                                 </option>
                             ))}
                         </select>
-                        {fieldErrors.numberOfTrucks && <p className="text-xs text-red-600 mt-1">{fieldErrors.numberOfTrucks}</p>}
+                        {fieldErrors.numberOfTrucks && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.numberOfTrucks}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerTruckType" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerTruckType" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Truck Type
                         </label>
                         <select
@@ -647,7 +648,7 @@ export default function SignupForm() {
                             value={ownerFormData.truckType}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none",
                                 fieldErrors.truckType ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             required
@@ -659,11 +660,11 @@ export default function SignupForm() {
                                 </option>
                             ))}
                         </select>
-                        {fieldErrors.truckType && <p className="text-xs text-red-600 mt-1">{fieldErrors.truckType}</p>}
+                        {fieldErrors.truckType && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.truckType}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerOperationArea" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerOperationArea" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Operation Area
                         </label>
                         <select
@@ -672,7 +673,7 @@ export default function SignupForm() {
                             value={ownerFormData.operationArea}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none",
                                 fieldErrors.operationArea ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             required
@@ -684,17 +685,17 @@ export default function SignupForm() {
                                 </option>
                             ))}
                         </select>
-                        {fieldErrors.operationArea && <p className="text-xs text-red-600 mt-1">{fieldErrors.operationArea}</p>}
+                        {fieldErrors.operationArea && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.operationArea}</p>}
                     </div>
                 </div>
             </div>
 
             {/* Contact Person Details Section */}
             <div>
-                <h3 className="text-lg font-bold text-gray-800 mb-4">Contact Person Details</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="text-base md:text-lg font-bold text-gray-800 mb-3 md:mb-4">Contact Person Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <div>
-                        <label htmlFor="ownerFirstName" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerFirstName" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             First Name
                         </label>
                         <input
@@ -704,17 +705,17 @@ export default function SignupForm() {
                             value={ownerFormData.firstName}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.firstName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="First Name"
                             required
                         />
-                        {fieldErrors.firstName && <p className="text-xs text-red-600 mt-1">{fieldErrors.firstName}</p>}
+                        {fieldErrors.firstName && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.firstName}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerLastName" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerLastName" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Last Name
                         </label>
                         <input
@@ -724,17 +725,17 @@ export default function SignupForm() {
                             value={ownerFormData.lastName}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.lastName ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Last Name"
                             required
                         />
-                        {fieldErrors.lastName && <p className="text-xs text-red-600 mt-1">{fieldErrors.lastName}</p>}
+                        {fieldErrors.lastName && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.lastName}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerContactNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerContactNumber" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Contact Number
                         </label>
                         <input
@@ -744,17 +745,17 @@ export default function SignupForm() {
                             value={ownerFormData.contactNumber}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.contactNumber ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Contact Number"
                             required
                         />
-                        {fieldErrors.contactNumber && <p className="text-xs text-red-600 mt-1">{fieldErrors.contactNumber}</p>}
+                        {fieldErrors.contactNumber && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.contactNumber}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="ownerCommunicationMethod" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerCommunicationMethod" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Communication Method
                         </label>
                         <select
@@ -763,7 +764,7 @@ export default function SignupForm() {
                             value={ownerFormData.communicationMethod}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none",
                                 fieldErrors.communicationMethod ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             required
@@ -775,11 +776,11 @@ export default function SignupForm() {
                                 </option>
                             ))}
                         </select>
-                        {fieldErrors.communicationMethod && <p className="text-xs text-red-600 mt-1">{fieldErrors.communicationMethod}</p>}
+                        {fieldErrors.communicationMethod && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.communicationMethod}</p>}
                     </div>
 
                     <div className="md:col-span-2">
-                        <label htmlFor="ownerContactEmail" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="ownerContactEmail" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Email Address
                         </label>
                         <input
@@ -789,13 +790,13 @@ export default function SignupForm() {
                             value={ownerFormData.email}
                             onChange={handleOwnerChange}
                             className={cn(
-                                "w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                 fieldErrors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                             )}
                             placeholder="Email"
                             required
                         />
-                        {fieldErrors.email && <p className="text-xs text-red-600 mt-1">{fieldErrors.email}</p>}
+                        {fieldErrors.email && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.email}</p>}
                     </div>
                 </div>
             </div>
@@ -808,14 +809,14 @@ export default function SignupForm() {
     const agreeToTerms = signupType === 'company' ? companyFormData.agreeToTerms : ownerFormData.agreeToTerms
 
     return (
-        <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-gray-200 h-full flex flex-col">
+        <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 xl:p-10 shadow-sm border border-gray-200 h-full flex flex-col">
             {/* Signup Type Tabs */}
-            <div className="flex gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-4 md:mb-6">
                 <Button
                     type="button"
                     variant={signupType === 'company' ? 'default' : 'outline'}
                     className={cn(
-                        "rounded-full"
+                        "rounded-full w-full sm:w-auto min-h-[44px] text-sm md:text-base px-6 py-3"
                     )}
                     onClick={() => {
                         setSignupType('company')
@@ -830,7 +831,7 @@ export default function SignupForm() {
                     type="button"
                     variant={signupType === 'owner-operator' ? 'default' : 'outline'}
                     className={cn(
-                        "rounded-full"
+                        "rounded-full w-full sm:w-auto min-h-[44px] text-sm md:text-base px-6 py-3"
                     )}
                     onClick={() => {
                         setSignupType('owner-operator')
@@ -842,14 +843,14 @@ export default function SignupForm() {
                 </Button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 flex-1 flex flex-col">
                 {/* Render appropriate form based on type */}
                 {signupType === 'company' ? renderCompanyForm() : renderOwnerOperatorForm()}
 
                 {/* Password Fields - Common for both */}
-                <div className="flex gap-4 flex-col lg:flex-row">
+                <div className="flex gap-3 md:gap-4 flex-col lg:flex-row">
                     <div className="flex-1">
-                        <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Password
                         </label>
                         <div className="relative">
@@ -860,7 +861,7 @@ export default function SignupForm() {
                                 value={password}
                                 onChange={signupType === 'company' ? handleCompanyChange : handleOwnerChange}
                                 className={cn(
-                                    "w-full bg-gray-50 border rounded-lg px-4 py-3 pr-10 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                    "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 pr-12 md:pr-10 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                     fieldErrors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                                 )}
                                 placeholder="Minimum 8 characters"
@@ -869,16 +870,17 @@ export default function SignupForm() {
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 p-1.5 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
+                                aria-label={showPassword ? 'Hide password' : 'Show password'}
                             >
-                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                             </button>
                         </div>
-                        {fieldErrors.password && <p className="text-xs text-red-600 mt-1">{fieldErrors.password}</p>}
+                        {fieldErrors.password && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.password}</p>}
                     </div>
 
                     <div className="flex-1">
-                        <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
                             Confirm Password
                         </label>
                         <div className="relative">
@@ -889,7 +891,7 @@ export default function SignupForm() {
                                 value={confirmPassword}
                                 onChange={signupType === 'company' ? handleCompanyChange : handleOwnerChange}
                                 className={cn(
-                                    "w-full bg-gray-50 border rounded-lg px-4 py-3 pr-10 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
+                                    "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 pr-12 md:pr-10 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
                                     fieldErrors.confirmPassword ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
                                 )}
                                 placeholder="Re-enter password"
@@ -898,80 +900,81 @@ export default function SignupForm() {
                             <button
                                 type="button"
                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 p-1.5 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
+                                aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
                             >
-                                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                {showConfirmPassword ? <EyeOff size={22} /> : <Eye size={22} />}
                             </button>
                         </div>
-                        {fieldErrors.confirmPassword && <p className="text-xs text-red-600 mt-1">{fieldErrors.confirmPassword}</p>}
+                        {fieldErrors.confirmPassword && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.confirmPassword}</p>}
                     </div>
                 </div>
 
                 {/* Terms and Conditions */}
-                <div className="flex items-start gap-2">
+                <div className="flex items-start gap-3 md:gap-2">
                     <input
                         type="checkbox"
                         id="agreeToTerms"
                         name="agreeToTerms"
                         checked={agreeToTerms}
                         onChange={signupType === 'company' ? handleCompanyChange : handleOwnerChange}
-                        className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary/20"
+                        className="mt-1 w-5 h-5 md:w-4 md:h-4 text-primary border-gray-300 rounded focus:ring-primary/20 cursor-pointer touch-manipulation flex-shrink-0"
                         required
                     />
-                    <label htmlFor="agreeToTerms" className="text-sm text-gray-700 cursor-pointer">
+                    <label htmlFor="agreeToTerms" className="text-sm md:text-sm text-gray-700 cursor-pointer leading-relaxed">
                         I agree to the{' '}
-                        <a href="/privacy-policy" className="text-primary hover:underline">
+                        <a href="/privacy-policy" className="text-primary hover:underline font-medium">
                             Terms and Conditions
                         </a>{' '}
                         and{' '}
-                        <a href="/privacy-policy" className="text-primary hover:underline">
+                        <a href="/privacy-policy" className="text-primary hover:underline font-medium">
                             Privacy Policy
                         </a>
                     </label>
                 </div>
-                {fieldErrors.agreeToTerms && <p className="text-xs text-red-600 -mt-4">{fieldErrors.agreeToTerms}</p>}
+                {fieldErrors.agreeToTerms && <p className="text-xs md:text-xs text-red-600 -mt-2 md:-mt-4">{fieldErrors.agreeToTerms}</p>}
 
                 {/* Status Messages */}
                 {submitStatus.type && (
                     <div className={cn(
-                        "p-4 rounded-lg flex items-start gap-3",
+                        "p-3 md:p-4 rounded-lg flex items-start gap-3",
                         submitStatus.type === 'success' ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
                     )}>
                         {submitStatus.type === 'success' ? (
-                            <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-5 h-5 md:w-5 md:h-5 text-green-600 flex-shrink-0 mt-0.5" />
                         ) : (
-                            <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                            <AlertCircle className="w-5 h-5 md:w-5 md:h-5 text-red-600 flex-shrink-0 mt-0.5" />
                         )}
-                        <p className={cn("text-sm", submitStatus.type === 'success' ? 'text-green-800' : 'text-red-800')}>
+                        <p className={cn("text-sm md:text-sm leading-relaxed", submitStatus.type === 'success' ? 'text-green-800' : 'text-red-800')}>
                             {submitStatus.message}
                         </p>
                     </div>
                 )}
 
                 {/* Submit Button */}
-                <div className="pt-4 space-y-3">
+                <div className="pt-2 md:pt-4 space-y-2 md:space-y-3">
                     <Button
                         type="submit"
                         size="lg"
                         disabled={isSubmitting}
-                        className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-5 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 uppercase"
+                        className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-4 md:py-5 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 uppercase min-h-[48px] md:min-h-[52px] text-sm md:text-base touch-manipulation"
                     >
                         {isSubmitting ? (
                             <>
-                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                <Loader2 className="w-4 h-4 md:w-4 md:h-4 mr-2 animate-spin" />
                                 Creating Account...
                             </>
                         ) : (
                             <>
-                                <Send className="w-4 h-4 mr-2" />
+                                <Send className="w-4 h-4 md:w-4 md:h-4 mr-2" />
                                 Submit
                             </>
                         )}
                     </Button>
 
-                    <p className="text-xs text-center text-gray-500">
+                    <p className="text-xs md:text-xs text-center text-gray-500 px-2">
                         Already have an account?{' '}
-                        <a href="/contact" className="text-primary hover:underline">
+                        <a href="/contact" className="text-primary hover:underline font-medium">
                             Contact us
                         </a>
                     </p>
