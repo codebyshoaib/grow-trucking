@@ -130,7 +130,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 <nav className="flex-1 flex flex-col justify-center items-center gap-8 px-4 overflow-y-auto">
                     {navItems.map((item) => {
                         const isActive = pathname === item.href
-                        
+
                         if (item.hasSubmenu) {
                             return (
                                 <div key={item.href} className="w-full flex flex-col items-center">
@@ -180,16 +180,19 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
                 {/* Footer with Sign Up Button */}
                 <div className="p-4 border-t border-gray-200">
-                    <Button
-                        variant="default"
-                        size="lg"
-                        className="w-full"
-                        icon={<UserIcon className="w-5 h-5" />}
-                        iconPosition="left"
-                        onClick={onClose}
-                    >
-                        Sign Up
-                    </Button>
+                    <Link href="/signup">
+                        <Button
+                            variant="default"
+                            size="lg"
+                            className="w-full"
+                            icon={<UserIcon className="w-5 h-5" />}
+                            iconPosition="left"
+                            onClick={onClose}
+                        >
+                            Sign Up
+                        </Button>
+                    </Link>
+
                 </div>
             </div>
         </div>
