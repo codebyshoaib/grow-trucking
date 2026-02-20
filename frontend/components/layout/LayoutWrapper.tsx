@@ -18,7 +18,10 @@ export default function LayoutWrapper({
     const isAuthPage = pathname?.startsWith('/signup')
 
     if (isAuthPage) {
-        return <>{children}</>
+        return <>
+            {children}
+            <Footer />
+        </>
     }
 
     return (
