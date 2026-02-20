@@ -1,6 +1,6 @@
 """
 Presentation Layer: API Views
-Handles HTTP requests and responses for the contact API.
+Handles HTTP requests and responses for the contact and signup APIs.
 """
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework import serializers
 from django.http import JsonResponse
 import logging
-from .services import ContactSubmissionService
+from .services import ContactSubmissionService, SignupSubmissionService
 from .serializers import ContactResponseSerializer
 
 logger = logging.getLogger(__name__)
@@ -73,6 +73,61 @@ def submit_contact(request):
         error_type = type(e).__name__
         
         logger.error(f"Contact submission error [{error_type}]: {error_message}", exc_info=True)
+        
+        return Response(
+            {
+                'success': False,
+                'message': 'An error occurred while processing your request. Please try again later.',
+                'error_type': error_type
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['POST'])
+def submit_signup(request):
+    """
+    API Endpoint: Submit signup form
+    POST /api/v1/dispatch/signup/
+    
+    Accepts signup form data and creates a new user account and signup registration.
+    Supports both company and owner-operator signup types.
+    """
+    try:
+        # Extract data from request
+        data = request.data
+        
+        # Use domain service to handle business logic
+        result = SignupSubmissionService.create_signup_submission(data)
+        
+        logger.info(f"Signup submission created: {result['data'].get('email')} (Type: {result['data'].get('signup_type')})")
+        
+        return Response(
+            {
+                'success': True,
+                'message': result['message'],
+                'data': result['data']
+            },
+            status=status.HTTP_201_CREATED
+        )
+        
+    except serializers.ValidationError as e:
+        # Handle validation errors
+        logger.warning(f"Signup submission validation error: {e.detail}")
+        return Response(
+            {
+                'success': False,
+                'message': 'Validation failed',
+                'errors': e.detail
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    except Exception as e:
+        # Handle database and other unexpected errors
+        error_message = str(e)
+        error_type = type(e).__name__
+        
+        logger.error(f"Signup submission error [{error_type}]: {error_message}", exc_info=True)
         
         return Response(
             {
