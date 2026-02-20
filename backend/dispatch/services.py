@@ -5,12 +5,14 @@ Contains business logic and use cases for contact management and signup.
 from typing import Dict, Any, Optional
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
-from .models import Contact, Signup
+from .models import Contact, Signup, Claim
 from .serializers import (
     ContactCreateSerializer,
     ContactResponseSerializer,
     SignupCreateSerializer,
-    SignupResponseSerializer
+    SignupResponseSerializer,
+    ClaimCreateSerializer,
+    ClaimResponseSerializer
 )
 from .email_service import ContactEmailService
 
@@ -228,4 +230,82 @@ class SignupQueryService:
         try:
             return Signup.objects.get(email=email)
         except Signup.DoesNotExist:
+            return None
+
+
+class ClaimSubmissionService:
+    """
+    Domain Service: Handles claim form submission business logic
+    Implements the use case for creating claim submissions.
+    """
+
+    @staticmethod
+    def create_claim_submission(data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Use Case: Create a new claim submission
+        
+        Args:
+            data: Dictionary containing claim form data
+            
+        Returns:
+            Dictionary containing the created claim data and status
+            
+        Raises:
+            serializers.ValidationError: If validation fails
+        """
+        # Validate input data using serializer (application layer)
+        serializer = ClaimCreateSerializer(data=data)
+        
+        if not serializer.is_valid():
+            raise serializers.ValidationError(serializer.errors)
+        
+        # Create claim entity (domain layer)
+        validated_data = serializer.validated_data
+        claim = Claim.objects.create(**validated_data)
+        
+        # Return response using response serializer
+        response_serializer = ClaimResponseSerializer(claim)
+        claim_data = response_serializer.data
+        
+        return {
+            'success': True,
+            'message': 'Your claim request has been submitted successfully!',
+            'data': claim_data
+        }
+
+    @staticmethod
+    def validate_claim_data(data: Dict[str, Any]) -> bool:
+        """
+        Domain Service Method: Validate claim data before submission
+        
+        Args:
+            data: Dictionary containing claim form data
+            
+        Returns:
+            True if valid, raises ValidationError otherwise
+        """
+        serializer = ClaimCreateSerializer(data=data)
+        return serializer.is_valid(raise_exception=True)
+
+
+class ClaimQueryService:
+    """
+    Domain Service: Handles claim query operations
+    (For future use: listing, filtering, etc.)
+    """
+    
+    @staticmethod
+    def get_claim_by_id(claim_id: str) -> Optional[Claim]:
+        """Get claim by ID (UUID)"""
+        try:
+            return Claim.objects.get(id=claim_id)
+        except Claim.DoesNotExist:
+            return None
+    
+    @staticmethod
+    def get_claim_by_email(email: str) -> Optional[Claim]:
+        """Get claim by email"""
+        try:
+            return Claim.objects.get(email=email)
+        except Claim.DoesNotExist:
             return None

@@ -178,3 +178,58 @@ class Signup(models.Model):
         """Domain method: Deactivate signup"""
         self.is_active = False
         self.save(update_fields=['is_active', 'updated_at'])
+
+
+class Claim(models.Model):
+    """
+    Domain Entity: Claim Submission
+    Represents a claim request for free loads.
+    """
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        help_text="Unique identifier for the claim"
+    )
+    
+    full_name = models.CharField(max_length=255, db_index=True)
+    email = models.EmailField(
+        max_length=255,
+        validators=[EmailValidator()],
+        db_index=True
+    )
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    company_name = models.CharField(max_length=255, db_index=True)
+    preferred_route = models.CharField(max_length=255)
+    age_of_mc_authority = models.IntegerField()
+    
+    # Metadata
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_read = models.BooleanField(default=False)
+    is_archived = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'claims'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['-created_at']),
+            models.Index(fields=['email']),
+            models.Index(fields=['company_name']),
+            models.Index(fields=['is_read', 'is_archived']),
+        ]
+        verbose_name = 'Claim Submission'
+        verbose_name_plural = 'Claim Submissions'
+
+    def __str__(self):
+        return f"{self.full_name} - {self.email}"
+
+    def mark_as_read(self):
+        """Domain method: Mark claim as read"""
+        self.is_read = True
+        self.save(update_fields=['is_read', 'updated_at'])
+
+    def archive(self):
+        """Domain method: Archive claim"""
+        self.is_archived = True
+        self.save(update_fields=['is_archived', 'updated_at'])

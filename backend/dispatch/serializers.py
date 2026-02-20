@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Contact, Signup
+from .models import Contact, Signup, Claim
 
 
 class ContactCreateSerializer(serializers.ModelSerializer):
@@ -339,3 +339,95 @@ class SignupResponseSerializer(serializers.ModelSerializer):
     def get_primary_contact_number(self, obj):
         """Get primary contact number from model property"""
         return obj.primary_contact_number
+
+
+class ClaimCreateSerializer(serializers.ModelSerializer):
+    """
+    Application Layer: Serializer for creating claim submissions
+    Handles validation and data transformation for incoming claim requests.
+    """
+    full_name = serializers.CharField(
+        max_length=255,
+        trim_whitespace=True,
+        help_text="Full name of the claimant"
+    )
+    email = serializers.EmailField(
+        max_length=255,
+        help_text="Email address of the claimant"
+    )
+    phone = serializers.CharField(
+        max_length=20,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        help_text="Phone number (optional)"
+    )
+    company_name = serializers.CharField(
+        max_length=255,
+        trim_whitespace=True,
+        help_text="Company name"
+    )
+    preferred_route = serializers.CharField(
+        max_length=255,
+        trim_whitespace=True,
+        help_text="Preferred route"
+    )
+    age_of_mc_authority = serializers.IntegerField(
+        min_value=0,
+        help_text="Age of MC Authority in years"
+    )
+
+    class Meta:
+        model = Claim
+        fields = ['full_name', 'email', 'phone', 'company_name', 'preferred_route', 'age_of_mc_authority']
+        extra_kwargs = {
+            'full_name': {'required': True},
+            'email': {'required': True},
+            'company_name': {'required': True},
+            'preferred_route': {'required': True},
+            'age_of_mc_authority': {'required': True},
+        }
+
+    def validate_full_name(self, value):
+        """Custom validation for full name"""
+        if not value or not value.strip():
+            raise serializers.ValidationError("Full name is required.")
+        return value.strip()
+
+    def validate_company_name(self, value):
+        """Custom validation for company name"""
+        if not value or not value.strip():
+            raise serializers.ValidationError("Company name is required.")
+        return value.strip()
+
+    def validate_preferred_route(self, value):
+        """Custom validation for preferred route"""
+        if not value or not value.strip():
+            raise serializers.ValidationError("Preferred route is required.")
+        return value.strip()
+
+    def validate_age_of_mc_authority(self, value):
+        """Custom validation for age of MC authority"""
+        if value is None or value < 0:
+            raise serializers.ValidationError("Age of MC authority must be a positive number.")
+        return value
+
+
+class ClaimResponseSerializer(serializers.ModelSerializer):
+    """
+    Application Layer: Serializer for claim response
+    Used for returning claim data in API responses.
+    """
+    class Meta:
+        model = Claim
+        fields = [
+            'id',
+            'full_name',
+            'email',
+            'phone',
+            'company_name',
+            'preferred_route',
+            'age_of_mc_authority',
+            'created_at'
+        ]
+        read_only_fields = ['id', 'created_at']

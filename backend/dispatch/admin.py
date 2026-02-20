@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, Signup
+from .models import Contact, Signup, Claim
 
 
 @admin.register(Contact)
@@ -67,6 +67,39 @@ class SignupAdmin(admin.ModelAdmin):
         }),
         ('Status', {
             'fields': ('is_approved', 'is_active')
+        }),
+        ('Timestamps', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    def get_queryset(self, request):
+        """Optimize queryset"""
+        return super().get_queryset(request)
+
+
+@admin.register(Claim)
+class ClaimAdmin(admin.ModelAdmin):
+    """
+    Admin interface for Claim model
+    """
+    list_display = ['id', 'full_name', 'email', 'company_name', 'preferred_route', 'age_of_mc_authority', 'is_read', 'is_archived', 'created_at']
+    list_filter = ['is_read', 'is_archived', 'created_at']
+    search_fields = ['full_name', 'email', 'company_name', 'preferred_route', 'phone']
+    readonly_fields = ['created_at', 'updated_at']
+    list_editable = ['is_read', 'is_archived']
+    date_hierarchy = 'created_at'
+    
+    fieldsets = (
+        ('Claimant Information', {
+            'fields': ('full_name', 'email', 'phone')
+        }),
+        ('Company Details', {
+            'fields': ('company_name', 'preferred_route', 'age_of_mc_authority')
+        }),
+        ('Status', {
+            'fields': ('is_read', 'is_archived')
         }),
         ('Timestamps', {
             'fields': ('created_at', 'updated_at'),
