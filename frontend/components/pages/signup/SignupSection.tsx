@@ -12,7 +12,7 @@ export default function SignupSection() {
             <div className="container grid grid-cols-1 md:grid-cols-3 justify-center  mx-auto px-6">
                 <div className="flex flex-col ">
                     <div className='flex items-center  gap-2 mb-8'>
-                        <Link href="/" className="relative inline-flex items-center justify-center max-w-full overflow-hidden">
+                        <Link href="/" className="relative inline-flex items-center justify-center max-w-full">
                             {/* Outer concentric circles - creating depth effect */}
                             <div className="absolute rounded-full bg-[#194378] opacity-15 w-[min(400px,90vw)] h-[min(400px,90vw)] -z-10"></div>
                             <div className="absolute rounded-full bg-[#194378] opacity-25 w-[min(360px,81vw)] h-[min(360px,81vw)] -z-10"></div>
