@@ -12,21 +12,21 @@ export default function SignupSection() {
             <div className="container grid grid-cols-1 md:grid-cols-3 justify-center  mx-auto px-6">
                 <div className="flex flex-col ">
                     <div className='flex items-center  gap-2 mb-8'>
-                        <Link href="/" className="relative inline-flex items-center justify-center">
+                        <Link href="/" className="relative inline-flex items-center justify-center max-w-full overflow-hidden">
                             {/* Outer concentric circles - creating depth effect */}
-                            <div className="absolute rounded-full bg-[#194378] opacity-15 w-[400px] h-[400px] -z-10"></div>
-                            <div className="absolute rounded-full bg-[#194378] opacity-25 w-[360px] h-[360px] -z-10"></div>
-                            <div className="absolute rounded-full bg-[#194378] opacity-35 w-[320px] h-[320px] -z-10"></div>
+                            <div className="absolute rounded-full bg-[#194378] opacity-15 w-[min(400px,90vw)] h-[min(400px,90vw)] -z-10"></div>
+                            <div className="absolute rounded-full bg-[#194378] opacity-25 w-[min(360px,81vw)] h-[min(360px,81vw)] -z-10"></div>
+                            <div className="absolute rounded-full bg-[#194378] opacity-35 w-[min(320px,72vw)] h-[min(320px,72vw)] -z-10"></div>
 
                             {/* White circle container - main logo area */}
-                            <div className="relative rounded-full bg-white w-[280px] h-[280px] flex items-center justify-center shadow-xl border-4 border-[#194378]/10">
+                            <div className="relative rounded-full bg-white w-[min(280px,63vw)] h-[min(280px,63vw)] flex items-center justify-center shadow-xl border-4 border-[#194378]/10">
                                 <div className="rounded-full w-full h-full flex items-center justify-center p-8">
                                     <Image
                                         src="/logo.webp"
                                         alt="logo"
                                         width={200}
                                         height={200}
-                                        className="object-contain"
+                                        className="object-contain w-full h-full max-w-[140px] max-h-[140px]"
                                     />
                                 </div>
                             </div>

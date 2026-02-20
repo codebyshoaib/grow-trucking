@@ -54,9 +54,9 @@ export default function RootLayout({
   });
 
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${ibmPlexSans.variable} font-primary antialiased`}
+        className={`${ibmPlexSans.variable} font-primary antialiased overflow-x-hidden`}
       >
         <SchemaScript schema={organizationSchema} />
         <Preloader />

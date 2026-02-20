@@ -119,9 +119,14 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground font-primary;
     font-family: var(--font-primary), sans-serif;
+    overflow-x: hidden;
   }
 }
 

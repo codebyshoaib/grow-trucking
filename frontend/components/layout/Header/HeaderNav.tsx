@@ -99,7 +99,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                     {item.label}
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent className={`!z-[60] transition-colors ${isScrolled ? '!bg-white !border !shadow-md' : '!bg-transparent !border-0 !shadow-none'} rounded-md overflow-hidden`}>
-                                    <ul className={`grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] transition-colors ${isScrolled ? 'bg-white' : 'bg-transparent'}`}>
+                                    <ul className={`grid w-[calc(100vw-2rem)] max-w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] transition-colors ${isScrolled ? 'bg-white' : 'bg-transparent'}`}>
                                         {services.map((service) => (
                                             <li key={service.href}>
                                                 <NavigationMenuLink asChild>

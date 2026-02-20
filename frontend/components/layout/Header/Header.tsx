@@ -35,7 +35,7 @@ export default function Header() {
                 {!isScrolled && (
                     <div className="absolute top-0 left-0 right-0 h-36 bg-gradient-to-b from-black/50 to-transparent" />
                 )}
-                <div className='relative flex items-center justify-between p-4 container mx-auto'>
+                <div className='relative flex items-center justify-between p-4 container mx-auto max-w-full overflow-x-hidden'>
                     <div className='flex items-center gap-2'>
                         <Link href="/">
                             <Image
