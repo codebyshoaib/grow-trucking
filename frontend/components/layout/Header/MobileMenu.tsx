@@ -53,9 +53,22 @@ const services = [
     href: `/services#${titleToSlug(service.title)}`
 }))
 
+// About submenu items
+const aboutItems = [
+    {
+        title: 'About Us',
+        href: '/about',
+    },
+    {
+        title: 'About Our Partners',
+        href: '/about-our-partners',
+    },
+]
+
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     const pathname = usePathname()
     const [isServicesOpen, setIsServicesOpen] = useState(false)
+    const [isAboutOpen, setIsAboutOpen] = useState(false)
 
     const navItems = [
         {
@@ -65,11 +78,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         {
             label: 'About',
             href: '/about',
+            hasSubmenu: true,
+            submenuItems: aboutItems,
         },
         {
             label: 'Services',
             href: '/services',
             hasSubmenu: true,
+            submenuItems: services,
         },
         {
             label: 'Blog',
@@ -129,33 +145,36 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 {/* Navigation Items */}
                 <nav className="flex-1 flex flex-col justify-center items-center gap-8 px-4 overflow-y-auto">
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href
+                        const isActive = pathname === item.href || (item.submenuItems && item.submenuItems.some(subItem => pathname === subItem.href))
 
-                        if (item.hasSubmenu) {
+                        if (item.hasSubmenu && item.submenuItems) {
+                            const isOpen = item.label === 'Services' ? isServicesOpen : isAboutOpen
+                            const toggleOpen = item.label === 'Services' ? () => setIsServicesOpen(!isServicesOpen) : () => setIsAboutOpen(!isAboutOpen)
+
                             return (
                                 <div key={item.href} className="w-full flex flex-col items-center">
                                     <button
-                                        onClick={() => setIsServicesOpen(!isServicesOpen)}
+                                        onClick={toggleOpen}
                                         className={`text-2xl font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full flex items-center gap-2 ${isActive ? 'after:w-full text-primary' : ''
                                             }`}
                                     >
                                         {item.label}
-                                        {isServicesOpen ? (
+                                        {isOpen ? (
                                             <ChevronUp className="w-5 h-5" />
                                         ) : (
                                             <ChevronDown className="w-5 h-5" />
                                         )}
                                     </button>
-                                    {isServicesOpen && (
+                                    {isOpen && (
                                         <div className="mt-4 w-full max-w-xs flex flex-col gap-4">
-                                            {services.map((service) => (
+                                            {item.submenuItems.map((subItem) => (
                                                 <Link
-                                                    key={service.href}
-                                                    href={service.href}
+                                                    key={subItem.href}
+                                                    href={subItem.href}
                                                     onClick={onClose}
                                                     className="text-lg font-primary--400 tracking-wide text-gray-700 hover:text-primary transition-colors pl-4 border-l-2 border-gray-200 hover:border-primary"
                                                 >
-                                                    {service.title}
+                                                    {subItem.title}
                                                 </Link>
                                             ))}
                                         </div>

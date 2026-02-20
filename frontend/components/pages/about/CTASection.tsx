@@ -47,7 +47,7 @@ export default function CTASection({
                             icon={<ArrowRight className="w-6 h-6 sm:w-7 sm:h-7" />}
                             iconPosition="right"
                         >
-                            <Link href="/contact">Book Free Consultation</Link>
+                            <Link href="/contact">Contact Us Now</Link>
                         </Button>
                     </div>
                 </div>

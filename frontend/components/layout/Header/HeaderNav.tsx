@@ -53,6 +53,18 @@ const services = [
     href: `/services#${titleToSlug(service.title)}`
 }))
 
+// About submenu items
+const aboutItems = [
+    {
+        title: 'About Us',
+        href: '/about',
+    },
+    {
+        title: 'About Our Partners',
+        href: '/about-our-partners',
+    },
+]
+
 export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
     const navItems = [
         {
@@ -62,11 +74,14 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
         {
             label: 'About',
             href: '/about',
+            hasSubmenu: true,
+            submenuItems: aboutItems,
         },
         {
             label: 'Services',
             href: '/services',
             hasSubmenu: true,
+            submenuItems: services,
         },
         {
             label: 'Blog',
@@ -90,28 +105,25 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
         <NavigationMenu viewport={false}>
             <NavigationMenuList className="flex gap-6">
                 {navItems.map((item) => {
-                    if (item.hasSubmenu) {
+                    if (item.hasSubmenu && item.submenuItems) {
                         return (
-                            <NavigationMenuItem key={item.href}>
+                            <NavigationMenuItem key={item.href} className="relative">
                                 <NavigationMenuTrigger
                                     className={`text-[.95rem] font-primary--500 tracking-widest !bg-transparent hover:!bg-transparent focus:!bg-transparent data-[active=true]:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:hover:!bg-transparent data-[state=open]:focus:!bg-transparent p-0 rounded-none transition-colors ${textColorClass} ${openStateTextColor}`}
                                 >
                                     {item.label}
                                 </NavigationMenuTrigger>
-                                <NavigationMenuContent className={`!z-[60] transition-colors ${isScrolled ? '!bg-white !border !shadow-md' : '!bg-transparent !border-0 !shadow-none'} rounded-md overflow-hidden`}>
-                                    <ul className={`grid w-[calc(100vw-2rem)] max-w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] transition-colors ${isScrolled ? 'bg-white' : 'bg-transparent'}`}>
-                                        {services.map((service) => (
-                                            <li key={service.href}>
+                                <NavigationMenuContent className="!z-[100] !bg-white !border !border-gray-200 !shadow-xl !rounded-md !mt-2 !left-0 !min-w-[280px] !w-auto !max-w-[400px] !overflow-hidden">
+                                    <ul className={`grid gap-0 p-2 ${item.label === 'Services' ? 'grid-cols-1' : item.submenuItems.length > 2 ? 'grid-cols-2' : 'grid-cols-1'} bg-white`}>
+                                        {item.submenuItems.map((subItem) => (
+                                            <li key={subItem.href} className="w-full min-w-0">
                                                 <NavigationMenuLink asChild>
                                                     <Link
-                                                        href={service.href}
-                                                        className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors ${isScrolled
-                                                            ? 'hover:bg-gray-100 focus:bg-gray-100'
-                                                            : 'hover:bg-white/10 focus:bg-white/10'
-                                                            }`}
+                                                        href={subItem.href}
+                                                        className="block select-none rounded-md px-4 py-2.5 leading-normal no-underline outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100 text-gray-900 w-full"
                                                     >
-                                                        <div className={`text-sm font-medium leading-none ${isScrolled ? '!text-gray-900' : '!text-white'}`}>
-                                                            {service.title}
+                                                        <div className="text-sm font-medium leading-snug break-words">
+                                                            {subItem.title}
                                                         </div>
                                                     </Link>
                                                 </NavigationMenuLink>
