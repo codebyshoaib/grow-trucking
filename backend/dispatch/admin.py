@@ -43,7 +43,7 @@ class SignupAdmin(admin.ModelAdmin):
     list_display = ['id', 'signup_type', 'primary_name', 'email', 'primary_email', 'is_approved', 'is_active', 'created_at']
     list_filter = ['signup_type', 'is_approved', 'is_active', 'created_at']
     search_fields = ['first_name', 'last_name', 'email', 'company_name', 'owner_name', 'company_email', 'owner_email', 'motor_carrier_no']
-    readonly_fields = ['created_at', 'updated_at', 'user']
+    readonly_fields = ['created_at', 'updated_at']
     list_editable = ['is_approved', 'is_active']
     date_hierarchy = 'created_at'
     
@@ -65,9 +65,6 @@ class SignupAdmin(admin.ModelAdmin):
         ('Contact Person Details', {
             'fields': ('first_name', 'last_name', 'contact_number', 'communication_method', 'email')
         }),
-        ('User Account', {
-            'fields': ('user',)
-        }),
         ('Status', {
             'fields': ('is_approved', 'is_active')
         }),
@@ -78,5 +75,5 @@ class SignupAdmin(admin.ModelAdmin):
     )
     
     def get_queryset(self, request):
-        """Optimize queryset with select_related"""
-        return super().get_queryset(request).select_related('user')
+        """Optimize queryset"""
+        return super().get_queryset(request)

@@ -120,7 +120,7 @@ export type SignupSubmissionRequest = CompanySignupSubmissionRequest | OwnerOper
  * Signup response from API
  */
 export interface SignupResponse {
-  id: number;
+  id: string; // UUID
   signup_type: 'company' | 'owner-operator';
   owner_name: string;
   owner_email: string;

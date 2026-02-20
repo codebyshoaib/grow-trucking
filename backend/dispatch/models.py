@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import EmailValidator
-from django.contrib.auth.models import User
+import uuid
 
 
 class Contact(models.Model):
@@ -57,6 +57,13 @@ class Signup(models.Model):
     Domain Entity: Signup Registration
     Represents a user signup submission (Company or Owner Operator).
     """
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        help_text="Unique identifier for the signup"
+    )
+    
     SIGNUP_TYPE_CHOICES = [
         ('company', 'Company'),
         ('owner-operator', 'Owner Operator'),
@@ -104,15 +111,6 @@ class Signup(models.Model):
         max_length=255,
         validators=[EmailValidator()],
         db_index=True
-    )
-    
-    # User account reference (created during signup)
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        related_name='signup',
-        blank=True,
-        null=True
     )
     
     # Metadata

@@ -4,7 +4,6 @@ Contains business logic and use cases for contact management and signup.
 """
 from typing import Dict, Any, Optional
 from django.core.exceptions import ValidationError
-from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Contact, Signup
 from .serializers import (
@@ -105,7 +104,7 @@ class SignupSubmissionService:
     @staticmethod
     def create_signup_submission(data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Use Case: Create a new signup submission and user account
+        Use Case: Create a new signup submission
         
         Args:
             data: Dictionary containing signup form data
@@ -124,29 +123,29 @@ class SignupSubmissionService:
         
         validated_data = serializer.validated_data
         
-        # Check if user with this email already exists
+        # Check if signup with this email already exists
         email = validated_data.get('email', '').strip().lower()
-        if User.objects.filter(email=email).exists():
+        if Signup.objects.filter(email=email).exists():
             raise serializers.ValidationError({
-                'email': ['A user with this email already exists.']
+                'email': ['A signup with this email already exists.']
             })
         
         # Check if company/owner email already exists (if provided)
         signup_type = validated_data.get('signup_type')
         if signup_type == 'company':
             company_email = validated_data.get('company_email', '').strip().lower()
-            if company_email and User.objects.filter(email=company_email).exists():
+            if company_email and Signup.objects.filter(company_email=company_email).exists():
                 raise serializers.ValidationError({
-                    'company_email': ['A user with this company email already exists.']
+                    'company_email': ['A signup with this company email already exists.']
                 })
         elif signup_type == 'owner-operator':
             owner_email = validated_data.get('owner_email', '').strip().lower()
-            if owner_email and User.objects.filter(email=owner_email).exists():
+            if owner_email and Signup.objects.filter(owner_email=owner_email).exists():
                 raise serializers.ValidationError({
-                    'owner_email': ['A user with this owner email already exists.']
+                    'owner_email': ['A signup with this owner email already exists.']
                 })
         
-        # Extract password before creating signup
+        # Extract password before creating signup (stored but not used for User creation)
         password = validated_data.pop('password')
         
         # Prepare signup data
@@ -181,29 +180,8 @@ class SignupSubmissionService:
         # Create signup entity (domain layer)
         signup = Signup.objects.create(**signup_data)
         
-        # Create user account
-        # Use contact person email as username
-        username = email
-        # Ensure username is unique
-        base_username = username
-        counter = 1
-        while User.objects.filter(username=username).exists():
-            username = f"{base_username}_{counter}"
-            counter += 1
-        
-        # Create user with contact person details
-        user = User.objects.create_user(
-            username=username,
-            email=email,
-            password=password,
-            first_name=validated_data.get('first_name'),
-            last_name=validated_data.get('last_name'),
-            is_active=True,  # User is active but signup may need approval
-        )
-        
-        # Link user to signup
-        signup.user = user
-        signup.save()
+        # Note: User account creation can be handled separately if needed for authentication
+        # For now, we just store the signup information
         
         # Return response using response serializer
         response_serializer = SignupResponseSerializer(signup)
@@ -237,8 +215,8 @@ class SignupQueryService:
     """
     
     @staticmethod
-    def get_signup_by_id(signup_id: int) -> Optional[Signup]:
-        """Get signup by ID"""
+    def get_signup_by_id(signup_id: str) -> Optional[Signup]:
+        """Get signup by ID (UUID)"""
         try:
             return Signup.objects.get(id=signup_id)
         except Signup.DoesNotExist:
