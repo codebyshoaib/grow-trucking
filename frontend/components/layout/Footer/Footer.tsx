@@ -91,7 +91,7 @@ export default function Footer() {
                     </div>
 
                     {/* Right Column - Navigation Links */}
-                    <div className="grid grid-cols-2 gap-8 lg:gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                         {/* Resources Column */}
                         <div>
                             <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">
