@@ -6,6 +6,7 @@
 
 import { titleToSlug } from '@/lib/utils'
 import type { SubmenuItem, RegionItem } from '@/types/navigation.types'
+import { TruckTypeRegistry } from '@/domain/truck-type/truck-type.config'
 
 /**
  * Services menu items - matches the services from ServicesSection
@@ -55,34 +56,14 @@ export const aboutItems: SubmenuItem[] = [
 ]
 
 /**
- * Truck type options for signup forms
+ * Truck type navigation items
+ * Dynamically generated from domain registry (DDD: Single Source of Truth)
+ * This ensures navigation stays in sync with available truck types
  */
-export const truckTypes: SubmenuItem[] = [
-    {
-        title: 'Dry Van',
-        href: '/truck-type/dry-van',
-    },
-    {
-        title: 'Reefer',
-        href: '/truck-type/reefer',
-    },
-    {
-        title: 'Flatbed',
-        href: '/truck-type/flatbed',
-    },
-    {
-        title: 'Box Truck',
-        href: '/truck-type/box-truck',
-    },
-    {
-        title: 'Hotshot',
-        href: '/truck-type/hotshot',
-    },
-    {
-        title: 'Power Only',
-        href: '/truck-type/power-only',
-    },
-]
+export const truckTypes: SubmenuItem[] = TruckTypeRegistry.getAll().map((truckType) => ({
+    title: truckType.name,
+    href: `/truck-type/${truckType.slug}`,
+}))
 
 /**
  * Multi-level structure for Areas We Serve

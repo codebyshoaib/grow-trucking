@@ -17,3 +17,22 @@ export function titleToSlug(title: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 }
+
+/**
+ * Convert truck type name to slug format
+ * Handles special cases like "Box Truck" -> "box-truck"
+ */
+export function truckTypeNameToSlug(name: string): string {
+  return titleToSlug(name)
+}
+
+/**
+ * Convert slug to display name format
+ * e.g., "box-truck" -> "Box Truck"
+ */
+export function slugToDisplayName(slug: string): string {
+  return slug
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+}
