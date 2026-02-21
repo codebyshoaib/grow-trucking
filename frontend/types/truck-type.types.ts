@@ -50,6 +50,7 @@ export interface TruckTypeEntity {
     tagline: string
     description: string
     longDescription: string
+    keyFeaturesDescription: string
     subtitle?: string // e.g., "Any type of 48'-53' trucks"
     
     // Media

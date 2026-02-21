@@ -21,7 +21,7 @@ export default function TruckTypeCTA({ truckType }: TruckTypeCTAProps) {
 
     return (
         <section className="relative w-full py-10 sm:py-14 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 overflow-hidden bg-white">
-            <div className="relative max-w-7xl flex flex-col items-center justify-center mx-auto bg-black rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl min-h-[350px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
+            <div className="relative max-w-8xl flex flex-col items-center justify-center mx-auto bg-black rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl min-h-[350px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
                 {/* Background Image */}
                 <Image
                     src={truckType.heroImage}

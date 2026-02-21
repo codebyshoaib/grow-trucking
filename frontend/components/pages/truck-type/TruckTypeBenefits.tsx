@@ -29,42 +29,34 @@ export default function TruckTypeBenefits({ truckType }: TruckTypeBenefitsProps)
                     </h2>
                 </div>
 
-                {/* Benefits Grid - Two Column Layout (Reversed Direction) */}
+                {/* Benefits Grid - Card Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                     {truckType.benefits.map((benefit, index) => {
                         const Icon = icons[index % icons.length]
-                        // Reverse column order: even indices (0,2) go to right column, odd (1,3) go to left
-                        // This creates: Row 1: [2, 1], Row 2: [4, 3]
-                        const gridOrder = index % 2 === 0 ? index + 2 : index
                         return (
                             <div
                                 key={index}
-                                className="group relative bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 shadow-md hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-primary/20 overflow-hidden"
-                                style={{ order: gridOrder }}
+                                className="group relative bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
                             >
-                                {/* Background Accent */}
-                                <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-primary/5 rounded-full -mr-12 -mt-12 sm:-mr-16 sm:-mt-16 group-hover:bg-primary/10 transition-colors" />
-
-                                {/* Content */}
-                                <div className="relative z-10">
-                                    {/* Icon */}
-                                    <div className="mb-4 sm:mb-6">
-                                        <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl bg-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                            <Icon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
-                                        </div>
+                                {/* Card Content - Flex Layout */}
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                                    {/* Left Side - Text Content */}
+                                    <div className="flex-1 min-w-0">
+                                        {/* Title */}
+                                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-2 sm:mb-3 leading-tight">
+                                            {benefit.title}
+                                        </h3>
+                                        {/* Description */}
+                                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                                            {benefit.description}
+                                        </p>
                                     </div>
 
-                                    {/* Text */}
-                                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-black mb-3 sm:mb-4 group-hover:text-primary transition-colors leading-tight">
-                                        {benefit.title}
-                                    </h3>
-                                    <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-3 sm:mb-4">
-                                        {benefit.description}
-                                    </p>
-
-                                    {/* Arrow Indicator */}
-                                    <div className="flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                                    {/* Right Side - Icon */}
+                                    <div className="flex-shrink-0">
+                                        <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-primary flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
+                                            <Icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
