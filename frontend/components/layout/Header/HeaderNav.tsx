@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import {
     NavigationMenu,
@@ -7,66 +10,14 @@ import {
     NavigationMenuTrigger,
     NavigationMenuContent,
 } from '@/components/ui/navigation-menu'
-
-interface HeaderNavProps {
-    isScrolled?: boolean
-}
-
-// Helper function to convert service title to slug for hash links
-function titleToSlug(title: string): string {
-    return title
-        .trim()
-        .toLowerCase()
-        .replace(/&/g, 'and')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '')
-}
-
-// Services data - matches the services from ServicesSection
-const services = [
-    {
-        title: 'Free Business Audit Report ',
-        href: '/services#free-business-audit-report',
-    },
-    {
-        title: 'Free Growth Checklist',
-        href: '/services#free-growth-checklist',
-    },
-    {
-        title: 'Free Custom 90 Day Growth Plan',
-        href: '/services#free-custom-90-day-growth-plan',
-    },
-    {
-        title: 'Rate Maximization & Negotiation',
-        href: '/services#rate-maximization-and-negotiation',
-    },
-    {
-        title: 'Operational Growth Strategy',
-        href: '/services#operational-growth-strategy',
-    },
-    {
-        title: 'Comprehensive Trip Planning',
-        href: '/services#comprehensive-trip-planning',
-    },
-].map(service => ({
-    ...service,
-    href: `/services#${titleToSlug(service.title)}`
-}))
-
-// About submenu items
-const aboutItems = [
-    {
-        title: 'About Us',
-        href: '/about',
-    },
-    {
-        title: 'About Our Partners',
-        href: '/about-our-partners',
-    },
-]
+import type { HeaderNavProps, NavItem, RegionItem } from '@/types/navigation.types'
+import { services, aboutItems, areasWeServeItems, truckTypes } from '@/constants/navigation.config'
 
 export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
-    const navItems = [
+    // Default to first region when menu opens
+    const [hoveredRegion, setHoveredRegion] = useState<string | null>(areasWeServeItems[0]?.title || null)
+
+    const navItems: NavItem[] = [
         {
             label: 'Home',
             href: '/',
@@ -82,6 +33,19 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
             href: '/services',
             hasSubmenu: true,
             submenuItems: services,
+        },
+        {
+            label: 'Areas We Serve',
+            href: '/areas-we-serve',
+            hasSubmenu: true,
+            submenuItems: areasWeServeItems,
+            isMultiLevel: true,
+        },
+        {
+            label: 'Truck Type',
+            href: '/truck-type',
+            hasSubmenu: true,
+            submenuItems: truckTypes,
         },
         {
             label: 'Blog',
@@ -101,11 +65,81 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
         ? 'data-[state=open]:!text-gray-900 data-[state=open]:hover:!text-gray-700'
         : 'data-[state=open]:!text-white data-[state=open]:hover:!text-white'
 
+    // Get the currently hovered region's states
+    const activeRegion = areasWeServeItems.find(region => region.title === hoveredRegion)
+    const activeStates = activeRegion?.states || []
+
     return (
         <NavigationMenu viewport={false}>
             <NavigationMenuList className="flex gap-6">
                 {navItems.map((item) => {
                     if (item.hasSubmenu && item.submenuItems) {
+                        // Special handling for multi-level "Areas We Serve" menu
+                        if (item.isMultiLevel && item.label === 'Areas We Serve') {
+                            return (
+                                <NavigationMenuItem key={item.href} className="relative">
+                                    <NavigationMenuTrigger
+                                        className={`text-[.95rem] font-primary--500 tracking-widest !bg-transparent hover:!bg-transparent focus:!bg-transparent data-[active=true]:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:hover:!bg-transparent data-[state=open]:focus:!bg-transparent p-0 rounded-none transition-colors ${textColorClass} ${openStateTextColor}`}
+                                    >
+                                        {item.label}
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent className="!z-[100] !bg-white !border !border-gray-200 !shadow-xl !rounded-md !mt-2 !left-0 !min-w-[700px] !w-auto !max-w-[800px] !overflow-hidden">
+                                        <div className="flex bg-white">
+                                            {/* Left column - Regions */}
+                                            <ul className="w-[200px] border-r border-gray-300 p-0">
+                                                {(item.submenuItems as RegionItem[]).map((region) => (
+                                                    <li
+                                                        key={region.href}
+                                                        className="w-full"
+                                                        onMouseEnter={() => setHoveredRegion(region.title)}
+                                                    >
+                                                        <NavigationMenuLink asChild>
+                                                            <Link
+                                                                href={region.href}
+                                                                className={`block select-none px-4 py-2.5 leading-normal no-underline outline-none transition-colors w-full relative ${hoveredRegion === region.title
+                                                                    ? ' text-gray-800 bg-gray-200'
+                                                                    : 'text-gray-800 hover:bg-gray-700 hover:text-white'
+                                                                    }`}
+                                                            >
+                                                                <div className="text-sm font-medium leading-snug flex items-center justify-between">
+                                                                    <span>{region.title}</span>
+                                                                    <span className="text-gray-400">›</span>
+                                                                </div>
+                                                            </Link>
+                                                        </NavigationMenuLink>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                            {/* Right column - States in 2-column grid */}
+                                            <ul className="flex-1 p-2 min-h-[200px] grid grid-cols-2 gap-0">
+                                                {activeStates.length > 0 ? (
+                                                    activeStates.map((state) => (
+                                                        <li key={state.href} className="w-full">
+                                                            <NavigationMenuLink asChild>
+                                                                <Link
+                                                                    href={state.href}
+                                                                    className="block select-none rounded-md px-4 py-2.5 leading-normal no-underline outline-none transition-colors hover:bg-gray-200 focus:bg-gray-200 text-gray-900 w-full"
+                                                                >
+                                                                    <div className="text-sm font-medium leading-snug break-words">
+                                                                        {state.title}
+                                                                    </div>
+                                                                </Link>
+                                                            </NavigationMenuLink>
+                                                        </li>
+                                                    ))
+                                                ) : (
+                                                    <li className="col-span-2 px-4 py-8 text-sm text-gray-500 text-center">
+                                                        Hover over a region to see states
+                                                    </li>
+                                                )}
+                                            </ul>
+                                        </div>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                            )
+                        }
+
+                        // Regular submenu rendering for other items
                         return (
                             <NavigationMenuItem key={item.href} className="relative">
                                 <NavigationMenuTrigger
