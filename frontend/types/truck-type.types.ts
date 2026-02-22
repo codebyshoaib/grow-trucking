@@ -36,6 +36,87 @@ export interface BenefitItem {
 }
 
 /**
+ * Specification Item - Value Object
+ * Represents a specification detail
+ */
+export interface SpecificationItem {
+    label: string
+    value: string
+}
+
+/**
+ * Market Rate Row - Value Object
+ * Represents a row in the market rates table
+ */
+export interface MarketRateRow {
+    routeType: string
+    ratePerMile: string
+    averageLoadValue: string
+}
+
+/**
+ * High Demand Lane - Value Object
+ * Represents a high-demand freight lane
+ */
+export interface HighDemandLane {
+    title: string
+    description: string
+    rate?: string
+    distance?: string
+}
+
+/**
+ * Dispatch Process Step - Value Object
+ * Represents a step in the dispatch process
+ */
+export interface DispatchProcessStep {
+    step: number
+    title: string
+    description: string
+}
+
+/**
+ * Equipment Item - Value Object
+ * Represents an equipment requirement or recommendation
+ */
+export interface EquipmentItem {
+    category: 'essential' | 'premium'
+    name: string
+    description?: string
+    ratePremium?: string
+}
+
+/**
+ * Challenge Solution - Value Object
+ * Represents a challenge and its solution
+ */
+export interface ChallengeSolution {
+    challenge: string
+    solution: string
+}
+
+/**
+ * Success Story - Value Object
+ * Represents a customer success story/testimonial
+ */
+export interface SuccessStory {
+    quote: string
+    author: string
+    location: string
+    equipment?: string
+}
+
+/**
+ * Comparison Row - Value Object
+ * Represents a row in a comparison table
+ */
+export interface ComparisonRow {
+    feature: string
+    currentType: string
+    otherTypes: Record<string, string>
+}
+
+/**
  * Truck Type Entity - Domain Entity
  * Represents the complete truck type with all its properties
  */
@@ -52,6 +133,7 @@ export interface TruckTypeEntity {
     longDescription: string
     keyFeaturesDescription: string
     subtitle?: string // e.g., "Any type of 48'-53' trucks"
+    whatIsDescription?: string // "What Is [Truck Type] Freight?" section
     
     // Media
     heroImage: string
@@ -61,6 +143,54 @@ export interface TruckTypeEntity {
     features: FeatureItem[]
     benefits: BenefitItem[]
     keyPoints: string[] // Bullet points
+    
+    // Specifications
+    specifications?: SpecificationItem[]
+    specificationsDescription?: string
+    
+    // Market Rates
+    marketRates?: MarketRateRow[]
+    marketRatesDescription?: string
+    
+    // High-Demand Lanes
+    highDemandLanes?: HighDemandLane[]
+    highDemandLanesDescription?: string
+    
+    // Dispatch Process
+    dispatchProcess?: DispatchProcessStep[]
+    
+    // Equipment Requirements
+    equipmentEssential?: EquipmentItem[]
+    equipmentPremium?: EquipmentItem[]
+    equipmentDescription?: string
+    
+    // Challenges & Solutions
+    challenges?: ChallengeSolution[]
+    
+    // Pricing
+    pricing?: {
+        standardRate?: string
+        premiumRate?: string
+        setupFee?: string
+        included?: string[]
+    }
+    
+    // Success Stories
+    successStories?: SuccessStory[]
+    
+    // Comparison Tables
+    comparisonTable?: ComparisonRow[]
+    comparisonDescription?: string
+    
+    // Types of Freight
+    typesOfFreight?: string[]
+    
+    // Regional Hotspots
+    regionalHotspots?: Array<{
+        location: string
+        description: string
+        weeklyRevenue?: string
+    }>
     
     // SEO & Metadata
     metaTitle: string

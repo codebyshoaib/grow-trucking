@@ -3,7 +3,18 @@
 import React from 'react'
 import TruckTypeHero from './TruckTypeHero'
 import TruckTypeOverview from './TruckTypeOverview'
+import TruckTypeSpecifications from './TruckTypeSpecifications'
+import TruckTypeTypesOfFreight from './TruckTypeTypesOfFreight'
+import TruckTypeMarketRates from './TruckTypeMarketRates'
+import TruckTypeHighDemandLanes from './TruckTypeHighDemandLanes'
 import TruckTypeFeatures from './TruckTypeFeatures'
+import TruckTypeDispatchProcess from './TruckTypeDispatchProcess'
+import TruckTypeComparison from './TruckTypeComparison'
+import TruckTypeEquipment from './TruckTypeEquipment'
+import TruckTypeChallenges from './TruckTypeChallenges'
+import TruckTypePricing from './TruckTypePricing'
+import TruckTypeRegionalHotspots from './TruckTypeRegionalHotspots'
+import TruckTypeSuccessStories from './TruckTypeSuccessStories'
 import TruckTypeBenefits from './TruckTypeBenefits'
 import TruckTypeKeyPoints from './TruckTypeKeyPoints'
 import TruckTypeCTA from './TruckTypeCTA'
@@ -40,7 +51,18 @@ export default function TruckTypePage({ truckType }: TruckTypePageProps) {
             <main className="min-h-screen bg-white">
                 <TruckTypeHero truckType={truckType} />
                 <TruckTypeOverview truckType={truckType} />
+                <TruckTypeSpecifications truckType={truckType} />
+                <TruckTypeTypesOfFreight truckType={truckType} />
+                <TruckTypeMarketRates truckType={truckType} />
+                <TruckTypeHighDemandLanes truckType={truckType} />
                 <TruckTypeFeatures truckType={truckType} />
+                <TruckTypeDispatchProcess truckType={truckType} />
+                <TruckTypeComparison truckType={truckType} />
+                <TruckTypeEquipment truckType={truckType} />
+                <TruckTypeChallenges truckType={truckType} />
+                <TruckTypeRegionalHotspots truckType={truckType} />
+                <TruckTypePricing truckType={truckType} />
+                <TruckTypeSuccessStories truckType={truckType} />
                 <TruckTypeBenefits truckType={truckType} />
                 <TruckTypeCTA truckType={truckType} />
             </main>
