@@ -68,9 +68,11 @@ function stateToSlug(stateName) {
 function laneToSlug(laneName) {
     return laneName
         .toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/→/g, '-to-')
-        .replace(/[^a-z0-9-]/g, '');
+        .replace(/→/g, '-to-') // Replace arrow first
+        .replace(/\s+/g, '-') // Then replace spaces
+        .replace(/[^a-z0-9-]/g, '') // Remove special characters
+        .replace(/-+/g, '-') // Normalize multiple dashes to single dash
+        .replace(/^-+|-+$/g, ''); // Remove leading/trailing dashes
 }
 
 // Parse lane string (e.g., "Los Angeles→Dallas")

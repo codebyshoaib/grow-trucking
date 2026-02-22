@@ -98,6 +98,7 @@ function jsonToStateEntity(json: any): StateEntity {
             description: lane.description,
             rate: lane.averageRate,
             distance: lane.distance,
+            slug: lane.slug, // Include slug for proper routing
         })) : undefined,
     }
 }

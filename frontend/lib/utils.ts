@@ -31,8 +31,19 @@ export function truckTypeNameToSlug(name: string): string {
  * e.g., "box-truck" -> "Box Truck"
  */
 export function slugToDisplayName(slug: string): string {
-  return slug
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+    return slug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+}
+
+/**
+ * Normalize lane slug to remove double dashes and ensure SEO-friendly format
+ * e.g., "cedar-rapids--to--dallas" -> "cedar-rapids-to-dallas"
+ */
+export function normalizeLaneSlug(slug: string): string {
+    return slug
+        .toLowerCase()
+        .replace(/-+/g, '-') // Replace multiple consecutive dashes with single dash
+        .replace(/^-+|-+$/g, '') // Remove leading/trailing dashes
 }

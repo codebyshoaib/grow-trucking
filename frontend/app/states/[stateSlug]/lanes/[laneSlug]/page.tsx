@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import LanePage from '@/components/pages/lane/LanePage'
 import { LaneRegistry } from '@/domain/lane/lane.config'
+import { normalizeLaneSlug } from '@/lib/utils'
 import type { StateSlug, LaneSlug } from '@/types/state.types'
 import type { Metadata } from 'next'
 
@@ -32,7 +33,25 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: { params: Promise<{ stateSlug: string; laneSlug: string }> }): Promise<Metadata> {
     const { stateSlug, laneSlug } = await params
-    const lane = LaneRegistry.getBySlug(laneSlug as LaneSlug, stateSlug as StateSlug)
+    
+    // Use same lookup logic as the page route
+    const normalizedSlug = normalizeLaneSlug(laneSlug)
+    let lane = LaneRegistry.getBySlug(laneSlug as LaneSlug, stateSlug as StateSlug)
+    
+    if (!lane) {
+        lane = LaneRegistry.getBySlug(normalizedSlug as LaneSlug, stateSlug as StateSlug)
+    }
+    
+    if (!lane) {
+        const { StateRegistry } = await import('@/domain/state/state.config')
+        const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+        if (state && state.lanes) {
+            lane = state.lanes.find(l => {
+                const lNormalized = normalizeLaneSlug(l.slug)
+                return l.slug === laneSlug || l.slug === normalizedSlug || lNormalized === normalizedSlug
+            }) || null
+        }
+    }
 
     if (!lane) {
         return {
@@ -68,7 +87,34 @@ export async function generateMetadata({ params }: { params: Promise<{ stateSlug
  */
 export default async function LanePageRoute({ params }: { params: Promise<{ stateSlug: string; laneSlug: string }> }) {
     const { stateSlug, laneSlug } = await params
-    const lane = LaneRegistry.getBySlug(laneSlug as LaneSlug, stateSlug as StateSlug)
+    
+    // Normalize the slug to handle double dashes (SEO-friendly)
+    const normalizedSlug = normalizeLaneSlug(laneSlug)
+    
+    // Try to get lane by original slug first (since JSON files may have double dashes)
+    let lane = LaneRegistry.getBySlug(laneSlug as LaneSlug, stateSlug as StateSlug)
+
+    // If not found, try normalized slug (for future single-dash slugs)
+    if (!lane) {
+        lane = LaneRegistry.getBySlug(normalizedSlug as LaneSlug, stateSlug as StateSlug)
+    }
+    
+    // If still not found, search through state lanes with normalization
+    if (!lane) {
+        const { StateRegistry } = await import('@/domain/state/state.config')
+        const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+        
+        if (state && state.lanes) {
+            // Try to find by matching slug variations (normalize both for comparison)
+            lane = state.lanes.find(l => {
+                const lNormalized = normalizeLaneSlug(l.slug)
+                return l.slug === laneSlug || // Exact match
+                       l.slug === normalizedSlug || // Normalized match
+                       lNormalized === normalizedSlug || // Both normalized match
+                       normalizeLaneSlug(l.displayName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')) === normalizedSlug // Display name match
+            }) || null
+        }
+    }
 
     if (!lane) {
         notFound()

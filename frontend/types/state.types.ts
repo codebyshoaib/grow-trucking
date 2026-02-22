@@ -186,6 +186,7 @@ export interface StateEntity {
         description: string
         rate?: string
         distance?: string
+        slug?: string // Lane slug for proper routing
     }>
     
     // Freight Types
