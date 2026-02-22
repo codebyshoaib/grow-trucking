@@ -1,0 +1,649 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "State Entity JSON Schema",
+    "description": "Schema for state data JSON files",
+    "type": "object",
+    "required": [
+        "id",
+        "name",
+        "displayName",
+        "slug",
+        "abbreviation",
+        "tagline",
+        "description",
+        "longDescription",
+        "heroImage",
+        "metaTitle",
+        "metaDescription",
+        "keywords",
+        "ctaHeadline",
+        "ctaDescription",
+        "serviceType"
+    ],
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "displayName": {
+            "type": "string"
+        },
+        "slug": {
+            "type": "string"
+        },
+        "abbreviation": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2
+        },
+        "tagline": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "longDescription": {
+            "type": "string"
+        },
+        "overview": {
+            "type": "string"
+        },
+        "marketOverview": {
+            "type": "string"
+        },
+        "averageRates": {
+            "type": "string"
+        },
+        "marketTrends": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "keyIndustries": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "majorCities": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "commonFreightTypes": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "benefits": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "challenges": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "regulations": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "seasonalConsiderations": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "seasonalTrends": {
+            "type": "object",
+            "properties": {
+                "q1": {
+                    "type": "object",
+                    "properties": {
+                        "rateMovement": {
+                            "type": "string"
+                        },
+                        "weatherImpact": {
+                            "type": "string"
+                        },
+                        "strategy": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "q2": {
+                    "type": "object",
+                    "properties": {
+                        "rateMovement": {
+                            "type": "string"
+                        },
+                        "weatherImpact": {
+                            "type": "string"
+                        },
+                        "strategy": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "q3": {
+                    "type": "object",
+                    "properties": {
+                        "rateMovement": {
+                            "type": "string"
+                        },
+                        "weatherImpact": {
+                            "type": "string"
+                        },
+                        "strategy": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "q4": {
+                    "type": "object",
+                    "properties": {
+                        "rateMovement": {
+                            "type": "string"
+                        },
+                        "weatherImpact": {
+                            "type": "string"
+                        },
+                        "strategy": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "ports": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        },
+        "intermodalCenters": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        },
+        "borderCrossings": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        },
+        "truckStops": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        },
+        "parkingDifficulty": {
+            "type": "string"
+        },
+        "strategicPositioning": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "weightLimits": {
+            "type": "object",
+            "properties": {
+                "singleAxle": {
+                    "type": "string"
+                },
+                "tandemAxle": {
+                    "type": "string"
+                },
+                "grossVehicleWeight": {
+                    "type": "string"
+                }
+            }
+        },
+        "sizeLimits": {
+            "type": "object",
+            "properties": {
+                "width": {
+                    "type": "string"
+                },
+                "height": {
+                    "type": "string"
+                },
+                "length": {
+                    "type": "string"
+                }
+            }
+        },
+        "permits": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "type"
+                ]
+            }
+        },
+        "emissionLaws": {
+            "type": "string"
+        },
+        "rateTrends": {
+            "type": "object",
+            "properties": {
+                "historicalRates": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "period": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "period",
+                            "description"
+                        ]
+                    }
+                },
+                "marketCorrections": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "period": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "period",
+                            "description"
+                        ]
+                    }
+                },
+                "projection2025": {
+                    "type": "string"
+                },
+                "rateDrivers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "deadheadStrategy": {
+            "type": "object",
+            "properties": {
+                "outboundPercentage": {
+                    "type": "string"
+                },
+                "inboundPercentage": {
+                    "type": "string"
+                },
+                "bestBackhaulLanes": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "rate": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name"
+                        ]
+                    }
+                },
+                "positioningStrategies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "dispatcherInsights": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "faq": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "question": {
+                        "type": "string"
+                    },
+                    "answer": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "question",
+                    "answer"
+                ]
+            }
+        },
+        "heroImage": {
+            "type": "string"
+        },
+        "contentImage": {
+            "type": "string"
+        },
+        "metaTitle": {
+            "type": "string"
+        },
+        "metaDescription": {
+            "type": "string"
+        },
+        "keywords": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "ctaHeadline": {
+            "type": "string"
+        },
+        "ctaDescription": {
+            "type": "string"
+        },
+        "serviceType": {
+            "type": "string"
+        },
+        "areaServed": {
+            "type": "string"
+        },
+        "lanes": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "displayName",
+                    "slug",
+                    "stateSlug",
+                    "description",
+                    "metaTitle",
+                    "metaDescription",
+                    "keywords"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "stateSlug": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "longDescription": {
+                        "type": "string"
+                    },
+                    "origin": {
+                        "type": "string"
+                    },
+                    "destination": {
+                        "type": "string"
+                    },
+                    "distance": {
+                        "type": "string"
+                    },
+                    "averageTransitTime": {
+                        "type": "string"
+                    },
+                    "averageRate": {
+                        "type": "string"
+                    },
+                    "ratePerMile": {
+                        "type": "string"
+                    },
+                    "loadFrequency": {
+                        "type": "string"
+                    },
+                    "peakSeasons": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "freightTypes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "keyFeatures": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "benefits": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "challenges": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "tips": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "primaryCommodities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "secondaryCommodities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "seasonalCargo": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "seasonalBehavior": {
+                        "type": "object",
+                        "properties": {
+                            "q1Slow": {
+                                "type": [
+                                    "boolean",
+                                    "string"
+                                ]
+                            },
+                            "q4Peak": {
+                                "type": [
+                                    "boolean",
+                                    "string"
+                                ]
+                            },
+                            "produceSeason": {
+                                "type": [
+                                    "boolean",
+                                    "string"
+                                ]
+                            },
+                            "hurricaneRisk": {
+                                "type": [
+                                    "boolean",
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "rateNegotiation": {
+                        "type": "object",
+                        "properties": {
+                            "whenToBook": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "whatBrokersPayMore": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "whenToAvoid": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "backhaulStrategy": {
+                        "type": "object",
+                        "properties": {
+                            "bestReturnCities": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "deadheadRiskPercentage": {
+                                "type": "string"
+                            },
+                            "alternativeRoutes": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "heroImage": {
+                        "type": "string"
+                    },
+                    "contentImage": {
+                        "type": "string"
+                    },
+                    "metaTitle": {
+                        "type": "string"
+                    },
+                    "metaDescription": {
+                        "type": "string"
+                    },
+                    "keywords": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "ctaHeadline": {
+                        "type": "string"
+                    },
+                    "ctaDescription": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
