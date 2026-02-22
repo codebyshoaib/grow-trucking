@@ -10,12 +10,14 @@ import {
     NavigationMenuTrigger,
     NavigationMenuContent,
 } from '@/components/ui/navigation-menu'
-import type { HeaderNavProps, NavItem, RegionItem } from '@/types/navigation.types'
+import type { HeaderNavProps, NavItem, RegionItem, SubmenuItem } from '@/types/navigation.types'
 import { services, aboutItems, areasWeServeItems, truckTypes } from '@/constants/navigation.config'
 
 export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
     // Default to first region when menu opens
     const [hoveredRegion, setHoveredRegion] = useState<string | null>(areasWeServeItems[0]?.title || null)
+    // State for About menu - track which item is hovered
+    const [hoveredAboutItem, setHoveredAboutItem] = useState<string | null>(null)
 
     const navItems: NavItem[] = [
         {
@@ -68,6 +70,10 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
     // Get the currently hovered region's states
     const activeRegion = areasWeServeItems.find(region => region.title === hoveredRegion)
     const activeStates = activeRegion?.states || []
+
+    // Get the currently hovered About item's children (partners)
+    const activeAboutItem = aboutItems.find(item => item.title === hoveredAboutItem)
+    const activePartners = (activeAboutItem?.children as SubmenuItem[]) || []
 
     return (
         <NavigationMenu viewport={false}>
@@ -133,6 +139,69 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                                     </li>
                                                 )}
                                             </ul>
+                                        </div>
+                                    </NavigationMenuContent>
+                                </NavigationMenuItem>
+                            )
+                        }
+
+                        // Special handling for "About" menu with third-level partners
+                        if (item.label === 'About') {
+                            return (
+                                <NavigationMenuItem key={item.href} className="relative">
+                                    <NavigationMenuTrigger
+                                        className={`text-[.95rem] font-primary--500 tracking-widest !bg-transparent hover:!bg-transparent focus:!bg-transparent data-[active=true]:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:hover:!bg-transparent data-[state=open]:focus:!bg-transparent p-0 rounded-none transition-colors ${textColorClass} ${openStateTextColor}`}
+                                    >
+                                        {item.label}
+                                    </NavigationMenuTrigger>
+                                    <NavigationMenuContent className={`!z-[100] !bg-white !border !border-gray-200 !shadow-xl !rounded-md !mt-2 !left-0 ${activePartners.length > 0 ? '!min-w-[600px] !max-w-[800px]' : '!min-w-[220px] !w-auto'} !overflow-hidden`}>
+                                        <div className="flex bg-white">
+                                            {/* Left column - About items */}
+                                            <ul className={`w-[220px] ${activePartners.length > 0 ? 'border-r border-gray-300' : ''} p-0`}>
+                                                {(item.submenuItems as SubmenuItem[]).map((aboutItem) => (
+                                                    <li
+                                                        key={aboutItem.href}
+                                                        className="w-full"
+                                                        onMouseEnter={() => setHoveredAboutItem(aboutItem.title)}
+                                                    >
+                                                        <NavigationMenuLink asChild>
+                                                            <Link
+                                                                href={aboutItem.href}
+                                                                className={`block select-none px-4 py-2.5 leading-normal no-underline outline-none transition-colors w-full relative ${hoveredAboutItem === aboutItem.title
+                                                                    ? ' text-gray-800 bg-gray-200'
+                                                                    : 'text-gray-800 hover:bg-gray-700 hover:text-white'
+                                                                    }`}
+                                                            >
+                                                                <div className="text-sm font-medium leading-snug flex items-center justify-between">
+                                                                    <span>{aboutItem.title}</span>
+                                                                    {aboutItem.children && aboutItem.children.length > 0 && (
+                                                                        <span className="text-gray-400">›</span>
+                                                                    )}
+                                                                </div>
+                                                            </Link>
+                                                        </NavigationMenuLink>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                            {/* Right column - Partners in 2-column grid (only show when hovering "About Our Partners") */}
+                                            {activePartners.length > 0 && (
+                                                <ul className="flex-1 p-2 min-h-[200px] grid grid-cols-2 gap-0">
+                                                    {activePartners.map((partner) => (
+                                                        <li key={partner.href} className="w-full">
+                                                            <NavigationMenuLink asChild>
+                                                                <Link
+                                                                    href={partner.href}
+                                                                    className="block select-none rounded-md px-4 py-2.5 leading-normal no-underline outline-none transition-colors hover:bg-gray-200 focus:bg-gray-200 text-gray-900 w-full"
+                                                                >
+                                                                    <div className="text-sm font-medium leading-snug break-words">
+                                                                        {partner.title}
+                                                                    </div>
+                                                                </Link>
+                                                            </NavigationMenuLink>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
                                         </div>
                                     </NavigationMenuContent>
                                 </NavigationMenuItem>

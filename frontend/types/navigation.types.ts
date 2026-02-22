@@ -20,6 +20,7 @@ export interface NavItem {
 export interface SubmenuItem {
     title: string
     href: string
+    children?: SubmenuItem[] // For third-level nesting
 }
 
 /**

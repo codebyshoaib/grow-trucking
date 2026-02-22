@@ -7,6 +7,7 @@
 import { titleToSlug } from '@/lib/utils'
 import type { SubmenuItem, RegionItem } from '@/types/navigation.types'
 import { TruckTypeRegistry } from '@/domain/truck-type/truck-type.config'
+import { PartnerRegistry } from '@/domain/partner/partner.config'
 
 /**
  * Services menu items - matches the services from ServicesSection
@@ -42,7 +43,16 @@ export const services: SubmenuItem[] = [
 }))
 
 /**
- * About submenu items
+ * Partners navigation items
+ * Dynamically generated from domain registry (DDD: Single Source of Truth)
+ */
+const partners: SubmenuItem[] = PartnerRegistry.getAll().map((partner) => ({
+    title: partner.displayName,
+    href: `/partners/${partner.slug}`,
+}))
+
+/**
+ * About submenu items with nested partners
  */
 export const aboutItems: SubmenuItem[] = [
     {
@@ -52,6 +62,7 @@ export const aboutItems: SubmenuItem[] = [
     {
         title: 'About Our Partners',
         href: '/about-our-partners',
+        children: partners, // Third-level: individual partners
     },
 ]
 

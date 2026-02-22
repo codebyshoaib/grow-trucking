@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation'
 import { X, ChevronDown, ChevronUp } from 'lucide-react'
 import { Button } from '../../ui/button'
 import { UserIcon } from 'lucide-react'
+import { aboutItems } from '@/constants/navigation.config'
+import type { SubmenuItem } from '@/types/navigation.types'
 
 interface MobileMenuProps {
     isOpen: boolean
@@ -53,22 +55,11 @@ const services = [
     href: `/services#${titleToSlug(service.title)}`
 }))
 
-// About submenu items
-const aboutItems = [
-    {
-        title: 'About Us',
-        href: '/about',
-    },
-    {
-        title: 'About Our Partners',
-        href: '/about-our-partners',
-    },
-]
-
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     const pathname = usePathname()
     const [isServicesOpen, setIsServicesOpen] = useState(false)
     const [isAboutOpen, setIsAboutOpen] = useState(false)
+    const [expandedAboutItem, setExpandedAboutItem] = useState<string | null>(null)
 
     const navItems = [
         {
@@ -167,16 +158,50 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                                     </button>
                                     {isOpen && (
                                         <div className="mt-4 w-full max-w-xs flex flex-col gap-4">
-                                            {item.submenuItems.map((subItem) => (
-                                                <Link
-                                                    key={subItem.href}
-                                                    href={subItem.href}
-                                                    onClick={onClose}
-                                                    className="text-lg font-primary--400 tracking-wide text-gray-700 hover:text-primary transition-colors pl-4 border-l-2 border-gray-200 hover:border-primary"
-                                                >
-                                                    {subItem.title}
-                                                </Link>
-                                            ))}
+                                            {item.submenuItems.map((subItem) => {
+                                                const hasChildren = (subItem as SubmenuItem).children && (subItem as SubmenuItem).children!.length > 0
+                                                const isExpanded = expandedAboutItem === subItem.title
+                                                
+                                                return (
+                                                    <div key={subItem.href} className="flex flex-col">
+                                                        <div className="flex items-center justify-between">
+                                                            <Link
+                                                                href={subItem.href}
+                                                                onClick={onClose}
+                                                                className="text-lg font-primary--400 tracking-wide text-gray-700 hover:text-primary transition-colors pl-4 border-l-2 border-gray-200 hover:border-primary flex-1"
+                                                            >
+                                                                {subItem.title}
+                                                            </Link>
+                                                            {hasChildren && (
+                                                                <button
+                                                                    onClick={() => setExpandedAboutItem(isExpanded ? null : subItem.title)}
+                                                                    className="p-2 text-gray-500 hover:text-primary"
+                                                                >
+                                                                    {isExpanded ? (
+                                                                        <ChevronUp className="w-4 h-4" />
+                                                                    ) : (
+                                                                        <ChevronDown className="w-4 h-4" />
+                                                                    )}
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                        {hasChildren && isExpanded && (
+                                                            <div className="mt-2 ml-8 flex flex-col gap-2">
+                                                                {(subItem as SubmenuItem).children!.map((child) => (
+                                                                    <Link
+                                                                        key={child.href}
+                                                                        href={child.href}
+                                                                        onClick={onClose}
+                                                                        className="text-base font-primary--400 tracking-wide text-gray-600 hover:text-primary transition-colors pl-4 border-l-2 border-gray-200 hover:border-primary"
+                                                                    >
+                                                                        {child.title}
+                                                                    </Link>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )
+                                            })}
                                         </div>
                                     )}
                                 </div>
