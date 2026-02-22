@@ -5,21 +5,10 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
-import { titleToSlug } from '@/lib/utils'
-
-export interface Partner {
-    name: string
-    tagline: string
-    overview: string
-    coreServices: string[]
-    whyChoose?: string
-    strengths?: string[]
-    relationship: string
-    cta: string
-}
+import type { PartnerEntity } from '@/types/partner.types'
 
 interface PartnerCardProps {
-    partner: Partner
+    partner: PartnerEntity
     index: number
 }
 
@@ -32,7 +21,6 @@ function truncateText(text: string, maxLength: number = 150): string {
 }
 
 export default function PartnerCard({ partner, index }: PartnerCardProps) {
-    const partnerSlug = titleToSlug(partner.name)
     const truncatedOverview = truncateText(partner.overview, 140)
     const keyServices = partner.coreServices.slice(0, 3) // Show only first 3 services
 
@@ -83,7 +71,7 @@ export default function PartnerCard({ partner, index }: PartnerCardProps) {
 
                 {/* CTA Button */}
                 <div className="mt-auto pt-4 border-t border-gray-100">
-                    <Link href={`/partners/${partnerSlug}`}>
+                    <Link href={`/partners/${partner.slug}`}>
                         <Button
                             variant="outline"
                             className="w-full group/btn border-2 border-primary/20 hover:border-primary bg-white hover:bg-primary text-primary hover:text-white font-semibold transition-all duration-300"
