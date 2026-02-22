@@ -194,18 +194,18 @@ export class TruckTypeRegistry {
                 ],
                 comparisonDescription: 'Understanding how dry van compares to other trailer types helps you make informed decisions:',
                 equipmentEssential: [
-                    { name: '53-foot dry van trailer (most versatile for load selection)' },
-                    { name: 'Air-ride suspension (required by 85% of shippers for damage prevention)' },
-                    { name: 'Swing doors or roll-up rear door (roll-up preferred for tight docks)' },
-                    { name: 'E-Track or logistic track for cargo securement' },
-                    { name: 'Load locks, bars, and straps (minimum 4 each)' },
-                    { name: 'Pallet jack (for floor-loaded freight)' }
+                    { name: '53-foot dry van trailer (most versatile for load selection)', category: 'essential' },
+                    { name: 'Air-ride suspension (required by 85% of shippers for damage prevention)', category: 'essential'     },
+                    { name: 'Swing doors or roll-up rear door (roll-up preferred for tight docks)', category: 'essential' },
+                    { name: 'E-Track or logistic track for cargo securement', category: 'essential' },
+                    { name: 'Load locks, bars, and straps (minimum 4 each)', category: 'essential' },
+                    { name: 'Pallet jack (for floor-loaded freight)', category: 'essential' }
                 ],
                 equipmentPremium: [
-                    { name: 'Liftgate', description: 'For non-dock deliveries', ratePremium: '+$50-$150 per load' },
-                    { name: 'Team operation', ratePremium: '+$0.40-$0.60 per mile premium' },
-                    { name: 'Bonded carrier status', description: 'Access to high-value international freight' },
-                    { name: 'TSA certification', description: 'Enables airport/airline cargo contracts' }
+                    { name: 'Liftgate', description: 'For non-dock deliveries', ratePremium: '+$50-$150 per load', category: 'premium' },
+                    { name: 'Team operation', ratePremium: '+$0.40-$0.60 per mile premium', category: 'premium' },
+                    { name: 'Bonded carrier status', description: 'Access to high-value international freight', category: 'premium' },
+                    { name: 'TSA certification', description: 'Enables airport/airline cargo contracts', category: 'premium' }
                 ],
                 equipmentDescription: 'To maximize earning potential with dry van freight:',
                 challenges: [
@@ -408,20 +408,20 @@ export class TruckTypeRegistry {
                 ],
                 comparisonDescription: 'Reefer vs. Dry Van Operations comparison:',
                 equipmentEssential: [
-                    { name: 'Well-Maintained Reefer Unit', description: 'Recent service records, no refrigerant leaks, functional alarm system' },
-                    { name: 'CARB Compliance', description: 'California requires 2008 or newer reefer units (or retrofit)' },
-                    { name: 'ATP Certification', description: 'Required for pharmaceutical and international freight (temperature validation)' },
-                    { name: 'Temperature Recorder', description: 'TempTale, Sensitech, or similar continuous monitoring device' },
-                    { name: 'Load Locks & Straps', description: 'Prevent cargo shifting during transport' },
-                    { name: 'Insulated Bulkhead', description: 'Separates cargo from cab, improves temperature consistency' },
-                    { name: 'E-Track', description: 'Allows flexible load securing for mixed pallets' }
+                    { name: 'Well-Maintained Reefer Unit', description: 'Recent service records, no refrigerant leaks, functional alarm system', category: 'essential' },
+                    { name: 'CARB Compliance', description: 'California requires 2008 or newer reefer units (or retrofit)', category: 'essential' },
+                    { name: 'ATP Certification', description: 'Required for pharmaceutical and international freight (temperature validation)', category: 'essential' },
+                    { name: 'Temperature Recorder', description: 'TempTale, Sensitech, or similar continuous monitoring device', category: 'essential' },
+                    { name: 'Load Locks & Straps', description: 'Prevent cargo shifting during transport', category: 'essential' },
+                    { name: 'Insulated Bulkhead', description: 'Separates cargo from cab, improves temperature consistency', category: 'essential' },
+                    { name: 'E-Track', description: 'Allows flexible load securing for mixed pallets', category: 'essential' }
                 ],
                 equipmentPremium: [
-                    { name: 'Multi-Temperature Zones', description: 'Allows different temp zones in single trailer', ratePremium: '+$0.30-$0.50/mile' },
-                    { name: 'ATP Certification', description: 'Validated temperature control for pharma', ratePremium: '+$0.40-$0.80/mile' },
-                    { name: 'Newer Unit (2020+)', description: 'Shippers prefer newer units for reliability', ratePremium: '+$0.15-$0.25/mile' },
-                    { name: 'Liftgate', description: 'Required for some deliveries without loading docks', ratePremium: '+$50-$100 per delivery' },
-                    { name: 'FSMA Training Certification', description: 'Demonstrates food safety knowledge' }
+                    { name: 'Multi-Temperature Zones', description: 'Allows different temp zones in single trailer', ratePremium: '+$0.30-$0.50/mile', category: 'premium' },
+                    { name: 'ATP Certification', description: 'Validated temperature control for pharma', ratePremium: '+$0.40-$0.80/mile', category: 'premium' },
+                    { name: 'Newer Unit (2020+)', description: 'Shippers prefer newer units for reliability', ratePremium: '+$0.15-$0.25/mile', category: 'premium' },
+                    { name: 'Liftgate', description: 'Required for some deliveries without loading docks', ratePremium: '+$50-$100 per delivery', category: 'premium' },
+                    { name: 'FSMA Training Certification', description: 'Demonstrates food safety knowledge', category: 'premium' }
                 ],
                 equipmentDescription: 'Critical reefer equipment and requirements:',
                 challenges: [
@@ -622,20 +622,20 @@ export class TruckTypeRegistry {
                 ],
                 comparisonDescription: 'Flatbed vs. Dry Van Operations comparison:',
                 equipmentEssential: [
-                    { name: 'Chains & Binders', description: 'Grade 70 minimum, 4-8 chains (5/16" - 3/8" diameter), lever or ratchet binders' },
-                    { name: 'Straps', description: 'Winch and ratchet straps, 8-16 total, 4" width, 5,400 lbs working load minimum' },
-                    { name: 'Edge Protectors', description: 'Prevent cargo damage and strap cutting, 12-20 protectors' },
-                    { name: 'Tarps', description: '8\'×24\', 8\'×27\', 8\'×32\' sizes, 18 oz vinyl minimum, 3-6 tarps depending on freight' },
-                    { name: 'Bungee Cords', description: 'Tarp securing, 20-30 cords, heavy-duty' },
-                    { name: 'Glad Hands (Air Hoses)', description: 'For pneumatic tarping systems (if equipped)' },
-                    { name: 'Dunnage', description: '2x4 or 4x4 lumber for load separation and blocking' }
+                    { name: 'Chains & Binders', description: 'Grade 70 minimum, 4-8 chains (5/16" - 3/8" diameter), lever or ratchet binders', category: 'essential' },
+                    { name: 'Straps', description: 'Winch and ratchet straps, 8-16 total, 4" width, 5,400 lbs working load minimum', category: 'essential' },
+                    { name: 'Edge Protectors', description: 'Prevent cargo damage and strap cutting, 12-20 protectors', category: 'essential' },
+                    { name: 'Tarps', description: '8\'×24\', 8\'×27\', 8\'×32\' sizes, 18 oz vinyl minimum, 3-6 tarps depending on freight', category: 'essential' },
+                    { name: 'Bungee Cords', description: 'Tarp securing, 20-30 cords, heavy-duty', category: 'essential' },
+                    { name: 'Glad Hands (Air Hoses)', description: 'For pneumatic tarping systems (if equipped)', category: 'essential' },
+                    { name: 'Dunnage', description: '2x4 or 4x4 lumber for load separation and blocking', category: 'essential' }
                 ],
                 equipmentPremium: [
-                    { name: 'Conestoga Trailer', description: 'Retractable tarp system, reduces tarping time 90%', ratePremium: '+$0.30-$0.60/mile' },
-                    { name: 'Step Deck', description: 'Allows taller freight', ratePremium: '+$0.15-$0.35/mile' },
-                    { name: 'RGN (Removable Gooseneck)', description: 'Heavy equipment hauling', ratePremium: '+$0.60-$1.20/mile' },
-                    { name: 'Coil Racks', description: 'Dedicated steel coil hauling equipment', ratePremium: '+$0.20-$0.40/mile' },
-                    { name: 'Sliding Axle', description: 'Flexibility for weight distribution', ratePremium: '+$0.10-$0.20/mile' }
+                    { name: 'Conestoga Trailer', description: 'Retractable tarp system, reduces tarping time 90%', ratePremium: '+$0.30-$0.60/mile', category: 'premium' },
+                    { name: 'Step Deck', description: 'Allows taller freight', ratePremium: '+$0.15-$0.35/mile', category: 'premium' },
+                    { name: 'RGN (Removable Gooseneck)', description: 'Heavy equipment hauling', ratePremium: '+$0.60-$1.20/mile', category: 'premium' },
+                    { name: 'Coil Racks', description: 'Dedicated steel coil hauling equipment', ratePremium: '+$0.20-$0.40/mile', category: 'premium' },
+                    { name: 'Sliding Axle', description: 'Flexibility for weight distribution', ratePremium: '+$0.10-$0.20/mile', category: 'premium' }
                 ],
                 equipmentDescription: 'Critical flatbed equipment and skills:',
                 challenges: [
@@ -824,18 +824,18 @@ export class TruckTypeRegistry {
                 ],
                 comparisonDescription: 'Understanding how box truck operations compare to semi-trailer operations:',
                 equipmentEssential: [
-                    { name: 'Liftgate or Hydraulic Lift', description: 'Required for 70% of box truck freight, adds $35-$85 per delivery' },
-                    { name: 'Cargo Straps & E-Track', description: 'Minimum 6 straps, 2-inch width, rated 3,333 lbs working load' },
-                    { name: 'Moving Blankets & Pads', description: '12+ blankets for furniture/appliance protection' },
-                    { name: 'Hand Truck/Dolly', description: 'Heavy-duty 800+ lb capacity for appliances' },
-                    { name: 'Ramps', description: 'Folding aluminum ramps for non-liftgate loading (if applicable)' },
-                    { name: 'GPS with Commercial Routing', description: 'Avoid low bridges, weight restrictions, residential limitations' }
+                    { name: 'Liftgate or Hydraulic Lift', description: 'Required for 70% of box truck freight, adds $35-$85 per delivery', category: 'essential' },
+                    { name: 'Cargo Straps & E-Track', description: 'Minimum 6 straps, 2-inch width, rated 3,333 lbs working load', category: 'essential' },
+                    { name: 'Moving Blankets & Pads', description: '12+ blankets for furniture/appliance protection', category: 'essential' },
+                    { name: 'Hand Truck/Dolly', description: 'Heavy-duty 800+ lb capacity for appliances', category: 'essential' },
+                    { name: 'Ramps', description: 'Folding aluminum ramps for non-liftgate loading (if applicable)', category: 'essential' },
+                    { name: 'GPS with Commercial Routing', description: 'Avoid low bridges, weight restrictions, residential limitations', category: 'essential' }
                 ],
                 equipmentPremium: [
-                    { name: 'Inside Delivery Capability', description: 'Room-of-choice service', ratePremium: '+$20-$45 per stop' },
-                    { name: 'Assembly Tools', description: 'For furniture assembly deliveries', ratePremium: '+$35-$75' },
-                    { name: 'Temperature Control', description: 'For climate-sensitive freight', ratePremium: '+$0.40-$0.80/mile' },
-                    { name: 'Liftgate 2,500+ lbs capacity', description: 'Qualify for heavy appliance deliveries', ratePremium: '+$55/stop' }
+                    { name: 'Inside Delivery Capability', description: 'Room-of-choice service', ratePremium: '+$20-$45 per stop', category: 'premium' },
+                    { name: 'Assembly Tools', description: 'For furniture assembly deliveries', ratePremium: '+$35-$75', category: 'premium' },
+                    { name: 'Temperature Control', description: 'For climate-sensitive freight', ratePremium: '+$0.40-$0.80/mile', category: 'premium' },
+                    { name: 'Liftgate 2,500+ lbs capacity', description: 'Qualify for heavy appliance deliveries', ratePremium: '+$55/stop', category: 'premium' }
                 ],
                 equipmentDescription: 'To maximize earning potential with box truck freight:',
                 challenges: [
@@ -1040,20 +1040,20 @@ export class TruckTypeRegistry {
                 ],
                 comparisonDescription: 'Hotshot vs. Traditional Semi OTR comparison:',
                 equipmentEssential: [
-                    { name: 'DOT Registration', description: 'Required when combined GVWR exceeds 10,001 lbs and operating interstate' },
-                    { name: 'MC Authority', description: 'Motor Carrier authority for direct shipper contracts (or operate under dispatch MC)' },
-                    { name: 'Commercial Insurance', description: '$1M liability minimum, $100K-$500K cargo coverage' },
-                    { name: 'Heavy-Duty Chains & Binders', description: 'Grade 70 minimum, 4-6 sets for machinery securement' },
-                    { name: 'Straps (Winch & Ratchet)', description: '20,000+ lbs working load, 8-12 straps minimum' },
-                    { name: 'Tarps', description: 'Heavy-duty 18-20 oz vinyl, 3-4 tarps (8\'×24\', 8\'×32\')' },
-                    { name: 'Edge Protectors', description: 'Prevent load damage and strap wear' },
-                    { name: 'Wheel Chocks', description: 'Required for machinery loading/unloading' }
+                    { name: 'DOT Registration', description: 'Required when combined GVWR exceeds 10,001 lbs and operating interstate', category: 'essential' },
+                    { name: 'MC Authority', description: 'Motor Carrier authority for direct shipper contracts (or operate under dispatch MC)', category: 'essential' },
+                    { name: 'Commercial Insurance', description: '$1M liability minimum, $100K-$500K cargo coverage', category: 'essential' },
+                    { name: 'Heavy-Duty Chains & Binders', description: 'Grade 70 minimum, 4-6 sets for machinery securement', category: 'essential' },
+                    { name: 'Straps (Winch & Ratchet)', description: '20,000+ lbs working load, 8-12 straps minimum', category: 'essential' },
+                    { name: 'Tarps', description: 'Heavy-duty 18-20 oz vinyl, 3-4 tarps (8\'×24\', 8\'×32\')', category: 'essential' },
+                    { name: 'Edge Protectors', description: 'Prevent load damage and strap wear', category: 'essential' },
+                    { name: 'Wheel Chocks', description: 'Required for machinery loading/unloading', category: 'essential' }
                 ],
                 equipmentPremium: [
-                    { name: 'Winch', description: 'Hydraulic or electric, 12,000-20,000 lbs capacity', ratePremium: '+$0.30-$0.60/mile for self-loading' },
-                    { name: 'Gooseneck vs. Bumper Pull', description: 'Gooseneck allows heavier loads, better stability', ratePremium: '+$0.25-$0.50/mile' },
-                    { name: 'Dovetail Hydraulic Tilt', description: 'Equipment loading without ramps', ratePremium: '+$0.40-$0.80/mile' },
-                    { name: 'Team Operation', description: 'Expedited cross-country runs', ratePremium: '+$0.60-$1.00/mile total' }
+                    { name: 'Winch', description: 'Hydraulic or electric, 12,000-20,000 lbs capacity', ratePremium: '+$0.30-$0.60/mile for self-loading', category: 'premium' },
+                    { name: 'Gooseneck vs. Bumper Pull', description: 'Gooseneck allows heavier loads, better stability', ratePremium: '+$0.25-$0.50/mile', category: 'premium' },
+                    { name: 'Dovetail Hydraulic Tilt', description: 'Equipment loading without ramps', ratePremium: '+$0.40-$0.80/mile', category: 'premium' },
+                    { name: 'Team Operation', description: 'Expedited cross-country runs', ratePremium: '+$0.60-$1.00/mile total', category: 'premium' }
                 ],
                 equipmentDescription: 'Critical hotshot equipment and requirements:',
                 challenges: [
@@ -1255,10 +1255,10 @@ export class TruckTypeRegistry {
                 ],
                 comparisonDescription: 'Power Only vs. Asset-Based Operations comparison:',
                 equipmentEssential: [
-                    { name: 'Class 8 Tractor', description: 'With functioning fifth wheel and air/electrical connections' },
-                    { name: 'Commercial Insurance', description: '$1M liability + cargo coverage' },
-                    { name: 'MC Authority', description: 'Or operate under dispatch MC' },
-                    { name: 'Pre-Trip Inspection Tools', description: 'For documenting trailer condition' }
+                    { name: 'Class 8 Tractor', description: 'With functioning fifth wheel and air/electrical connections', category: 'essential'     },
+                    { name: 'Commercial Insurance', description: '$1M liability + cargo coverage', category: 'essential' },
+                    { name: 'MC Authority', description: 'Or operate under dispatch MC', category: 'essential' },
+                    { name: 'Pre-Trip Inspection Tools', description: 'For documenting trailer condition', category: 'essential' }
                 ],
                 equipmentPremium: [],
                 equipmentDescription: 'Power only requires minimal equipment since trailers are provided:',

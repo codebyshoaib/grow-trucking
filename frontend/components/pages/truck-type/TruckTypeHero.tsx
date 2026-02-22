@@ -16,7 +16,7 @@ interface TruckTypeHeroProps {
  */
 export default function TruckTypeHero({ truckType }: TruckTypeHeroProps) {
     return (
-        <section className="relative bg-secondary min-h-[40vh] sm:min-h-[50vh] lg:min-h-[80vh] w-full overflow-hidden flex items-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 py-12 sm:py-16 md:py-20 lg:py-24">
+        <section className="relative bg-secondary min-h-[70vh] sm:min-h-[70vh] lg:min-h-[80vh] w-full overflow-hidden flex items-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 py-12 sm:py-16 md:py-20 lg:py-24">
             {/* Background Image */}
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <Image
