@@ -36,13 +36,12 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
             hasSubmenu: true,
             submenuItems: growthPlans,
         },
-        // Services menu - only show if there are items (will be added later)
-        ...(services.length > 0 ? [{
+        {
             label: 'Services',
             href: '/services',
             hasSubmenu: true,
             submenuItems: services,
-        }] : []),
+        },
         {
             label: 'Areas We Serve',
             href: '/areas-we-serve',

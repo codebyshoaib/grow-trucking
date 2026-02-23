@@ -8,6 +8,7 @@ import { titleToSlug } from '@/lib/utils'
 import type { SubmenuItem, RegionItem } from '@/types/navigation.types'
 import { TruckTypeRegistry } from '@/domain/truck-type/truck-type.config'
 import { PartnerRegistry } from '@/domain/partner/partner.config'
+import { allServices } from './services.config'
 
 /**
  * Growth Plans menu items (includes checklist items)
@@ -50,9 +51,26 @@ export const checklist: SubmenuItem[] = []
 
 /**
  * Services menu items - actual services (growth plans and checklist moved to separate sections)
- * Services will be added later
+ * Shows first 3 services in menu, then "More..." links to full services page
  */
-export const services: SubmenuItem[] = []
+export const services: SubmenuItem[] = [
+    {
+        title: allServices[0].title,
+        href: `/services#${allServices[0].id}`,
+    },
+    {
+        title: allServices[1].title,
+        href: `/services#${allServices[1].id}`,
+    },
+    {
+        title: allServices[2].title,
+        href: `/services#${allServices[2].id}`,
+    },
+    {
+        title: 'More...',
+        href: '/services',
+    },
+]
 
 /**
  * Partners navigation items
