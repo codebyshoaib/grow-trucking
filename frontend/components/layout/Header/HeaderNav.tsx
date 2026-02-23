@@ -91,7 +91,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                             return (
                                 <NavigationMenuItem key={item.href} className="relative">
                                     <NavigationMenuTrigger
-                                        className={`text-[.95rem] font-primary--500 tracking-widest !bg-transparent hover:!bg-transparent focus:!bg-transparent data-[active=true]:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:hover:!bg-transparent data-[state=open]:focus:!bg-transparent p-0 rounded-none transition-colors ${textColorClass} ${openStateTextColor}`}
+                                        className={`text-base font-primary--500 tracking-widest !bg-transparent hover:!bg-transparent focus:!bg-transparent data-[active=true]:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:hover:!bg-transparent data-[state=open]:focus:!bg-transparent p-0 rounded-none transition-colors ${textColorClass} ${openStateTextColor}`}
                                     >
                                         {item.label}
                                     </NavigationMenuTrigger>
@@ -113,7 +113,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                                                     : 'text-gray-800 hover:bg-gray-700 hover:text-white'
                                                                     }`}
                                                             >
-                                                                <div className="text-sm font-medium leading-snug flex items-center justify-between">
+                                                                <div className="text-base font-medium leading-snug flex items-center justify-between">
                                                                     <span>{region.title}</span>
                                                                     <span className="text-gray-400">›</span>
                                                                 </div>
@@ -132,7 +132,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                                                     href={state.href}
                                                                     className="block select-none rounded-md px-4 py-2.5 leading-normal no-underline outline-none transition-colors hover:bg-gray-200 focus:bg-gray-200 text-gray-900 w-full"
                                                                 >
-                                                                    <div className="text-sm font-medium leading-snug break-words">
+                                                                    <div className="text-base font-medium leading-snug break-words">
                                                                         {state.title}
                                                                     </div>
                                                                 </Link>
@@ -156,7 +156,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                             return (
                                 <NavigationMenuItem key={item.href} className="relative">
                                     <NavigationMenuTrigger
-                                        className={`text-[.95rem] font-primary--500 tracking-widest !bg-transparent hover:!bg-transparent focus:!bg-transparent data-[active=true]:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:hover:!bg-transparent data-[state=open]:focus:!bg-transparent p-0 rounded-none transition-colors ${textColorClass} ${openStateTextColor}`}
+                                        className={`text-base font-primary--500 tracking-widest !bg-transparent hover:!bg-transparent focus:!bg-transparent data-[active=true]:!bg-transparent data-[state=open]:!bg-transparent data-[state=open]:hover:!bg-transparent data-[state=open]:focus:!bg-transparent p-0 rounded-none transition-colors ${textColorClass} ${openStateTextColor}`}
                                     >
                                         {item.label}
                                     </NavigationMenuTrigger>
@@ -178,7 +178,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                                                     : 'text-gray-800 hover:bg-gray-700 hover:text-white'
                                                                     }`}
                                                             >
-                                                                <div className="text-sm font-medium leading-snug flex items-center justify-between">
+                                                                <div className="text-base font-medium leading-snug flex items-center justify-between">
                                                                     <span>{aboutItem.title}</span>
                                                                     {aboutItem.children && aboutItem.children.length > 0 && (
                                                                         <span className="text-gray-400">›</span>
@@ -199,7 +199,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                                                     href={partner.href}
                                                                     className="block select-none rounded-md px-4 py-2.5 leading-normal no-underline outline-none transition-colors hover:bg-gray-200 focus:bg-gray-200 text-gray-900 w-full"
                                                                 >
-                                                                    <div className="text-sm font-medium leading-snug break-words">
+                                                                    <div className="text-base font-medium leading-snug break-words">
                                                                         {partner.title}
                                                                     </div>
                                                                 </Link>
@@ -231,7 +231,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                                         href={subItem.href}
                                                         className="block select-none rounded-md px-4 py-2.5 leading-normal no-underline outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100 text-gray-900 w-full"
                                                     >
-                                                        <div className="text-sm font-medium leading-snug break-words">
+                                                        <div className="text-base font-medium leading-snug break-words">
                                                             {subItem.title}
                                                         </div>
                                                     </Link>
@@ -249,7 +249,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                             <NavigationMenuLink asChild>
                                 <Link
                                     href={item.href}
-                                    className={`text-[.95rem] font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary 
+                                    className={`text-base font-primary--500 tracking-widest relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary 
                                         after:transition-all after:duration-300 hover:after:w-full bg-transparent hover:bg-transparent focus:bg-transparent data-[active=true]:bg-transparent p-0 
                                         rounded-none transition-colors 
                                         ${textColorClass}`}
