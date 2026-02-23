@@ -13,7 +13,7 @@ const stats = [
 
 export default function StatsSection() {
     return (
-        <section className="relative overflow-hidden bg-secondary py-16 sm:py-20">
+        <section className="relative overflow-hidden bg-secondary py-16 sm:py-20 mb-8">
             <div className="pointer-events-none absolute inset-0 opacity-[0.35]">
                 <GridPattern />
             </div>

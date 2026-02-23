@@ -40,8 +40,8 @@ export default function AllServicesSection() {
                     </p>
                 </div>
 
-                {/* Services Grid - 2 columns */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                {/* Services Grid - Icon-based cards, 3 columns */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     {allServices.map((service, index) => {
                         // Highlight first service (index 0) with dark background
                         const isHighlighted = index === 0
@@ -85,7 +85,7 @@ export default function AllServicesSection() {
 
                                     {/* Features List */}
                                     <div className="mb-6 space-y-2">
-                                        {service.features.map((feature, featureIndex) => (
+                                        {service.features.slice(0, 3).map((feature, featureIndex) => (
                                             <div
                                                 key={featureIndex}
                                                 className={`flex items-start gap-2 text-sm ${isHighlighted ? 'text-white/90' : 'text-gray-700'
@@ -98,8 +98,8 @@ export default function AllServicesSection() {
                                         ))}
                                     </div>
 
-                                    {/* CTA Button */}
-                                    <div className="mt-auto">
+                                    {/* CTA Button - Hidden by default, shown on hover */}
+                                    <div className="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <Button
                                             variant={isHighlighted ? "default" : "default"}
                                             size="lg"
@@ -113,7 +113,7 @@ export default function AllServicesSection() {
                                             asChild
                                         >
                                             <Link href={`/services/${service.id}`}>
-                                                Get a Quote
+                                                Read More
                                             </Link>
                                         </Button>
                                     </div>
