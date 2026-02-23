@@ -40,9 +40,12 @@ export default function AllServicesSection() {
                     </p>
                 </div>
 
-                {/* Services Grid - 3 columns */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    {allServices.map((service) => {
+                {/* Services Grid - 2 columns */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    {allServices.map((service, index) => {
+                        // Highlight first service (index 0) with dark background
+                        const isHighlighted = index === 0
+
                         return (
                             <div
                                 key={service.id}
@@ -50,32 +53,43 @@ export default function AllServicesSection() {
                                 className="group relative scroll-mt-24"
                             >
                                 {/* Service Card */}
-                                <div className="h-full bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 transition-all duration-300 hover:shadow-xl hover:border-primary/20 hover:-translate-y-1 flex flex-col">
+                                <div className={`h-full rounded-2xl p-6 lg:p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col ${isHighlighted
+                                    ? 'bg-secondary text-white'
+                                    : 'bg-white border border-gray-200'
+                                    }`}>
                                     {/* Icon */}
                                     <div className="mb-6">
-                                        <div className="w-16 h-16 rounded-xl bg-primary/10 text-primary flex items-center justify-center border-2 border-primary/20 group-hover:bg-primary/20 transition-colors">
-                                            <service.icon className="w-6 h-6" />
+                                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center transition-colors ${isHighlighted
+                                            ? 'bg-white/20 border-2 border-white/30'
+                                            : 'bg-pink-50 border-2 border-pink-100'
+                                            }`}>
+                                            <service.icon className={`w-6 h-6 ${isHighlighted ? 'text-white' : 'text-pink-500'
+                                                }`} />
                                         </div>
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-primary transition-colors">
+                                    <h3 className={`text-xl lg:text-2xl font-bold mb-4 leading-tight transition-colors ${isHighlighted ? 'text-white' : 'text-gray-900 group-hover:text-primary'
+                                        }`}>
                                         {service.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm lg:text-base text-gray-600 leading-relaxed mb-6 flex-grow">
+                                    <p className={`text-sm lg:text-base leading-relaxed mb-6 flex-grow ${isHighlighted ? 'text-white/90' : 'text-gray-600'
+                                        }`}>
                                         {service.description}
                                     </p>
 
                                     {/* Features List */}
                                     <div className="mb-6 space-y-2">
-                                        {service.features.map((feature, index) => (
+                                        {service.features.map((feature, featureIndex) => (
                                             <div
-                                                key={index}
-                                                className="flex items-start gap-2 text-sm text-gray-700"
+                                                key={featureIndex}
+                                                className={`flex items-start gap-2 text-sm ${isHighlighted ? 'text-white/90' : 'text-gray-700'
+                                                    }`}
                                             >
-                                                <CheckCircle2 className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isHighlighted ? 'text-white' : 'text-secondary'
+                                                    }`} />
                                                 <span>{feature}</span>
                                             </div>
                                         ))}
@@ -84,15 +98,19 @@ export default function AllServicesSection() {
                                     {/* CTA Button */}
                                     <div className="mt-auto">
                                         <Button
-                                            variant="outline"
+                                            variant={isHighlighted ? "default" : "default"}
                                             size="lg"
-                                            className="w-full uppercase tracking-tighter group-hover:shadow-lg transition-all"
-                                            icon={<ArrowRight className="w-5 h-5" />}
+                                            className={`w-full uppercase tracking-tighter group-hover:shadow-lg transition-all ${isHighlighted
+                                                ? 'bg-white text-secondary hover:bg-white/90'
+                                                : 'bg-secondary text-white hover:bg-secondary/90'
+                                                }`}
+                                            icon={<ArrowRight className={`w-5 h-5 ${isHighlighted ? 'text-secondary' : 'text-white'
+                                                }`} />}
                                             iconPosition="right"
                                             asChild
                                         >
                                             <Link href={service.buttonLink}>
-                                                {service.buttonText}
+                                                Get a Quote
                                             </Link>
                                         </Button>
                                     </div>
