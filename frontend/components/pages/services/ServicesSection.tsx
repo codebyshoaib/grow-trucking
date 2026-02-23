@@ -88,11 +88,39 @@ function titleToSlug(title: string): string {
         .replace(/^-+|-+$/g, '')
 }
 
-export default function ServicesSection() {
+interface ServicesSectionProps {
+    itemsFilter?: 'growth-plans' | 'checklist' | 'services' | 'all'
+}
+
+export default function ServicesSection({ itemsFilter = 'all' }: ServicesSectionProps) {
+    // Define which items belong to which category
+    const growthPlanTitles = [
+        'Free Custom 90 Day Growth Plan',
+        'Free Business Audit Report',
+        'Free Growth Checklist',
+        'Operational Growth Strategy',
+        'Rate Maximization & Negotiation',
+        'Comprehensive Trip Planning'
+    ]
+
+    const checklistTitles: string[] = [] // Checklist items moved to Growth Plans
+
+    const serviceTitles: string[] = [] // Services will be added later
+
+    // Filter services based on category
+    let filteredServices = services
+    if (itemsFilter === 'growth-plans') {
+        filteredServices = services.filter(s => growthPlanTitles.includes(s.title))
+    } else if (itemsFilter === 'checklist') {
+        filteredServices = services.filter(s => checklistTitles.includes(s.title))
+    } else if (itemsFilter === 'services') {
+        filteredServices = services.filter(s => serviceTitles.includes(s.title))
+    }
+
     // Generate Services Schema
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.growtrucking.com"
     const servicesSchema = generateServicesSchema(
-        services.map((service) => ({
+        filteredServices.map((service) => ({
             name: service.title,
             description: service.description || `${service.title} - ${service.subItems.join(', ')}`,
             provider: {
@@ -110,24 +138,39 @@ export default function ServicesSection() {
             <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-24">
                 {/* Header */}
                 <div className="text-center mb-12 md:mb-16">
-                    <Badge className="mb-4">Our Services</Badge>
+                    <Badge className="mb-4">
+                        {itemsFilter === 'growth-plans' ? 'Growth Plans' :
+                            itemsFilter === 'checklist' ? 'Checklist' :
+                                'Our Services'}
+                    </Badge>
                     <h2 className="uppercase text-4xl md:text-5xl font-extrabold text-secondary mb-6 leading-tight">
-                        Your Success is Our Success
+                        {itemsFilter === 'growth-plans' ? 'Strategic Growth Roadmaps' :
+                            itemsFilter === 'checklist' ? 'Essential Growth Checklists' :
+                                'Your Success is Our Success'}
                     </h2>
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        From free audits to comprehensive growth strategies, we offer everything you need to scale your trucking operations and maximize profitability.
+                        {itemsFilter === 'growth-plans' ? 'Comprehensive growth plans and strategies to scale your trucking business. Get personalized roadmaps, audits, and operational strategies.' :
+                            itemsFilter === 'checklist' ? 'Strategic checklists designed to help you identify and capitalize on growth opportunities in your trucking business.' :
+                                'From free audits to comprehensive growth strategies, we offer everything you need to scale your trucking operations and maximize profitability.'}
                     </p>
                 </div>
 
                 {/* Services Grid */}
                 <div className="grid grid-cols-1  lg:grid-cols-2 gap-6 lg:gap-8">
-                    {services.map((service) => {
+                    {filteredServices.map((service, index) => {
                         const serviceSlug = titleToSlug(service.title)
-                        const serviceHref = `/services#${serviceSlug}`
+                        // Determine the base path based on category
+                        let basePath = '/services'
+                        if (growthPlanTitles.includes(service.title)) {
+                            basePath = '/growth-plans'
+                        } else if (checklistTitles.includes(service.title)) {
+                            basePath = '/checklist'
+                        }
+                        const serviceHref = `${basePath}#${serviceSlug}`
 
                         return (
                             <div
-                                key={service.number}
+                                key={`${service.title}-${index}`}
                                 id={serviceSlug}
                                 className="group relative scroll-mt-24"
                             >

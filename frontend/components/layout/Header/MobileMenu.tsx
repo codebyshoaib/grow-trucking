@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { X, ChevronDown, ChevronUp } from 'lucide-react'
 import { Button } from '../../ui/button'
 import { UserIcon } from 'lucide-react'
-import { aboutItems, truckTypes, areasWeServeItems } from '@/constants/navigation.config'
+import { aboutItems, truckTypes, areasWeServeItems, growthPlans, services } from '@/constants/navigation.config'
 import type { SubmenuItem, RegionItem } from '@/types/navigation.types'
 
 interface MobileMenuProps {
@@ -14,50 +14,11 @@ interface MobileMenuProps {
     onClose: () => void
 }
 
-// Helper function to convert service title to slug for hash links
-function titleToSlug(title: string): string {
-    return title
-        .trim()
-        .toLowerCase()
-        .replace(/&/g, 'and')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '')
-}
-
-// Services data - matches the services from ServicesSection
-const services = [
-    {
-        title: 'Free Business Audit Report ',
-        href: '/services#free-business-audit-report',
-    },
-    {
-        title: 'Free Growth Checklist',
-        href: '/services#free-growth-checklist',
-    },
-    {
-        title: 'Free Custom 90 Day Growth Plan',
-        href: '/services#free-custom-90-day-growth-plan',
-    },
-    {
-        title: 'Rate Maximization & Negotiation',
-        href: '/services#rate-maximization-and-negotiation',
-    },
-    {
-        title: 'Operational Growth Strategy',
-        href: '/services#operational-growth-strategy',
-    },
-    {
-        title: 'Comprehensive Trip Planning',
-        href: '/services#comprehensive-trip-planning',
-    },
-].map(service => ({
-    ...service,
-    href: `/services#${titleToSlug(service.title)}`
-}))
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     const pathname = usePathname()
     const [isServicesOpen, setIsServicesOpen] = useState(false)
+    const [isGrowthPlansOpen, setIsGrowthPlansOpen] = useState(false)
     const [isAboutOpen, setIsAboutOpen] = useState(false)
     const [isTruckTypeOpen, setIsTruckTypeOpen] = useState(false)
     const [isAreasWeServeOpen, setIsAreasWeServeOpen] = useState(false)
@@ -76,11 +37,18 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             submenuItems: aboutItems,
         },
         {
+            label: 'Growth Plans',
+            href: '/growth-plans',
+            hasSubmenu: true,
+            submenuItems: growthPlans,
+        },
+        // Services menu - only show if there are items (will be added later)
+        ...(services.length > 0 ? [{
             label: 'Services',
             href: '/services',
             hasSubmenu: true,
             submenuItems: services,
-        },
+        }] : []),
         {
             label: 'Areas We Serve',
             href: '/areas-we-serve',
@@ -182,6 +150,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                                 if (item.label === 'Services') {
                                     isOpen = isServicesOpen
                                     toggleOpen = () => setIsServicesOpen(!isServicesOpen)
+                                } else if (item.label === 'Growth Plans') {
+                                    isOpen = isGrowthPlansOpen
+                                    toggleOpen = () => setIsGrowthPlansOpen(!isGrowthPlansOpen)
                                 } else if (item.label === 'About') {
                                     isOpen = isAboutOpen
                                     toggleOpen = () => setIsAboutOpen(!isAboutOpen)
@@ -286,7 +257,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                                                         )
                                                     })
                                                 ) : (
-                                                    // Standard submenu items (About, Services, Truck Type)
+                                                    // Standard submenu items (About, Growth Plans, Checklist, Services, Truck Type)
                                                     item.submenuItems.map((subItem) => {
                                                         const hasChildren = (subItem as SubmenuItem).children && (subItem as SubmenuItem).children!.length > 0
                                                         const isExpanded = expandedAboutItem === subItem.title

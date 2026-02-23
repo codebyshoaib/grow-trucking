@@ -11,7 +11,7 @@ import {
     NavigationMenuContent,
 } from '@/components/ui/navigation-menu'
 import type { HeaderNavProps, NavItem, RegionItem, SubmenuItem } from '@/types/navigation.types'
-import { services, aboutItems, areasWeServeItems, truckTypes } from '@/constants/navigation.config'
+import { services, growthPlans, aboutItems, areasWeServeItems, truckTypes } from '@/constants/navigation.config'
 
 export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
     // Default to first region when menu opens
@@ -31,11 +31,18 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
             submenuItems: aboutItems,
         },
         {
+            label: 'Growth Plans',
+            href: '/growth-plans',
+            hasSubmenu: true,
+            submenuItems: growthPlans,
+        },
+        // Services menu - only show if there are items (will be added later)
+        ...(services.length > 0 ? [{
             label: 'Services',
             href: '/services',
             hasSubmenu: true,
             submenuItems: services,
-        },
+        }] : []),
         {
             label: 'Areas We Serve',
             href: '/areas-we-serve',
@@ -216,8 +223,8 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                 >
                                     {item.label}
                                 </NavigationMenuTrigger>
-                                <NavigationMenuContent className="!z-[100] !bg-white !border !border-gray-200 !shadow-xl !rounded-md !mt-2 !left-0 !min-w-[280px] !w-auto !max-w-[400px] !overflow-hidden">
-                                    <ul className={`grid gap-0 p-2 ${item.label === 'Services' ? 'grid-cols-1' : item.submenuItems.length > 2 ? 'grid-cols-2' : 'grid-cols-1'} bg-white`}>
+                                <NavigationMenuContent className={`!z-[100] !bg-white !border !border-gray-200 !shadow-xl !rounded-md !mt-2 !left-0 !overflow-hidden ${item.label === 'Growth Plans' ? '!min-w-[500px] !w-auto !max-w-[650px]' : '!min-w-[280px] !w-auto !max-w-[400px]'}`}>
+                                    <ul className={`grid gap-0 p-3 ${item.label === 'Services' || (item.label === 'Growth Plans' && item.submenuItems.length <= 3) ? 'grid-cols-1' : item.submenuItems.length > 3 ? 'grid-cols-2' : 'grid-cols-1'} bg-white`}>
                                         {item.submenuItems.map((subItem) => (
                                             <li key={subItem.href} className="w-full min-w-0">
                                                 <NavigationMenuLink asChild>

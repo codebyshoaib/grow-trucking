@@ -7,7 +7,7 @@ export default async function ServicesPage() {
     return (
         <main className="min-h-screen bg-white">
             <ServicesBanner />
-            <ServicesSection />
+            <ServicesSection itemsFilter="services" />
             <StatsSection />
             <WhyOurServices />
         </main>

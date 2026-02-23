@@ -10,37 +10,49 @@ import { TruckTypeRegistry } from '@/domain/truck-type/truck-type.config'
 import { PartnerRegistry } from '@/domain/partner/partner.config'
 
 /**
- * Services menu items - matches the services from ServicesSection
+ * Growth Plans menu items (includes checklist items)
  */
-export const services: SubmenuItem[] = [
+export const growthPlans: SubmenuItem[] = [
     {
-        title: 'Free Business Audit Report ',
-        href: '/services#free-business-audit-report',
+        title: 'Free Custom 90 Day Growth Plan',
+        href: '/growth-plans#free-custom-90-day-growth-plan',
+    },
+    {
+        title: 'Free Business Audit Report',
+        href: '/growth-plans#free-business-audit-report',
     },
     {
         title: 'Free Growth Checklist',
-        href: '/services#free-growth-checklist',
-    },
-    {
-        title: 'Free Custom 90 Day Growth Plan',
-        href: '/services#free-custom-90-day-growth-plan',
-    },
-    {
-        title: 'Rate Maximization & Negotiation',
-        href: '/services#rate-maximization-and-negotiation',
+        href: '/growth-plans#free-growth-checklist',
     },
     {
         title: 'Operational Growth Strategy',
-        href: '/services#operational-growth-strategy',
+        href: '/growth-plans#operational-growth-strategy',
+    },
+    {
+        title: 'Rate Maximization & Negotiation',
+        href: '/growth-plans#rate-maximization-and-negotiation',
     },
     {
         title: 'Comprehensive Trip Planning',
-        href: '/services#comprehensive-trip-planning',
+        href: '/growth-plans#comprehensive-trip-planning',
     },
-].map(service => ({
-    ...service,
-    href: `/services#${titleToSlug(service.title)}`
+].map(item => ({
+    ...item,
+    href: `/growth-plans#${titleToSlug(item.title)}`
 }))
+
+/**
+ * Checklist menu items (deprecated - moved to Growth Plans)
+ * Kept for backward compatibility
+ */
+export const checklist: SubmenuItem[] = []
+
+/**
+ * Services menu items - actual services (growth plans and checklist moved to separate sections)
+ * Services will be added later
+ */
+export const services: SubmenuItem[] = []
 
 /**
  * Partners navigation items
