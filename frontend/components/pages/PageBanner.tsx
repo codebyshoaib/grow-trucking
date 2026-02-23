@@ -24,16 +24,16 @@ export default function PageBanner({
     downloadButton = false
 }: PageBannerProps) {
     return (
-        <section className="relative bg-secondary min-h-[60vh] lg:min-h-[100vh] w-full overflow-hidden flex items-end px-4 sm:px-6 md:px-12 lg:px-24 pb-8 sm:pb-12 md:pb-16 lg:pb-24">
-            <div className="absolute inset-0 z-0 overflow-hidden">
+        <section className="relative bg-secondary min-h-[60vh] lg:min-h-[100vh] w-full overflow-hidden flex items-end px-4 sm:px-6 md:px-12 lg:px-24 pb-8 sm:pb-12 md:pb-16 lg:pb-24 rounded-b-3xl">
+            <div className="absolute inset-0 z-0 overflow-hidden rounded-b-3xl">
                 <Image
                     src={imageUrl}
                     alt={imageAlt}
                     fill
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover rounded-b-3xl"
                     priority
                 />
-                <div className="absolute inset-0 bg-black/50 z-10" />
+                <div className="absolute inset-0 bg-black/50 z-10 rounded-b-3xl" />
             </div>
             <div className="container relative z-20 flex flex-col gap-3 sm:gap-4">
                 <div className="max-w-4xl p-2">

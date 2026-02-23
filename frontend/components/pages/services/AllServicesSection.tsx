@@ -7,7 +7,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import SchemaScript from '@/components/seo/SchemaScript'
 import { generateServicesSchema } from '@/lib/schema'
-import { allServices } from '@/constants/services.config'
+import { allServices, iconMap } from '@/constants/services.config'
 
 export default function AllServicesSection() {
     // Generate Services Schema
@@ -63,8 +63,11 @@ export default function AllServicesSection() {
                                             ? 'bg-white/20 border-2 border-white/30'
                                             : 'bg-pink-50 border-2 border-pink-100'
                                             }`}>
-                                            <service.icon className={`w-6 h-6 ${isHighlighted ? 'text-white' : 'text-pink-500'
-                                                }`} />
+                                            {iconMap[service.iconName] && (
+                                                React.createElement(iconMap[service.iconName], {
+                                                    className: `w-6 h-6 ${isHighlighted ? 'text-white' : 'text-pink-500'}`
+                                                })
+                                            )}
                                         </div>
                                     </div>
 
@@ -109,7 +112,7 @@ export default function AllServicesSection() {
                                             iconPosition="right"
                                             asChild
                                         >
-                                            <Link href={service.buttonLink}>
+                                            <Link href={`/services/${service.id}`}>
                                                 Get a Quote
                                             </Link>
                                         </Button>

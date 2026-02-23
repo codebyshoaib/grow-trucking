@@ -56,15 +56,15 @@ export const checklist: SubmenuItem[] = []
 export const services: SubmenuItem[] = [
     {
         title: allServices[0].title,
-        href: `/services#${allServices[0].id}`,
+        href: `/services/${allServices[0].id}`,
     },
     {
         title: allServices[1].title,
-        href: `/services#${allServices[1].id}`,
+        href: `/services/${allServices[1].id}`,
     },
     {
         title: allServices[2].title,
-        href: `/services#${allServices[2].id}`,
+        href: `/services/${allServices[2].id}`,
     },
     {
         title: 'More...',

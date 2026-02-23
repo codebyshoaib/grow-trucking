@@ -27,10 +27,48 @@ export interface Service {
     id: string
     title: string
     description: string
+    subheading?: string
     features: string[]
-    icon: LucideIcon
+    iconName: string // Changed from icon: LucideIcon to iconName: string
     buttonText: string
     buttonLink: string
+    // Additional fields for dedicated service page
+    overview?: {
+        text: string
+        imageUrl?: string
+    }
+    whyChooseUs?: {
+        title?: string
+        points: string[]
+    }
+    additionalInfo?: {
+        text: string
+        imageUrl?: string
+    }
+    ctaHeadline?: string
+    ctaDescription?: string
+    metaTitle?: string
+    metaDescription?: string
+}
+
+// Icon mapping for client components
+export const iconMap: Record<string, LucideIcon> = {
+    'User': User,
+    'Route': Route,
+    'FileText': FileText,
+    'Calculator': Calculator,
+    'Navigation': Navigation,
+    'Truck': Truck,
+    'Shield': Shield,
+    'TrendingUp': TrendingUp,
+    'FileCheck': FileCheck,
+    'DollarSign': DollarSign,
+    'ClipboardList': ClipboardList,
+    'MapPin': MapPin,
+    'CreditCard': CreditCard,
+    'Clock': Clock,
+    'Calendar': Calendar,
+    'Monitor': Monitor,
 }
 
 export const allServices: Service[] = [
@@ -38,15 +76,38 @@ export const allServices: Service[] = [
         id: 'dedicated-dispatcher',
         title: 'Dedicated Personal Dispatcher',
         description: 'Get your own dedicated dispatcher who understands your business, preferences, and goals. Personalized service with direct communication and tailored load matching.',
+        subheading: 'Your personal dispatcher dedicated to your success',
         features: [
             'One-on-one dispatcher relationship',
             'Customized load matching',
             'Direct communication channel',
             'Business-specific strategies'
         ],
-        icon: User,
+        iconName: 'User',
         buttonText: 'Get Your Dispatcher',
-        buttonLink: '/contact'
+        buttonLink: '/contact',
+        overview: {
+            text: `A dedicated personal dispatcher is your direct connection to premium loads and optimized routes. Unlike shared dispatch services, you get exclusive attention from a dispatcher who learns your business inside and out.\n\nYour dedicated dispatcher understands your preferred lanes, equipment specifications, rate requirements, and operational preferences. This personalized approach means faster load matching, better rate negotiations, and a dispatcher who truly advocates for your business success.`,
+            imageUrl: 'https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770962704/page-banner_cb6nff.jpg'
+        },
+        whyChooseUs: {
+            title: 'Why Choose Our Dedicated Dispatcher Service',
+            points: [
+                'Exclusive attention from a dedicated professional who knows your business',
+                'Faster response times with direct communication channels',
+                'Customized load matching based on your specific preferences and requirements',
+                'Better rate negotiations through established broker relationships',
+                'Proactive problem-solving and route optimization for maximum profitability'
+            ]
+        },
+        additionalInfo: {
+            text: `Our dedicated dispatcher service goes beyond basic load finding. Your dispatcher becomes an extension of your team, handling everything from load selection to rate negotiations, paperwork management, and trip coordination.\n\nWith 24/7 availability and deep market knowledge, your dedicated dispatcher ensures you never miss an opportunity. They track your performance, identify growth opportunities, and continuously optimize your operations for maximum revenue per mile.`,
+            imageUrl: 'https://res.cloudinary.com/dj9r2zjpm/image/upload/v1770178795/joseph-paul-jOi8CLM2aaI-unsplash_hytc3b.jpg'
+        },
+        ctaHeadline: 'Ready to Get Your Dedicated Personal Dispatcher?',
+        ctaDescription: 'Experience the difference of having a dedicated dispatcher focused solely on your success. Contact us today to get started.',
+        metaTitle: 'Dedicated Personal Dispatcher Service | Grow Trucking',
+        metaDescription: 'Get your own dedicated dispatcher for personalized truck dispatch services. One-on-one relationship, customized load matching, and direct communication.'
     },
     {
         id: 'local-lane-contracts',
@@ -58,7 +119,7 @@ export const allServices: Service[] = [
             'Long-term agreements',
             'Preferred lane access'
         ],
-        icon: Route,
+        iconName: 'Route',
         buttonText: 'Explore Lane Contracts',
         buttonLink: '/contact'
     },
@@ -72,7 +133,7 @@ export const allServices: Service[] = [
             'Compliance documentation',
             'Filing assistance'
         ],
-        icon: FileText,
+        iconName: 'FileText',
         buttonText: 'Get IFTA Support',
         buttonLink: '/contact'
     },
@@ -86,7 +147,7 @@ export const allServices: Service[] = [
             'Financial reporting',
             'Tax preparation support'
         ],
-        icon: Calculator,
+        iconName: 'Calculator',
         buttonText: 'Start Bookkeeping',
         buttonLink: '/contact'
     },
@@ -100,7 +161,7 @@ export const allServices: Service[] = [
             'Route efficiency analysis',
             'Load profitability scoring'
         ],
-        icon: Navigation,
+        iconName: 'Navigation',
         buttonText: 'Optimize Routes',
         buttonLink: '/contact'
     },
@@ -114,7 +175,7 @@ export const allServices: Service[] = [
             'Performance analytics',
             'Operational reporting'
         ],
-        icon: Truck,
+        iconName: 'Truck',
         buttonText: 'Manage Your Fleet',
         buttonLink: '/contact'
     },
@@ -128,7 +189,7 @@ export const allServices: Service[] = [
             'Payment dispute resolution',
             'Audit support'
         ],
-        icon: Shield,
+        iconName: 'Shield',
         buttonText: 'Get Audit Help',
         buttonLink: '/contact'
     },
@@ -142,7 +203,7 @@ export const allServices: Service[] = [
             'Expansion planning',
             'Revenue optimization'
         ],
-        icon: TrendingUp,
+        iconName: 'TrendingUp',
         buttonText: 'Plan Your Growth',
         buttonLink: '/contact'
     },
@@ -156,7 +217,7 @@ export const allServices: Service[] = [
             'Safety compliance',
             'Authority maintenance'
         ],
-        icon: FileCheck,
+        iconName: 'FileCheck',
         buttonText: 'Ensure Compliance',
         buttonLink: '/contact'
     },
@@ -170,7 +231,7 @@ export const allServices: Service[] = [
             'Expedited load access',
             'Broker relationship management'
         ],
-        icon: DollarSign,
+        iconName: 'DollarSign',
         buttonText: 'Get Premium Loads',
         buttonLink: '/contact'
     },
@@ -184,7 +245,7 @@ export const allServices: Service[] = [
             'Payment tracking',
             'Paperwork organization'
         ],
-        icon: ClipboardList,
+        iconName: 'ClipboardList',
         buttonText: 'Manage Documents',
         buttonLink: '/contact'
     },
@@ -198,7 +259,7 @@ export const allServices: Service[] = [
             'Stop coordination',
             'Delivery optimization'
         ],
-        icon: MapPin,
+        iconName: 'MapPin',
         buttonText: 'Plan Your Trip',
         buttonLink: '/contact'
     },
@@ -212,7 +273,7 @@ export const allServices: Service[] = [
             'Risk assessment',
             'Broker reliability checks'
         ],
-        icon: CreditCard,
+        iconName: 'CreditCard',
         buttonText: 'Check Credit',
         buttonLink: '/contact'
     },
@@ -226,7 +287,7 @@ export const allServices: Service[] = [
             'Night and weekend coverage',
             'Always-on assistance'
         ],
-        icon: Clock,
+        iconName: 'Clock',
         buttonText: 'Get 24/7 Support',
         buttonLink: '/contact'
     },
@@ -240,7 +301,7 @@ export const allServices: Service[] = [
             'Holiday dispatch support',
             'Extended hours service'
         ],
-        icon: Calendar,
+        iconName: 'Calendar',
         buttonText: 'Weekend Support',
         buttonLink: '/contact'
     },
@@ -254,7 +315,7 @@ export const allServices: Service[] = [
             'Compliance verification',
             'Schedule optimization'
         ],
-        icon: Monitor,
+        iconName: 'Monitor',
         buttonText: 'Monitor ELD',
         buttonLink: '/contact'
     }
