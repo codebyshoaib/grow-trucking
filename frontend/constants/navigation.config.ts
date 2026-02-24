@@ -94,6 +94,10 @@ export const aboutItems: SubmenuItem[] = [
         href: '/about-our-partners',
         children: partners, // Third-level: individual partners
     },
+    {
+        title: 'Careers',
+        href: '/careers',     
+    }
 ]
 
 /**
