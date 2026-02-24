@@ -18,7 +18,7 @@ export async function generateStaticParams() {
             state.lanes.forEach(lane => {
                 params.push({
                     stateSlug: state.slug,
-                    laneSlug: lane.slug,
+                    laneSlug: `${lane.slug}-truck-dispatch`,
                 })
             })
         }
@@ -33,22 +33,25 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: { params: Promise<{ stateSlug: string; laneSlug: string }> }): Promise<Metadata> {
     const { stateSlug, laneSlug } = await params
-    
+
+    // Strip "-truck-dispatch" suffix from URL parameter
+    const actualLaneSlug = laneSlug.replace(/-truck-dispatch$/, '')
+
     // Use same lookup logic as the page route
-    const normalizedSlug = normalizeLaneSlug(laneSlug)
-    let lane = LaneRegistry.getBySlug(laneSlug as LaneSlug, stateSlug as StateSlug)
-    
+    const normalizedSlug = normalizeLaneSlug(actualLaneSlug)
+    let lane = LaneRegistry.getBySlug(actualLaneSlug as LaneSlug, stateSlug as StateSlug)
+
     if (!lane) {
         lane = LaneRegistry.getBySlug(normalizedSlug as LaneSlug, stateSlug as StateSlug)
     }
-    
+
     if (!lane) {
         const { StateRegistry } = await import('@/domain/state/state.config')
         const state = StateRegistry.getBySlug(stateSlug as StateSlug)
         if (state && state.lanes) {
             lane = state.lanes.find(l => {
                 const lNormalized = normalizeLaneSlug(l.slug)
-                return l.slug === laneSlug || l.slug === normalizedSlug || lNormalized === normalizedSlug
+                return l.slug === actualLaneSlug || l.slug === normalizedSlug || lNormalized === normalizedSlug
             }) || null
         }
     }
@@ -87,31 +90,48 @@ export async function generateMetadata({ params }: { params: Promise<{ stateSlug
  */
 export default async function LanePageRoute({ params }: { params: Promise<{ stateSlug: string; laneSlug: string }> }) {
     const { stateSlug, laneSlug } = await params
-    
+
+    // If URL doesn't have -truck-dispatch suffix, redirect to the version with it
+    if (!laneSlug.endsWith('-truck-dispatch')) {
+        const { StateRegistry } = await import('@/domain/state/state.config')
+        const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+        if (state && state.lanes) {
+            const lane = state.lanes.find(l => l.slug === laneSlug)
+            if (lane) {
+                const { redirect } = await import('next/navigation')
+                redirect(`/states/${stateSlug}/lanes/${laneSlug}-truck-dispatch`)
+            }
+        }
+        notFound()
+    }
+
+    // Strip "-truck-dispatch" suffix from URL parameter
+    const actualLaneSlug = laneSlug.replace(/-truck-dispatch$/, '')
+
     // Normalize the slug to handle double dashes (SEO-friendly)
-    const normalizedSlug = normalizeLaneSlug(laneSlug)
-    
+    const normalizedSlug = normalizeLaneSlug(actualLaneSlug)
+
     // Try to get lane by original slug first (since JSON files may have double dashes)
-    let lane = LaneRegistry.getBySlug(laneSlug as LaneSlug, stateSlug as StateSlug)
+    let lane = LaneRegistry.getBySlug(actualLaneSlug as LaneSlug, stateSlug as StateSlug)
 
     // If not found, try normalized slug (for future single-dash slugs)
     if (!lane) {
         lane = LaneRegistry.getBySlug(normalizedSlug as LaneSlug, stateSlug as StateSlug)
     }
-    
+
     // If still not found, search through state lanes with normalization
     if (!lane) {
         const { StateRegistry } = await import('@/domain/state/state.config')
         const state = StateRegistry.getBySlug(stateSlug as StateSlug)
-        
+
         if (state && state.lanes) {
             // Try to find by matching slug variations (normalize both for comparison)
             lane = state.lanes.find(l => {
                 const lNormalized = normalizeLaneSlug(l.slug)
-                return l.slug === laneSlug || // Exact match
-                       l.slug === normalizedSlug || // Normalized match
-                       lNormalized === normalizedSlug || // Both normalized match
-                       normalizeLaneSlug(l.displayName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')) === normalizedSlug // Display name match
+                return l.slug === actualLaneSlug || // Exact match
+                    l.slug === normalizedSlug || // Normalized match
+                    lNormalized === normalizedSlug || // Both normalized match
+                    normalizeLaneSlug(l.displayName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')) === normalizedSlug // Display name match
             }) || null
         }
     }

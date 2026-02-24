@@ -39,8 +39,8 @@ export default async function AreasWeServeRoute({
     )
     
     if (state) {
-        // Redirect to the actual state page using the correct slug
-        redirect(`/states/${state.slug}`)
+        // Redirect to the actual state page using the correct slug with -truck-dispatch suffix
+        redirect(`/states/${state.slug}-truck-dispatch`)
     }
     
     // If state not found, redirect to states listing

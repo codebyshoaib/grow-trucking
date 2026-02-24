@@ -39,7 +39,7 @@ export default function StateHighDemandLanes({ state }: StateHighDemandLanesProp
                         return (
                             <Link
                                 key={lane.id}
-                                href={`/states/${state.slug}/lanes/${lane.slug}`}
+                                href={`/states/${state.slug}/lanes/${lane.slug}-truck-dispatch`}
                                 className="p-4 sm:p-6 bg-white rounded-lg border border-gray-200 hover:border-primary hover:shadow-lg transition-all"
                             >
                                 <h3 className="text-lg sm:text-xl font-bold text-secondary mb-2">

@@ -12,7 +12,7 @@ export default async function StatesLandingPage() {
     // Redirect to first state page
     // Alternatively, you could create a listing page here
     if (allStates.length > 0) {
-        redirect(`/states/${allStates[0].slug}`)
+        redirect(`/states/${allStates[0].slug}-truck-dispatch`)
     }
 
     // Fallback if no states exist

@@ -8,6 +8,7 @@ import { titleToSlug } from '@/lib/utils'
 import type { SubmenuItem, RegionItem } from '@/types/navigation.types'
 import { TruckTypeRegistry } from '@/domain/truck-type/truck-type.config'
 import { PartnerRegistry } from '@/domain/partner/partner.config'
+import { StateRegistry } from '@/domain/state/state.config'
 import { allServices } from './services.config'
 
 /**
@@ -111,82 +112,105 @@ export const truckTypes: SubmenuItem[] = TruckTypeRegistry.getAll().map((truckTy
 }))
 
 /**
+ * Helper function to get state URL by state name
+ * Maps state display names to their slugs and generates URLs with -truck-dispatch suffix
+ */
+function getStateUrl(stateName: string): string {
+    const allStates = StateRegistry.getAll()
+    const state = allStates.find(s => 
+        s.displayName === stateName || 
+        s.name === stateName ||
+        s.displayName.toLowerCase() === stateName.toLowerCase() ||
+        s.name.toLowerCase() === stateName.toLowerCase()
+    )
+    
+    if (state) {
+        return `/states/${state.slug}-truck-dispatch`
+    }
+    
+    // Fallback: convert state name to slug format
+    const slug = stateName.toLowerCase().replace(/\s+/g, '-')
+    return `/states/${slug}-truck-dispatch`
+}
+
+/**
  * Multi-level structure for Areas We Serve
  * Regions with nested states
+ * State links now point directly to state pages with -truck-dispatch suffix
  */
 export const areasWeServeItems: RegionItem[] = [
     {
         title: 'Northeast',
         href: '/areas-we-serve/northeast',
         states: [
-            { title: 'Connecticut', href: '/areas-we-serve/northeast/connecticut' },
-            { title: 'Maine', href: '/areas-we-serve/northeast/maine' },
-            { title: 'Massachusetts', href: '/areas-we-serve/northeast/massachusetts' },
-            { title: 'New Hampshire', href: '/areas-we-serve/northeast/new-hampshire' },
-            { title: 'New Jersey', href: '/areas-we-serve/northeast/new-jersey' },
-            { title: 'New York', href: '/areas-we-serve/northeast/new-york' },
-            { title: 'Pennsylvania', href: '/areas-we-serve/northeast/pennsylvania' },
-            { title: 'Rhode Island', href: '/areas-we-serve/northeast/rhode-island' },
-            { title: 'Vermont', href: '/areas-we-serve/northeast/vermont' },
+            { title: 'Connecticut', href: getStateUrl('Connecticut') },
+            { title: 'Maine', href: getStateUrl('Maine') },
+            { title: 'Massachusetts', href: getStateUrl('Massachusetts') },
+            { title: 'New Hampshire', href: getStateUrl('New Hampshire') },
+            { title: 'New Jersey', href: getStateUrl('New Jersey') },
+            { title: 'New York', href: getStateUrl('New York') },
+            { title: 'Pennsylvania', href: getStateUrl('Pennsylvania') },
+            { title: 'Rhode Island', href: getStateUrl('Rhode Island') },
+            { title: 'Vermont', href: getStateUrl('Vermont') },
         ],
     },
     {
         title: 'Midwest',
         href: '/areas-we-serve/midwest',
         states: [
-            { title: 'Illinois', href: '/areas-we-serve/midwest/illinois' },
-            { title: 'Indiana', href: '/areas-we-serve/midwest/indiana' },
-            { title: 'Iowa', href: '/areas-we-serve/midwest/iowa' },
-            { title: 'Kansas', href: '/areas-we-serve/midwest/kansas' },
-            { title: 'Michigan', href: '/areas-we-serve/midwest/michigan' },
-            { title: 'Minnesota', href: '/areas-we-serve/midwest/minnesota' },
-            { title: 'Missouri', href: '/areas-we-serve/midwest/missouri' },
-            { title: 'Nebraska', href: '/areas-we-serve/midwest/nebraska' },
-            { title: 'North Dakota', href: '/areas-we-serve/midwest/north-dakota' },
-            { title: 'Ohio', href: '/areas-we-serve/midwest/ohio' },
-            { title: 'South Dakota', href: '/areas-we-serve/midwest/south-dakota' },
-            { title: 'Wisconsin', href: '/areas-we-serve/midwest/wisconsin' },
+            { title: 'Illinois', href: getStateUrl('Illinois') },
+            { title: 'Indiana', href: getStateUrl('Indiana') },
+            { title: 'Iowa', href: getStateUrl('Iowa') },
+            { title: 'Kansas', href: getStateUrl('Kansas') },
+            { title: 'Michigan', href: getStateUrl('Michigan') },
+            { title: 'Minnesota', href: getStateUrl('Minnesota') },
+            { title: 'Missouri', href: getStateUrl('Missouri') },
+            { title: 'Nebraska', href: getStateUrl('Nebraska') },
+            { title: 'North Dakota', href: getStateUrl('North Dakota') },
+            { title: 'Ohio', href: getStateUrl('Ohio') },
+            { title: 'South Dakota', href: getStateUrl('South Dakota') },
+            { title: 'Wisconsin', href: getStateUrl('Wisconsin') },
         ],
     },
     {
         title: 'Southern US',
         href: '/areas-we-serve/southern-us',
         states: [
-            { title: 'Alabama', href: '/areas-we-serve/southern-us/alabama' },
-            { title: 'Arkansas', href: '/areas-we-serve/southern-us/arkansas' },
-            { title: 'Delaware', href: '/areas-we-serve/southern-us/delaware' },
-            { title: 'Florida', href: '/areas-we-serve/southern-us/florida' },
-            { title: 'Georgia', href: '/areas-we-serve/southern-us/georgia' },
-            { title: 'Kentucky', href: '/areas-we-serve/southern-us/kentucky' },
-            { title: 'Louisiana', href: '/areas-we-serve/southern-us/louisiana' },
-            { title: 'Maryland', href: '/areas-we-serve/southern-us/maryland' },
-            { title: 'Mississippi', href: '/areas-we-serve/southern-us/mississippi' },
-            { title: 'North Carolina', href: '/areas-we-serve/southern-us/north-carolina' },
-            { title: 'Oklahoma', href: '/areas-we-serve/southern-us/oklahoma' },
-            { title: 'South Carolina', href: '/areas-we-serve/southern-us/south-carolina' },
-            { title: 'Tennessee', href: '/areas-we-serve/southern-us/tennessee' },
-            { title: 'Texas', href: '/areas-we-serve/southern-us/texas' },
-            { title: 'Virginia', href: '/areas-we-serve/southern-us/virginia' },
-            { title: 'West Virginia', href: '/areas-we-serve/southern-us/west-virginia' },
+            { title: 'Alabama', href: getStateUrl('Alabama') },
+            { title: 'Arkansas', href: getStateUrl('Arkansas') },
+            { title: 'Delaware', href: getStateUrl('Delaware') },
+            { title: 'Florida', href: getStateUrl('Florida') },
+            { title: 'Georgia', href: getStateUrl('Georgia') },
+            { title: 'Kentucky', href: getStateUrl('Kentucky') },
+            { title: 'Louisiana', href: getStateUrl('Louisiana') },
+            { title: 'Maryland', href: getStateUrl('Maryland') },
+            { title: 'Mississippi', href: getStateUrl('Mississippi') },
+            { title: 'North Carolina', href: getStateUrl('North Carolina') },
+            { title: 'Oklahoma', href: getStateUrl('Oklahoma') },
+            { title: 'South Carolina', href: getStateUrl('South Carolina') },
+            { title: 'Tennessee', href: getStateUrl('Tennessee') },
+            { title: 'Texas', href: getStateUrl('Texas') },
+            { title: 'Virginia', href: getStateUrl('Virginia') },
+            { title: 'West Virginia', href: getStateUrl('West Virginia') },
         ],
     },
     {
         title: 'Western US',
         href: '/areas-we-serve/western-us',
         states: [
-            { title: 'Alaska', href: '/areas-we-serve/western-us/alaska' },
-            { title: 'Arizona', href: '/areas-we-serve/western-us/arizona' },
-            { title: 'California', href: '/areas-we-serve/western-us/california' },
-            { title: 'Colorado', href: '/areas-we-serve/western-us/colorado' },
-            { title: 'Hawaii', href: '/areas-we-serve/western-us/hawaii' },
-            { title: 'Idaho', href: '/areas-we-serve/western-us/idaho' },
-            { title: 'Montana', href: '/areas-we-serve/western-us/montana' },
-            { title: 'Nevada', href: '/areas-we-serve/western-us/nevada' },
-            { title: 'New Mexico', href: '/areas-we-serve/western-us/new-mexico' },
-            { title: 'Oregon', href: '/areas-we-serve/western-us/oregon' },
-            { title: 'Utah', href: '/areas-we-serve/western-us/utah' },
-            { title: 'Washington', href: '/areas-we-serve/western-us/washington' },
-            { title: 'Wyoming', href: '/areas-we-serve/western-us/wyoming' },
+            { title: 'Alaska', href: getStateUrl('Alaska') },
+            { title: 'Arizona', href: getStateUrl('Arizona') },
+            { title: 'California', href: getStateUrl('California') },
+            { title: 'Colorado', href: getStateUrl('Colorado') },
+            { title: 'Hawaii', href: getStateUrl('Hawaii') },
+            { title: 'Idaho', href: getStateUrl('Idaho') },
+            { title: 'Montana', href: getStateUrl('Montana') },
+            { title: 'Nevada', href: getStateUrl('Nevada') },
+            { title: 'New Mexico', href: getStateUrl('New Mexico') },
+            { title: 'Oregon', href: getStateUrl('Oregon') },
+            { title: 'Utah', href: getStateUrl('Utah') },
+            { title: 'Washington', href: getStateUrl('Washington') },
+            { title: 'Wyoming', href: getStateUrl('Wyoming') },
         ],
     },
 ]

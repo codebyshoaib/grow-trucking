@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 export async function generateStaticParams() {
     const states = StateRegistry.getAll()
     return states.map((state) => ({
-        stateSlug: state.slug,
+        stateSlug: `${state.slug}-truck-dispatch`,
     }))
 }
 
@@ -21,7 +21,9 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: { params: Promise<{ stateSlug: string }> }): Promise<Metadata> {
     const { stateSlug } = await params
-    const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+    // Strip "-truck-dispatch" suffix from URL parameter
+    const actualStateSlug = stateSlug.replace(/-truck-dispatch$/, '')
+    const state = StateRegistry.getBySlug(actualStateSlug as StateSlug)
 
     if (!state) {
         return {
@@ -57,7 +59,20 @@ export async function generateMetadata({ params }: { params: Promise<{ stateSlug
  */
 export default async function StatePageRoute({ params }: { params: Promise<{ stateSlug: string }> }) {
     const { stateSlug } = await params
-    const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+
+    // If URL doesn't have -truck-dispatch suffix, redirect to the version with it
+    if (!stateSlug.endsWith('-truck-dispatch')) {
+        const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+        if (state) {
+            const { redirect } = await import('next/navigation')
+            redirect(`/states/${stateSlug}-truck-dispatch`)
+        }
+        notFound()
+    }
+
+    // Strip "-truck-dispatch" suffix from URL parameter
+    const actualStateSlug = stateSlug.replace(/-truck-dispatch$/, '')
+    const state = StateRegistry.getBySlug(actualStateSlug as StateSlug)
 
     if (!state) {
         notFound()
