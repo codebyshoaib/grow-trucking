@@ -71,7 +71,7 @@ export default function Header() {
                                 iconPosition="left"
                                 className="uppercase tracking-tighter hidden md:flex"
                             >
-                                Sign Up
+                                Start Getting Loads
                             </Button>
                         </Link>
                     </div>
