@@ -59,8 +59,32 @@ export default function OpenJobs() {
                     </p>
                 </div>
 
-                {/* Job Listings Table */}
-                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                {/* Mobile View - Card List */}
+                <div className="lg:hidden bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    {jobOpenings.map((job, index) => (
+                        <div
+                            key={job.id}
+                            className={`px-4 sm:px-6 py-5 sm:py-6 ${index !== jobOpenings.length - 1 ? 'border-b border-gray-200' : ''
+                                }`}
+                        >
+                            <h3 className="text-lg sm:text-xl font-bold text-secondary mb-2">
+                                {job.title}
+                            </h3>
+                            <p className="text-sm text-gray-700 mb-2">
+                                {job.workArrangement} · {job.department} · {job.employmentType}
+                            </p>
+                            <p className="text-sm text-gray-700 mb-1">
+                                {job.location}
+                            </p>
+                            <p className="text-sm text-gray-500">
+                                Posted {job.postedDate}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Desktop View - Table */}
+                <div className="hidden lg:block bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full border-collapse">
                             <thead>
@@ -80,7 +104,6 @@ export default function OpenJobs() {
                                     <th className="px-4 sm:px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">
                                         Employment Type
                                     </th>
-
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
@@ -95,7 +118,6 @@ export default function OpenJobs() {
                                             </h3>
                                             <p className="text-sm text-gray-500">Posted {job.postedDate}</p>
                                         </td>
-
                                         <td className="px-4 sm:px-6 py-5">
                                             <span className="text-sm text-gray-700">
                                                 {job.workArrangement}
@@ -116,7 +138,6 @@ export default function OpenJobs() {
                                                 {job.employmentType}
                                             </span>
                                         </td>
-
                                     </tr>
                                 ))}
                             </tbody>
