@@ -29,6 +29,7 @@ export interface PartnerEntity {
     id: PartnerSlug
     name: string
     displayName: string
+    partnerImage?: string
     slug: PartnerSlug
     
     // Content

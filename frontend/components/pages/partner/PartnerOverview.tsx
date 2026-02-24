@@ -52,8 +52,8 @@ export default function PartnerOverview({ partner }: PartnerOverviewProps) {
                         {/* Right Column - Image */}
                         <div className="relative w-full h-full min-h-[400px] lg:min-h-[500px] rounded-lg overflow-hidden">
                             <Image
-                                src="https://res.cloudinary.com/dj9r2zjpm/image/upload/v1771773608/reducing-environmental-impact_ukfegq.webp"
-                                alt="Partner Overview"
+                                src={partner.partnerImage || ''}
+                                alt={partner.displayName}
                                 fill
                                 className="rounded-lg object-cover"
                                 priority
