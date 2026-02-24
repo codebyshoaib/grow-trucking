@@ -101,7 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lanePages: MetadataRoute.Sitemap = StateRegistry.getAll().flatMap((state) => {
     if (!state.lanes || state.lanes.length === 0) return []
     return state.lanes.map((lane) => ({
-      url: `${baseUrl}/states/${state.slug}/lanes/${lane.slug}-truck-dispatch`,
+      url: `${baseUrl}/states/${state.slug}/lanes/${lane.slug}-truck-dispatch-service`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
@@ -118,7 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Dynamic truck type pages
   const truckTypePages: MetadataRoute.Sitemap = TruckTypeRegistry.getAll().map((truckType) => ({
-    url: `${baseUrl}/truck-type/${truckType.slug}`,
+    url: `${baseUrl}/truck-type/${truckType.slug}-dispatch-service`,
     lastModified: currentDate,
     changeFrequency: 'monthly' as const,
     priority: 0.7,

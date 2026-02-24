@@ -12,7 +12,7 @@ export default async function TruckTypeLandingPage() {
     // Redirect to first truck type page
     // Alternatively, you could create a listing page here
     if (allTruckTypes.length > 0) {
-        redirect(`/truck-type/${allTruckTypes[0].slug}`)
+        redirect(`/truck-type/${allTruckTypes[0].slug}-dispatch-service`)
     }
 
     // Fallback if no truck types exist

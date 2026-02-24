@@ -18,7 +18,7 @@ export async function generateStaticParams() {
             state.lanes.forEach(lane => {
                 params.push({
                     stateSlug: state.slug,
-                    laneSlug: `${lane.slug}-truck-dispatch`,
+                    laneSlug: `${lane.slug}-truck-dispatch-service`,
                 })
             })
         }
@@ -34,8 +34,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ stateSlug: string; laneSlug: string }> }): Promise<Metadata> {
     const { stateSlug, laneSlug } = await params
 
-    // Strip "-truck-dispatch" suffix from URL parameter
-    const actualLaneSlug = laneSlug.replace(/-truck-dispatch$/, '')
+    // Strip "-truck-dispatch-service" suffix from URL parameter
+    const actualLaneSlug = laneSlug.replace(/-truck-dispatch-service$/, '')
 
     // Use same lookup logic as the page route
     const normalizedSlug = normalizeLaneSlug(actualLaneSlug)
@@ -91,22 +91,22 @@ export async function generateMetadata({ params }: { params: Promise<{ stateSlug
 export default async function LanePageRoute({ params }: { params: Promise<{ stateSlug: string; laneSlug: string }> }) {
     const { stateSlug, laneSlug } = await params
 
-    // If URL doesn't have -truck-dispatch suffix, redirect to the version with it
-    if (!laneSlug.endsWith('-truck-dispatch')) {
+    // If URL doesn't have -truck-dispatch-service suffix, redirect to the version with it
+    if (!laneSlug.endsWith('-truck-dispatch-service')) {
         const { StateRegistry } = await import('@/domain/state/state.config')
         const state = StateRegistry.getBySlug(stateSlug as StateSlug)
         if (state && state.lanes) {
-            const lane = state.lanes.find(l => l.slug === laneSlug)
+            const lane = state.lanes.find(l => l.slug === laneSlug || `${l.slug}-truck-dispatch` === laneSlug)
             if (lane) {
                 const { redirect } = await import('next/navigation')
-                redirect(`/states/${stateSlug}/lanes/${laneSlug}-truck-dispatch`)
+                redirect(`/states/${stateSlug}/lanes/${lane.slug}-truck-dispatch-service`)
             }
         }
         notFound()
     }
 
-    // Strip "-truck-dispatch" suffix from URL parameter
-    const actualLaneSlug = laneSlug.replace(/-truck-dispatch$/, '')
+    // Strip "-truck-dispatch-service" suffix from URL parameter
+    const actualLaneSlug = laneSlug.replace(/-truck-dispatch-service$/, '')
 
     // Normalize the slug to handle double dashes (SEO-friendly)
     const normalizedSlug = normalizeLaneSlug(actualLaneSlug)

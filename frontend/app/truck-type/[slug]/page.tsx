@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 export async function generateStaticParams() {
     const truckTypes = TruckTypeRegistry.getAll()
     return truckTypes.map((truckType) => ({
-        slug: truckType.slug,
+        slug: `${truckType.slug}-dispatch-service`,
     }))
 }
 
@@ -21,7 +21,9 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params
-    const truckType = TruckTypeRegistry.getBySlug(slug as TruckTypeSlug)
+    // Strip "-dispatch-service" suffix from URL parameter
+    const actualSlug = slug.replace(/-dispatch-service$/, '')
+    const truckType = TruckTypeRegistry.getBySlug(actualSlug as TruckTypeSlug)
 
     if (!truckType) {
         return {
@@ -56,7 +58,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  */
 export default async function TruckTypePageRoute({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    const truckType = TruckTypeRegistry.getBySlug(slug as TruckTypeSlug)
+    
+    // If URL doesn't have -dispatch-service suffix, redirect to the version with it
+    if (!slug.endsWith('-dispatch-service')) {
+        const truckType = TruckTypeRegistry.getBySlug(slug as TruckTypeSlug)
+        if (truckType) {
+            const { redirect } = await import('next/navigation')
+            redirect(`/truck-type/${slug}-dispatch-service`)
+        }
+        notFound()
+    }
+    
+    // Strip "-dispatch-service" suffix from URL parameter
+    const actualSlug = slug.replace(/-dispatch-service$/, '')
+    const truckType = TruckTypeRegistry.getBySlug(actualSlug as TruckTypeSlug)
 
     if (!truckType) {
         notFound()

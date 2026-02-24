@@ -108,7 +108,7 @@ export const aboutItems: SubmenuItem[] = [
  */
 export const truckTypes: SubmenuItem[] = TruckTypeRegistry.getAll().map((truckType) => ({
     title: truckType.name,
-    href: `/truck-type/${truckType.slug}`,
+    href: `/truck-type/${truckType.slug}-dispatch-service`,
 }))
 
 /**
