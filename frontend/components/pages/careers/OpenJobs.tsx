@@ -3,46 +3,10 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight, PhoneCall } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import { JobRegistry } from '@/domain/job/job.config'
+import type { JobOpening } from '@/types/job.types'
 
-interface JobOpening {
-    id: string
-    title: string
-    postedDate: string
-    workArrangement: string
-    location: string
-    department: string
-    employmentType: string
-}
-
-const jobOpenings: JobOpening[] = [
-    {
-        id: '1',
-        title: 'Global B2B Sales and Business Development',
-        postedDate: 'today',
-        workArrangement: 'On-site',
-        location: 'Lahore, Punjab, Pakistan',
-        department: 'Cluster Business Head',
-        employmentType: 'Full time'
-    },
-    {
-        id: '2',
-        title: 'Senior Software Engineer - AI/ML',
-        postedDate: '2 days ago',
-        workArrangement: 'On-site',
-        location: 'Lahore, Punjab, Pakistan',
-        department: 'Cluster Business Head',
-        employmentType: 'Full time'
-    },
-    {
-        id: '3',
-        title: 'Career Manager - Business Development',
-        postedDate: '3 days ago',
-        workArrangement: 'Remote',
-        location: 'Lahore, Punjab, Pakistan',
-        department: 'Engineering Department',
-        employmentType: 'Full time'
-    },
-]
+const jobOpenings: JobOpening[] = JobRegistry.getAll()
 
 export default function OpenJobs() {
     return (
@@ -62,12 +26,13 @@ export default function OpenJobs() {
                 {/* Mobile View - Card List */}
                 <div className="lg:hidden bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                     {jobOpenings.map((job, index) => (
-                        <div
+                        <Link
                             key={job.id}
-                            className={`px-4 sm:px-6 py-5 sm:py-6 ${index !== jobOpenings.length - 1 ? 'border-b border-gray-200' : ''
+                            href={`/careers/${job.slug}`}
+                            className={`block px-4 sm:px-6 py-5 sm:py-6 hover:bg-gray-50 transition-colors ${index !== jobOpenings.length - 1 ? 'border-b border-gray-200' : ''
                                 }`}
                         >
-                            <h3 className="text-lg sm:text-xl font-bold text-secondary mb-2">
+                            <h3 className="text-lg sm:text-xl font-bold text-secondary mb-2 hover:text-primary transition-colors">
                                 {job.title}
                             </h3>
                             <p className="text-sm text-gray-700 mb-2">
@@ -79,7 +44,7 @@ export default function OpenJobs() {
                             <p className="text-sm text-gray-500">
                                 Posted {job.postedDate}
                             </p>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 
@@ -113,30 +78,40 @@ export default function OpenJobs() {
                                         className="hover:bg-gray-50 transition-colors"
                                     >
                                         <td className="px-4 sm:px-6 py-5">
-                                            <h3 className="text-base sm:text-lg font-bold text-secondary">
-                                                {job.title}
-                                            </h3>
-                                            <p className="text-sm text-gray-500">Posted {job.postedDate}</p>
+                                            <Link href={`/careers/${job.slug}`} className="block">
+                                                <h3 className="text-base sm:text-lg font-bold text-secondary hover:text-primary transition-colors">
+                                                    {job.title}
+                                                </h3>
+                                                <p className="text-sm text-gray-500">Posted {job.postedDate}</p>
+                                            </Link>
                                         </td>
                                         <td className="px-4 sm:px-6 py-5">
-                                            <span className="text-sm text-gray-700">
-                                                {job.workArrangement}
-                                            </span>
+                                            <Link href={`/careers/${job.slug}`} className="block">
+                                                <span className="text-sm text-gray-700 hover:text-primary transition-colors">
+                                                    {job.workArrangement}
+                                                </span>
+                                            </Link>
                                         </td>
                                         <td className="px-4 sm:px-6 py-5">
-                                            <span className="text-sm text-gray-700">
-                                                {job.location}
-                                            </span>
+                                            <Link href={`/careers/${job.slug}`} className="block">
+                                                <span className="text-sm text-gray-700 hover:text-primary transition-colors">
+                                                    {job.location}
+                                                </span>
+                                            </Link>
                                         </td>
                                         <td className="px-4 sm:px-6 py-5">
-                                            <span className="text-sm text-gray-700">
-                                                {job.department}
-                                            </span>
+                                            <Link href={`/careers/${job.slug}`} className="block">
+                                                <span className="text-sm text-gray-700 hover:text-primary transition-colors">
+                                                    {job.department}
+                                                </span>
+                                            </Link>
                                         </td>
                                         <td className="px-4 sm:px-6 py-5">
-                                            <span className="text-sm text-gray-700">
-                                                {job.employmentType}
-                                            </span>
+                                            <Link href={`/careers/${job.slug}`} className="block">
+                                                <span className="text-sm text-gray-700 hover:text-primary transition-colors">
+                                                    {job.employmentType}
+                                                </span>
+                                            </Link>
                                         </td>
                                     </tr>
                                 ))}
