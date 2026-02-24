@@ -40,25 +40,27 @@ export default function CaseStudiesPage() {
 
                 <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 uppercase tracking-tight">
+                        <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-3 sm:mb-4 uppercase tracking-tight">
                             Driver Success Case Studies
                         </h1>
-                        <p className="text-xl md:text-2xl font-bold mb-2 text-gray-200">
+                        <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-2 text-gray-200">
                             15 Real Stories. Real Results. Real Revenue.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                            <Button size="lg" className="text-lg px-8 py-6" asChild>
-                                <Link href="/contact">
-                                    Get a Free Lane Audit
-                                    <ArrowRight className="ml-2 w-5 h-5" />
-                                </Link>
-                            </Button>
-                            <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-transparent border-white text-white hover:bg-white hover:text-gray-900" asChild>
-                                <Link href="/contact">
-                                    <Phone className="mr-2 w-5 h-5" />
-                                    Schedule a Call
-                                </Link>
-                            </Button>
+                        <div className="w-[200px] mx-auto">
+                            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-6 sm:mt-8">
+                                <Button size="default" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-2.5 sm:py-3" asChild>
+                                    <Link href="/contact">
+                                        Get a Free Lane Audit
+                                        <ArrowRight className="ml-1.5 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                                    </Link>
+                                </Button>
+                                <Button size="default" variant="outline" className="w-full sm:w-auto text-sm sm:text-base px-6 sm:px-8 py-2.5 sm:py-3 bg-transparent border-white text-white hover:bg-white hover:text-gray-900" asChild>
+                                    <Link href="/contact">
+                                        <Phone className="mr-1.5 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                                        Schedule a Call
+                                    </Link>
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,7 +77,7 @@ export default function CaseStudiesPage() {
                         </p>
 
                         {/* Stats Strip */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
                             <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-8 border border-blue-200/50 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="bg-blue-500 rounded-lg p-3">
@@ -129,9 +131,9 @@ export default function CaseStudiesPage() {
             {featuredStudies.length > 0 && (
                 <section className="py-16 bg-gray-50">
                     <div className="flex flex-col items-center justify-center container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-                        <Badge className="mb-4">Featured</Badge>
-                        <h2 className="text-4xl md:text-5xl font-black text-secondary mb-8">Featured Case Studies</h2>
-                        <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl text-center">
+                        <Badge className="mb-3 sm:mb-4">Featured</Badge>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-secondary mb-4 sm:mb-6 md:mb-8">Featured Case Studies</h2>
+                        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl text-center px-4">
                             These are the stories of drivers who have taken control of their earnings, fuel savings, and home time. See how they did it.
                         </p>
 
@@ -161,33 +163,33 @@ export default function CaseStudiesPage() {
                                             <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/75 to-gray-900/80" />
 
                                             {/* Content */}
-                                            <div className="relative z-10 h-full flex flex-col justify-center p-8 md:p-12 lg:p-32 text-white">
+                                            <div className="relative z-10 h-full flex flex-col justify-center p-12 md:p-16 lg:p-32 text-white">
                                                 <div className="max-w-2xl">
-                                                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-black mb-3 uppercase tracking-tight">
+                                                    <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-2 sm:mb-3 uppercase tracking-tight">
                                                         {study.driverName}
                                                     </h3>
-                                                    <p className="text-lg md:text-xl text-gray-300 mb-6">
+                                                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-4 sm:mb-6">
                                                         {study.lane} • {study.equipmentBadge}
                                                     </p>
 
-                                                    <div className="mb-6">
-                                                        <div className="text-3xl md:text-4xl font-black text-green-400 mb-2">
+                                                    <div className="mb-4 sm:mb-6">
+                                                        <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-green-400 mb-1 sm:mb-2">
                                                             {study.revenueIncrease}
                                                         </div>
-                                                        <div className="text-base md:text-lg text-gray-300 mb-4">
+                                                        <div className="text-sm sm:text-base md:text-lg text-gray-300 mb-3 sm:mb-4">
                                                             RPM: {study.rpmBefore} → <span className="font-semibold text-white">{study.rpmAfter}/mile</span>
                                                         </div>
-                                                        <p className="text-base md:text-lg text-gray-300">
+                                                        <p className="text-sm sm:text-base md:text-lg text-gray-300">
                                                             {study.summary}
                                                         </p>
                                                     </div>
 
                                                     <Link
                                                         href={`/case-studies/${study.slug}`}
-                                                        className="inline-flex items-center gap-2 text-base font-medium text-white hover:text-gray-200 transition-colors underline"
+                                                        className="inline-flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base font-medium text-white hover:text-gray-200 transition-colors underline"
                                                     >
                                                         Read Full Case Study
-                                                        <ArrowRight className="w-4 h-4" />
+                                                        <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                                                     </Link>
                                                 </div>
                                             </div>
@@ -199,17 +201,17 @@ export default function CaseStudiesPage() {
                             {/* Navigation Buttons */}
                             <button
                                 onClick={prevFeatured}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
+                                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all"
                                 aria-label="Previous case study"
                             >
-                                <ChevronLeft className="w-6 h-6" />
+                                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                             </button>
                             <button
                                 onClick={nextFeatured}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 rounded-full p-3 shadow-lg hover:shadow-xl transition-all"
+                                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-gray-900 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all"
                                 aria-label="Next case study"
                             >
-                                <ChevronRight className="w-6 h-6" />
+                                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                             </button>
 
                             {/* Dots Indicator */}
