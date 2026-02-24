@@ -98,7 +98,11 @@ export const aboutItems: SubmenuItem[] = [
     {
         title: 'Careers',
         href: '/careers',     
-    }
+    },
+    {
+        title: 'Case Studies',
+        href: '/case-studies',
+    },
 ]
 
 /**
