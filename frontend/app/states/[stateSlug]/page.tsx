@@ -11,7 +11,7 @@ import type { Metadata } from 'next'
 export async function generateStaticParams() {
     const states = StateRegistry.getAll()
     return states.map((state) => ({
-        stateSlug: `${state.slug}-truck-dispatch`,
+        stateSlug: `${state.slug}-truck-dispatch-service`,
     }))
 }
 
@@ -21,8 +21,8 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: { params: Promise<{ stateSlug: string }> }): Promise<Metadata> {
     const { stateSlug } = await params
-    // Strip "-truck-dispatch" suffix from URL parameter
-    const actualStateSlug = stateSlug.replace(/-truck-dispatch$/, '')
+    // Strip "-truck-dispatch-service" suffix from URL parameter
+    const actualStateSlug = stateSlug.replace(/-truck-dispatch-service$/, '')
     const state = StateRegistry.getBySlug(actualStateSlug as StateSlug)
 
     if (!state) {
@@ -60,18 +60,18 @@ export async function generateMetadata({ params }: { params: Promise<{ stateSlug
 export default async function StatePageRoute({ params }: { params: Promise<{ stateSlug: string }> }) {
     const { stateSlug } = await params
 
-    // If URL doesn't have -truck-dispatch suffix, redirect to the version with it
-    if (!stateSlug.endsWith('-truck-dispatch')) {
+    // If URL doesn't have -truck-dispatch-service suffix, redirect to the version with it
+    if (!stateSlug.endsWith('-truck-dispatch-service')) {
         const state = StateRegistry.getBySlug(stateSlug as StateSlug)
         if (state) {
             const { redirect } = await import('next/navigation')
-            redirect(`/states/${stateSlug}-truck-dispatch`)
+            redirect(`/states/${stateSlug}-truck-dispatch-service`)
         }
         notFound()
     }
 
-    // Strip "-truck-dispatch" suffix from URL parameter
-    const actualStateSlug = stateSlug.replace(/-truck-dispatch$/, '')
+    // Strip "-truck-dispatch-service" suffix from URL parameter
+    const actualStateSlug = stateSlug.replace(/-truck-dispatch-service$/, '')
     const state = StateRegistry.getBySlug(actualStateSlug as StateSlug)
 
     if (!state) {

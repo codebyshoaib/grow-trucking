@@ -17,7 +17,7 @@ export async function generateStaticParams() {
         if (state.lanes && state.lanes.length > 0) {
             state.lanes.forEach(lane => {
                 params.push({
-                    stateSlug: state.slug,
+                    stateSlug: `${state.slug}-truck-dispatch-service`,
                     laneSlug: `${lane.slug}-truck-dispatch-service`,
                 })
             })
@@ -33,13 +33,14 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata({ params }: { params: Promise<{ stateSlug: string; laneSlug: string }> }): Promise<Metadata> {
     const { stateSlug, laneSlug } = await params
-
-    // Strip "-truck-dispatch-service" suffix from URL parameter
+    
+    // Strip "-truck-dispatch-service" suffix from URL parameters
+    const actualStateSlug = stateSlug.replace(/-truck-dispatch-service$/, '')
     const actualLaneSlug = laneSlug.replace(/-truck-dispatch-service$/, '')
-
+    
     // Use same lookup logic as the page route
     const normalizedSlug = normalizeLaneSlug(actualLaneSlug)
-    let lane = LaneRegistry.getBySlug(actualLaneSlug as LaneSlug, stateSlug as StateSlug)
+    let lane = LaneRegistry.getBySlug(actualLaneSlug as LaneSlug, actualStateSlug as StateSlug)
 
     if (!lane) {
         lane = LaneRegistry.getBySlug(normalizedSlug as LaneSlug, stateSlug as StateSlug)
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ stateSlug
 
     if (!lane) {
         const { StateRegistry } = await import('@/domain/state/state.config')
-        const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+        const state = StateRegistry.getBySlug(actualStateSlug as StateSlug)
         if (state && state.lanes) {
             lane = state.lanes.find(l => {
                 const lNormalized = normalizeLaneSlug(l.slug)
@@ -91,28 +92,29 @@ export async function generateMetadata({ params }: { params: Promise<{ stateSlug
 export default async function LanePageRoute({ params }: { params: Promise<{ stateSlug: string; laneSlug: string }> }) {
     const { stateSlug, laneSlug } = await params
 
+    // Strip "-truck-dispatch-service" suffix from URL parameters
+    const actualStateSlug = stateSlug.replace(/-truck-dispatch-service$/, '')
+    const actualLaneSlug = laneSlug.replace(/-truck-dispatch-service$/, '')
+    
     // If URL doesn't have -truck-dispatch-service suffix, redirect to the version with it
-    if (!laneSlug.endsWith('-truck-dispatch-service')) {
+    if (!laneSlug.endsWith('-truck-dispatch-service') || !stateSlug.endsWith('-truck-dispatch-service')) {
         const { StateRegistry } = await import('@/domain/state/state.config')
-        const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+        const state = StateRegistry.getBySlug(actualStateSlug as StateSlug)
         if (state && state.lanes) {
-            const lane = state.lanes.find(l => l.slug === laneSlug || `${l.slug}-truck-dispatch` === laneSlug)
+            const lane = state.lanes.find(l => l.slug === actualLaneSlug || l.slug === laneSlug || `${l.slug}-truck-dispatch` === laneSlug)
             if (lane) {
                 const { redirect } = await import('next/navigation')
-                redirect(`/states/${stateSlug}/lanes/${lane.slug}-truck-dispatch-service`)
+                redirect(`/states/${actualStateSlug}-truck-dispatch-service/lanes/${lane.slug}-truck-dispatch-service`)
             }
         }
         notFound()
     }
-
-    // Strip "-truck-dispatch-service" suffix from URL parameter
-    const actualLaneSlug = laneSlug.replace(/-truck-dispatch-service$/, '')
-
+    
     // Normalize the slug to handle double dashes (SEO-friendly)
     const normalizedSlug = normalizeLaneSlug(actualLaneSlug)
-
+    
     // Try to get lane by original slug first (since JSON files may have double dashes)
-    let lane = LaneRegistry.getBySlug(actualLaneSlug as LaneSlug, stateSlug as StateSlug)
+    let lane = LaneRegistry.getBySlug(actualLaneSlug as LaneSlug, actualStateSlug as StateSlug)
 
     // If not found, try normalized slug (for future single-dash slugs)
     if (!lane) {
@@ -122,7 +124,7 @@ export default async function LanePageRoute({ params }: { params: Promise<{ stat
     // If still not found, search through state lanes with normalization
     if (!lane) {
         const { StateRegistry } = await import('@/domain/state/state.config')
-        const state = StateRegistry.getBySlug(stateSlug as StateSlug)
+        const state = StateRegistry.getBySlug(actualStateSlug as StateSlug)
 
         if (state && state.lanes) {
             // Try to find by matching slug variations (normalize both for comparison)

@@ -113,7 +113,7 @@ export const truckTypes: SubmenuItem[] = TruckTypeRegistry.getAll().map((truckTy
 
 /**
  * Helper function to get state URL by state name
- * Maps state display names to their slugs and generates URLs with -truck-dispatch suffix
+ * Maps state display names to their slugs and generates URLs with -truck-dispatch-service suffix
  */
 function getStateUrl(stateName: string): string {
     const allStates = StateRegistry.getAll()
@@ -125,12 +125,12 @@ function getStateUrl(stateName: string): string {
     )
     
     if (state) {
-        return `/states/${state.slug}-truck-dispatch`
+        return `/states/${state.slug}-truck-dispatch-service`
     }
     
     // Fallback: convert state name to slug format
     const slug = stateName.toLowerCase().replace(/\s+/g, '-')
-    return `/states/${slug}-truck-dispatch`
+    return `/states/${slug}-truck-dispatch-service`
 }
 
 /**
