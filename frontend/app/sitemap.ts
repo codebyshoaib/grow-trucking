@@ -4,6 +4,7 @@ import { TruckTypeRegistry } from '@/domain/truck-type/truck-type.config'
 import { PartnerRegistry } from '@/domain/partner/partner.config'
 import { JobRegistry } from '@/domain/job/job.config'
 import { allServices } from '@/constants/services.config'
+import { getAllCaseStudies } from '@/constants/case-studies.config'
 
 /**
  * Generate XML Sitemap for SEO
@@ -140,6 +141,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
+  // Case studies pages
+  const caseStudiesPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/case-studies`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    },
+    ...getAllCaseStudies().map((study) => ({
+      url: `${baseUrl}/case-studies/${study.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+  ]
+
   // Combine all sitemap entries
   return [
     ...staticPages,
@@ -149,5 +166,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...truckTypePages,
     ...partnerPages,
     ...jobPages,
+    ...caseStudiesPages,
   ]
 }
