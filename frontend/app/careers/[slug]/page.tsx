@@ -29,13 +29,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         }
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.growtrucking.com'
+    const canonicalUrl = `${baseUrl}/careers/${slug}`
+
     return {
         title: `${job.title} | Careers | Grow Trucking`,
         description: job.description || `Join Grow Trucking as a ${job.title} in ${job.location}. ${job.employmentType} position.`,
+        alternates: {
+            canonical: canonicalUrl,
+        },
         openGraph: {
             title: `${job.title} | Grow Trucking`,
             description: job.description || `Join Grow Trucking as a ${job.title}`,
             type: 'website',
+            url: canonicalUrl,
         },
         twitter: {
             card: 'summary',

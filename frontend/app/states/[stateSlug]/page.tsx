@@ -32,15 +32,22 @@ export async function generateMetadata({ params }: { params: Promise<{ stateSlug
         }
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.growtrucking.com'
+    const canonicalUrl = `${baseUrl}/states/${stateSlug}`
+
     return {
         title: state.metaTitle,
         description: state.metaDescription,
         keywords: state.keywords.join(', '),
+        alternates: {
+            canonical: canonicalUrl,
+        },
         openGraph: {
             title: state.metaTitle,
             description: state.metaDescription,
             type: 'website',
             images: [state.heroImage],
+            url: canonicalUrl,
         },
         twitter: {
             card: 'summary_large_image',

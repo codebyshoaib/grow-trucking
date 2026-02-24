@@ -31,15 +31,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         }
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.growtrucking.com'
+    const canonicalUrl = `${baseUrl}/truck-type/${slug}`
+
     return {
         title: truckType.metaTitle,
         description: truckType.metaDescription,
         keywords: truckType.keywords.join(', '),
+        alternates: {
+            canonical: canonicalUrl,
+        },
         openGraph: {
             title: truckType.metaTitle,
             description: truckType.metaDescription,
             images: [truckType.heroImage],
             type: 'website',
+            url: canonicalUrl,
         },
         twitter: {
             card: 'summary_large_image',
@@ -58,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  */
 export default async function TruckTypePageRoute({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
-    
+
     // If URL doesn't have -dispatch-service suffix, redirect to the version with it
     if (!slug.endsWith('-dispatch-service')) {
         const truckType = TruckTypeRegistry.getBySlug(slug as TruckTypeSlug)
@@ -68,7 +75,7 @@ export default async function TruckTypePageRoute({ params }: { params: Promise<{
         }
         notFound()
     }
-    
+
     // Strip "-dispatch-service" suffix from URL parameter
     const actualSlug = slug.replace(/-dispatch-service$/, '')
     const truckType = TruckTypeRegistry.getBySlug(actualSlug as TruckTypeSlug)

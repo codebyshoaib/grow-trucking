@@ -14,9 +14,27 @@ const ibmPlexSans = IBM_Plex_Sans({
   preload: true,
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.growtrucking.com"
+
 export const metadata: Metadata = {
-  title: "Grow Trucking",
-  description: "Truck Dispatch Services",
+  title: "Grow Trucking | Professional Truck Dispatch Services",
+  description: "Professional truck dispatch services for owner-operators, small fleets, and independent truck drivers across the USA. We handle load finding, rate negotiation, trip planning, and broker relationships.",
+  metadataBase: new URL(baseUrl),
+  alternates: {
+    canonical: baseUrl,
+  },
+  openGraph: {
+    title: "Grow Trucking | Professional Truck Dispatch Services",
+    description: "Professional truck dispatch services for owner-operators, small fleets, and independent truck drivers across the USA.",
+    url: baseUrl,
+    siteName: "Grow Trucking",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Grow Trucking | Professional Truck Dispatch Services",
+    description: "Professional truck dispatch services for owner-operators, small fleets, and independent truck drivers across the USA.",
+  },
 };
 
 export default function RootLayout({

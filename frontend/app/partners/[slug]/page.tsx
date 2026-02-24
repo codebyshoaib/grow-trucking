@@ -29,14 +29,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         }
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.growtrucking.com'
+    const canonicalUrl = `${baseUrl}/partners/${slug}`
+
     return {
         title: partner.metaTitle,
         description: partner.metaDescription,
         keywords: partner.keywords.join(', '),
+        alternates: {
+            canonical: canonicalUrl,
+        },
         openGraph: {
             title: partner.metaTitle,
             description: partner.metaDescription,
             type: 'website',
+            url: canonicalUrl,
         },
         twitter: {
             card: 'summary',
