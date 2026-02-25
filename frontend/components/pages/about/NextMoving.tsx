@@ -64,7 +64,7 @@ export default function NextMoving() {
                     <div className="lg:w-1/3 relative">
                         <div className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-full w-full">
                             <Image
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                src="/case-studies/truck1.webp"
                                 alt="Business meeting with handshake"
                                 fill
                                 className="object-cover grayscale"

@@ -15,7 +15,7 @@ export default function OurVision() {
                             {/* Bottom Left Image */}
                             <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    src="/case-studies/truck11.webp"
                                     alt="Business Growth"
                                     fill
                                     className="object-cover"
@@ -25,7 +25,7 @@ export default function OurVision() {
                             {/* Bottom Right Image */}
                             <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    src="/case-studies/truck12.webp"
                                     alt="Strategic Planning"
                                     fill
                                     className="object-cover"

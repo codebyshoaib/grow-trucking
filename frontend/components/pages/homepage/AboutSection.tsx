@@ -36,7 +36,7 @@ export default function AboutSection() {
                         <div className="relative z-10 p-4 bg-white rounded-3xl shadow-sm border border-gray-100">
                             <div className="rounded-2xl overflow-hidden aspect-[4/3]">
                                 <img
-                                    src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                                    src="/about-partners/JBhunt-growtrucking-logistics-partner-usa.webp.webp"
                                     alt="Trucking Logistics"
                                     className="w-full h-full object-cover"
                                 />

@@ -39,7 +39,7 @@ export default function AboutInfo() {
                             {/* Top Left - Laptop with Graph */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    src="/about-partners/JBhunt-growtrucking-logistics-partner-usa.webp.webp"
                                     alt="Data Analysis"
                                     fill
                                     className="object-cover"
@@ -49,7 +49,7 @@ export default function AboutInfo() {
                             {/* Top Right - Workspace */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    src="/case-studies/truck1.webp"
                                     alt="Modern Workspace"
                                     fill
                                     className="object-cover"
@@ -59,7 +59,7 @@ export default function AboutInfo() {
                             {/* Bottom Left - Sticky Notes */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    src="/case-studies/truck2.webp"
                                     alt="Brainstorming Session"
                                     fill
                                     className="object-cover"
@@ -69,7 +69,7 @@ export default function AboutInfo() {
                             {/* Bottom Right - Light Bulb */}
                             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    src="/case-studies/truck3.webp"
                                     alt="Innovation"
                                     fill
                                     className="object-cover"
