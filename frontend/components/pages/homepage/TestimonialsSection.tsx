@@ -4,83 +4,30 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import SchemaScript from '@/components/seo/SchemaScript'
-import { generateReviewSchema } from '@/lib/schema'
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Jenny Wilson",
-    role: "Fleet Owner",
-    location: "New York, America",
-    text: "I absolutely love Grow Trucking's dispatch service! From the warm welcome to the final load, everything was perfect. The Grow Trucking team really listened to what I wanted and made me feel so comfortable.",
-    image: "https://i.pravatar.cc/150?u=jenny"
-  },
-  {
-    id: 2,
-    name: "Esther Howard",
-    role: "Owner Operator",
-    location: "New York, America",
-    text: "Grow Trucking has transformed my business. Their dispatch service is exceptional - they find the best loads, negotiate great rates, and handle all the paperwork. My revenue has increased significantly since partnering with them.",
-    image: "https://i.pravatar.cc/150?u=esther"
-  },
-  {
-    id: 3,
-    name: "Wade Warren",
-    role: "Truck Driver",
-    location: "New York, America",
-    text: "Working with Grow Trucking has been a game-changer. They understand the trucking business and always find me profitable loads. The team is responsive, professional, and truly cares about my success.",
-    image: "https://i.pravatar.cc/150?u=wade"
-  },
-  {
-    id: 4,
-    name: "Guy Hawkins",
-    role: "Logistics Manager",
-    location: "Chicago, USA",
-    text: "Grow Trucking has been a game-changer for our fleet. Their attention to detail and proactive communication set them apart from any other dispatchers we've used. The free audit they provided showed us exactly where we were losing money.",
-    image: "https://i.pravatar.cc/150?u=guy"
-  }
-]
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { getFeaturedCaseStudies } from '@/constants/case-studies.config'
 
 export default function TestimonialsSection() {
+  const caseStories = getFeaturedCaseStudies()
   const [index, setIndex] = useState(1) // Start with the second one as active (center)
 
   const next = () => {
-    setIndex((prev) => (prev + 1) % testimonials.length)
+    setIndex((prev) => (prev + 1) % caseStories.length)
   }
 
   const prev = () => {
-    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    setIndex((prev) => (prev - 1 + caseStories.length) % caseStories.length)
   }
-
-  // Generate Review Schema
-  const reviewSchema = generateReviewSchema(
-    testimonials.map((testimonial) => ({
-      author: {
-        name: testimonial.name,
-        jobTitle: testimonial.role,
-      },
-      reviewBody: testimonial.text,
-      reviewRating: {
-        ratingValue: 5,
-        bestRating: 5,
-      },
-    })),
-    {
-      ratingValue: 5, // Aggregate rating
-      reviewCount: testimonials.length,
-    },
-    "Grow Trucking"
-  )
 
   return (
     <section className="py-24 bg-gray-50 overflow-hidden">
-      <SchemaScript schema={reviewSchema} />
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <Badge>TESTIMONIALS</Badge>
-          <h3 className="text-3xl md:text-5xl font-black text-black tracking-tight mt-4">
-            What Our Client Say!
+          <Badge>CASE STORIES</Badge>
+          <h3 className="text-3xl md:text-5xl font-black tracking-tight mt-4">
+            <span className="text-secondary">Real Driver</span>{' '}
+            <span className="text-primary">Success Stories</span>
           </h3>
         </div>
 
@@ -104,13 +51,13 @@ export default function TestimonialsSection() {
           <div className="flex items-center justify-center gap-6 py-10 overflow-visible">
             <AnimatePresence mode="popLayout" initial={false}>
               {[-1, 0, 1].map((offset) => {
-                const itemIndex = (index + offset + testimonials.length) % testimonials.length
-                const item = testimonials[itemIndex]
+                const itemIndex = (index + offset + caseStories.length) % caseStories.length
+                const story = caseStories[itemIndex]
                 const isActive = offset === 0
 
                 return (
                   <motion.div
-                    key={`${item.id}-${offset}`}
+                    key={`${story.id}-${offset}`}
                     initial={{ opacity: 0, scale: 0.8, x: offset * 100 }}
                     animate={{
                       opacity: isActive ? 1 : 0.4,
@@ -126,22 +73,38 @@ export default function TestimonialsSection() {
                       <Quote className="w-10 h-10 text-primary opacity-50" />
                     </div>
 
-                    <p className="text-gray-600 mb-8 leading-relaxed italic">
-                      "{item.text}"
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      {story.summary}
                     </p>
 
-                    <div className="mt-auto pt-6 border-t border-gray-100 flex items-center gap-4">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-12 h-12 rounded-full object-cover grayscale"
-                      />
-                      <div>
-                        <h4 className="font-black text-black">{item.name}</h4>
-                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">
-                          {item.location}
+                    <div className="mb-4">
+                      <div className="text-lg font-black text-primary mb-1">
+                        {story.revenueIncrease}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        RPM: {story.rpmBefore} → <span className="font-semibold text-gray-900">{story.rpmAfter}/mile</span>
+                      </div>
+                    </div>
+
+                    <div className="mt-auto pt-6 border-t border-gray-100">
+                      <div className="mb-4">
+                        <h4 className="font-black text-black mb-1">{story.driverName}</h4>
+                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">
+                          {story.lane}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {story.equipmentBadge}
                         </p>
                       </div>
+                      <Link href={`/case-studies/${story.slug}`}>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="w-full text-xs font-semibold border-primary text-primary hover:bg-primary hover:text-white"
+                        >
+                          Read Case Study
+                        </Button>
+                      </Link>
                     </div>
                   </motion.div>
                 )
@@ -152,7 +115,7 @@ export default function TestimonialsSection() {
 
         {/* Pagination Dots */}
         <div className="flex justify-center gap-2 mt-12">
-          {testimonials.map((_, i) => (
+          {caseStories.map((_, i) => (
             <button
               key={i}
               onClick={() => setIndex(i)}

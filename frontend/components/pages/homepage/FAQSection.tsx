@@ -95,8 +95,9 @@ export default function FAQSection() {
                     <div className="space-y-8">
                         <div>
                             <Badge className="mb-4">FREQUENTLY ASKED QUESTIONS</Badge>
-                            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 leading-tight">
-                                Frequently ask <br /> questions
+                            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+                                <span className="text-secondary">Frequently Asked</span>{' '}
+                                <span className="text-primary">Questions</span>
                             </h2>
                             <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
                                 Get answers to common questions about Grow Trucking's dispatch services, pricing, and how we help owner-operators and small fleets maximize their revenue.

@@ -33,10 +33,9 @@ export default function WhyChooseUs() {
                 {/* Header Section */}
                 <div className="mb-12 lg:mb-16">
                     <Badge>WHY CHOOSE US</Badge>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black leading-tight mt-4">
-                        Why{' '}
-                        <span className="text-primary">Grow Trucking</span>{' '}
-                        is The Right Choice for You
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mt-4">
+                        <span className="text-secondary">Why Grow Trucking</span>{' '}
+                        <span className="text-primary">is The Right Choice</span>
                     </h2>
                 </div>
 
