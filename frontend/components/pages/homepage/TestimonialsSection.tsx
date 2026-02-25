@@ -81,18 +81,18 @@ export default function TestimonialsSection() {
           {/* Mobile Navigation Buttons */}
           <button
             onClick={prev}
-            className="md:hidden absolute left-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 hover:bg-primary hover:text-black transition-all flex"
+            className="md:hidden absolute left-2 z-20 w-5 h-5 items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 hover:bg-primary hover:text-black transition-all flex"
             aria-label="Previous case study"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={12} />
           </button>
 
           <button
             onClick={next}
-            className="md:hidden absolute right-2 z-20 w-10 h-10 items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 hover:bg-primary hover:text-black transition-all flex"
+            className="md:hidden absolute right-2 z-20 w-5 h-5 items-center justify-center rounded-full bg-white shadow-lg border border-gray-100 hover:bg-primary hover:text-black transition-all flex"
             aria-label="Next case study"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={12} />
           </button>
 
           {/* Cards Slider */}
