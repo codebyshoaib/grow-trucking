@@ -364,7 +364,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             iconPosition="left"
                             onClick={onClose}
                         >
-                            Sign Up
+                            Start Getting Loads
                         </Button>
                     </Link>
 

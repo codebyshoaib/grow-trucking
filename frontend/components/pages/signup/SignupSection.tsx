@@ -33,7 +33,7 @@ export default function SignupSection() {
                         </Link>
                     </div>
                     <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-3">
-                        Sign Up For Better Loads
+                        Start Getting Loads
                     </h2>
                     <p className="text-gray-700 text-base leading-relaxed">
                         Whether you operate locally, regionally, or nationwide, we have you covered! Contact us today to join our wide network.
