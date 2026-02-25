@@ -95,7 +95,7 @@ export default function WhyChooseUs() {
                                 icon={<ArrowRight className="w-5 h-5" />}
                                 iconPosition="right"
                             >
-                                <Link href="/contact">Book Free Consultation</Link>
+                                <Link href="/signup">Book Free Consultation</Link>
                             </Button>
                         </div>
                     </div>
