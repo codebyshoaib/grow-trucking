@@ -31,13 +31,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     return {
         title: `${caseStudy.driverName} - Case Study | Grow Trucking Dispatching`,
-        description: `${caseStudy.driverName} increased revenue by ${caseStudy.revenueIncrease} on the ${caseStudy.lane} lane. ${caseStudy.summary}`,
+        description: `${caseStudy.driverName} increased revenue by ${caseStudy.revenueIncrease} on the ${caseStudy.freightLane} lane. ${caseStudy.summary}`,
         alternates: {
             canonical: canonicalUrl,
         },
         openGraph: {
             title: `${caseStudy.driverName} - Case Study | Grow Trucking Dispatching`,
-            description: `${caseStudy.driverName} increased revenue by ${caseStudy.revenueIncrease} on the ${caseStudy.lane} lane.`,
+            description: `${caseStudy.driverName} increased revenue by ${caseStudy.revenueIncrease} on the ${caseStudy.freightLane} lane.`,
             type: 'website',
             url: canonicalUrl,
         },

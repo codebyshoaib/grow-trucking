@@ -143,7 +143,7 @@ export default function TestimonialsSection() {
                       <div className="mb-4">
                         <h4 className="font-black text-black mb-1">{story.driverName}</h4>
                         <p className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">
-                          {story.lane}
+                          {story.freightLane}
                         </p>
                         <p className="text-xs text-gray-500">
                           {story.equipmentBadge}

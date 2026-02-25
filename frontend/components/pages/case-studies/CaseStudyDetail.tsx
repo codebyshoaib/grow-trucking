@@ -35,7 +35,7 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                             {caseStudy.driverName}
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-200 mb-6">
-                            {caseStudy.lane} • {caseStudy.equipmentBadge}
+                            {caseStudy.freightLane} • {caseStudy.equipmentBadge}
                         </p>
                         <div className="flex flex-wrap gap-3 mb-8">
                             <p className="text-xl md:text-2xl text-gray-200 font-bold">

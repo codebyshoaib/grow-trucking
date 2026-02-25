@@ -169,7 +169,7 @@ export default function CaseStudiesPage() {
                                                         {study.driverName}
                                                     </h3>
                                                     <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-4 sm:mb-6">
-                                                        {study.lane} • {study.equipmentBadge}
+                                                        {study.freightLane} • {study.equipmentBadge}
                                                     </p>
 
                                                     <div className="mb-4 sm:mb-6">
@@ -255,7 +255,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
             <CardContent className="p-6 flex flex-col h-full">
                 <div className="mb-4">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{study.driverName}</h3>
-                    <p className="text-sm text-gray-600 mb-3">{study.lane}</p>
+                    <p className="text-sm text-gray-600 mb-3">{study.freightLane}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
                         <Badge className="bg-gray-100 text-gray-800">
                             {study.equipmentBadge}
