@@ -183,11 +183,6 @@ class SignupCreateSerializer(serializers.Serializer):
         max_length=255,
         help_text="Contact person email address"
     )
-    password = serializers.CharField(
-        min_length=8,
-        write_only=True,
-        help_text="Password (minimum 8 characters)"
-    )
 
     def validate(self, data):
         """Validate signup data based on signup type"""
@@ -259,10 +254,6 @@ class SignupCreateSerializer(serializers.Serializer):
             raise serializers.ValidationError({
                 'operation_area': 'Operation area is required.'
             })
-        if not data.get('password') or len(data.get('password', '')) < 8:
-            raise serializers.ValidationError({
-                'password': 'Password must be at least 8 characters long.'
-            })
         
         return data
 
@@ -277,12 +268,6 @@ class SignupCreateSerializer(serializers.Serializer):
         if not value or not value.strip():
             raise serializers.ValidationError("Last name is required.")
         return value.strip()
-
-    def validate_password(self, value):
-        """Custom validation for password"""
-        if len(value) < 8:
-            raise serializers.ValidationError("Password must be at least 8 characters long.")
-        return value
 
 
 class SignupResponseSerializer(serializers.ModelSerializer):

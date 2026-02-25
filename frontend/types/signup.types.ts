@@ -29,8 +29,6 @@ export interface CompanySignupFormData {
   communicationMethod: string;
   email: string;
   // Common fields
-  password: string;
-  confirmPassword: string;
   agreeToTerms: boolean;
 }
 
@@ -55,8 +53,6 @@ export interface OwnerOperatorSignupFormData {
   communicationMethod: string;
   email: string;
   // Common fields
-  password: string;
-  confirmPassword: string;
   agreeToTerms: boolean;
 }
 
@@ -85,7 +81,6 @@ export interface CompanySignupSubmissionRequest {
   contact_number: string;
   communication_method: string;
   email: string;
-  password: string;
 }
 
 /**
@@ -108,7 +103,6 @@ export interface OwnerOperatorSignupSubmissionRequest {
   contact_number: string;
   communication_method: string;
   email: string;
-  password: string;
 }
 
 /**

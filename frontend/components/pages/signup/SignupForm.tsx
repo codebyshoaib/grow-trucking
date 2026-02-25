@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Send, Loader2, CheckCircle2, AlertCircle, Eye, EyeOff } from 'lucide-react'
+import { Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
 import { signupService } from '@/services/signup.service'
 import type { SignupFormData, CompanySignupFormData, OwnerOperatorSignupFormData, SignupType } from '@/types/signup.types'
 import { cn } from '@/lib/utils'
@@ -34,8 +34,6 @@ export default function SignupForm() {
         contactNumber: '',
         communicationMethod: '',
         email: '',
-        password: '',
-        confirmPassword: '',
         agreeToTerms: false
     })
     const [ownerFormData, setOwnerFormData] = useState<OwnerOperatorSignupFormData>({
@@ -53,8 +51,6 @@ export default function SignupForm() {
         contactNumber: '',
         communicationMethod: '',
         email: '',
-        password: '',
-        confirmPassword: '',
         agreeToTerms: false
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -63,8 +59,6 @@ export default function SignupForm() {
         message: string
     }>({ type: null, message: '' })
     const [fieldErrors, setFieldErrors] = useState<FormErrors>({})
-    const [showPassword, setShowPassword] = useState(false)
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
     const getFormData = (): SignupFormData => {
         return signupType === 'company' ? companyFormData : ownerFormData
@@ -102,8 +96,6 @@ export default function SignupForm() {
                         contactNumber: '',
                         communicationMethod: '',
                         email: '',
-                        password: '',
-                        confirmPassword: '',
                         agreeToTerms: false
                     })
                 } else {
@@ -122,8 +114,6 @@ export default function SignupForm() {
                         contactNumber: '',
                         communicationMethod: '',
                         email: '',
-                        password: '',
-                        confirmPassword: '',
                         agreeToTerms: false
                     })
                 }
@@ -145,7 +135,6 @@ export default function SignupForm() {
                             'last_name': 'lastName',
                             'email': 'email',
                             'phone': 'phone',
-                            'password': 'password',
                             'company_name': 'companyName',
                             'company_email': 'companyEmail',
                             'company_contact_number': 'companyContactNumber',
@@ -804,8 +793,6 @@ export default function SignupForm() {
     )
 
     const currentFormData = getFormData()
-    const password = signupType === 'company' ? companyFormData.password : ownerFormData.password
-    const confirmPassword = signupType === 'company' ? companyFormData.confirmPassword : ownerFormData.confirmPassword
     const agreeToTerms = signupType === 'company' ? companyFormData.agreeToTerms : ownerFormData.agreeToTerms
 
     return (
@@ -846,69 +833,6 @@ export default function SignupForm() {
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 flex-1 flex flex-col">
                 {/* Render appropriate form based on type */}
                 {signupType === 'company' ? renderCompanyForm() : renderOwnerOperatorForm()}
-
-                {/* Password Fields - Common for both */}
-                <div className="flex gap-3 md:gap-4 flex-col lg:flex-row">
-                    <div className="flex-1">
-                        <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
-                            Password
-                        </label>
-                        <div className="relative">
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                id="password"
-                                name="password"
-                                value={password}
-                                onChange={signupType === 'company' ? handleCompanyChange : handleOwnerChange}
-                                className={cn(
-                                    "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 pr-12 md:pr-10 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
-                                    fieldErrors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
-                                )}
-                                placeholder="Minimum 8 characters"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 p-1.5 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
-                                aria-label={showPassword ? 'Hide password' : 'Show password'}
-                            >
-                                {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
-                            </button>
-                        </div>
-                        {fieldErrors.password && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.password}</p>}
-                    </div>
-
-                    <div className="flex-1">
-                        <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-1.5 md:mb-2">
-                            Confirm Password
-                        </label>
-                        <div className="relative">
-                            <input
-                                type={showConfirmPassword ? 'text' : 'password'}
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                value={confirmPassword}
-                                onChange={signupType === 'company' ? handleCompanyChange : handleOwnerChange}
-                                className={cn(
-                                    "w-full bg-gray-50 border rounded-lg px-4 py-3.5 md:py-3 pr-12 md:pr-10 text-base md:text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all",
-                                    fieldErrors.confirmPassword ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20' : 'border-gray-200'
-                                )}
-                                placeholder="Re-enter password"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 p-1.5 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
-                                aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-                            >
-                                {showConfirmPassword ? <EyeOff size={22} /> : <Eye size={22} />}
-                            </button>
-                        </div>
-                        {fieldErrors.confirmPassword && <p className="text-xs md:text-xs text-red-600 mt-1">{fieldErrors.confirmPassword}</p>}
-                    </div>
-                </div>
 
                 {/* Terms and Conditions */}
                 <div className="flex items-start gap-3 md:gap-2">

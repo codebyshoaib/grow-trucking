@@ -147,9 +147,6 @@ class SignupSubmissionService:
                     'owner_email': ['A signup with this owner email already exists.']
                 })
         
-        # Extract password before creating signup (stored but not used for User creation)
-        password = validated_data.pop('password')
-        
         # Prepare signup data
         signup_data = {
             'signup_type': validated_data.get('signup_type'),

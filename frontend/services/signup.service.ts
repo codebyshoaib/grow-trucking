@@ -44,7 +44,6 @@ export class SignupService {
         contact_number: companyData.contactNumber.trim(),
         communication_method: companyData.communicationMethod,
         email: companyData.email.trim().toLowerCase(),
-        password: companyData.password,
       } as CompanySignupSubmissionRequest;
     } else {
       const ownerData = formData as OwnerOperatorSignupFormData;
@@ -63,7 +62,6 @@ export class SignupService {
         contact_number: ownerData.contactNumber.trim(),
         communication_method: ownerData.communicationMethod,
         email: ownerData.email.trim().toLowerCase(),
-        password: ownerData.password,
       } as OwnerOperatorSignupSubmissionRequest;
     }
   }
@@ -74,18 +72,6 @@ export class SignupService {
    */
   private validateFormData(formData: SignupFormData): void {
     // Common validations
-    if (!formData.password) {
-      throw new Error('Password is required');
-    }
-
-    if (formData.password.length < 8) {
-      throw new Error('Password must be at least 8 characters long');
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      throw new Error('Passwords do not match');
-    }
-
     if (!formData.agreeToTerms) {
       throw new Error('You must agree to the terms and conditions');
     }
