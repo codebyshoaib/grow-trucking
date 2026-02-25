@@ -11,6 +11,28 @@ import { ArrowRight, TrendingUp, Search, Phone, FileText, FileText as CaseStudyI
 import { caseStudies, type CaseStudy } from '@/constants/case-studies.config'
 import CTASection from '../about/CTASection'
 
+// Map case study IDs to images from the case-studies folder for featured carousel
+const getCaseStudyImage = (id: string): string => {
+    const imageMap: Record<string, string> = {
+        '1': '/case-studies/truck1.webp',
+        '2': '/case-studies/truck2.webp',
+        '3': '/case-studies/truck3.webp',
+        '4': '/case-studies/truck5.webp',
+        '5': '/case-studies/truck6.webp',
+        '6': '/case-studies/truck7.webp',
+        '7': '/case-studies/truck8.webp',
+        '8': '/case-studies/truck9.webp',
+        '9': '/case-studies/truck11.webp',
+        '10': '/case-studies/truck12.webp',
+        '11': '/case-studies/truck8.webp',
+        '12': '/case-studies/truck3.webp',
+        '13': '/case-studies/truck5.webp',
+        '14': '/case-studies/truck10.webp',
+        '15': '/case-studies/truck11.webp',
+    }
+    return imageMap[id] || '/case-studies/truck1.webp'
+}
+
 export default function CaseStudiesPage() {
     const [currentFeaturedIndex, setCurrentFeaturedIndex] = useState(0)
 
@@ -32,7 +54,7 @@ export default function CaseStudiesPage() {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
                     style={{
-                        backgroundImage: 'url(/about-partners/JBhunt-growtrucking-logistics-partner-usa.webp.webp)'
+                        backgroundImage: 'url(/case-studies/truck19.webp)'
                     }}
                 />
                 {/* Overlay for better text readability */}
@@ -156,7 +178,7 @@ export default function CaseStudiesPage() {
                                             <div
                                                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                                                 style={{
-                                                    backgroundImage: 'url(/about-partners/JBhunt-growtrucking-logistics-partner-usa.webp.webp)'
+                                                    backgroundImage: `url(${getCaseStudyImage(study.id)})`
                                                 }}
                                             />
                                             {/* Overlay */}

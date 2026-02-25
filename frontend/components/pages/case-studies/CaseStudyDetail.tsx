@@ -11,6 +11,28 @@ interface CaseStudyDetailProps {
     caseStudy: CaseStudy
 }
 
+// Map case study IDs to images from the case-studies folder
+const getCaseStudyImage = (id: string): string => {
+    const imageMap: Record<string, string> = {
+        '1': '/case-studies/truck1.webp',
+        '2': '/case-studies/truck2.webp',
+        '3': '/case-studies/truck3.webp',
+        '4': '/case-studies/truck5.webp',
+        '5': '/case-studies/truck6.webp',
+        '6': '/case-studies/truck7.webp',
+        '7': '/case-studies/truck8.webp',
+        '8': '/case-studies/truck9.webp',
+        '9': '/case-studies/truck11.webp',
+        '10': '/case-studies/truck5.webp',
+        '11': '/case-studies/truck3.webp',
+        '12': '/case-studies/truck9.webp',
+        '13': '/case-studies/truck5.webp',
+        '14': '/case-studies/truck8.webp',
+        '15': '/case-studies/truck6.webp',
+    }
+    return imageMap[id] || '/case-studies/truck1.webp'
+}
+
 export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
     return (
         <main className="min-h-screen bg-white">
@@ -20,7 +42,7 @@ export default function CaseStudyDetail({ caseStudy }: CaseStudyDetailProps) {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
                     style={{
-                        backgroundImage: 'url(/about-partners/JBhunt-growtrucking-logistics-partner-usa.webp.webp)'
+                        backgroundImage: `url(${getCaseStudyImage(caseStudy.id)})`
                     }}
                 />
                 {/* Overlay for better text readability */}
