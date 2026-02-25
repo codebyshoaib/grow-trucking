@@ -205,7 +205,7 @@ export default function AboutExperience() {
                             and operational stability.
                         </div>
                         <Button className="mt-12" size="lg" icon={<ArrowUpRight className="w-5 h-5" />} iconPosition="left">
-                            <Link href="/contact">Book Free Consultation</Link>
+                            <Link href="/signup">Book Free Consultation</Link>
                         </Button>
                     </div>
                 </div>
