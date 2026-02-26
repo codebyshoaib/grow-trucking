@@ -5,6 +5,7 @@ import Preloader from "@/components/layout/Preloader";
 import SchemaScript from "@/components/seo/SchemaScript";
 import { generateOrganizationSchema } from "@/lib/schema";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
+import { getSocialMediaUrls } from "@/constants/social.config";
 
 const ibmPlexSans = IBM_Plex_Sans({
   weight: ["400", "500", "700"],
@@ -56,12 +57,7 @@ export default function RootLayout({
       email: process.env.NEXT_PUBLIC_COMPANY_EMAIL_ADDRESS || "info@growtrucking.com",
       areaServed: "US",
     },
-    sameAs: [
-      // social media URLs here when available
-      // "https://www.facebook.com/growtrucking",
-      // "https://www.linkedin.com/company/growtrucking",
-      // "https://www.youtube.com/@growtrucking",
-    ],
+    sameAs: getSocialMediaUrls(),
     address: process.env.NEXT_PUBLIC_COMPANY_STREET_ADDRESS ? {
       streetAddress: `${process.env.NEXT_PUBLIC_COMPANY_STREET_ADDRESS}${process.env.NEXT_PUBLIC_COMPANY_SUITE_NUMBER ? `, ${process.env.NEXT_PUBLIC_COMPANY_SUITE_NUMBER}` : ''}`,
       addressLocality: process.env.NEXT_PUBLIC_COMPANY_CITY || "",

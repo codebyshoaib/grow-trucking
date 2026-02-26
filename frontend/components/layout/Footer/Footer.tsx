@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import { Instagram, Linkedin, Twitter, Github, Phone, Building2, MailCheck } from 'lucide-react'
+import { Phone, Building2, MailCheck } from 'lucide-react'
 import Image from 'next/image'
+import { socialLinks } from '@/constants/social.config'
 
 const contactLinks = [
     {
@@ -36,12 +37,7 @@ const quickLinks = [
     { label: 'Contact', href: '/contact' },
 ]
 
-const socialLinks = [
-    { label: 'Twitter', href: '#', icon: Twitter },
-    { label: 'Instagram', href: '#', icon: Instagram },
-    { label: 'LinkedIn', href: '#', icon: Linkedin },
-    { label: 'GitHub', href: '#', icon: Github },
-]
+// Social links are imported from social.config.ts
 
 const legalLinks = [
     { label: 'Privacy Policy', href: '/privacy-policy' },

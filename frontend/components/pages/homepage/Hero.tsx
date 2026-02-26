@@ -2,13 +2,16 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Youtube, Linkedin, Facebook } from 'lucide-react'
 import { useModal } from '@/hooks/useModal'
 import ClaimModal from './ClaimModal'
+import { getSocialLinksByPlatform } from '@/constants/social.config'
 
 export default function Hero() {
     const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
     const { isOpen, open, close } = useModal();
+    
+    // Get social links for Hero section (LinkedIn, Facebook, and X/Twitter)
+    const heroSocialLinks = getSocialLinksByPlatform(['linkedin', 'facebook', 'twitter']);
 
     if (!videoUrl) {
         return null;
@@ -56,15 +59,21 @@ export default function Hero() {
                 <div className="absolute bottom-10 left-5 w-full px-6 md:px-12 flex justify-between items-center z-20">
                     <div className="flex items-center gap-6">
                         <div className="flex gap-4">
-                            <a href="#" className="text-primary hover:text-white transition-colors">
-                                <Youtube size={24} />
-                            </a>
-                            <a href="#" className="text-primary hover:text-white transition-colors">
-                                <Linkedin size={24} />
-                            </a>
-                            <a href="#" className="text-primary hover:text-white transition-colors">
-                                <Facebook size={24} />
-                            </a>
+                            {heroSocialLinks.map((social) => {
+                                const Icon = social.icon
+                                return (
+                                    <a 
+                                        key={social.platform}
+                                        href={social.href} 
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-primary hover:text-white transition-colors"
+                                        aria-label={social.label}
+                                    >
+                                        <Icon size={24} />
+                                    </a>
+                                )
+                            })}
                         </div>
                         <div className="hidden md:block h-[1px] w-32 bg-primary" />
                     </div>

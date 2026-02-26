@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 import { Building2, Check, Copy, Mail, Phone } from 'lucide-react'
+import Link from 'next/link'
+import { socialLinks } from '@/constants/social.config'
 
 /**
  * ContactInfoCards Component
@@ -122,6 +124,38 @@ export default function ContactInfoCards() {
                             ) : (
                                 <span className="text-gray-500 text-sm">Not available</span>
                             )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Social Media Links Card */}
+            <div className="min-h-32 items-center flex group bg-white rounded-xl p-4 border border-gray-200 hover:border-primary/30 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
+                <div className="flex items-start gap-4 w-full">
+                    <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                        <h3 className="font-bold text-gray-800 mb-3 text-base">Follow Us</h3>
+                        <div className="flex flex-wrap items-center gap-3">
+                            {socialLinks.map((social) => {
+                                const Icon = social.icon
+                                return (
+                                    <Link
+                                        key={social.platform}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-50 hover:bg-primary hover:text-white transition-colors group/item"
+                                        aria-label={social.label}
+                                    >
+                                        <Icon className="w-4 h-4 text-gray-600 group-hover/item:text-white transition-colors" />
+                                        <span className="text-xs font-medium text-gray-700 group-hover/item:text-white transition-colors">
+                                            {social.label}
+                                        </span>
+                                    </Link>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
