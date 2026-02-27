@@ -52,7 +52,7 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Rate per Mile', before: '$2.00/mile', after: '$2.65/mile' },
       { label: 'Weekly Revenue', before: '$1,820', after: '$5,375' },
       { label: 'Empty Miles', before: '340 miles/week', after: '48 miles/week' },
-      { label: 'Detention Hours', before: '4+ hours daily', after: 'Under 30 min' },
+      { label: 'Waiting Hours', before: '4+ hours daily', after: 'Under 30 min' },
     ],
   },
   {
@@ -77,7 +77,7 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Rate per Mile', before: '$1.95/mile', after: '$2.80/mile' },
       { label: 'Weekly Net Income', before: '-$105 (loss)', after: '+$2,225 profit' },
       { label: 'Fuel Cost/Trip', before: '$980', after: '$740' },
-      { label: 'Loads per Month', before: '6 loads', after: '9 loads' },
+      { label: 'Loads per Week', before: '6 loads', after: '9 loads' },
     ],
   },
   {
@@ -100,7 +100,7 @@ export const caseStudies: CaseStudy[] = [
     routeOptimization: 'Optimized I-95 corridor with pre-cleared weigh station passes via PrePass and scheduled rest stops aligned with ELD clock management, recovering 45 minutes of drive time per trip.',
     metrics: [
       { label: 'Broker Relationships', before: 'None (spot board)', after: '4 dedicated shippers' },
-      { label: 'Average Rate', before: '$1,850/trip', after: '$3,200/trip' },
+      { label: 'Average Rate', before: '$1,850/trip', after: '$2,500/trip' },
       { label: 'Fuel Surcharge Recovery', before: '$0/year', after: '$4,800/year' },
       { label: 'Weekly Hours Searching', before: '14 hours', after: '1 hour' },
     ],
