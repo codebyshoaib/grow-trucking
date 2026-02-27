@@ -54,7 +54,7 @@ export default function CaseStudiesPage() {
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
                     style={{
-                        backgroundImage: 'url(/case-studies/truck19.webp)'
+                        backgroundImage: 'url(/case-studies/truck11.webp)'
                     }}
                 />
                 {/* Overlay for better text readability */}
