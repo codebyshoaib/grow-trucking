@@ -9,7 +9,7 @@
   "longDescription": "Maryland is a critical freight hub with diverse freight opportunities. Our dispatch services connect carriers with premium loads across Maryland's extensive highway network.",
   "overview": "Maryland offers diverse freight opportunities with strong demand for dry van, reefer, and flatbed services.",
   "marketOverview": "Maryland's freight market is competitive with high demand for various freight types. Rates are typically competitive with national averages.",
-  "averageRates": "Average rates range from $2.00-$2.40 per mile for dry van, $2.20-$2.60 for reefer, and $2.30-$2.70 for flatbed depending on route and season.",
+  "averageRates": "Average rates range from $2.40-$3.00 per mile for dry van, $2.40-$3.00 for reefer, and $2.40-$3.00 for flatbed depending on route and season.",
   "marketTrends": [
     "Strong demand for regional and cross-country routes",
     "Seasonal peaks during harvest and holiday seasons",
@@ -177,17 +177,17 @@
       {
         "name": "Baltimore to Chicago",
         "description": "Strong return lane with consistent freight",
-        "rate": "$2.25 - $3.41"
+        "rate": "$2.40 - $3.00"
       },
       {
         "name": "Baltimore to Dallas",
         "description": "Strong return lane with consistent freight",
-        "rate": "$2.81 - $3.89"
+        "rate": "$2.40 - $3.00"
       },
       {
         "name": "Baltimore to Atlanta",
         "description": "Strong return lane with consistent freight",
-        "rate": "$2.23 - $3.43"
+        "rate": "$2.40 - $3.00"
       }
     ],
     "positioningStrategies": [
@@ -267,8 +267,8 @@
       "destination": "Chicago",
       "distance": "1733 miles",
       "averageTransitTime": "2-2 days",
-      "averageRate": "$4099 - $4287",
-      "ratePerMile": "$2.25 - $3.41",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -378,8 +378,8 @@
       "destination": "Dallas",
       "distance": "997 miles",
       "averageTransitTime": "1-3 days",
-      "averageRate": "$3773 - $5387",
-      "ratePerMile": "$2.81 - $3.89",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -489,8 +489,8 @@
       "destination": "Atlanta",
       "distance": "877 miles",
       "averageTransitTime": "1-3 days",
-      "averageRate": "$3038 - $4917",
-      "ratePerMile": "$2.23 - $3.43",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -600,8 +600,8 @@
       "destination": "Houston",
       "distance": "1836 miles",
       "averageTransitTime": "1-3 days",
-      "averageRate": "$3271 - $4957",
-      "ratePerMile": "$2.67 - $3.68",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -711,8 +711,8 @@
       "destination": "Charlotte",
       "distance": "1414 miles",
       "averageTransitTime": "2-3 days",
-      "averageRate": "$2306 - $4764",
-      "ratePerMile": "$2.36 - $3.52",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -822,8 +822,8 @@
       "destination": "Indianapolis",
       "distance": "1783 miles",
       "averageTransitTime": "2-3 days",
-      "averageRate": "$3672 - $5072",
-      "ratePerMile": "$2.32 - $3.61",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -933,8 +933,8 @@
       "destination": "Columbus",
       "distance": "1997 miles",
       "averageTransitTime": "3-3 days",
-      "averageRate": "$3182 - $4941",
-      "ratePerMile": "$2.42 - $3.78",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -1044,8 +1044,8 @@
       "destination": "Memphis",
       "distance": "595 miles",
       "averageTransitTime": "1-2 days",
-      "averageRate": "$2348 - $4913",
-      "ratePerMile": "$2.40 - $3.31",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -1155,8 +1155,8 @@
       "destination": "Kansas City",
       "distance": "1260 miles",
       "averageTransitTime": "2-2 days",
-      "averageRate": "$4450 - $4682",
-      "ratePerMile": "$2.93 - $3.03",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -1266,8 +1266,8 @@
       "destination": "Detroit",
       "distance": "1116 miles",
       "averageTransitTime": "1-3 days",
-      "averageRate": "$3048 - $4820",
-      "ratePerMile": "$2.90 - $3.63",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -1377,8 +1377,8 @@
       "destination": "Nashville",
       "distance": "855 miles",
       "averageTransitTime": "1-2 days",
-      "averageRate": "$3874 - $4535",
-      "ratePerMile": "$2.61 - $3.15",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -1488,8 +1488,8 @@
       "destination": "Philadelphia",
       "distance": "1997 miles",
       "averageTransitTime": "1-3 days",
-      "averageRate": "$1565 - $5475",
-      "ratePerMile": "$2.94 - $3.32",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -1599,8 +1599,8 @@
       "destination": "Minneapolis",
       "distance": "1807 miles",
       "averageTransitTime": "3-2 days",
-      "averageRate": "$1842 - $4965",
-      "ratePerMile": "$2.63 - $3.02",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -1710,8 +1710,8 @@
       "destination": "St. Louis",
       "distance": "1067 miles",
       "averageTransitTime": "1-2 days",
-      "averageRate": "$4234 - $5014",
-      "ratePerMile": "$2.97 - $3.49",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
@@ -1821,8 +1821,8 @@
       "destination": "Phoenix",
       "distance": "1947 miles",
       "averageTransitTime": "1-2 days",
-      "averageRate": "$2571 - $4788",
-      "ratePerMile": "$2.41 - $3.06",
+      "averageRate": "$11,520 - $14,400",
+      "ratePerMile": "$2.40 - $3.00",
       "loadFrequency": "Daily",
       "peakSeasons": [
         "Spring",
