@@ -5,11 +5,12 @@ import { Button } from '@/components/ui/button'
 import { useModal } from '@/hooks/useModal'
 import ClaimModal from './ClaimModal'
 import { getSocialLinksByPlatform } from '@/constants/social.config'
+import { Badge } from '@/components/ui/badge'
 
 export default function Hero() {
     const videoUrl = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
     const { isOpen, open, close } = useModal();
-    
+
     // Get social links for Hero section (LinkedIn, Facebook, and X/Twitter)
     const heroSocialLinks = getSocialLinksByPlatform(['linkedin', 'facebook', 'twitter']);
 
@@ -38,8 +39,9 @@ export default function Hero() {
 
                 <div className="container mx-auto px-6 relative z-20">
                     <div className="max-w-4xl">
-                        <h1 className="text-6xl uppercase md:text-8xl font-bold text-white mb-6 drop-shadow-2xl">
-                            Grow Trucking - Your reliable partner
+                        <span className="mb-4 text-primary text 3xl md:text-5xl font-bold uppercase"> Grow Trucking </span>
+                        <h1 className="mt-4 text-5xl uppercase md:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
+                            Your reliable partner
                         </h1>
                         <p className="text-base md:text-xl text-white font-medium mb-10 max-w-xl leading-relaxed drop-shadow-lg">
                             Grow Trucking provides high quality truck dispatch services for owner-operators, small fleets, and independent truck drivers across the USA.
@@ -62,9 +64,9 @@ export default function Hero() {
                             {heroSocialLinks.map((social) => {
                                 const Icon = social.icon
                                 return (
-                                    <a 
+                                    <a
                                         key={social.platform}
-                                        href={social.href} 
+                                        href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-primary hover:text-white transition-colors"

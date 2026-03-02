@@ -744,12 +744,10 @@ export class TruckTypeRegistry {
                 ],
                 specificationsDescription: 'Box trucks come in various sizes, each suited for different freight types and operational needs:',
                 marketRates: [
-                    { routeType: 'Last-Mile Delivery', ratePerMile: '$35-$65 per stop', averageLoadValue: '$280-$520 (8-10 stops)' },
-                    { routeType: 'Amazon Delivery Partner', ratePerMile: '$180-$220 per route', averageLoadValue: '$180-$220 (1 route/day)' },
-                    { routeType: 'Furniture/Appliance', ratePerMile: '$1.50-$2.50/mile + $45-$85/stop', averageLoadValue: '$350-$650 per day' },
-                    { routeType: 'Expedited Freight', ratePerMile: '$2.00-$3.50 per mile', averageLoadValue: '$400-$700 per day' },
-                    { routeType: 'Local Courier (Hourly)', ratePerMile: '$45-$75 per hour', averageLoadValue: '$360-$600 (8 hours)' },
-                    { routeType: 'Moving Services', ratePerMile: '$95-$175 per hour', averageLoadValue: '$760-$1,400 (8 hours)' }
+                    { routeType: 'Furniture/Appliance', ratePerMile: '$1.50-$2.50 + $45-$85', averageLoadValue: '$350-$650' },
+                    { routeType: 'Expedited Freight', ratePerMile: '$2.00-$3.50', averageLoadValue: '$400-$700' },
+                    { routeType: 'Local Courier (Hourly)', ratePerMile: '$45-$75 ', averageLoadValue: '$360-$600' },
+                    { routeType: 'Moving Services', ratePerMile: '$95-$175', averageLoadValue: '$760-$1,400 ' }
                 ],
                 marketRatesDescription: 'Box truck rates vary significantly based on service type and market demand:',
                 highDemandLanes: [
