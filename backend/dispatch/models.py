@@ -199,8 +199,8 @@ class Claim(models.Model):
         db_index=True
     )
     phone = models.CharField(max_length=20, blank=True, null=True)
-    company_name = models.CharField(max_length=255, db_index=True)
-    preferred_route = models.CharField(max_length=255)
+    company_name = models.CharField(max_length=255, blank=True, null=True, db_index=True)
+    preferred_route = models.CharField(max_length=255, blank=True, null=True)
     age_of_mc_authority = models.IntegerField()
     
     # Metadata

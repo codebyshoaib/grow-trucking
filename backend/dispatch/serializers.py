@@ -349,13 +349,19 @@ class ClaimCreateSerializer(serializers.ModelSerializer):
     )
     company_name = serializers.CharField(
         max_length=255,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
         trim_whitespace=True,
-        help_text="Company name"
+        help_text="Company name (optional)"
     )
     preferred_route = serializers.CharField(
         max_length=255,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
         trim_whitespace=True,
-        help_text="Preferred route"
+        help_text="Preferred route (optional)"
     )
     age_of_mc_authority = serializers.IntegerField(
         min_value=0,
@@ -368,8 +374,6 @@ class ClaimCreateSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'full_name': {'required': True},
             'email': {'required': True},
-            'company_name': {'required': True},
-            'preferred_route': {'required': True},
             'age_of_mc_authority': {'required': True},
         }
 
@@ -381,15 +385,15 @@ class ClaimCreateSerializer(serializers.ModelSerializer):
 
     def validate_company_name(self, value):
         """Custom validation for company name"""
-        if not value or not value.strip():
-            raise serializers.ValidationError("Company name is required.")
-        return value.strip()
+        if value:
+            return value.strip()
+        return value
 
     def validate_preferred_route(self, value):
         """Custom validation for preferred route"""
-        if not value or not value.strip():
-            raise serializers.ValidationError("Preferred route is required.")
-        return value.strip()
+        if value:
+            return value.strip()
+        return value
 
     def validate_age_of_mc_authority(self, value):
         """Custom validation for age of MC authority"""

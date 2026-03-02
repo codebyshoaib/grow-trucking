@@ -18,8 +18,6 @@ export interface ClaimFormData {
   fullName: string;
   email: string;
   phone?: string;
-  companyName: string;
-  preferredRoute: string;
   ageOfMCAuthority: number;
 }
 
@@ -27,8 +25,6 @@ export interface ClaimSubmissionRequest {
   full_name: string;
   email: string;
   phone?: string | null;
-  company_name: string;
-  preferred_route: string;
   age_of_mc_authority: number;
 }
 
@@ -37,8 +33,8 @@ export interface ClaimResponse {
   full_name: string;
   email: string;
   phone?: string | null;
-  company_name: string;
-  preferred_route: string;
+  company_name?: string | null;
+  preferred_route?: string | null;
   age_of_mc_authority: number;
   created_at: string;
 }

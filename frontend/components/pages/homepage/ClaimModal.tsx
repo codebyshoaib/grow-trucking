@@ -32,8 +32,6 @@ export default function ClaimModal({ isOpen, onClose }: ClaimModalProps) {
         fullName: '',
         email: '',
         phone: '',
-        companyName: '',
-        preferredRoute: '',
         ageOfMCAuthority: 0
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -58,7 +56,7 @@ export default function ClaimModal({ isOpen, onClose }: ClaimModalProps) {
                     message: result.message || 'Your claim request has been submitted successfully!'
                 })
                 // Reset form after successful submission
-                setFormData({ fullName: '', email: '', phone: '', companyName: '', preferredRoute: '', ageOfMCAuthority: 0 })
+                setFormData({ fullName: '', email: '', phone: '', ageOfMCAuthority: 0 })
 
                 // Auto-close modal after 2 seconds on success
                 setTimeout(() => {
@@ -79,8 +77,6 @@ export default function ClaimModal({ isOpen, onClose }: ClaimModalProps) {
                             'full_name': 'fullName',
                             'email': 'email',
                             'phone': 'phone',
-                            'company_name': 'companyName',
-                            'preferred_route': 'preferredRoute',
                             'age_of_mc_authority': 'ageOfMCAuthority'
                         }
                         const frontendField = fieldMap[key] || key
@@ -117,7 +113,7 @@ export default function ClaimModal({ isOpen, onClose }: ClaimModalProps) {
 
     const handleClose = () => {
         // Reset form and status when closing
-        setFormData({ fullName: '', email: '', phone: '', companyName: '', preferredRoute: '', ageOfMCAuthority: 0 })
+        setFormData({ fullName: '', email: '', phone: '', ageOfMCAuthority: 0 })
         setSubmitStatus({ type: null, message: '' })
         setFieldErrors({})
         onClose()
@@ -214,65 +210,13 @@ export default function ClaimModal({ isOpen, onClose }: ClaimModalProps) {
                             <p className="text-xs text-red-600 mt-1">{fieldErrors.phone}</p>
                         )}
                     </div>
-
-                    {/* Message Field */}
-                    <div>
-                        <label
-                            htmlFor="companyName"
-                            className="block text-sm font-semibold text-gray-700 mb-2"
-                        >
-                            Company Name
-                        </label>
-                        < input
-                            type="text"
-                            id="companyName"
-                            name="companyName"
-                            value={formData.companyName}
-                            onChange={handleChange}
-                            className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.companyName
-                                ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                : 'border-gray-200'
-                                }`}
-                            placeholder="Your company name"
-                            required
-                        />
-                        {fieldErrors.companyName && (
-                            <p className="text-xs text-red-600 mt-1">{fieldErrors.companyName}</p>
-                        )}
-                    </div>
-
-                    {/* Preferred Route Field */}
-                    <div>
-                        <label
-                            htmlFor="preferredRoute"
-                            className="block text-sm font-semibold text-gray-700 mb-2"
-                        >
-                            Preferred Route
-                        </label>
-                        < input
-                            type="text"
-                            id="preferredRoute"
-                            name="preferredRoute"
-                            value={formData.preferredRoute}
-                            onChange={handleChange}
-                            className={`w-full bg-gray-50 border rounded-lg px-4 py-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all ${fieldErrors.preferredRoute
-                                ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
-                                : 'border-gray-200'
-                                }`}
-                            placeholder="Your preferred route"
-                            required
-                        />
-                        {fieldErrors.preferredRoute && (
-                            <p className="text-xs text-red-600 mt-1">{fieldErrors.preferredRoute}</p>
-                        )}
-                    </div>
                     {/* Age of MC Authority Field */}
                     <div>
                         <label
                             htmlFor="ageOfMCAuthority"
                             className="block text-sm font-semibold text-gray-700 mb-2"
                         >
-                            Age of MC Authority (years)
+                            MC Authrority / DOT
                         </label>
 
                         <input

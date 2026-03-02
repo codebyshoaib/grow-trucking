@@ -23,8 +23,6 @@ export class ClaimService {
       full_name: formData.fullName.trim(),
       email: formData.email.trim().toLowerCase(),
       phone: formData.phone?.trim() || null,
-      company_name: formData.companyName.trim(),
-      preferred_route: formData.preferredRoute.trim(),
       age_of_mc_authority: formData.ageOfMCAuthority,
     };
   }
@@ -45,14 +43,6 @@ export class ClaimService {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
       throw new Error('Please enter a valid email address');
-    }
-
-    if (!formData.companyName?.trim()) {
-      throw new Error('Company name is required');
-    }
-
-    if (!formData.preferredRoute?.trim()) {
-      throw new Error('Preferred route is required');
     }
 
     if (formData.ageOfMCAuthority <= 0) {
