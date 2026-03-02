@@ -3,11 +3,11 @@ import PageBanner from '@/components/pages/PageBanner'
 export default function PartnersBanner() {
     return (
         <PageBanner
-            title="About Our Partners"
+            title="We Work With"
             description="Strategic partnerships with premier freight brokers to deliver exceptional freight opportunities and reliable capacity solutions"
             breadcrumbItems={[
                 { label: 'Home', href: '/' },
-                { label: 'About Our Partners', href: '/about-our-partners' }
+                { label: 'We Work With', href: '/about-our-partners' }
             ]}
             imageAlt="Partners Banner"
         />

@@ -22,6 +22,10 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
     const navItems: NavItem[] = [
 
         {
+            label: 'Home',
+            href: '/',
+        },
+        {
             label: 'About',
             href: '/about',
             hasSubmenu: true,
@@ -186,7 +190,7 @@ export default function HeaderNav({ isScrolled = false }: HeaderNavProps) {
                                                     </li>
                                                 ))}
                                             </ul>
-                                            {/* Right column - Partners in 2-column grid (only show when hovering "About Our Partners") */}
+                                            {/* Right column - Partners in 2-column grid (only show when hovering "We Work With") */}
                                             {activePartners.length > 0 && (
                                                 <ul className="flex-1 p-2 min-h-[200px] grid grid-cols-2 gap-0">
                                                     {activePartners.map((partner) => (

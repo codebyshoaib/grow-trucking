@@ -50,7 +50,7 @@ export const caseStudies: CaseStudy[] = [
     routeOptimization: 'I-65 South via Indianapolis, cutting 38 miles vs. the I-57 route Marcus used before. Fuel stop optimization saved an additional $44 per trip.',
     metrics: [
       { label: 'Rate per Mile', before: '$2.00/mile', after: '$2.65/mile' },
-      { label: 'Weekly Revenue', before: '$1,820', after: '$5,375' },
+      { label: 'Weekly Revenue', before: '$6,000', after: '$7,950' },
       { label: 'Empty Miles', before: '340 miles/week', after: '48 miles/week' },
       { label: 'Waiting Hours', before: '4+ hours daily', after: 'Under 30 min' },
     ],
@@ -75,6 +75,7 @@ export const caseStudies: CaseStudy[] = [
     routeOptimization: 'I-20 West with a permitted OD corridor through New Mexico. We arranged fuel discounts at 7 Flying J locations along the route, reducing fuel cost by $0.09/gallon.',
     metrics: [
       { label: 'Rate per Mile', before: '$1.95/mile', after: '$2.80/mile' },
+      { label: 'Weekly Revenue', before: '$5,850', after: '$8,400' },
       { label: 'Weekly Net Income', before: '-$105 (loss)', after: '+$2,225 profit' },
       { label: 'Fuel Cost/Trip', before: '$980', after: '$740' },
       { label: 'Loads per Week', before: '6 loads', after: '9 loads' },
@@ -123,6 +124,8 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Grow Trucking redesigned Linda\'s HOS strategy for solo operation — targeting shorter 550-650 mile days with premium regional shippers in tech equipment and aerospace components out of the Seattle metro. We also registered her authority with 3 freight marketplaces where our team vouched for her safety rating, immediately elevating her broker access.',
     routeOptimization: 'I-90 East through Spokane and I-84 South to Boise, then US-30 to Denver. This route avoided mountain grades near Snoqualmie Pass in winter, reducing tire wear cost by an estimated $800/year.',
     metrics: [
+      { label: 'Rate per Mile', before: '$2.10/mile', after: '$2.60/mile' },
+      { label: 'Weekly Revenue', before: '$6,300', after: '$7,800' },
       { label: 'Revenue vs. Team Era', before: '-40% ($3,200/wk)', after: '-8% ($4,850/wk)' },
       { label: 'Broker Tier Access', before: 'Entry level only', after: 'Preferred carrier status' },
       { label: 'Load Type', before: 'General commodity', after: 'Tech/Aerospace (premium)' },
@@ -148,9 +151,10 @@ export const caseStudies: CaseStudy[] = [
     routeOptimization: 'I-75 South to I-24 West to I-65 South, avoiding the I-57 corridor where weigh stations have caused significant delays for oversized automotive shipments. Saved average of 55 minutes per southbound trip.',
     metrics: [
       { label: 'Weeks to First Contract', before: 'Had no contacts', after: '3 days with Grow Trucking' },
+      { label: 'Rate per Mile', before: '$1.90/mile', after: '$2.90/mile' },
+      { label: 'Weekly Revenue', before: '$5,700', after: '$8,700' },
       { label: 'Weekly Gross Revenue', before: '$0 (starting out)', after: '$9,200/week' },
       { label: 'Truck Payment Coverage', before: 'Needed $7,000', after: '$9,200 — fully covered' },
-      { label: 'Rate per Mile', before: '$1.90/mile', after: '$2.90/mile' },
       { label: 'Rate Compared to Peers', before: 'Entry-level rates', after: 'Veteran premium rates' },
     ],
   },
@@ -172,6 +176,8 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Grow Trucking helped Aisha convert to linehaul freight contracts with two regional e-commerce fulfillment centers. We negotiated a linehaul rate, helped her transition insurance from commercial delivery to OTR cargo coverage saving $180/month, and onboarded her with a lumper service so she wasn\'t unloading freight herself.',
     routeOptimization: 'I-55 North to I-57 to I-70 West. Grow Trucking identified a preferred weigh station bypass for her weight class and arranged a fuel card with a 12-cent per gallon discount at Love\'s and Pilot locations on the route.',
     metrics: [
+      { label: 'Rate per Mile', before: '$2.00/mile', after: '$2.52/mile' },
+      { label: 'Weekly Revenue', before: '$6,000', after: '$7,560' },
       { label: 'Effective Hourly Rate', before: '$14/hour', after: '$38/hour' },
       { label: 'Weekly Hours Worked', before: '70 hours', after: '50 hours' },
       { label: 'Insurance Cost', before: '$1,240/month', after: '$1,060/month' },
@@ -196,6 +202,8 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Grow Trucking identified the hazmat premium opportunity immediately and re-engaged with chemical and industrial shippers who specifically need hazmat-endorsed drivers. Our compliance team helped Carlos file a DataQ challenge on one erroneous CSA violation, which was successfully removed. We also implemented a pre-trip route briefing system to avoid future violations.',
     routeOptimization: 'I-10 West to I-15 North. We flagged three historically problematic inspection sites on I-15 and provided Carlos with updated HOS documentation protocols that reduced his inspection time from 45 minutes to under 10 minutes at those locations.',
     metrics: [
+      { label: 'Rate per Mile', before: '$2.05/mile', after: '$2.70/mile' },
+      { label: 'Weekly Revenue', before: '$6,150', after: '$8,100' },
       { label: 'Rate Premium (Hazmat)', before: 'None claimed ($2.05/mi)', after: '+$0.65/mi ($2.70/mi)' },
       { label: 'CSA Score', before: '68 (restricted access)', after: '41 (preferred access)' },
       { label: 'Inspection Duration', before: '45 min average', after: 'Under 10 min' },
@@ -220,6 +228,8 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Grow Trucking took over all dispatch, broker communication, and paperwork for Tommy. We matched him with a consistent freight lane hauling lumber products from Oregon mills to Midwest distribution centers — a lane with predictable timing that let Tommy reclaim his evenings. Our team manages all check calls, detention disputes, and invoice follow-ups.',
     routeOptimization: 'I-84 East to I-15 North to I-90 East. Identified a seasonal routing adjustment in winter that avoids the Lookout Pass closure risk, rerouting via I-84/US-93 with only a 31-mile addition but eliminating a historically costly weather delay.',
     metrics: [
+      { label: 'Rate per Mile', before: '$1.95/mile', after: '$2.50/mile' },
+      { label: 'Weekly Revenue', before: '$5,850', after: '$7,500' },
       { label: 'Hours on Admin/Night', before: '3–4 hours', after: '0 hours' },
       { label: 'Near-Miss Safety Events', before: '2 in past quarter', after: '0 in 8 months' },
       { label: 'Revenue Change', before: '$5,100/week', after: '$5,850/week' },
@@ -246,7 +256,8 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       { label: 'Time to First Load', before: 'In crisis, 0 loads', after: '6 hours after onboarding' },
       { label: 'Shipper Dependency', before: '100% one client', after: '4 active broker relationships' },
-      { label: 'Weekly Revenue', before: '$0 (contract lost)', after: '$4,600/week' },
+      { label: 'Rate per Mile', before: '$2.00/mile', after: '$2.85/mile' },
+      { label: 'Weekly Revenue', before: '$6,000', after: '$8,550' },
       { label: 'Fuel Savings/Year', before: 'No program', after: '$2,900/year' },
     ],
   },
@@ -268,6 +279,8 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Grow Trucking repositioned Roy in the specialty liquid market — food-grade corn syrup and industrial lubricants between Midwest processing plants and Ohio manufacturers. We also pursued and successfully collected $3,100 of Roy\'s outstanding detention through our broker dispute escalation process. Going forward, all Roy\'s loads include Grow Trucking-enforced detention clauses.',
     routeOptimization: 'I-94 East to I-90 East. Identified a weight-optimized routing through Wisconsin that uses state-designated heavy haul corridors, avoiding permit requirements that had been adding $300 per trip unnecessarily.',
     metrics: [
+      { label: 'Rate per Mile', before: '$2.10/mile', after: '$2.95/mile' },
+      { label: 'Weekly Revenue', before: '$6,300', after: '$8,850' },
       { label: 'Load Type', before: 'General tanker ($2.10/mi)', after: 'Specialty liquid ($2.95/mi)' },
       { label: 'Detention Recovered', before: '$0 collected', after: '$3,100 recovered' },
       { label: 'Permit Costs', before: '$300/trip', after: '$0 (rerouted)' },
@@ -292,6 +305,8 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Grow Trucking redesigned their operations around a relay model — running the LA-to-Denver leg on one cycle and the Denver-to-NY leg on another, with a 48-hour home base in Denver (where they lived) between legs. This created a hub-and-spoke structure that maintained their high team earnings while giving them consistent home time and medical appointment windows.',
     routeOptimization: 'I-15 North to I-70 East (LA-Denver), then I-70 East to I-76 to I-80 East (Denver-NY). Splitting at Denver also allowed each leg to be optimized for different shippers, improving rate quality on both segments.',
     metrics: [
+      { label: 'Rate per Mile', before: '$2.00/mile', after: '$2.58/mile' },
+      { label: 'Weekly Revenue', before: '$6,000', after: '$7,740' },
       { label: 'Home Time/Month', before: '2 days', after: '8–10 days' },
       { label: 'Revenue vs. Before', before: '$3,100/week', after: '$4,900/week' },
       { label: 'Health Appointment Access', before: 'Severely limited', after: 'Reliable bi-weekly' },
@@ -318,6 +333,7 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       { label: 'Broker Applications Approved', before: '0 of 7 (rejected)', after: '3 of 3 (with Grow Trucking)' },
       { label: 'Rate per Mile', before: '$1.90/mile', after: '$2.72/mile' },
+      { label: 'Weekly Revenue', before: '$5,700', after: '$8,160' },
       { label: 'Load Board Dependency', before: '100% load board', after: '30% (70% contracted)' },
       { label: 'Month 6 Weekly Revenue', before: '$1,600', after: '$3,900' },
     ],
@@ -340,6 +356,8 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Grow Trucking took over Pat\'s invoicing, collections, and financial documentation. We traced and recovered $17,500 of her outstanding $22,000 in receivables within 45 days. Our team implemented QuickBooks integration with same-day POD upload, and within 90 days Pat had a clean 90-day revenue record that allowed her to successfully refinance her truck at a better rate.',
     routeOptimization: 'I-35 North to I-44 to I-55 North. Identified a fuel optimization circuit using Pat\'s existing fuel card at Casey\'s locations, reducing her fuel spend by $190 per round trip.',
     metrics: [
+      { label: 'Rate per Mile', before: '$2.05/mile', after: '$2.78/mile' },
+      { label: 'Weekly Revenue', before: '$6,150', after: '$8,340' },
       { label: 'Receivables Recovered', before: '$22,000 outstanding', after: '$17,500 recovered (45 days)' },
       { label: 'Invoice Submission Speed', before: '3–7 days (often forgotten)', after: 'Same-day (automated)' },
       { label: 'Fuel Cost per Round Trip', before: '$1,080', after: '$890' },
@@ -364,6 +382,8 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Grow Trucking discovered that Mardi Gras season and Gulf seafood processing had strong northbound freight that few dispatchers knew how to tap. We connected Marco with three Gulf Coast seafood exporters and a specialty food manufacturer running Miami-bound loads. By triangulating his route through Baton Rouge, we added a profitable third leg to what had been a two-leg trip.',
     routeOptimization: 'I-95 South to US-41 to I-10 West (Miami to New Orleans), then US-90 to Baton Rouge for seafood pickup, then I-10/I-12 back to I-95 North. The triangulated route added 80 miles but generated an additional $900 in revenue per cycle.',
     metrics: [
+      { label: 'Rate per Mile', before: '$2.10/mile', after: '$2.88/mile' },
+      { label: 'Weekly Revenue', before: '$6,300', after: '$8,640' },
       { label: 'Empty Mile Rate', before: '60% empty southbound', after: '12% empty (triangulated)' },
       { label: 'Operating Ratio', before: '95.4%', after: '78.2%' },
       { label: 'Revenue per Cycle', before: '$2,100', after: '$4,350' },
@@ -390,6 +410,7 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       { label: 'Unpaid Load Recovered', before: '$1,840 withheld', after: '$1,840 recovered' },
       { label: 'Rate per Mile', before: '$1.95/mile (negotiated down)', after: '$2.62/mile (Grow Trucking rate)' },
+      { label: 'Weekly Revenue', before: '$5,850', after: '$7,860' },
       { label: 'Lease Terms', before: '2 unfair clauses', after: 'Renegotiated by attorney' },
       { label: 'Route Fuel Waste/Year', before: '$3,720 excess', after: 'Eliminated' },
     ],

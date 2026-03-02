@@ -40,7 +40,7 @@ export default function PartnerRelationship({ partner }: PartnerRelationshipProp
     // Card 3: Our Partnership (always show)
     cards.push({
         icon: <Handshake className="w-12 h-12" />,
-        title: 'Our Partnership',
+        title: 'Our Relationship',
         description: partner.relationship,
         number: '03'
     })

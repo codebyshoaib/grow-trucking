@@ -35,10 +35,10 @@ export default function OurVision() {
                     </div>
                     {/* Left Column - Content */}
                     <div className="lg:w-1/2 flex flex-col items-start">
-                        <Badge className="mb-4">OUR VISION</Badge>
+                        <Badge className="mb-4">VISION</Badge>
 
                         <h2 className="uppercase text-4xl md:text-5xl font-extrabold text-secondary mb-6 leading-tight">
-                            Our Special Services
+                            Our Vision
                         </h2>
 
                         <p className="text-lg text-gray-700 leading-relaxed mb-6">

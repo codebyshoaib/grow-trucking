@@ -191,7 +191,7 @@ export default function CaseStudiesPage() {
                                                         {study.driverName}
                                                     </h3>
                                                     <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-4 sm:mb-6">
-                                                        {study.freightLane} • {study.equipmentBadge}
+                                                        {study.equipmentBadge}
                                                     </p>
 
                                                     <div className="mb-4 sm:mb-6">
