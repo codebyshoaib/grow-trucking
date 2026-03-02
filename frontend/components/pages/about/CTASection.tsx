@@ -22,7 +22,7 @@ export default function CTASection({
         <section className="relative w-full py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white">
             <div className="relative max-w-7xl flex flex-col items-center justify-center mx-auto bg-black rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
                 <Image
-                    src={"/case-studies/truck19.webp"}
+                    src={"/case-studies/truck11.webp"}
                     alt="CTA Background"
                     fill
                     className="object-cover"
