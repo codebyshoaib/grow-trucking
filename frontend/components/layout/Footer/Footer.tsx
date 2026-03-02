@@ -31,10 +31,14 @@ const contactLinks = [
 ]
 
 const quickLinks = [
-    { label: 'Tutorials', href: '/about' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Tutorials', href: '/careers' },
+    { label: 'Services', href: '/services' },
+    { label: 'Dry Van Dispatch', href: '/truck-type/dry-van-dispatch-service' },
+    { label: 'Box Truck Dispatch', href: '/truck-type/box-truck-dispatch-service' },
+    { label: 'Reefer Dispatch', href: '/truck-type/reefer-dispatch-service' },
+    { label: 'Flatbed Dispatch', href: '/truck-type/flatbed-dispatch-service' },
+    { label: 'Hotshot Dispatch', href: '/truck-type/hotshot-dispatch-service' },
+    { label: 'Power Only Dispatch', href: '/truck-type/power-only-dispatch-service' },
 ]
 
 // Social links are imported from social.config.ts
