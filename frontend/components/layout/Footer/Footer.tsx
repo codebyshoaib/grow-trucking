@@ -48,7 +48,7 @@ const truckTypeLinks = [
 ]
 
 const servicesLinks = [
-    { label: 'Dedicated Personal Dispatcher', href: '/services/dedicated-personal-dispatcher' },
+    { label: 'Dedicated Personal Dispatcher', href: '/services/dedicated-dispatcher' },
     { label: 'Local Lane Contracts', href: '/services/local-lane-contracts' },
     { label: 'IFTA Reporting & Compliance', href: '/services/ifta-reporting' },
     { label: 'QuickBooks Bookkeeping Services', href: '/services/quickbooks-bookkeeping' },
