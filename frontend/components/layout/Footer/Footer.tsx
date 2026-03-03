@@ -33,6 +33,12 @@ const contactLinks = [
 const quickLinks = [
     { label: 'Tutorials', href: '/careers' },
     { label: 'Services', href: '/services' },
+    { label: 'Contact Us', href: '/contact' },
+    { label: 'About Us', href: '/about' },
+
+]
+
+const truckTypeLinks = [
     { label: 'Dry Van Dispatch', href: '/truck-type/dry-van-dispatch-service' },
     { label: 'Box Truck Dispatch', href: '/truck-type/box-truck-dispatch-service' },
     { label: 'Reefer Dispatch', href: '/truck-type/reefer-dispatch-service' },
@@ -41,6 +47,14 @@ const quickLinks = [
     { label: 'Power Only Dispatch', href: '/truck-type/power-only-dispatch-service' },
 ]
 
+const servicesLinks = [
+    { label: 'Dedicated Personal Dispatcher', href: '/services/dedicated-personal-dispatcher' },
+    { label: 'Local Lane Contracts', href: '/services/local-lane-contracts' },
+    { label: 'IFTA Reporting & Compliance', href: '/services/ifta-reporting' },
+    { label: 'QuickBooks Bookkeeping Services', href: '/services/quickbooks-bookkeeping' },
+    { label: 'Route Planning & Optimization', href: '/services/route-planning' },
+    { label: 'Fleet Management System', href: '/services/fleet-management' },
+]
 // Social links are imported from social.config.ts
 
 const legalLinks = [
@@ -91,7 +105,7 @@ export default function Footer() {
                     </div>
 
                     {/* Right Column - Navigation Links */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
                         {/* Resources Column */}
                         <div>
                             <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">
@@ -111,26 +125,41 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        {/* Contact Column */}
+                        {/* Services Column */}
                         <div>
                             <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">
-                                Contact Us
+                                Services
                             </h3>
                             <ul className="space-y-3">
-                                {contactLinks.map((link) => {
-                                    const Icon = link.icon
-                                    return (
-                                        <li key={link.label} className="flex items-center gap-2">
-                                            <Icon className="w-5 h-5 text-white/70 flex-shrink-0" />
-                                            <Link
-                                                href={link.href}
-                                                className="text-sm text-white/70 hover:text-white transition-colors"
-                                            >
-                                                {link.value}
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
+                                {servicesLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-white/70 hover:text-white transition-colors"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Truck Type Column */}
+                        <div>
+                            <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">
+                                Truck Type
+                            </h3>
+                            <ul className="space-y-3">
+                                {truckTypeLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-white/70 hover:text-white transition-colors"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
@@ -139,28 +168,55 @@ export default function Footer() {
                 {/* Bottom Section - Copyright and Legal Links */}
                 <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
                     {/* Copyright */}
-                    <p className="text-sm text-white/60">
-                        © 2026 Grow Trucking. All rights reserved.
-                    </p>
-
-                    {/* Legal Links */}
-                    <div className="flex items-center gap-6">
-                        {legalLinks.map((link, index) => (
-                            <React.Fragment key={link.label}>
-                                <Link
-                                    href={link.href}
-                                    className="text-sm text-white/70 hover:text-white underline underline-offset-4 transition-colors"
-                                >
-                                    {link.label}
-                                </Link>
-                                {index < legalLinks.length - 1 && (
-                                    <span className="text-white/30">|</span>
-                                )}
-                            </React.Fragment>
-                        ))}
+                    {/* Contact Column */}
+                    <div>
+                        <h3 className="text-xl font-bold mb-4 text-white underline underline-offset-8 decoration-primary">
+                            Contact Us
+                        </h3>
+                        <ul className="space-y-3">
+                            {contactLinks.map((link) => {
+                                const Icon = link.icon
+                                return (
+                                    <li key={link.label} className="flex items-center gap-2">
+                                        <Icon className="w-5 h-5 text-white/70 flex-shrink-0" />
+                                        <Link
+                                            href={link.href}
+                                            className="text-sm text-white/70 hover:text-white transition-colors"
+                                        >
+                                            {link.value}
+                                        </Link>
+                                    </li>
+                                )
+                            })}
+                        </ul>
                     </div>
                 </div>
             </div>
-        </footer>
+
+            {/* Bottom Section - Copyright and Legal Links */}
+            <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+                {/* Copyright */}
+                <p className="text-sm text-white/60">
+                    © 2026 Grow Trucking. All rights reserved.
+                </p>
+
+                {/* Legal Links */}
+                <div className="flex items-center gap-6">
+                    {legalLinks.map((link, index) => (
+                        <React.Fragment key={link.label}>
+                            <Link
+                                href={link.href}
+                                className="text-sm text-white/70 hover:text-white underline underline-offset-4 transition-colors"
+                            >
+                                {link.label}
+                            </Link>
+                            {index < legalLinks.length - 1 && (
+                                <span className="text-white/30">|</span>
+                            )}
+                        </React.Fragment>
+                    ))}
+                </div>
+            </div>
+        </footer >
     )
 }
