@@ -16,10 +16,10 @@ export default function OpenJobs() {
                 <div className="flex flex-col gap-4 justify-center items-center mb-8 sm:mb-12">
                     <Badge>OPEN POSITIONS</Badge>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-secondary mb-4">
-                        Find Your Next Opportunity
+                        Open Positions
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl text-center">
-                        Explore our current job openings and join the team at Grow Trucking.
+                        We currently have two openings for the Truck Dispatching Sales Executive role — one fully remote and one on-site. Both positions carry the same responsibilities and compensation structure.
                     </p>
                 </div>
 
@@ -33,17 +33,16 @@ export default function OpenJobs() {
                                 }`}
                         >
                             <h3 className="text-lg sm:text-xl font-bold text-secondary mb-2 hover:text-primary transition-colors">
-                                {job.title}
+                                {job.title} {job.workArrangement}
                             </h3>
                             <p className="text-sm text-gray-700 mb-2">
-                                {job.workArrangement} · {job.department} · {job.employmentType}
+                                {job.department} · {job.location} · {job.employmentType}
                             </p>
-                            <p className="text-sm text-gray-700 mb-1">
-                                {job.location}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                                Posted {job.postedDate}
-                            </p>
+                            {job.compensation && (
+                                <p className="text-sm font-semibold text-primary mb-1">
+                                    {job.compensation}
+                                </p>
+                            )}
                         </Link>
                     ))}
                 </div>
@@ -80,9 +79,14 @@ export default function OpenJobs() {
                                         <td className="px-4 sm:px-6 py-5">
                                             <Link href={`/careers/${job.slug}`} className="block">
                                                 <h3 className="text-base sm:text-lg font-bold text-secondary hover:text-primary transition-colors">
-                                                    {job.title}
+                                                    {job.title} {job.workArrangement}
                                                 </h3>
-                                                <p className="text-sm text-gray-500">Posted {job.postedDate}</p>
+                                                {job.compensation && (
+                                                    <p className="text-sm font-semibold text-primary mt-1">
+                                                        {job.compensation}
+                                                    </p>
+                                                )}
+
                                             </Link>
                                         </td>
                                         <td className="px-4 sm:px-6 py-5">

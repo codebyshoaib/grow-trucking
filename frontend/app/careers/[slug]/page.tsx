@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import JobDetail from '@/components/pages/careers/JobDetail'
+import ApplicationForm from '@/components/pages/careers/ApplicationForm'
 import { JobRegistry } from '@/domain/job/job.config'
 import type { Metadata } from 'next'
 import PageBanner from '@/components/pages/PageBanner'
@@ -32,22 +33,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.growtrucking.com'
     const canonicalUrl = `${baseUrl}/careers/${slug}`
 
+    const description = job.introduction ||
+        `Join Grow Trucking as a ${job.title} [${job.workArrangement}] in ${job.location}. ${job.compensation || 'Competitive compensation'}. ${job.employmentType} position.`
+
     return {
-        title: `${job.title} | Careers | Grow Trucking`,
-        description: job.description || `Join Grow Trucking as a ${job.title} in ${job.location}. ${job.employmentType} position.`,
+        title: `${job.title} [${job.workArrangement}] | Careers | Grow Trucking`,
+        description,
+        keywords: [
+            job.title.toLowerCase(),
+            'truck dispatching jobs',
+            'logistics sales careers',
+            job.workArrangement.toLowerCase(),
+            job.location,
+            'Grow Trucking careers'
+        ],
         alternates: {
             canonical: canonicalUrl,
         },
         openGraph: {
-            title: `${job.title} | Grow Trucking`,
-            description: job.description || `Join Grow Trucking as a ${job.title}`,
+            title: `${job.title} [${job.workArrangement}] | Grow Trucking Careers`,
+            description,
             type: 'website',
             url: canonicalUrl,
         },
         twitter: {
-            card: 'summary',
-            title: `${job.title} | Grow Trucking`,
-            description: job.description || `Join Grow Trucking as a ${job.title}`,
+            card: 'summary_large_image',
+            title: `${job.title} [${job.workArrangement}] | Grow Trucking`,
+            description,
         },
     }
 }
@@ -68,8 +80,8 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
     return (
         <>
             <PageBanner
-                title={job.title}
-                description={`${job.location} · ${job.employmentType}`}
+                title={`${job.title}`}
+                description={`${job.department} · ${job.location} · ${job.employmentType}${job.compensation ? ` · ${job.compensation}` : ''}`}
                 breadcrumbItems={[
                     { label: 'Home', href: '/' },
                     { label: 'Careers', href: '/careers' },
@@ -78,6 +90,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ slug
                 imageAlt={`${job.title} - Careers`}
             />
             <JobDetail job={job} />
+            <ApplicationForm />
         </>
     )
 }

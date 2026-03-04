@@ -1,0 +1,39 @@
+{
+    "faqs": [
+        {
+            "id": "cdl-required",
+            "question": "Do I need a CDL to apply for this position?",
+            "answer": "No CDL is required. This is a sales and dispatch role, not a driving position. However, knowledge of the trucking industry and dispatch operations is a significant advantage."
+        },
+        {
+            "id": "remote-location",
+            "question": "Is the remote position available to candidates outside the USA?",
+            "answer": "Currently, both remote and on-site positions are open to candidates based in the United States only."
+        },
+        {
+            "id": "interview-process",
+            "question": "What does the interview process look like?",
+            "answer": "After reviewing your application, our hiring team will reach out for an initial phone screening (15–20 minutes), followed by a virtual or in-person interview with the Sales Manager. Final candidates will complete a short role-play sales scenario."
+        },
+        {
+            "id": "sales-experience",
+            "question": "Is prior sales experience required?",
+            "answer": "It is preferred but not required for the right candidate. If you have strong communication skills, a hunger to learn, and some background in trucking or logistics, we are happy to invest in your training."
+        },
+        {
+            "id": "commission-structure",
+            "question": "What is the commission structure?",
+            "answer": "Sales Executives earn 5%–10% commission on the gross revenue of every carrier account they bring on board. Commission is paid monthly with no cap. High performers consistently earn $4,000–$6,000 per month in total compensation."
+        },
+        {
+            "id": "growth-opportunities",
+            "question": "Are there growth opportunities beyond Sales Executive?",
+            "answer": "Absolutely. Grow Trucking promotes from within. Our career path leads from Sales Executive to Senior Executive, Dispatch Team Lead, Sales Manager, and Operations Director."
+        },
+        {
+            "id": "hiring-timeline",
+            "question": "When do open positions need to be filled?",
+            "answer": "We are actively hiring for both positions and looking to onboard the right candidates as soon as possible. Applications are reviewed on a rolling basis — the sooner you apply, the better."
+        }
+    ]
+}

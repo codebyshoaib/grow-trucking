@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Contact, Signup, Claim
+from .models import Contact, Signup, Claim, CareerApplication
 
 
 class ContactCreateSerializer(serializers.ModelSerializer):
@@ -428,3 +428,148 @@ class ClaimResponseSerializer(serializers.ModelSerializer):
             'created_at'
         ]
         read_only_fields = ['id', 'created_at']
+
+
+class CareerApplicationCreateSerializer(serializers.Serializer):
+    """
+    Application Layer: Serializer for creating career applications
+    Handles validation and data transformation for incoming career application requests.
+    """
+    full_name = serializers.CharField(
+        max_length=255,
+        trim_whitespace=True,
+        help_text="Full name of the applicant"
+    )
+    email = serializers.EmailField(
+        max_length=255,
+        help_text="Email address of the applicant"
+    )
+    phone = serializers.CharField(
+        max_length=20,
+        help_text="Phone number of the applicant"
+    )
+    city_state = serializers.CharField(
+        max_length=255,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        trim_whitespace=True,
+        help_text="City and state of the applicant (optional)"
+    )
+    linkedin_url = serializers.URLField(
+        max_length=500,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        help_text="LinkedIn profile URL (optional)"
+    )
+    years_of_experience = serializers.CharField(
+        max_length=50,
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        help_text="Years of experience (optional)"
+    )
+    position_type = serializers.ChoiceField(
+        choices=['remote', 'onsite'],
+        help_text="Type of position: 'remote' or 'onsite'"
+    )
+    job_title = serializers.CharField(
+        max_length=255,
+        required=False,
+        allow_blank=True,
+        default='Truck Dispatching Sales Executive',
+        help_text="Job title being applied for (defaults to Truck Dispatching Sales Executive)"
+    )
+    cover_note = serializers.CharField(
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        help_text="Cover letter or brief note from applicant (optional)"
+    )
+
+    def validate_full_name(self, value):
+        """Custom validation for full name"""
+        if not value or not value.strip():
+            raise serializers.ValidationError("Full name is required.")
+        if len(value.strip()) < 2:
+            raise serializers.ValidationError("Full name must be at least 2 characters long.")
+        return value.strip()
+
+    def validate_phone(self, value):
+        """Custom validation for phone number"""
+        if not value or not value.strip():
+            raise serializers.ValidationError("Phone number is required.")
+        # Remove common phone formatting characters for validation
+        cleaned_phone = value.replace('-', '').replace(' ', '').replace('(', '').replace(')', '').replace('.', '')
+        if not cleaned_phone.isdigit() or len(cleaned_phone) < 10:
+            raise serializers.ValidationError("Please enter a valid phone number.")
+        return value.strip()
+
+    def validate_email(self, value):
+        """Custom validation for email"""
+        if not value or not value.strip():
+            raise serializers.ValidationError("Email is required.")
+        return value.strip().lower()
+
+    def validate_linkedin_url(self, value):
+        """Custom validation for LinkedIn URL"""
+        if value:
+            value = value.strip()
+            if not value.startswith(('http://', 'https://')):
+                raise serializers.ValidationError("LinkedIn URL must start with http:// or https://")
+            if 'linkedin.com' not in value.lower():
+                raise serializers.ValidationError("Please enter a valid LinkedIn URL.")
+        return value
+
+    def validate_position_type(self, value):
+        """Custom validation for position type"""
+        if value not in ['remote', 'onsite']:
+            raise serializers.ValidationError("Position type must be either 'remote' or 'onsite'.")
+        return value
+
+    def validate(self, data):
+        """Cross-field validation"""
+        # Ensure required fields are present
+        required_fields = ['full_name', 'email', 'phone', 'position_type']
+        for field in required_fields:
+            if not data.get(field):
+                raise serializers.ValidationError({field: f"{field.replace('_', ' ').title()} is required."})
+        
+        return data
+
+
+class CareerApplicationResponseSerializer(serializers.ModelSerializer):
+    """
+    Application Layer: Serializer for career application responses
+    Handles serialization of career application data for API responses.
+    """
+    position_type_display = serializers.CharField(source='position_type_display_name', read_only=True)
+    status_display = serializers.CharField(source='get_status_display', read_only=True)
+
+    class Meta:
+        model = CareerApplication
+        fields = [
+            'id',
+            'full_name',
+            'email',
+            'phone',
+            'city_state',
+            'linkedin_url',
+            'years_of_experience',
+            'position_type',
+            'position_type_display',
+            'job_title',
+            'cover_note',
+            'status',
+            'status_display',
+            'created_at',
+            'updated_at'
+        ]
+        read_only_fields = [
+            'id',
+            'status',
+            'status_display',
+            'created_at',
+            'updated_at'
+        ]

@@ -17,12 +17,18 @@ export interface JobOpening {
     // Detailed information
     description?: string
     introduction?: string
+    roleOverview?: string[]
     duties?: string[]
+    whatWeLookingFor?: string[]
     qualifications?: {
         required?: string[]
         preferred?: string[]
     }
+    whatYouEarn?: string[]
     whatWeOffer?: string[]
     encouragementText?: string
     applyLink?: string
+    applyEmail?: string
+    applySubject?: string
+    compensation?: string
 }

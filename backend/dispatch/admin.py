@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact, Signup, Claim
+from .models import Contact, Signup, Claim, CareerApplication
 
 
 @admin.register(Contact)

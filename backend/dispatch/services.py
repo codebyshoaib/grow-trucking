@@ -5,16 +5,18 @@ Contains business logic and use cases for contact management and signup.
 from typing import Dict, Any, Optional
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
-from .models import Contact, Signup, Claim
+from .models import Contact, Signup, Claim, CareerApplication
 from .serializers import (
     ContactCreateSerializer,
     ContactResponseSerializer,
     SignupCreateSerializer,
     SignupResponseSerializer,
     ClaimCreateSerializer,
-    ClaimResponseSerializer
+    ClaimResponseSerializer,
+    CareerApplicationCreateSerializer,
+    CareerApplicationResponseSerializer
 )
-from .email_service import ContactEmailService
+from .email_service import ContactEmailService, CareerApplicationEmailService
 
 
 class ContactSubmissionService:
@@ -306,3 +308,124 @@ class ClaimQueryService:
             return Claim.objects.get(email=email)
         except Claim.DoesNotExist:
             return None
+
+
+class CareerApplicationSubmissionService:
+    """
+    Domain Service: Handles career application submission business logic
+    Implements the use case for creating career application submissions.
+    """
+
+    @staticmethod
+    def create_career_application(data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Use Case: Create a new career application submission
+        
+        Args:
+            data: Dictionary containing career application form data
+            
+        Returns:
+            Dictionary containing the created application data and status
+            
+        Raises:
+            serializers.ValidationError: If validation fails
+        """
+        # Validate input data using serializer (application layer)
+        serializer = CareerApplicationCreateSerializer(data=data)
+        
+        if not serializer.is_valid():
+            raise serializers.ValidationError(serializer.errors)
+        
+        # Create career application entity (domain layer)
+        validated_data = serializer.validated_data
+        
+        # Prepare data for model creation
+        application_data = {
+            'full_name': validated_data.get('full_name', '').strip(),
+            'email': validated_data.get('email', '').strip().lower(),
+            'phone': validated_data.get('phone', '').strip(),
+            'city_state': validated_data.get('city_state', '').strip() or None,
+            'linkedin_url': validated_data.get('linkedin_url', '').strip() or None,
+            'years_of_experience': validated_data.get('years_of_experience', '').strip() or None,
+            'position_type': validated_data.get('position_type'),
+            'job_title': validated_data.get('job_title', 'Truck Dispatching Sales Executive').strip(),
+            'cover_note': validated_data.get('cover_note', '').strip() or None,
+            'status': 'pending',  # Default status
+        }
+        
+        # Create career application entity
+        application = CareerApplication.objects.create(**application_data)
+        
+        # Return response using response serializer
+        response_serializer = CareerApplicationResponseSerializer(application)
+        application_data = response_serializer.data
+        
+        # Email notifications are temporarily disabled - just storing records in DB
+        # TODO: Re-enable email notifications when email service is configured
+        # Send email notification to HR/admin (infrastructure layer)
+        # try:
+        #     CareerApplicationEmailService.send_application_notification(application_data)
+        # except Exception as e:
+        #     # Log email error but don't fail the application submission
+        #     import logging
+        #     logger = logging.getLogger(__name__)
+        #     logger.error(f"Failed to send career application notification email: {str(e)}", exc_info=True)
+        # 
+        # # Send confirmation email to applicant (infrastructure layer)
+        # try:
+        #     CareerApplicationEmailService.send_confirmation_email(application_data)
+        # except Exception as e:
+        #     # Log email error but don't fail the application submission
+        #     import logging
+        #     logger = logging.getLogger(__name__)
+        #     logger.error(f"Failed to send career application confirmation email: {str(e)}", exc_info=True)
+        
+        return {
+            'success': True,
+            'message': 'Your application has been submitted successfully! Our hiring team will review it within 3-5 business days.',
+            'data': application_data
+        }
+
+    @staticmethod
+    def validate_career_application_data(data: Dict[str, Any]) -> bool:
+        """
+        Domain Service Method: Validate career application data before submission
+        
+        Args:
+            data: Dictionary containing career application form data
+            
+        Returns:
+            True if valid, raises ValidationError otherwise
+        """
+        serializer = CareerApplicationCreateSerializer(data=data)
+        return serializer.is_valid(raise_exception=True)
+
+
+class CareerApplicationQueryService:
+    """
+    Domain Service: Handles career application query operations
+    (For future use: listing, filtering, etc.)
+    """
+    
+    @staticmethod
+    def get_application_by_id(application_id: str) -> Optional[CareerApplication]:
+        """Get career application by ID (UUID)"""
+        try:
+            return CareerApplication.objects.get(id=application_id)
+        except CareerApplication.DoesNotExist:
+            return None
+    
+    @staticmethod
+    def get_applications_by_email(email: str) -> list:
+        """Get all career applications by email"""
+        return list(CareerApplication.objects.filter(email=email.lower()).order_by('-created_at'))
+    
+    @staticmethod
+    def get_pending_applications() -> list:
+        """Get all pending career applications"""
+        return list(CareerApplication.objects.filter(status='pending', is_archived=False).order_by('-created_at'))
+    
+    @staticmethod
+    def get_applications_by_position_type(position_type: str) -> list:
+        """Get career applications by position type"""
+        return list(CareerApplication.objects.filter(position_type=position_type, is_archived=False).order_by('-created_at'))

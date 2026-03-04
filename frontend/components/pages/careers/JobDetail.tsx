@@ -14,24 +14,25 @@ export default function JobDetail({ job }: JobDetailProps) {
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16">
                 {/* Header Section */}
                 <div className="mb-8 sm:mb-12">
-                    {job.jobId && (
-                        <p className="text-sm text-gray-500 mb-2">Job ID: {job.jobId}</p>
-                    )}
+                    <div className="flex items-center gap-2 mb-4">
+                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold">
+                            {job.workArrangement}
+                        </span>
+                        {job.compensation && (
+                            <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold">
+                                {job.compensation}
+                            </span>
+                        )}
+                    </div>
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-secondary mb-4">
-                        {job.title}
+                        {job.title} {job.workArrangement && `[ ${job.workArrangement} ]`}
                     </h1>
-                    <p className="text-lg text-gray-700 mb-6">
-                        {job.location}
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <Button
-                            size="lg"
-                            icon={<PhoneCall className="w-5 h-5" />}
-                            iconPosition="left"
-                            asChild
-                        >
-                            <Link href={'/contact'}>Apply Now</Link>
-                        </Button>
+                    <div className="flex flex-wrap gap-4 text-base text-gray-600 mb-6">
+                        <span>{job.department}</span>
+                        <span>•</span>
+                        <span>{job.location}</span>
+                        <span>•</span>
+                        <span>{job.employmentType}</span>
                     </div>
                 </div>
 
@@ -53,11 +54,30 @@ export default function JobDetail({ job }: JobDetailProps) {
                         </div>
                     )}
 
+                    {/* Role Overview */}
+                    {job.roleOverview && job.roleOverview.length > 0 && (
+                        <div>
+                            <h2 className="text-2xl sm:text-3xl font-bold text-secondary mb-4">
+                                Role Overview
+                            </h2>
+                            <ul className="space-y-3">
+                                {job.roleOverview.map((item, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <span className="text-primary mr-3 mt-1">•</span>
+                                        <span className="text-base text-gray-700 leading-relaxed">
+                                            {item}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
                     {/* Duties and Responsibilities */}
                     {job.duties && job.duties.length > 0 && (
                         <div>
                             <h2 className="text-2xl sm:text-3xl font-bold text-secondary mb-4">
-                                DUTIES AND RESPONSIBILITIES
+                                Duties and Responsibilities
                             </h2>
                             <ul className="space-y-3">
                                 {job.duties.map((duty, index) => (
@@ -65,6 +85,25 @@ export default function JobDetail({ job }: JobDetailProps) {
                                         <span className="text-primary mr-3 mt-1">•</span>
                                         <span className="text-base text-gray-700 leading-relaxed">
                                             {duty}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    {/* What We're Looking For */}
+                    {job.whatWeLookingFor && job.whatWeLookingFor.length > 0 && (
+                        <div>
+                            <h2 className="text-2xl sm:text-3xl font-bold text-secondary mb-4">
+                                What We're Looking For
+                            </h2>
+                            <ul className="space-y-3">
+                                {job.whatWeLookingFor.map((item, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <span className="text-primary mr-3 mt-1">•</span>
+                                        <span className="text-base text-gray-700 leading-relaxed">
+                                            {item}
                                         </span>
                                     </li>
                                 ))}
@@ -113,11 +152,30 @@ export default function JobDetail({ job }: JobDetailProps) {
                         </div>
                     )}
 
+                    {/* What You'll Earn & Get */}
+                    {job.whatYouEarn && job.whatYouEarn.length > 0 && (
+                        <div className="bg-primary/5 rounded-lg p-6 sm:p-8 border border-primary/20">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-secondary mb-6">
+                                What You'll Earn & Get
+                            </h2>
+                            <ul className="space-y-3">
+                                {job.whatYouEarn.map((item, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <span className="text-primary mr-3 mt-1">•</span>
+                                        <span className="text-base text-gray-700 leading-relaxed">
+                                            {item}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
                     {/* What We Offer */}
                     {job.whatWeOffer && job.whatWeOffer.length > 0 && (
                         <div className="bg-gray-50 rounded-lg p-6 sm:p-8">
                             <h2 className="text-2xl sm:text-3xl font-bold text-secondary mb-6">
-                                WHAT WE OFFER
+                                What We Offer
                             </h2>
                             <ul className="space-y-3">
                                 {job.whatWeOffer.map((offer, index) => (
@@ -141,18 +199,7 @@ export default function JobDetail({ job }: JobDetailProps) {
                         </div>
                     )}
 
-                    {/* Apply Now Button */}
-                    <div className="pt-6">
-                        <Button
-                            size="lg"
-                            icon={<PhoneCall className="w-5 h-5" />}
-                            iconPosition="left"
-                            className="w-full sm:w-auto"
-                            asChild
-                        >
-                            <Link href={'/contact'}>Apply Now</Link>
-                        </Button>
-                    </div>
+
                 </div>
             </div>
         </main>

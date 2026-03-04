@@ -233,3 +233,125 @@ class Claim(models.Model):
         """Domain method: Archive claim"""
         self.is_archived = True
         self.save(update_fields=['is_archived', 'updated_at'])
+
+
+class CareerApplication(models.Model):
+    """
+    Domain Entity: Career Application
+    Represents a job application submission for career opportunities.
+    """
+    POSITION_TYPE_CHOICES = [
+        ('remote', 'Remote'),
+        ('onsite', 'On-Site'),
+    ]
+    
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        help_text="Unique identifier for the career application"
+    )
+    
+    # Applicant Information
+    full_name = models.CharField(max_length=255, db_index=True)
+    email = models.EmailField(
+        max_length=255,
+        validators=[EmailValidator()],
+        db_index=True
+    )
+    phone = models.CharField(max_length=20)
+    city_state = models.CharField(max_length=255, blank=True, null=True)
+    linkedin_url = models.URLField(max_length=500, blank=True, null=True)
+    years_of_experience = models.CharField(max_length=50, blank=True, null=True)
+    
+    # Position Information
+    position_type = models.CharField(
+        max_length=20,
+        choices=POSITION_TYPE_CHOICES,
+        help_text="Type of position: Remote or On-Site"
+    )
+    job_title = models.CharField(
+        max_length=255,
+        default='Truck Dispatching Sales Executive',
+        help_text="Job title being applied for"
+    )
+    
+    # Application Content
+    cover_note = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Cover letter or brief note from applicant"
+    )
+    
+    # Application Status
+    status = models.CharField(
+        max_length=50,
+        default='pending',
+        choices=[
+            ('pending', 'Pending Review'),
+            ('reviewing', 'Under Review'),
+            ('interviewing', 'Interviewing'),
+            ('accepted', 'Accepted'),
+            ('rejected', 'Rejected'),
+        ],
+        db_index=True
+    )
+    
+    # Metadata
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_read = models.BooleanField(default=False)
+    is_archived = models.BooleanField(default=False)
+    reviewed_by = models.CharField(max_length=255, blank=True, null=True)
+    reviewed_at = models.DateTimeField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True, help_text="Internal notes for HR team")
+
+    class Meta:
+        db_table = 'career_applications'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['-created_at']),
+            models.Index(fields=['email']),
+            models.Index(fields=['position_type']),
+            models.Index(fields=['status']),
+            models.Index(fields=['is_read', 'is_archived']),
+            models.Index(fields=['status', 'position_type']),
+        ]
+        verbose_name = 'Career Application'
+        verbose_name_plural = 'Career Applications'
+
+    def __str__(self):
+        return f"{self.full_name} - {self.email} ({self.get_position_type_display()})"
+
+    @property
+    def position_type_display_name(self):
+        """Domain method: Get formatted position type"""
+        return dict(self.POSITION_TYPE_CHOICES).get(self.position_type, self.position_type)
+
+    def mark_as_read(self):
+        """Domain method: Mark application as read"""
+        self.is_read = True
+        self.save(update_fields=['is_read', 'updated_at'])
+
+    def archive(self):
+        """Domain method: Archive application"""
+        self.is_archived = True
+        self.save(update_fields=['is_archived', 'updated_at'])
+
+    def update_status(self, new_status: str, reviewed_by: str = None):
+        """Domain method: Update application status"""
+        from django.utils import timezone
+        
+        self.status = new_status
+        if reviewed_by:
+            self.reviewed_by = reviewed_by
+            self.reviewed_at = timezone.now()
+        self.save(update_fields=['status', 'reviewed_by', 'reviewed_at', 'updated_at'])
+
+    def is_pending(self) -> bool:
+        """Domain method: Check if application is pending"""
+        return self.status == 'pending'
+
+    def is_active(self) -> bool:
+        """Domain method: Check if application is active (not archived)"""
+        return not self.is_archived

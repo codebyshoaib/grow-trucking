@@ -13,143 +13,87 @@ export class JobRegistry {
     private static readonly jobs: JobOpening[] = [
         {
             id: '1',
-            slug: 'global-b2b-sales-and-business-development',
-            title: 'Global B2B Sales and Business Development',
+            slug: 'truck-dispatching-sales-executive-remote',
+            title: 'Truck Dispatching Sales Executive',
             jobId: 'GT001',
-            postedDate: 'today',
-            workArrangement: 'On-site',
-            location: 'Lahore, Punjab, Pakistan',
-            department: 'Cluster Business Head',
+            postedDate: 'Active',
+            workArrangement: 'Remote',
+            location: 'Anywhere in the USA',
+            department: 'Sales & Dispatch',
             employmentType: 'Full time',
-            introduction: 'Grow Trucking is hiring a Global B2B Sales and Business Development professional to join our dynamic team in Lahore!',
-            description: 'As a Global B2B Sales and Business Development professional, you\'ll work closely with our leadership team to identify and develop new business opportunities in the trucking and logistics industry. Your expertise in B2B sales will be key as you build relationships with potential clients and expand our market presence. You\'ll also play a vital role within a highly collaborative team, where working closely together is essential to achieving our growth goals and fostering a culture of innovation.',
-            duties: [
-                'Identify and pursue new B2B sales opportunities in the logistics and trucking sector',
-                'Develop and maintain relationships with key clients and stakeholders',
-                'Create and present compelling proposals and business cases',
-                'Collaborate with internal teams to ensure client satisfaction',
-                'Analyze market trends and competitor activities',
-                'Meet and exceed sales targets and KPIs',
-                'Participate in industry events and networking opportunities',
-                'Provide regular sales reports and forecasts to management'
+            compensation: 'Base + Commission | Top Performers Earn $4,000–$6,000/mo',
+            introduction: 'Join Grow Trucking as a Truck Dispatching Sales Executive and help owner-operators and fleets grow their business. This fully remote position offers competitive base salary plus uncapped commission.',
+            roleOverview: [
+                'Prospect and onboard new owner-operators and fleet clients for Grow Trucking\'s dispatch services',
+                'Present and sell our truck dispatching packages to carriers, owner-operators, and small fleet companies',
+                'Build and maintain a pipeline of qualified leads through cold outreach, referrals, and social media',
+                'Work closely with the dispatch operations team to ensure smooth client onboarding',
+                'Achieve and exceed monthly revenue and client acquisition targets',
+                'Maintain accurate CRM records of all sales activity and client communications',
+                'Represent Grow Trucking professionally in all client-facing interactions'
             ],
-            qualifications: {
-                required: [
-                    '5+ years of experience in B2B sales and business development',
-                    'Proven track record of meeting or exceeding sales targets',
-                    'Strong communication and negotiation skills',
-                    'Experience in logistics, trucking, or transportation industry preferred',
-                    'Bachelor\'s degree in Business, Marketing, or related field'
-                ],
-                preferred: [
-                    'Experience with CRM systems',
-                    'Multilingual capabilities',
-                    'Existing network in the logistics industry'
-                ]
-            },
-            whatWeOffer: [
-                'A fun, open, and inclusive workplace that encourages innovative thinking',
-                'Opportunities for professional growth with access to training platforms',
-                'Flexible work arrangements to support a healthy work-life balance',
-                'Full-time employment with competitive compensation',
-                'Comprehensive benefits: competitive salary and performance-based bonuses, health insurance, professional development opportunities'
+            whatWeLookingFor: [
+                '1+ years of sales, dispatch, or logistics experience preferred (motivated beginners considered)',
+                'Strong understanding of the U.S. trucking industry, freight brokerage, or dispatch operations',
+                'Excellent communication and negotiation skills — confident on the phone and over email',
+                'Self-motivated with the ability to manage your own schedule and hit targets independently',
+                'Proficient with basic tech tools: email, CRM software, load boards, video calls',
+                'Reliable internet connection and a professional remote work setup',
+                'Bilingual (English/Spanish) is a strong plus'
             ],
-            encouragementText: 'Questioning if you meet the mark? Studies have shown that some individuals may be less likely to apply unless they match the job description exactly. Here at Grow Trucking, we\'re building an inclusive workplace where all employees feel they belong. If this position excites you, we welcome you to apply whether you check all the preferred qualifications or just a few. You may just be our next great fit!',
-            applyLink: 'https://forms.google.com/your-form-link' // Replace with actual form link
+            whatYouEarn: [
+                'Competitive base salary: $2,000–$3,500/month depending on experience',
+                'Uncapped commission: 5%–10% on every account you bring in',
+                'Top performers earn $4,000–$6,000/month in total compensation',
+                'Full remote flexibility — work from home, anywhere in the USA',
+                'Monthly performance bonuses for hitting and exceeding targets',
+                'Access to Grow Trucking\'s full dispatch training library',
+                'Advancement opportunities to Senior Sales Executive or Dispatch Team Lead'
+            ],
+            applyEmail: 'careers@growtrucking.com',
+            applySubject: 'Truck Dispatching Sales Executive — Remote'
         },
         {
             id: '2',
-            slug: 'senior-software-engineer-ai-ml',
-            title: 'Senior Software Engineer - AI/ML',
+            slug: 'truck-dispatching-sales-executive-onsite',
+            title: 'Truck Dispatching Sales Executive',
             jobId: 'GT002',
-            postedDate: '2 days ago',
-            workArrangement: 'On-site',
-            location: 'Lahore, Punjab, Pakistan',
-            department: 'Cluster Business Head',
+            postedDate: 'Active',
+            workArrangement: 'On-Site',
+            location: 'USA (Location TBD based on candidate)',
+            department: 'Sales & Dispatch',
             employmentType: 'Full time',
-            introduction: 'Grow Trucking is hiring a Senior Software Engineer specializing in AI/ML to join our technology team in Lahore!',
-            description: 'As a Senior Software Engineer - AI/ML, you\'ll work closely with product managers and stakeholders to design and develop complex AI-powered solutions that deliver real value to our customers. Your expertise in machine learning and artificial intelligence will be key as you optimize and refactor code for performance and scalability. You\'ll also play a vital role within a highly collaborative team, where working closely together is essential to getting things done and fostering a culture of innovation.',
-            duties: [
-                'Design and develop AI/ML models and algorithms for logistics optimization',
-                'Implement and maintain machine learning pipelines',
-                'Collaborate with cross-functional teams to integrate AI solutions',
-                'Optimize models for performance and scalability',
-                'Conduct research and stay updated with latest AI/ML trends',
-                'Mentor junior engineers and contribute to code reviews',
-                'Troubleshoot and resolve production issues',
-                'Document technical designs and implementations'
+            compensation: 'Base + Commission | Top Performers Earn $4,000–$6,000/mo',
+            introduction: 'Join Grow Trucking as an On-Site Truck Dispatching Sales Executive. Work in a collaborative office environment with direct mentorship and team support.',
+            roleOverview: [
+                'Serve as an in-office sales and dispatch representative for Grow Trucking',
+                'Prospect, pitch, and close owner-operators and fleet companies on our dispatch services',
+                'Manage a portfolio of active carrier clients, ensuring satisfaction and retention',
+                'Coordinate directly with the operations and dispatch team in a collaborative office environment',
+                'Attend industry events, carrier expos, and local trucking meetups to generate leads',
+                'Provide daily activity reports and pipeline updates to the Sales Manager',
+                'Onboard new clients and guide them through Grow Trucking\'s service offerings'
             ],
-            qualifications: {
-                required: [
-                    '7+ years of experience in software development with focus on AI/ML',
-                    'Strong experience with Python, TensorFlow, or PyTorch',
-                    'Experience with database systems and data pipelines',
-                    'Solid understanding of machine learning algorithms and techniques',
-                    'Bachelor\'s degree in Computer Science, Engineering, or related field'
-                ],
-                preferred: [
-                    'Experience with cloud platforms (AWS, GCP, Azure)',
-                    'Knowledge of logistics and transportation industry',
-                    'Experience with MLOps and model deployment',
-                    'Advanced degree in AI/ML or related field'
-                ]
-            },
-            whatWeOffer: [
-                'A fun, open, and inclusive workplace that encourages innovative thinking',
-                'Opportunities for professional growth with access to training platforms',
-                'Flexible work arrangements to support a healthy work-life balance',
-                'Full-time employment with competitive compensation',
-                'Comprehensive benefits: competitive salary and performance-based bonuses, health insurance, professional development opportunities'
+            whatWeLookingFor: [
+                '1+ years of sales experience in trucking, logistics, freight brokerage, or related field',
+                'Strong in-person presentation and communication skills',
+                'Proven track record of meeting or exceeding sales targets',
+                'Comfortable working in a fast-paced, KPI-driven office environment',
+                'Knowledge of load boards, dispatch software, and carrier operations is a strong advantage',
+                'Valid driver\'s license and reliable transportation',
+                'Professional appearance and conduct in all client-facing scenarios'
             ],
-            encouragementText: 'Questioning if you meet the mark? Studies have shown that some individuals may be less likely to apply unless they match the job description exactly. Here at Grow Trucking, we\'re building an inclusive workplace where all employees feel they belong. If this position excites you, we welcome you to apply whether you check all the preferred qualifications or just a few. You may just be our next great fit!',
-            applyLink: 'https://forms.google.com/your-form-link' // Replace with actual form link
-        },
-        {
-            id: '3',
-            slug: 'career-manager-business-development',
-            title: 'Career Manager - Business Development',
-            jobId: 'GT003',
-            postedDate: '3 days ago',
-            workArrangement: 'Remote',
-            location: 'Lahore, Punjab, Pakistan',
-            department: 'Engineering Department',
-            employmentType: 'Full time',
-            introduction: 'Grow Trucking is hiring a Career Manager for Business Development to join our team! This role offers the flexibility to work remotely.',
-            description: 'As a Career Manager - Business Development, you\'ll be responsible for managing and developing business relationships while also focusing on career development initiatives within the organization. You\'ll work closely with our team to identify growth opportunities and help shape the future of our business development efforts.',
-            duties: [
-                'Develop and execute business development strategies',
-                'Manage key client relationships and partnerships',
-                'Identify new market opportunities and growth areas',
-                'Lead career development programs and initiatives',
-                'Collaborate with internal teams on strategic projects',
-                'Analyze business metrics and provide insights',
-                'Participate in strategic planning sessions',
-                'Mentor and coach team members'
+            whatYouEarn: [
+                'Competitive base salary: $2,500–$4,000/month depending on experience',
+                'Uncapped commission structure — the more you close, the more you earn',
+                'On-site team environment with direct mentorship from senior dispatch professionals',
+                'Monthly bonuses, team lunches, and performance incentives',
+                'Structured onboarding and ongoing in-house training program',
+                'Clear promotion path: Sales Executive → Senior Executive → Dispatch Manager',
+                'Travel reimbursement for industry events and client visits'
             ],
-            qualifications: {
-                required: [
-                    '5+ years of experience in business development or related field',
-                    'Strong leadership and management skills',
-                    'Excellent communication and interpersonal abilities',
-                    'Experience in strategic planning and execution',
-                    'Bachelor\'s degree in Business, Management, or related field'
-                ],
-                preferred: [
-                    'MBA or advanced degree',
-                    'Experience in logistics or transportation',
-                    'Remote work experience',
-                    'Certification in project management'
-                ]
-            },
-            whatWeOffer: [
-                'A fun, open, and inclusive workplace that encourages innovative thinking',
-                'Opportunities for professional growth with access to training platforms',
-                'Flexible work arrangements to support a healthy work-life balance',
-                'Full-time employment with competitive compensation',
-                'Comprehensive benefits: competitive salary and performance-based bonuses, health insurance, professional development opportunities'
-            ],
-            encouragementText: 'Questioning if you meet the mark? Studies have shown that some individuals may be less likely to apply unless they match the job description exactly. Here at Grow Trucking, we\'re building an inclusive workplace where all employees feel they belong. If this position excites you, we welcome you to apply whether you check all the preferred qualifications or just a few. You may just be our next great fit!',
-            applyLink: 'https://forms.google.com/your-form-link' // Replace with actual form link
+            applyEmail: 'careers@growtrucking.com',
+            applySubject: 'Truck Dispatching Sales Executive — On-Site'
         }
     ]
 

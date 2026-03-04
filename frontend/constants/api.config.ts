@@ -33,6 +33,7 @@ export const API_CONFIG = {
     CONTACT: '/api/v1/dispatch/contact/',
     CLAIM: '/api/v1/dispatch/claim/',
     SIGNUP: '/api/v1/dispatch/signup/',
+    CAREER_APPLICATION: '/api/v1/dispatch/career-application/',
     TEST: '/api/v1/dispatch/',
   },
   TIMEOUT: 30000, // 30 seconds
