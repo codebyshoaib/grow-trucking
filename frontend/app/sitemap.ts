@@ -127,7 +127,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Dynamic partner pages
   const partnerPages: MetadataRoute.Sitemap = PartnerRegistry.getAll().map((partner) => ({
-    url: `${baseUrl}/partners/${partner.slug}`,
+    url: `${baseUrl}/we-work-with/${partner.slug}`,
     lastModified: currentDate,
     changeFrequency: 'monthly' as const,
     priority: 0.6,

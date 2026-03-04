@@ -79,7 +79,7 @@ export const services: SubmenuItem[] = [
  */
 const partners: SubmenuItem[] = PartnerRegistry.getAll().map((partner) => ({
     title: partner.displayName,
-    href: `/partners/${partner.slug}`,
+    href: `/we-work-with/${partner.slug}`,
 }))
 
 /**

@@ -71,7 +71,7 @@ export default function PartnerCard({ partner, index }: PartnerCardProps) {
 
                 {/* CTA Button */}
                 <div className="mt-auto pt-4 border-t border-gray-100">
-                    <Link href={`/partners/${partner.slug}`}>
+                    <Link href={`/we-work-with/${partner.slug}`}>
                         <Button
                             variant="outline"
                             className="w-full group/btn border-2 border-primary/20 hover:border-primary bg-white hover:bg-primary text-primary hover:text-white font-semibold transition-all duration-300"
