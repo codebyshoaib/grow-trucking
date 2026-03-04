@@ -35,13 +35,13 @@ export class SignupService {
         company_email: companyData.companyEmail.trim().toLowerCase(),
         company_contact_number: companyData.companyContactNumber.trim(),
         motor_carrier_no: companyData.motorCarrierNo.trim(),
-        authority_age: companyData.authorityAge,
+        authority_age: companyData.authorityAge || null, // Optional field
         number_of_trucks: companyData.numberOfTrucks,
         truck_type: companyData.truckType,
-        operation_area: companyData.operationArea,
-        first_name: companyData.firstName.trim(),
-        last_name: companyData.lastName.trim(),
-        contact_number: companyData.contactNumber.trim(),
+        operation_area: companyData.operationArea || '', // Optional field
+        first_name: companyData.firstName?.trim() || '', // Optional field
+        last_name: companyData.lastName?.trim() || '', // Optional field
+        contact_number: companyData.contactNumber?.trim() || '', // Optional field
         communication_method: companyData.communicationMethod,
         email: companyData.email.trim().toLowerCase(),
       } as CompanySignupSubmissionRequest;
@@ -53,13 +53,13 @@ export class SignupService {
         owner_email: ownerData.ownerEmail.trim().toLowerCase(),
         owner_contact_number: ownerData.ownerContactNumber.trim(),
         motor_carrier_no: ownerData.motorCarrierNo.trim(),
-        authority_age: ownerData.authorityAge,
+        authority_age: ownerData.authorityAge || null, // Optional field
         number_of_trucks: ownerData.numberOfTrucks,
         truck_type: ownerData.truckType,
-        operation_area: ownerData.operationArea,
-        first_name: ownerData.firstName.trim(),
-        last_name: ownerData.lastName.trim(),
-        contact_number: ownerData.contactNumber.trim(),
+        operation_area: ownerData.operationArea || '', // Optional field
+        first_name: ownerData.firstName?.trim() || '', // Optional field
+        last_name: ownerData.lastName?.trim() || '', // Optional field
+        contact_number: ownerData.contactNumber?.trim() || '', // Optional field
         communication_method: ownerData.communicationMethod,
         email: ownerData.email.trim().toLowerCase(),
       } as OwnerOperatorSignupSubmissionRequest;
@@ -69,6 +69,7 @@ export class SignupService {
   /**
    * Validate form data before submission
    * Application layer: Business rule validation
+   * Simplified validation for simplified form
    */
   private validateFormData(formData: SignupFormData): void {
     // Common validations
@@ -76,7 +77,9 @@ export class SignupService {
       throw new Error('You must agree to the terms and conditions');
     }
 
-    // Type-specific validations
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Type-specific validations (simplified form)
     if (formData.signupType === 'company') {
       const companyData = formData as CompanySignupFormData;
       
@@ -88,7 +91,6 @@ export class SignupService {
         throw new Error('Company email is required');
       }
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(companyData.companyEmail.trim())) {
         throw new Error('Please enter a valid company email address');
       }
@@ -98,11 +100,7 @@ export class SignupService {
       }
 
       if (!companyData.motorCarrierNo?.trim()) {
-        throw new Error('Motor Carrier Number is required');
-      }
-
-      if (!companyData.authorityAge || companyData.authorityAge <= 0) {
-        throw new Error('Authority age is required');
+        throw new Error('MC Authority / USDOT is required');
       }
 
       if (!companyData.numberOfTrucks) {
@@ -113,32 +111,16 @@ export class SignupService {
         throw new Error('Truck type is required');
       }
 
-      if (!companyData.operationArea) {
-        throw new Error('Operation area is required');
-      }
-
-      if (!companyData.firstName?.trim()) {
-        throw new Error('Contact person first name is required');
-      }
-
-      if (!companyData.lastName?.trim()) {
-        throw new Error('Contact person last name is required');
-      }
-
-      if (!companyData.contactNumber?.trim()) {
-        throw new Error('Contact person number is required');
-      }
-
       if (!companyData.communicationMethod) {
         throw new Error('Communication method is required');
       }
 
       if (!companyData.email?.trim()) {
-        throw new Error('Contact person email is required');
+        throw new Error('Email is required');
       }
 
       if (!emailRegex.test(companyData.email.trim())) {
-        throw new Error('Please enter a valid contact person email address');
+        throw new Error('Please enter a valid email address');
       }
     } else {
       const ownerData = formData as OwnerOperatorSignupFormData;
@@ -151,7 +133,6 @@ export class SignupService {
         throw new Error('Owner email is required');
       }
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(ownerData.ownerEmail.trim())) {
         throw new Error('Please enter a valid owner email address');
       }
@@ -161,11 +142,7 @@ export class SignupService {
       }
 
       if (!ownerData.motorCarrierNo?.trim()) {
-        throw new Error('Motor Carrier Number is required');
-      }
-
-      if (!ownerData.authorityAge || ownerData.authorityAge <= 0) {
-        throw new Error('Authority age is required');
+        throw new Error('MC Authority / USDOT is required');
       }
 
       if (!ownerData.numberOfTrucks) {
@@ -176,32 +153,16 @@ export class SignupService {
         throw new Error('Truck type is required');
       }
 
-      if (!ownerData.operationArea) {
-        throw new Error('Operation area is required');
-      }
-
-      if (!ownerData.firstName?.trim()) {
-        throw new Error('Contact person first name is required');
-      }
-
-      if (!ownerData.lastName?.trim()) {
-        throw new Error('Contact person last name is required');
-      }
-
-      if (!ownerData.contactNumber?.trim()) {
-        throw new Error('Contact person number is required');
-      }
-
       if (!ownerData.communicationMethod) {
         throw new Error('Communication method is required');
       }
 
       if (!ownerData.email?.trim()) {
-        throw new Error('Contact person email is required');
+        throw new Error('Email is required');
       }
 
       if (!emailRegex.test(ownerData.email.trim())) {
-        throw new Error('Please enter a valid contact person email address');
+        throw new Error('Please enter a valid email address');
       }
     }
   }

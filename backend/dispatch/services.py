@@ -147,19 +147,19 @@ class SignupSubmissionService:
                     'owner_email': ['A signup with this owner email already exists.']
                 })
         
-        # Prepare signup data
+        # Prepare signup data (simplified form - optional fields have defaults)
         signup_data = {
             'signup_type': validated_data.get('signup_type'),
-            'first_name': validated_data.get('first_name'),
-            'last_name': validated_data.get('last_name'),
-            'contact_number': validated_data.get('contact_number'),
+            'first_name': validated_data.get('first_name', '').strip() or '',
+            'last_name': validated_data.get('last_name', '').strip() or '',
+            'contact_number': validated_data.get('contact_number', '').strip() or '',
             'communication_method': validated_data.get('communication_method'),
             'email': email,
             'motor_carrier_no': validated_data.get('motor_carrier_no', '').strip() or None,
             'authority_age': validated_data.get('authority_age'),
             'number_of_trucks': validated_data.get('number_of_trucks'),
             'truck_type': validated_data.get('truck_type'),
-            'operation_area': validated_data.get('operation_area'),
+            'operation_area': validated_data.get('operation_area', '').strip() or '',
         }
         
         # Add type-specific fields

@@ -100,12 +100,12 @@ class Signup(models.Model):
     authority_age = models.IntegerField(blank=True, null=True)
     number_of_trucks = models.CharField(max_length=50)
     truck_type = models.CharField(max_length=100)
-    operation_area = models.CharField(max_length=100)
+    operation_area = models.CharField(max_length=100, blank=True, default='')
     
-    # Contact Person Details
-    first_name = models.CharField(max_length=100, db_index=True)
-    last_name = models.CharField(max_length=100, db_index=True)
-    contact_number = models.CharField(max_length=20)
+    # Contact Person Details (simplified form - some fields optional)
+    first_name = models.CharField(max_length=100, blank=True, default='', db_index=True)
+    last_name = models.CharField(max_length=100, blank=True, default='', db_index=True)
+    contact_number = models.CharField(max_length=20, blank=True, default='')
     communication_method = models.CharField(max_length=50)
     email = models.EmailField(
         max_length=255,

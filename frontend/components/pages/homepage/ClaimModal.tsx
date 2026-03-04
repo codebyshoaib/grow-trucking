@@ -192,7 +192,7 @@ export default function ClaimModal({ isOpen, onClose }: ClaimModalProps) {
                             htmlFor="phone"
                             className="block text-sm font-semibold text-gray-700 mb-2"
                         >
-                            Phone <span className="text-gray-500 font-normal">(Optional)</span>
+                            Phone
                         </label>
                         <input
                             type="tel"
@@ -205,18 +205,19 @@ export default function ClaimModal({ isOpen, onClose }: ClaimModalProps) {
                                 : 'border-gray-200'
                                 }`}
                             placeholder="123-456-7890"
+                            required
                         />
                         {fieldErrors.phone && (
                             <p className="text-xs text-red-600 mt-1">{fieldErrors.phone}</p>
                         )}
                     </div>
-                    {/* Age of MC Authority Field */}
+                    {/* MC Authority / DOT Field */}
                     <div>
                         <label
                             htmlFor="ageOfMCAuthority"
                             className="block text-sm font-semibold text-gray-700 mb-2"
                         >
-                            MC Authrority / DOT
+                            MC Authority / DOT
                         </label>
 
                         <input
@@ -229,8 +230,9 @@ export default function ClaimModal({ isOpen, onClose }: ClaimModalProps) {
                                 ? 'border-red-300 focus:border-red-500 focus:ring-red-500/20'
                                 : 'border-gray-200'
                                 }`}
-                            placeholder="Your age of MC authority"
+                            placeholder="Enter MC/DOT number"
                             required
+                            min="1"
                         />
                         {fieldErrors.ageOfMCAuthority && (
                             <p className="text-xs text-red-600 mt-1">{fieldErrors.ageOfMCAuthority}</p>

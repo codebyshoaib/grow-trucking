@@ -139,13 +139,13 @@ class SignupCreateSerializer(serializers.Serializer):
         max_length=50,
         required=False,
         allow_blank=True,
-        help_text="Motor Carrier Number"
+        help_text="Motor Carrier Number / USDOT"
     )
     authority_age = serializers.IntegerField(
         required=False,
         allow_null=True,
         min_value=0,
-        help_text="Age of MC Authority"
+        help_text="Age of MC Authority (optional)"
     )
     number_of_trucks = serializers.CharField(
         max_length=50,
@@ -157,23 +157,31 @@ class SignupCreateSerializer(serializers.Serializer):
     )
     operation_area = serializers.CharField(
         max_length=100,
-        help_text="Operation area"
+        required=False,
+        allow_blank=True,
+        help_text="Operation area (optional)"
     )
     
-    # Contact Person Details
+    # Contact Person Details (now optional - simplified form)
     first_name = serializers.CharField(
         max_length=100,
+        required=False,
+        allow_blank=True,
         trim_whitespace=True,
-        help_text="Contact person first name"
+        help_text="Contact person first name (optional)"
     )
     last_name = serializers.CharField(
         max_length=100,
+        required=False,
+        allow_blank=True,
         trim_whitespace=True,
-        help_text="Contact person last name"
+        help_text="Contact person last name (optional)"
     )
     contact_number = serializers.CharField(
         max_length=20,
-        help_text="Contact person phone number"
+        required=False,
+        allow_blank=True,
+        help_text="Contact person phone number (optional)"
     )
     communication_method = serializers.CharField(
         max_length=50,
@@ -181,11 +189,11 @@ class SignupCreateSerializer(serializers.Serializer):
     )
     email = serializers.EmailField(
         max_length=255,
-        help_text="Contact person email address"
+        help_text="Email address"
     )
 
     def validate(self, data):
-        """Validate signup data based on signup type"""
+        """Validate signup data based on signup type - simplified validation"""
         signup_type = data.get('signup_type')
         
         if signup_type == 'company':
@@ -221,22 +229,14 @@ class SignupCreateSerializer(serializers.Serializer):
                 'signup_type': 'Invalid signup type. Must be "company" or "owner-operator".'
             })
         
-        # Validate common required fields
-        if not data.get('first_name') or not data.get('first_name').strip():
-            raise serializers.ValidationError({
-                'first_name': 'Contact person first name is required.'
-            })
-        if not data.get('last_name') or not data.get('last_name').strip():
-            raise serializers.ValidationError({
-                'last_name': 'Contact person last name is required.'
-            })
+        # Validate common required fields (simplified form)
         if not data.get('email') or not data.get('email').strip():
             raise serializers.ValidationError({
-                'email': 'Contact person email is required.'
+                'email': 'Email is required.'
             })
-        if not data.get('contact_number') or not data.get('contact_number').strip():
+        if not data.get('motor_carrier_no') or not data.get('motor_carrier_no').strip():
             raise serializers.ValidationError({
-                'contact_number': 'Contact person phone number is required.'
+                'motor_carrier_no': 'MC Authority / USDOT is required.'
             })
         if not data.get('communication_method') or not data.get('communication_method').strip():
             raise serializers.ValidationError({
@@ -250,24 +250,32 @@ class SignupCreateSerializer(serializers.Serializer):
             raise serializers.ValidationError({
                 'truck_type': 'Truck type is required.'
             })
+        
+        # Optional fields - set defaults if not provided
+        if not data.get('first_name') or not data.get('first_name').strip():
+            data['first_name'] = ''
+        if not data.get('last_name') or not data.get('last_name').strip():
+            data['last_name'] = ''
+        if not data.get('contact_number') or not data.get('contact_number').strip():
+            data['contact_number'] = ''
         if not data.get('operation_area') or not data.get('operation_area').strip():
-            raise serializers.ValidationError({
-                'operation_area': 'Operation area is required.'
-            })
+            data['operation_area'] = ''
+        if data.get('authority_age') is None:
+            data['authority_age'] = None
         
         return data
 
     def validate_first_name(self, value):
-        """Custom validation for first name"""
-        if not value or not value.strip():
-            raise serializers.ValidationError("First name is required.")
-        return value.strip()
+        """Custom validation for first name (optional)"""
+        if value:
+            return value.strip()
+        return value or ''
 
     def validate_last_name(self, value):
-        """Custom validation for last name"""
-        if not value or not value.strip():
-            raise serializers.ValidationError("Last name is required.")
-        return value.strip()
+        """Custom validation for last name (optional)"""
+        if value:
+            return value.strip()
+        return value or ''
 
 
 class SignupResponseSerializer(serializers.ModelSerializer):
