@@ -5,14 +5,13 @@ import LaneHero from './LaneHero'
 import LaneOverview from './LaneOverview'
 import LaneFreightTypes from './LaneFreightTypes'
 import LaneChallenges from './LaneChallenges'
-import LaneBenefits from './LaneBenefits'
-import LaneProTips from './LaneProTips'
 import LaneCommodities from './LaneCommodities'
 import LaneSeasonalBehavior from './LaneSeasonalBehavior'
 import LaneRateNegotiation from './LaneRateNegotiation'
 import LaneBackhaulStrategy from './LaneBackhaulStrategy'
 import LaneDispatcherTips from './LaneDispatcherTips'
 import LaneCTA from './LaneCTA'
+import LaneFAQ from './LaneFAQ'
 import SchemaScript from '@/components/seo/SchemaScript'
 import { generateServiceSchema } from '@/lib/schema'
 import type { LaneEntity } from '@/types/state.types'
@@ -67,6 +66,9 @@ export default function LanePage({ lane }: LanePageProps) {
 
                 {/* Expert Insights */}
                 <LaneDispatcherTips lane={lane} />
+
+                {/* Core FAQ Template */}
+                <LaneFAQ lane={lane} />
 
                 {/* Call to Action */}
                 <LaneCTA lane={lane} />

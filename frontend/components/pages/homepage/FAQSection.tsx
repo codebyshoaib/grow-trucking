@@ -8,7 +8,25 @@ import Link from 'next/link'
 import SchemaScript from '@/components/seo/SchemaScript'
 import { generateFAQSchema } from '@/lib/schema'
 
-const faqs = [
+export interface FAQItem {
+    id?: number
+    number?: string
+    question: string
+    answer: string
+}
+
+interface FAQSectionProps {
+    badgeText?: string
+    titleLeading?: string
+    titleHighlight?: string
+    description?: string
+    faqs?: FAQItem[]
+    ctaText?: string
+    ctaHref?: string
+    defaultOpenId?: number
+}
+
+const defaultFaqs: FAQItem[] = [
     {
         id: 1,
         number: '001',
@@ -71,8 +89,22 @@ const faqs = [
     }
 ]
 
-export default function FAQSection() {
-    const [openId, setOpenId] = useState(2) // Item 002 is open by default
+export default function FAQSection({
+    badgeText = 'FREQUENTLY ASKED QUESTIONS',
+    titleLeading = 'Frequently Asked',
+    titleHighlight = 'Questions',
+    description = "Get answers to common questions about Grow Trucking's dispatch services, pricing, and how we help owner-operators and small fleets maximize their revenue.",
+    faqs = defaultFaqs,
+    ctaText = 'Contact us',
+    ctaHref = '/contact',
+    defaultOpenId,
+}: FAQSectionProps) {
+    const normalizedFaqs = faqs.map((faq, index) => ({
+        ...faq,
+        id: faq.id ?? index + 1,
+        number: faq.number ?? String(index + 1).padStart(3, '0'),
+    }))
+    const [openId, setOpenId] = useState(defaultOpenId ?? normalizedFaqs[1]?.id ?? normalizedFaqs[0]?.id ?? -1)
 
     const toggleFAQ = (id: number) => {
         setOpenId(openId === id ? -1 : id)
@@ -80,7 +112,7 @@ export default function FAQSection() {
 
     // Generate FAQ Schema
     const faqSchema = generateFAQSchema(
-        faqs.map((faq) => ({
+        normalizedFaqs.map((faq) => ({
             question: faq.question,
             answer: faq.answer,
         }))
@@ -94,13 +126,13 @@ export default function FAQSection() {
                     {/* Left Side - Content */}
                     <div className="space-y-8">
                         <div>
-                            <Badge className="mb-4">FREQUENTLY ASKED QUESTIONS</Badge>
+                            <Badge className="mb-4">{badgeText}</Badge>
                             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                                <span className="text-secondary">Frequently Asked</span>{' '}
-                                <span className="text-primary">Questions</span>
+                                <span className="text-secondary">{titleLeading}</span>{' '}
+                                <span className="text-primary">{titleHighlight}</span>
                             </h2>
                             <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
-                                Get answers to common questions about Grow Trucking's dispatch services, pricing, and how we help owner-operators and small fleets maximize their revenue.
+                                {description}
                             </p>
                         </div>
 
@@ -110,13 +142,13 @@ export default function FAQSection() {
                             iconPosition="right"
                             className="uppercase tracking-tighter"
                         >
-                            <Link href="/contact">Contact us</Link>
+                            <Link href={ctaHref}>{ctaText}</Link>
                         </Button>
                     </div>
 
                     {/* Right Side - FAQ Accordion */}
                     <div className="space-y-4">
-                        {faqs.map((faq) => {
+                        {normalizedFaqs.map((faq) => {
                             const isOpen = openId === faq.id
                             return (
                                 <div
